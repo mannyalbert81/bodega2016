@@ -13,8 +13,24 @@ class EntidadesController extends ControladorBase{
 		//Creamos el objeto usuario
      	$entidades=new EntidadesModel();
 					//Conseguimos todos los usuarios
-		$resultSet=$entidades->getAll("id_entidades");
-				
+					
+     	
+     	
+     	$columnas = " entidades.ruc_entidades, 
+					  entidades.nombre_entidades, 
+					  entidades.telefono_entidades, 
+					  entidades.direccion_entidades, 
+					  ciudad.nombre_ciudad, 
+					  entidades.id_entidades";
+     	$tablas   = " public.entidades, public.ciudad";
+     	$where    = "ciudad.id_ciudad = entidades.id_ciudad";
+     	$id       = "entidades.nombre_entidades";
+     	$resultSet=$entidades->getCondiciones($columnas ,$tablas ,$where, $id);
+	
+		
+		$ciudad = new CiudadModel();
+		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		
 		$resultEdit = "";
 
 		
@@ -41,10 +57,16 @@ class EntidadesController extends ControladorBase{
 					{
 					
 						$_id_entidades = $_GET["id_entidades"];
-						$columnas = " id_entidades, ruc_entidades, nombre_entidades, telefono_entidades, direccion_entidades, ciudad_entidades ";
-						$tablas   = "entidades";
-						$where    = "id_entidades = '$_id_entidades' "; 
-						$id       = "ruc_entidades";
+						$columnas = " entidades.ruc_entidades, 
+									  entidades.nombre_entidades, 
+									  entidades.telefono_entidades, 
+									  entidades.direccion_entidades,
+								      ciudad.id_ciudad,
+									  ciudad.nombre_ciudad, 
+									  entidades.id_entidades";
+						$tablas   = "public.entidades, public.ciudad";
+						$where    = "ciudad.id_ciudad = entidades.id_ciudad AND entidades.id_entidades = '$_id_entidades' "; 
+						$id       = "entidades.ruc_entidades";
 							
 						$resultEdit = $entidades->getCondiciones($columnas ,$tablas ,$where, $id);
 						
@@ -71,7 +93,7 @@ class EntidadesController extends ControladorBase{
 		
 				
 				$this->view("Entidades",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultCiu"=>$resultCiu
 			
 				));
 		
@@ -127,10 +149,10 @@ class EntidadesController extends ControladorBase{
 				$_nombre_entidades = $_POST["nombre_entidades"];
 				$_telefono_entidades = $_POST["telefono_entidades"];
 				$_direccion_entidades = $_POST["direccion_entidades"];
-				$_ciudad_entidades = $_POST["ciudad_entidades"];
+				$_id_ciudad = $_POST["id_ciudad"];
 				
 				$funcion = "ins_entidades";
-				$parametros = "'$_ruc_entidades', '$_nombre_entidades', '$_telefono_entidades', '$_direccion_entidades', '$_ciudad_entidades'";
+				$parametros = "'$_ruc_entidades', '$_nombre_entidades', '$_telefono_entidades', '$_direccion_entidades', '$_id_ciudad'";
 					
 				$entidades->setFuncion($funcion);
 		

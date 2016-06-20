@@ -111,11 +111,12 @@
 		    	var cedula_usuario = $("#cedula_usuarios").val();
 		    	var nombre_usuario = $("#nombre_usuarios").val();
 		    	var usuario_usuario = $("#usuario_usuarios").val();
+		    	var correo_usuario  = $("#correo_usuarios").val();
 		    	var clave_usuario = $("#clave_usuarios").val();
 		    	var cclave_usuario = $("#cclave_usuarios").val();
 		    	var telefono_usuario = $("#telefono_usuarios").val();	
 		    	var celular_usuario = $("#celular_usuarios").val();
-		    	var correo_usuario  = $("#correo_usuarios").val();
+		    	
 		    	
 		    	
 		    	
@@ -158,7 +159,27 @@
 		    		$("#mensaje_usuario").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}   
-						    	
+
+		    	//correo
+		    	
+		    	if (correo_usuario == "")
+		    	{
+			    	
+		    		$("#mensaje_correo").text("Introduzca un correo");
+		    		$("#mensaje_correo").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else if (regex.test($('#correo_usuario').val().trim()))
+		    	{
+		    		$("#mensaje_correo").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	else 
+		    	{
+		    		$("#mensaje_correo").text("Introduzca un correo Valido");
+		    		$("#mensaje_correo").fadeIn("slow"); //Muestra mensaje de error
+		            return false;	
+			    }	    	
 				//la clave
 
 		    	if (clave_usuario == "")
@@ -229,26 +250,9 @@
 		            
 				}
 
-				// correos
+			
 				
-		    	if (correo_usuario == "")
-		    	{
-			    	
-		    		$("#mensaje_correo").text("Introduzca un correo");
-		    		$("#mensaje_correo").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else if (regex.test($('#correo_usuario').val().trim()))
-		    	{
-		    		$("#mensaje_correo").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	else 
-		    	{
-		    		$("#mensaje_correo").text("Introduzca un correo Valido");
-		    		$("#mensaje_correo").fadeIn("slow"); //Muestra mensaje de error
-		            return false;	
-			    }
+		    	
 
 		    	
 
@@ -267,7 +271,9 @@
 				$( "#usuario_usuarios" ).focus(function() {
 					$("#mensaje_usuario").fadeOut("slow");
     			});
-    			
+				$( "#correo_usuarios" ).focus(function() {
+					$("#mensaje_correo").fadeOut("slow");
+    			});
 				$( "#clave_usuarios" ).focus(function() {
 					$("#mensaje_clave").fadeOut("slow");
     			});
@@ -281,9 +287,7 @@
 					$("#mensaje_celular").fadeOut("slow");
     			});
 				
-				$( "#correo_usuarios" ).focus(function() {
-					$("#mensaje_correo").fadeOut("slow");
-    			});
+				
 		
 				
 		      
@@ -458,18 +462,26 @@
 			  	<input type="text"  name="cedula_usuarios" id="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
 			  </div>
-			   </div>
-			   
-			   <div class="row">
-		       <div class="col-xs-6 col-md-6">
+			 
+			 <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombres Usuario</p>
 			  	<input type="text"  name="nombre_usuarios" id="nombre_usuarios" value="<?php echo $resEdit->nombre_usuarios; ?>" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
-			  <div class="col-xs-6 col-md-6">
+			   </div>
+			   
+			   <div class="row">
+		      <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Usuario</p>
 			  	<input type="text"  name="usuario_usuarios" id="usuario_usuarios" value="<?php echo $resEdit->usuario_usuarios; ?>" class="form-control"/> 
 			    <div id="mensaje_usuario" class="errores"></div>
+			  </div>
+			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Correo </p>
+			  	<input type="email"  name="correo_usuarios" id="correo_usuarios" value="<?php echo $resEdit->correo_usuarios; ?>" class="form-control" />
+				
+				<div id="mensaje_correo" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -501,14 +513,7 @@
 		    
 		    
 		    <div class="row">
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Correo </p>
-			  	<input type="email"  name="correo_usuarios" id="correo_usuarios" value="<?php echo $resEdit->correo_usuarios; ?>" class="form-control" />
-				
-				<div id="mensaje_correo" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-6 col-md-6">
+			 <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Roles</p>
 			  	<select name="id_rol" id="id_rol"  class="form-control" >
 					<?php foreach($resultRol as $resRol) {?>
@@ -517,10 +522,7 @@
 						<?php } ?>
 				</select> 
 			  </div>
-		      </div>
-		      
-		      <div class="row">
-			    
+			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Estados</p>
 			  	<select name="estados" id="estados"  class="form-control" >
@@ -530,8 +532,10 @@
 			        <?php } ?>
 				</select> 			  
 			  </div>
-		
-		<div class="col-xs-6 col-md-6">
+		      </div>
+		      
+		      <div class="row">
+			 <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
 					<?php foreach($resultCiu as $resCiu) {?>
@@ -539,6 +543,16 @@
 			        <?php } ?>
 				</select> 			  
 			  </div>
+			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Entidad</p>
+			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
+					<?php foreach($resultEnt as $res) {?>
+						<option value="<?php echo $res->id_entidades; ?>"  <?php if ($res->id_entidades == $resEdit->id_entidades ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_entidades; ?> </option>
+			        <?php } ?>
+				</select> 			  
+			  </div>
+			  
 			  </div>
 		 <hr>
             
@@ -551,18 +565,23 @@
 			  	<input type="text"  name="cedula_usuarios" id="cedula_usuarios" value="" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
 			  </div>
-			   </div>
-			   
-			   <div class="row">
-		       <div class="col-xs-6 col-md-6">
+			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombres Usuario</p>
 			  	<input type="text"  name="nombre_usuarios" id="nombre_usuarios" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
-			  <div class="col-xs-6 col-md-6">
+			   </div>
+			   
+			   <div class="row">
+		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Usuario</p>
 			  	<input type="text"  name="usuario_usuarios" id="usuario_usuarios" value="" class="form-control"/> 
 			    <div id="mensaje_usuario" class="errores"></div>
+			  </div>
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Correo </p>
+			  	<input type="email"  name="correo_usuarios" id="correo_usuarios" value="" class="form-control" />
+			    <div id="mensaje_correo" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -595,11 +614,6 @@
 		    
 		    <div class="row">
 			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Correo </p>
-			  	<input type="email"  name="correo_usuarios" id="correo_usuarios" value="" class="form-control" />
-			    <div id="mensaje_correo" class="errores"></div>
-			  </div>
-			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Roles</p>
 			  	<select name="id_rol" id="id_rol"  class="form-control" >
 					<?php foreach($resultRol as $resRol) {?>
@@ -607,10 +621,6 @@
 			        <?php } ?>
 				</select> 
 			  </div>
-		      </div>
-		      
-		      <div class="row">
-			    
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Estados</p>
 			  	<select name="estados" id="estados"  class="form-control" >
@@ -619,7 +629,9 @@
 			        <?php } ?>
 				</select> 			  
 			  </div>
-			  
+		      </div>
+		      
+		      <div class="row">
 			   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
@@ -628,8 +640,14 @@
 			        <?php } ?>
 				</select> 			  
 			  </div>
-			  
-			  
+			   <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Entidades</p>
+			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
+					<?php foreach($resultEnt as $res) {?>
+						<option value="<?php echo $res->id_entidades; ?>"  ><?php echo $res->nombre_entidades; ?> </option>
+			        <?php } ?>
+				</select> 			  
+			  </div>
 			</div>
 		    <hr>
 		    

@@ -198,17 +198,23 @@
 			  	<input type="text" name="telefono_entidades" id="telefono_entidades" value="<?php echo $resEdit->telefono_entidades; ?>" class="form-control"/>
 			  <div id="mensaje_telefono" class="errores"></div>
 			  </div>
+			  
 			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultCiu as $res) {?>
+						<option value="<?php echo $res->id_ciudad; ?>" <?php if ($res->id_ciudad == $resEdit->id_ciudad ) echo ' selected="selected" '  ; ?>  ><?php echo $res->nombre_ciudad; ?> </option>
+						
+			        <?php } ?>
+				</select> 
+			  </div>
+			 </div>
+			 
+		      <div class="row">
+		      <div class="col-xs-12 col-md-12">
 			  	<p  class="formulario-subtitulo" >Direccion Entidades</p>
 			  	<input type="text" name="direccion_entidades" id="direccion_entidades" value="<?php echo $resEdit->direccion_entidades; ?>" class="form-control"/> 
 			  <div id="mensaje_direccion" class="errores"></div>
-			  </div>
-		    </div>
-		      <div class="row">
-		      <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Ciudad Entidades</p>
-			  	<input type="text" name="ciudad_entidades" id="ciudad_entidades" value="<?php echo $resEdit->ciudad_entidades; ?>" class="form-control"/> 
-			  <div id="mensaje_ciudad" class="errores"></div>
 			  </div>
 		  	  </div>
 			
@@ -236,20 +242,22 @@
 			  <div id="mensaje_telefono" class="errores"></div>
 			  </div>
 			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultCiu as $res) {?>
+						<option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
+			        <?php } ?>
+				</select> 
+			  </div>
+		    </div>
+		    
+		      <div class="row">
+		 <div class="col-xs-12 col-md-12">
 			  	<p  class="formulario-subtitulo" >Direccion Entidades</p>
 			  	<input type="text" name="direccion_entidades" id="direccion_entidades" value="" class="form-control"/> 
 			  <div id="mensaje_direccion" class="errores"></div>
 			  </div>
-		    </div>
-		      <div class="row">
-		 
-		      <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Ciudad Entidades</p>
-			  	<input type="text" name="ciudad_entidades" id="ciudad_entidades" value="" class="form-control"/> 
-			  <div id="mensaje_ciudad" class="errores"></div>
-			  </div>
-		  	
-			  </div>
+		      </div>
 			<hr>
 		     <?php } ?>
 		       <div class="row">
@@ -282,7 +290,7 @@
 		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td>
 		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->telefono_entidades; ?>     </td>  
 		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->direccion_entidades; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->ciudad_entidades; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td>
 		               <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("Entidades","index"); ?>&id_entidades=<?php echo $res->id_entidades; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>

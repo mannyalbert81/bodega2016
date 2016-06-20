@@ -1,17 +1,5 @@
 <?php
-ini_set('memory_limit','128M');
-ini_set('display_errors',1);
-ini_set('display_startup_erros',1);
 
-
-//include_once('class/phpjasperxml/class/tcpdf/tcpdf.php');
-//include_once("class/phpjasperxml/class/PHPJasperXML.inc.php");
-
-//include_once ('class/phpjasperxml/setting.php');
-
-
-
-//include_once('setting.php');//no se puede enviar nada mas que el reporte, NINGUN espacio o caracter previo al repote
 
 class UsuariosController extends ControladorBase{
     
@@ -26,7 +14,7 @@ public function index(){
 		{
 			//creacion menu busqueda
 			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
-			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol', 5=>'Ciudad');
+			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol', 5=>'Ciudad', 6=>'Entidades');
 			
 			
 				//Creamos el objeto usuario
@@ -41,30 +29,31 @@ public function index(){
 			$ciudad = new CiudadModel();
 			$resultCiu = $ciudad->getAll("nombre_ciudad");
 			
+			$entidades = new EntidadesModel();
+			$resultEnt = $entidades->getAll("nombre_entidades");
 	
 			$usuarios = new UsuariosModel();
-
+			
+			
 			$nombre_controladores = "Usuarios";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
 			if (!empty($resultPer))
 			{
-			     	$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
-					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad";
-					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad";
-					$id       = "usuarios.nombre_usuarios"; 
-			
-					
-					//Conseguimos todos los usuarios
-					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+				
+				$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, entidades.id_entidades, entidades.nombre_entidades, ciudad.id_ciudad, ciudad.nombre_ciudad";
+				$tablas   = "public.rol,  public.usuarios, public.estado, public.entidades, public.ciudad";
+				$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND usuarios.id_entidades = entidades.id_entidades AND ciudad.id_ciudad = usuarios.id_ciudad";
+				$id       = "usuarios.nombre_usuarios";
+				$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 					
 					$resultEdit = "";
 			
 					if (isset ($_GET["id_usuarios"])   )
 					{
 						$_id_usuario = $_GET["id_usuarios"];
-						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuario' "; 
+						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios = '$_id_usuario' "; 
 						$resultEdit = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id); 
 				
 					
@@ -84,7 +73,7 @@ public function index(){
 			
 				));
 			
-			
+			 exit();
 			}
 			
 			
@@ -108,9 +97,9 @@ public function index(){
 					
 					
 					
-					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
-					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad";
-					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad";
+					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad, entidades.id_entidades, entidades.nombre_entidades";
+					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad , public.entidades";
+					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_entidades = entidades.id_entidades";
 					$id       = "usuarios.nombre_usuarios";
 					
 
@@ -129,6 +118,7 @@ public function index(){
 						$where_3 = "";
 						$where_4 = "";
 						$where_5 = "";
+						$where_6 = "";
 							
 						switch ($criterio) {
 							case 0:
@@ -154,11 +144,16 @@ public function index(){
 									//Número Poliza
 									$where_5 = " AND ciudad.nombre_ciudad LIKE '$contenido' ";
 									break;
+									
+							case 6:
+										//Número Poliza
+									$where_6 = " AND entidades.nombre_entidades LIKE '$contenido' ";
+									break;
 						}
 							
 							
 							
-						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5;
+						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5. $where_6;
 							
 							
 						$resul = $where_to;
@@ -189,7 +184,7 @@ public function index(){
 			
 			
 			$this->view("Usuarios",array(
-					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu, "resultCiu"=>$resultCiu
+					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu, "resultCiu"=>$resultCiu, "resultEnt"=>$resultEnt
 			
 			));
 			
@@ -236,11 +231,12 @@ public function index(){
 		    $_usuario_usuario     = $_POST["usuario_usuarios"];
 		    $_cedula_usuarios    = $_POST["cedula_usuarios"];
 		    $_id_ciudad          = $_POST["id_ciudad"];
+		    $_id_entidades          = $_POST["id_entidades"];
 	
 	
 			$funcion = "ins_usuarios";
 			
-			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario', '$_cedula_usuarios', '$_id_ciudad'";
+			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario', '$_cedula_usuarios', '$_id_ciudad', '$_id_entidades'";
 			$usuarios->setFuncion($funcion);
 	
 			$usuarios->setParametros($parametros);
