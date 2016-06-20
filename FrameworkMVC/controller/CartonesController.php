@@ -31,9 +31,12 @@ public function index(){
 						  cartones.contenido_cartones, 
 						  cartones.year_cartones, 
 						  cartones.cantidad_documentos_libros_cartones, 
+					      tipo_contenido_cartones.id_tipo_contenido_cartones,
 						  tipo_contenido_cartones.nombre_contenido_cartones, 
-						  cartones.digitalizado_cartones, 
+						  cartones.digitalizado_cartones,
+					      entidades.id_entidades,
 						  entidades.nombre_entidades, 
+					      bodegas.id_bodegas,
 						  bodegas.nombre_bodegas";
 			$tablas   = "public.cartones, 
 						  public.bodegas, 

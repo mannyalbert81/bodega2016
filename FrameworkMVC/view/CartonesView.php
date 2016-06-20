@@ -267,74 +267,84 @@
          <div class="row">
 		    
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Tipo Identificacion</p>
-			  	<select name="id_tipo_identificacion" id="id_tipo_identificacion"  class="form-control" >
-					<?php foreach($resultTipoIdent as $resTipoIdent) {?>
-					<option value="<?php echo $resTipoIdent->id_tipo_identificacion; ?>"  <?php if ($resTipoIdent->id_tipo_identificacion == $resEdit->id_tipo_identificacion ) echo ' selected="selected" '  ; ?> ><?php echo $resTipoIdent->nombre_tipo_identificacion; ?> </option>
-						   <?php } ?>
-				</select> 
+			  	<p  class="formulario-subtitulo" >Entidades</p>
+			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
+					<?php foreach($resultEnt as $res) {?>
+					<option value="<?php echo $res->id_entidades; ?>"  <?php if ($res->id_entidades == $resEdit->id_entidades ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_entidades; ?> </option>
+					
+						  <?php } ?>
+				</select> 			  
 			  </div>
 		    
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Numero de Identificación</p>
-			  	<input type="text"  name="identificacion_clientes" id="identificacion_clientes" value="<?php echo $resEdit->identificacion_clientes; ?>" class="form-control" readonly/> 
-			    <div id="mensaje_identificacion_clientes" class="errores"></div>
-			  <input type="hidden"  name="id_clientes"  value="<?php echo $resEdit->id_clientes; ?>" class="form-control"/> 
+		   <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Bodegas</p>
+			  	<select name="id_bodegas" id="id_bodegas"  class="form-control" >
+					<?php foreach($resultBodegas as $res) {?>
+					<option value="<?php echo $res->id_bodegas; ?>"  <?php if ($res->id_bodegas == $resEdit->id_bodegas ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_bodegas; ?> </option>
+					
+						   <?php } ?>
+				</select> 			  
 			  </div>
 			   </div>
 			   
 			   
 		    <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres </p>
-			  	<input type="text" name="nombres_clientes" id="nombres_clientes" value="<?php echo $resEdit->nombres_clientes; ?>" class="form-control"/>
-			  <div id="mensaje_nombres_clientes" class="errores"></div>
+		    <div class="col-xs-6 col-md-6" style= "margin-top:10px">
+			  	<p  class="formulario-subtitulo" >Tipo Contenido Cartones</p>
+			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
+					<?php foreach($resultTipoConCar as $res) {?>
+					<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"  <?php if ($res->id_tipo_contenido_cartones == $resEdit->id_tipo_contenido_cartones ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_contenido_cartones; ?> </option>
+					
+					  <?php } ?>
+				</select> 			  
 			  </div>
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Teléfono</p>
-			  	<input type="text" name="telefono_clientes" id="telefono_clientes" value="<?php echo $resEdit->telefono_clientes; ?>" class="form-control"/>
-			  <div id="mensaje_telefono_clientes" class="errores"></div>
+			  
+			  <div class="col-xs-6 col-md-6" style= "margin-top:10px">
+			  	<p  class="formulario-subtitulo" >Numero Cartones</p>
+			  	<input type="text" name="numero_cartones" id="numero_cartones" value="<?php echo $resEdit->numero_cartones; ?>" class="form-control"/>
+			  <div id="mensaje_numero_cartones" class="errores"></div>
 			  </div>
 		    </div>
 		    
-		     <div class="row">
+		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Celular </p>
-			  	<input type="text" name="celular_clientes" id="celular_clientes" value="<?php echo $resEdit->celular_clientes; ?>" class="form-control"/>
-			  <div id="mensaje_celular_clientes" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Serie Cartones</p>
+			  	<input type="text" name="serie_cartones" id="serie_cartones" value="<?php echo $resEdit->serie_cartones; ?>" class="form-control"/>
+			  <div id="mensaje_serie_cartones" class="errores"></div>
 			  </div>
 			  
 			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Dirección</p>
-			  	<input type="text" name="direccion_clientes" id="direccion_clientes" value="<?php echo $resEdit->direccion_clientes; ?>" class="form-control"/>
-			  <div id="mensaje_direccion_clientes" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Contenido Cartones</p>
+			  	<input type="text" name="contenido_cartones" id="contenido_cartones" value="<?php echo $resEdit->contenido_cartones; ?>" class="form-control"/>
+			  <div id="mensaje_contenido_cartones" class="errores"></div>
 			  </div>
-			  
 		    </div>
 		    
 		    
 		    <div class="row">
-		    
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Ciudad</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
-					<?php foreach($resultCiu as $res) {?>
-						<option value="<?php echo $res->id_ciudad; ?>" <?php if ($res->id_ciudad == $resEdit->id_ciudad ) echo ' selected="selected" '  ; ?>  ><?php echo $res->nombre_ciudad; ?> </option>
-						
-			        <?php } ?>
-				</select> 
+			  	<p  class="formulario-subtitulo" >Años Cartones</p>
+			  	<input type="text" name="year_cartones" id="year_cartones" value="<?php echo $resEdit->year_cartones; ?>" class="form-control"/>
+			  <div id="mensaje_year_cartones" class="errores"></div>
 			  </div>
-		    
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Tipo Persona</p>
-			  	<select name="id_tipo_persona" id="id_tipo_persona"  class="form-control" >
-					<?php foreach($resultTipoPer as $res) {?>
-						<option value="<?php echo $res->id_tipo_persona; ?>"  <?php if ($res->id_tipo_persona == $resEdit->id_tipo_persona ) echo ' selected="selected" '  ; ?>  ><?php echo $res->nombre_tipo_persona; ?> </option>
-						
-			        <?php } ?>
-				</select> 
+			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Cantidad Documentos</p>
+			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" value="<?php echo $resEdit->cantidad_documentos_libros_cartones; ?>" class="form-control"/>
+			  <div id="mensaje_cantidad_documentos_libros_cartones" class="errores"></div>
 			  </div>
 		    </div>
+		      
+		      <div class="row">
+		      <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Digitalizado Cartones</p>
+			  	<select name="digitalizado_cartones" id="digitalizado_cartones"  class="form-control" >
+					<option value="TRUE"  <?php  if ( $resEdit->digitalizado_cartones =='t')  echo ' selected="selected" ' ; ?> >TRUE </option>
+					<option value="FALSE" <?php  if ( $resEdit->digitalizado_cartones =='f')  echo ' selected="selected" ' ; ?> >FALSE </option>
+					 
+				</select> 			  
+			  </div>
+		      </div>
 		    
 		    <hr>
 		    
