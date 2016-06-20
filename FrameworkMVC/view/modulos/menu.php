@@ -43,6 +43,7 @@
             </li>
             <li><a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entidades</span> </a>
 			</li> 
+			
          </ul>
         </li>
         <li class="dropdown">
@@ -60,6 +61,8 @@
 			</li>
             
 			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
+			</li>
+			<li><a href="index.php?controller=Cartones&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Cartones</span> </a>
 			</li>
           </ul>
         </li>

@@ -33,7 +33,11 @@ public function index(){
 			$resultEnt = $entidades->getAll("nombre_entidades");
 	
 			$usuarios = new UsuariosModel();
-			
+			$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, entidades.id_entidades, entidades.nombre_entidades, ciudad.id_ciudad, ciudad.nombre_ciudad";
+			$tablas   = "public.rol,  public.usuarios, public.estado, public.entidades, public.ciudad";
+			$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND usuarios.id_entidades = entidades.id_entidades AND ciudad.id_ciudad = usuarios.id_ciudad";
+			$id       = "usuarios.nombre_usuarios";
+			$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 			
 			$nombre_controladores = "Usuarios";
 			$id_rol= $_SESSION['id_rol'];
@@ -42,11 +46,7 @@ public function index(){
 			if (!empty($resultPer))
 			{
 				
-				$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, entidades.id_entidades, entidades.nombre_entidades, ciudad.id_ciudad, ciudad.nombre_ciudad";
-				$tablas   = "public.rol,  public.usuarios, public.estado, public.entidades, public.ciudad";
-				$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND usuarios.id_entidades = entidades.id_entidades AND ciudad.id_ciudad = usuarios.id_ciudad";
-				$id       = "usuarios.nombre_usuarios";
-				$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+				
 					
 					$resultEdit = "";
 			

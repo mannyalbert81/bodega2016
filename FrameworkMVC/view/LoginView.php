@@ -29,7 +29,7 @@
 			
 			    /* Ubicación de la imagen */
 		 
-		  background-image: url(view/images/fondo_hd.jpg);
+		  background-image:  url(view/images/bodega1.jpg );
 		
 		  /* Nos aseguramos que la imagen de fondo este centrada vertical y
 		    horizontalmente en todo momento */
@@ -72,7 +72,7 @@
         		<div class="col-xs-4 col-md-2">
         		</div>
         	    <div class="col-xs-8 col-md-8">
-		        	  <div   style="background:#d93e1b ;border-radius: 5px;  border: 1px solid #063B41;"  >
+		        	  <div   style="background:#CB9F10 ;border-radius: 5px;  border: 1px solid #063B41;"  >
 		     		     <div class="row">
 								<div class="col-xs-2 col-md-2">					
 									
