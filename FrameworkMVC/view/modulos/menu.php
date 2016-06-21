@@ -59,7 +59,8 @@
 			</li>
 			 <li><a href="index.php?controller=Ciudad&action=index"><span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"> Ciudades</span> </a>
 			</li>
-            
+            <li><a href="index.php?controller=Bodegas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Bodegas</span> </a>
+			</li>
 			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
 			</li>
 			<li><a href="index.php?controller=Cartones&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Cartones</span> </a>
