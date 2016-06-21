@@ -32,13 +32,7 @@
 		
         
         
-        <script>
-			function abrir() {
-			//open('/FrameworkMVC/view/ireports/ContClientesReport.php','','top=500,left=500,width=500,height=500') ;
-			open('','','top=500,left=500,width=500,height=500') ;
-            
-			}
-			</script>
+        
 			
 			
        <style>
@@ -231,6 +225,26 @@
 
 	</script>
 	
+	<script >   
+    function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+    if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+     }
+    </script > 
+	
     </head>
     <body style="background-color: #d9e3e4;" >
     
@@ -330,7 +344,7 @@
 			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cantidad Documentos</p>
-			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" value="<?php echo $resEdit->cantidad_documentos_libros_cartones; ?>" class="form-control"/>
+			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" onkeypress="return numeros(event)" value="<?php echo $resEdit->cantidad_documentos_libros_cartones; ?>" class="form-control"/>
 			  <div id="mensaje_cantidad_documentos_libros_cartones" class="errores"></div>
 			  </div>
 		    </div>
@@ -416,7 +430,7 @@
 			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cantidad Documentos</p>
-			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" value="" class="form-control"/>
+			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" onkeypress="return numeros(event)" class="form-control"/>
 			  <div id="mensaje_cantidad_documentos_libros_cartones" class="errores"></div>
 			  </div>
 		    </div>

@@ -89,7 +89,8 @@ public function index(){
 				if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
 				{
 				
-					$columnas = " cartones.numero_cartones,
+					$columnas = " cartones.id_cartones,
+						  cartones.numero_cartones,
 						  cartones.serie_cartones,
 						  cartones.contenido_cartones,
 						  cartones.year_cartones,
@@ -117,6 +118,13 @@ public function index(){
 						$where_0 = "";
 						$where_1 = "";
 						$where_2 = "";
+						$where_3 = "";
+						$where_4 = "";
+						$where_5 = "";
+						$where_6 = "";
+						$where_7 = "";
+						$where_8 = "";
+						$where_9 = "";
 						
 							
 						switch ($criterio) {
@@ -155,7 +163,7 @@ public function index(){
 								
 							case 7:
 									//Nombre Cliente/Proveedor
-								$where_7 = " AND cartones.digitalizado_cartones LIKE '$contenido'  ";
+								$where_7 = " AND cartones.digitalizado_cartones = '$contenido'  ";
 								break;
 								
 								
