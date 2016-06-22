@@ -2,7 +2,7 @@
 
 
 
-class TipoContenidoCartonesModel extends ModeloBase{
+class TipoOperacionesModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -41,7 +41,7 @@ class TipoContenidoCartonesModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="tipo_contenido_cartones";
+		$this->table="tipo_operaciones";
 
 		
 		parent::__construct($this->table);

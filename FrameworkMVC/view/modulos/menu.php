@@ -13,7 +13,6 @@
       </button>
       <a class="navbar-brand" href="#"></a>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
@@ -63,7 +62,13 @@
 			</li>
 			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
 			</li>
+			 <li><a href="index.php?controller=TipoOperaciones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Tipo Operaciones</span> </a>
+            </li>  
 			<li><a href="index.php?controller=Cartones&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Cartones</span> </a>
+			</li>
+			<li><a href="index.php?controller=Movimientos&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entradas</span> </a>
+			</li>
+			<li><a href="index.php?controller=Salidas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Salidas</span> </a>
 			</li>
           </ul>
         </li>
@@ -75,7 +80,9 @@
           <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-save-file" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
           <li><a href="index.php?controller=Clientes&action=consulta"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Clientes</span> </a>
-            </li>      
+            </li>   
+             <li><a href="index.php?controller=TipoContenidoCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Contenido Cartones</span> </a>
+            </li>   
 			
 </ul>
 </li>

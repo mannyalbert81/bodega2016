@@ -1,8 +1,5 @@
 <?php
-
-
-
-class TipoContenidoCartonesModel extends ModeloBase{
+class MovimientosModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -41,8 +38,7 @@ class TipoContenidoCartonesModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="tipo_contenido_cartones";
-
+		$this->table="movimientos";
 		
 		parent::__construct($this->table);
 	}
@@ -57,6 +53,7 @@ class TipoContenidoCartonesModel extends ModeloBase{
 			
 		return  $resultado;
 	}
+	
 	
 	
 }
