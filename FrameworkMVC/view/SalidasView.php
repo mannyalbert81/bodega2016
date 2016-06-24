@@ -254,7 +254,6 @@
 		    //alert(id_carton+' '+nombre_carton);
 
 			 lista_cartones.append("<option value= " +id_carton +" selected>" + nombre_carton + "</option>");
-			 
 			 cantidad_cartones.val($('#lista_carton option').size()); 	
 
 			

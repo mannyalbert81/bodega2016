@@ -74,120 +74,7 @@ class MovimientosController extends ControladorBase{
 						
 					}
 					
-					if(isset($_POST["buscar"])){
-					
-						$criterio_busqueda=$_POST["criterio_busqueda"];
-						$contenido_busqueda=$_POST["contenido_busqueda"];
-					
-						$cartones = new CartonesModel();
-						$tipo_contenido_cartones = new TipoContenidoCartonesModel();
-							
-						$columnas = " cartones.id_cartones,
-						  cartones.numero_cartones,
-						  cartones.serie_cartones,
-						  cartones.contenido_cartones,
-						  cartones.year_cartones,
-						  cartones.cantidad_documentos_libros_cartones,
-						  tipo_contenido_cartones.nombre_contenido_cartones,
-						  cartones.digitalizado_cartones,
-						  entidades.nombre_entidades,
-						  bodegas.nombre_bodegas";
-					
-						$tablas   = "public.cartones,
-						  public.bodegas,
-						  public.entidades,
-						  public.tipo_contenido_cartones";
-					
-						$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
-					
-						$id       = "cartones.numero_cartones";
-							
-					
-					
-						$where_0 = "";
-						$where_1 = "";
-						$where_2 = "";
-						$where_3 = "";
-						$where_4 = "";
-						$where_5 = "";
-						$where_6 = "";
-						$where_7 = "";
-						$where_8 = "";
-						$where_9 = "";
-					
-						switch ($criterio_busqueda) {
-							case 0:
-								$where_0 = " ";
-								break;
-							case 1:
-								//Ruc Cliente/Proveedor
-								$where_1 = " AND  cartones.numero_cartones LIKE '$contenido_busqueda'  ";
-								break;
-							case 2:
-								//Nombre Cliente/Proveedor
-								$where_2 = " AND cartones.serie_cartones LIKE '$contenido_busqueda'  ";
-								break;
-								
-							case 3:
-									//Nombre Cliente/Proveedor
-								$where_3 = " AND cartones.contenido_cartones LIKE '$contenido_busqueda'  ";
-								break;
-								
-							case 4:
-									//Nombre Cliente/Proveedor
-								$where_4 = " AND cartones.year_cartones LIKE '$contenido_busqueda'  ";
-								break;
-								
-							case 5:
-						     		//Nombre Cliente/Proveedor
-								$where_5 = " AND cartones.cantidad_documentos_libros_cartones LIKE '$contenido_busqueda'  ";
-								break;
-								
-								
-							case 6:
-									//Nombre Cliente/Proveedor
-								$where_6 = " AND tipo_contenido_cartones.nombre_contenido_cartones LIKE '$contenido_busqueda'  ";
-								break;
-								
-							case 7:
-									//Nombre Cliente/Proveedor
-								$where_7 = " AND cartones.digitalizado_cartones = '$contenido_busqueda'  ";
-								break;
-								
-								
-							case 8:
-									//Nombre Cliente/Proveedor
-								$where_8 = " AND entidades.nombre_entidades LIKE '$contenido_busqueda'  ";
-								break;
-								
-							case 9:
-									//Nombre Cliente/Proveedor
-								$where_9 = " AND bodegas.nombre_bodegas LIKE '$contenido_busqueda'  ";
-								break;
-							
-						}
-					
-					
-					
-						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5 . $where_6 . $where_7 . $where_8 . $where_9;
-						
-							
-						$resultSet=$cartones->getCondiciones($columnas ,$tablas ,$where_to, $id);
-						/*$this->view("Error",array(
-								"resultado"=>$columnas.$tablas .$where_to. $id
-					
-						));
-						
-						exit();*/
-					
-							
-					}
-					
-					
-			
-					
-					
-					
+				
 					
 					$this->view("Movimientos",array(
 							
@@ -196,15 +83,7 @@ class MovimientosController extends ControladorBase{
 			
 			
 			}
-			else
-			{
-				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Movimientos"
 			
-				));
-			
-			
-			}
 			
 		}
 		else
@@ -237,7 +116,7 @@ class MovimientosController extends ControladorBase{
 			if (isset ($_POST["Guardar"])   )
 			{
 				
-				$_array_numero_cartones = $_POST['lista_carton'];
+				$_array_numero_cartones = $_POST['destino'];
 				
 				$_observaciones = $_POST['observaciones'];
 				
@@ -277,35 +156,7 @@ class MovimientosController extends ControladorBase{
 							
 							$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$id_tipo_operacion'");
 							
-							/*if(empty($resultado)){
-								
-								$this->view("Error",array(
-										"resultado"=>"no hay datso ->". $id
-								));
-							}*/
 							
-							
-							/*
-							$controlador="AprobacionAutoPago";
-							$tipo_notificacion = new TipoNotificacionModel();
-							$resul_tipo_notificacion=$tipo_notificacion->getBy("controlador_tipo_notificacion='$controlador'");
-							
-							
-							//inserta las notificacion
-							$notificaciones = new NotificacionesModel();							
-							$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;
-							
-							//dirigir notificacion
-							$id_impulsor=$_SESSION['id_usuarios'];
-							$asignacion_secreatario= new AsignacionSecretariosModel();
-							$result_asg_secretario=$asignacion_secreatario->getBy("id_abogado_asignacion_secretarios='$id_impulsor'");
-							$id_usuarios_dirigido_notificacion=$result_asg_secretario[0]->id_secretario_asignacion_secretarios;
-							
-							//descripcion de notificacion
-							$descripcion_notificaciones="Auto Pago Pendiente del titulo de credito (".$_id_titulo_credito.") ";
-							
-							$result_notificaciones=$notificaciones->InsertaNotificaciones($id_tipo_notificacion, $id_usuarios_dirigido_notificacion, $descripcion_notificaciones);
-							*/
 										
 						} catch (Exception $e) 
 						{
@@ -334,7 +185,7 @@ class MovimientosController extends ControladorBase{
 		else
 		{
 			$this->view("Error",array(
-					"resultado"=>"No tiene Permisos de Guardar Movimientos"
+					"resultado"=>"No tiene Permisos de Guardar Entradas"
 		
 			));
 		
@@ -345,49 +196,46 @@ class MovimientosController extends ControladorBase{
 		
 	}
 	
-	public function borrarId()
-	{
-		$permisos_rol = new PermisosRolesModel();
-
-		session_start();
+	public function AutocompleteMovimientos(){
 		
-		$nombre_controladores = "AsignacionTituloCredito";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $permisos_rol->getPermisosBorrar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
+		$cartones = new CartonesModel();
 		
-		if (!empty($resultPer))
-		{
-			if(isset($_GET["id_asignacion_secretarios"]))
-			{
-				$id_asigancionSecretarios=(int)$_GET["id_asignacion_secretarios"];
+		$numero_cartones = $_GET['term'];
 		
-				$asignacionSecretario=new AsignacionSecretariosModel();
+		$resultSet=$cartones->getAll("numero_cartones");
+		
+		
+		if(!empty($resultSet)){
 			
-				$asignacionSecretario->deleteBy(" id_asignacion_secretarios",$id_asigancionSecretarios);
-			
-				$traza=new TrazasModel();
-				$_nombre_controlador = "Movimientos";
-				$_accion_trazas  = "Borrar";
-				$_parametros_trazas = $id_asigancionSecretarios;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+			foreach ($resultSet as $res){
+				
+				$_numero_cartones[] = $res->numero_cartones;
 			}
-			
-			
-			$this->redirect("Movimientos", "index");
-			
-		}
-		else
-		{
-			$this->view("Error",array(
-					"resultado"=>"No tiene Permisos de Borrar Movimientos"
-		
-			));
-		
-		
+			echo json_encode($_numero_cartones);
 		}
 		
 	}
 	
 	
+
+	
+	public function AutocompleteMovimientosId(){
+	
+		$cartones = new CartonesModel();
+	
+		$numero_carton = $_POST['numero_carton'];
+	
+		$resultSet=$cartones->getBy("numero_cartones='$numero_carton'");
+		
+		$respuesta = new stdClass();
+	
+		if(!empty($resultSet)){
+			
+				$respuesta->id_cartones = $resultSet[0]->id_cartones;
+			
+			echo json_encode($respuesta);
+		}
+	
+	}
 }
 ?>      
