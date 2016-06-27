@@ -126,13 +126,15 @@
             
 		     <?php } } else {?>
 		     
-		   <h4 ALIGN="center"></h4>
-		    <h4 style="color:#ec971f;" ALIGN="center">ENTRADAS DE CARTONES</h4>
+		  <h4 ALIGN="center"></h4>
+		   <hr/>
+		    <h4 style="color:#ec971f;" ALIGN="center" >ENTRADA DE CARTONES</h4>
+		    
             	<hr/>
             <div class="row"> 
             <div class="col-xs-2">
            	</div>
-           	<div class="col-xs-2">
+           	<div class="col-xs-3">
            	<p  class="formulario-subtitulo" > Ingrese Numero Carton: </p>
 			  <input type="text" id="busqueda" name="busqueda" class="form-control" placeholder="Search" >
            	</div>
@@ -150,22 +152,23 @@
 			        <?php } ?>
 				</select> 			  
 			  </div>
-            	
-            <div class="col-xs-1">
-           
-            <p  class="formulario-subtitulo" ><font color="White">.</font></p>
+            
+            
+            <div class="col-xs-2">
+            
+          <p  class="formulario-subtitulo" ><font color="White">.</font></p>
 			 <p  class="formulario-subtitulo" ><font color="White">.</font></p> 
 	          <input type="button" class="pasar izq" value="Pasar »"><input type="button" class="quitar der" value="« Quitar"><br />
 	         <input type="button" class="pasartodos izq" value="Todos »"><input type="button" class="quitartodos der" value="« Todos">
 	       	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
             
+            
 			
 			<div class="col-xs-3">
 			  <p  class="formulario-subtitulo" ><font color="White">Agregar </font></p>
-	            	 <select  name="destino[]" id="destino" multiple="multiple" size="10" class="form-control"></select> 
-		   		   
-		    </div>
+	           <select  name="destino[]" id="destino" multiple="multiple" size="10" class="form-control"></select> 
+		   	 </div>
 		     </div>
 		    
 		    <div class="row">
@@ -173,12 +176,12 @@
            	</div>
 		     <div class="col-xs-5" style="margin-top:20px">
 			  <p  class="formulario-subtitulo" >Observaciones </p>
-	          <textarea  id="observaciones" name="observaciones" wrap="physical" rows="5" cols="60" onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
+	          <textarea  id="observaciones" name="observaciones" wrap="physical" rows="8" cols="33" onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
 	        <p  class="formulario-subtitulo" >Te quedan <input type="text" name="remLen" size="2" maxlength="2" value="400" readonly="readonly"> letras por escribir. </p>
 	        <div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
 		    
-		    <div class="col-xs-2" style="margin-top:20px">
+		    <div class="col-xs-3" style="margin-top:20px">
 			  <p  class="formulario-subtitulo" > Total Cartones: </p>
 			  <input type="text" id="total_cartones" name="total_cartones" class="form-control" readonly="readonly">
 		   	</div>	
