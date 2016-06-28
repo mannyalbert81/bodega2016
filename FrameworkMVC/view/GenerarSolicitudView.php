@@ -15,16 +15,9 @@
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
- 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-   		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+ 		
  		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
 		
-		<link href="view/css/jqueryui.css" type="text/css" rel="stylesheet"/>
-		
-		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="view/css/functions.js"></script>
-	
 		<script>
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
@@ -44,9 +37,54 @@
             
         </style>
      
-      
+       	
+	
+    <script>
+    $(document).ready(function(){
+        $("#marcar_todo").change(function () {
+            if ($(this).is(':checked')) {
+               
+                $(".marcados").prop('checked', true); 
+            } else {
+                
+                $("input:checkbox").prop('checked', false);
+                $("input[type=checkbox]").prop('checked', false);
+            }
+        });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function(){
+        
+ 		$("#buscar").click(function () {
+             
+             var fecha_asignacion = $("#fecha_asignacion").val();
+             var contenido = $("#contenido_busqueda").val();
+             if(fecha_asignacion!=0 && contenido==""){
+          	   $("#mensaje_contenido").text("Ingrese contenido");
+  	    	   $("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
+                 return false;
+                 }else if(fecha_asignacion==0 && contenido!=""){
+               $("#mensaje_criterio").text("Selecione una busqueda");
+        	   $("#mensaje_criterio").fadeIn("slow");
+        	     return false;
+                 }else{
+                	 return true;
+                     }
+          });
+          
+          $( "#contenido_busqueda" ).focus(function() {
+  			  $("#mensaje_contenido").fadeOut("slow");
+  		    });
+          $( "#fecha_asignacion" ).focus(function() {
+  			  $("#mensaje_criterio").fadeOut("slow");
+  		    });
+        });
+
+    </script>
     
-     <script>
+    <script>
         $().ready(function() 
 	   {
 		$('.pasar').click(function() {   !$('#origen option:selected').remove().appendTo('#destino'); $('#total_cartones').val($('#destino option').size()); return  true;});  
@@ -56,38 +94,8 @@
 		$('.submit').click(function() { $('#destino option').prop('selected', 'selected'); });
 	  });
     </script>
-     
-    <script>
-	       	$(document).ready(function(){ 	
-				$( "#busqueda" ).autocomplete({
-      				source: "<?php echo $helper->url("Movimientos","AutocompleteMovimientos"); ?>",
-      				minLength: 1
-    			});
-
-				$("#busqueda").focusout(function(){
-    				$.ajax({
-    					url:'<?php echo $helper->url("Movimientos","AutocompleteMovimientosId"); ?>',
-    					type:'POST',
-    					dataType:'json',
-    					data:{numero_carton:$('#busqueda').val()}
-    				}).done(function(respuesta){
-
-    					$('#destino').append('<option value="'+respuesta.id_cartones+'" selected>'+$('#busqueda').val()+' </option>')
-    					$('#busqueda').val("");
-    					$('#total_cartones').val($('#destino option').size()); 
-        			});
-
-    				
-    			});   
-				
-    		});
-     </script>
-    <script>
-		function contador (campo, cuentacampo, limite) {
-		if (campo.value.length > limite) campo.value = campo.value.substring(0, limite);
-		else cuentacampo.value = limite - campo.value.length;
-		} 
-    </script>
+    
+    
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -95,19 +103,18 @@
        <?php include("view/modulos/head.php"); ?>
        <?php include("view/modulos/menu.php"); ?>
        
+       
+       
        <?php
        
-     	$sel_id_cartones="";
+     	$resultMenu_busqueda=array(0=>'--Seleccione--',1=>'Numero', 2=>'Serie', 3=>'Contenido', 4=>'Año', 5=>'Cantidad Documentos', 6=>'Nombre Contenido', 7=>'Digitalizado', 8=>'Nombre Entidades', 9=>'Nombre Bodega');
      	
-   
-     	if($_SERVER['REQUEST_METHOD']=='POST' )
-     		{
-     			
-     			$sel_id_cartones=$_POST['num_cartones'];
+     	
+     
+     		 
      			
      	
-     		}
-     	 
+		   
 		?>
  
   
@@ -117,93 +124,133 @@
   
      
       <form action="<?php echo $helper->url("GenerarSolicitud","InsertaGenerarSolicitud"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
-   
-   
-    <div class="col-lg-12">
+    
+    <div class="col-lg-5">
     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
            <?php //no hay datos para editar?>
         
             
 		     <?php } } else {?>
 		     
-		  <h4 ALIGN="center"></h4>
-		   <hr/>
-		    <h4 style="color:#ec971f;" ALIGN="center" >GENERAR  SOLICITUD DE CARTONES</h4>
-		    
+		 
+		    <h4 style="color:#ec971f;">GENERAR SOLICITUD</h4>
             	<hr/>
+            	
             <div class="row"> 
-            <div class="col-xs-2">
-           	</div>
-           	<div class="col-xs-3">
-           	<p  class="formulario-subtitulo" > Ingrese Numero Carton: </p>
-			  <input type="text" id="busqueda" name="busqueda" class="form-control" placeholder="Search" >
-           	</div>
-           	</div>
-           	
-           <div class="row"> 
-           	<div class="col-xs-2">
-           	</div>
-           	
-           <div class="col-xs-3">
-           <p  class="formulario-subtitulo" >Cartones</p>
-			  	<select  name="origen[]" id="origen" multiple="multiple" size="10" class="form-control">
-			  	<?php foreach($resultCartones as $resCartones) {?>
-						<option value="<?php echo $resCartones->id_cartones; ?>" <?php if($sel_id_cartones==$resCartones->id_cartones){echo "selected";}?> ><?php echo $resCartones->numero_cartones; ?> </option>
-			        <?php } ?>
-				</select> 			  
-			  </div>
-            
-            
-            <div class="col-xs-2">
-            
-          <p  class="formulario-subtitulo" ><font color="White">.</font></p>
+            <div class="col-xs-3">
+			  <p  class="formulario-subtitulo" ><font color="White">Agregar </font></p>
+	           <select  name="destino[]" id="destino" multiple="multiple" size="10" class="form-control"></select> 
+		   	 </div>
+		   	  <div class="col-xs-2">
+             <p  class="formulario-subtitulo" ><font color="White">.</font></p>
 			 <p  class="formulario-subtitulo" ><font color="White">.</font></p> 
 	          <input type="button" class="pasar izq" value="Pasar »"><input type="button" class="quitar der" value="« Quitar"><br />
 	         <input type="button" class="pasartodos izq" value="Todos »"><input type="button" class="quitartodos der" value="« Todos">
 	       	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
-            
-            
+            </div>
 			
-			<div class="col-xs-3">
-			  <p  class="formulario-subtitulo" ><font color="White">Agregar </font></p>
-	           <select  name="destino[]" id="destino" multiple="multiple" size="10" class="form-control"></select> 
-		   	 </div>
-		     </div>
-		    
-		    <div class="row">
-		    <div class="col-xs-2">
-           	</div>
-		     <div class="col-xs-5" style="margin-top:20px">
-			  <p  class="formulario-subtitulo" >Observaciones </p>
-	          <textarea  id="observaciones" name="observaciones" wrap="physical" rows="8" cols="33" onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
-	        <p  class="formulario-subtitulo" >Te quedan <input type="text" name="remLen" size="2" maxlength="2" value="400" readonly="readonly"> letras por escribir. </p>
-	        <div id="mensaje_criterio" class="errores"></div>	   
-		    </div>
-		    
-		    <div class="col-xs-3" style="margin-top:20px">
-			  <p  class="formulario-subtitulo" > Total Cartones: </p>
-			  <input type="text" id="total_cartones" name="total_cartones" class="form-control" readonly="readonly">
-		   	</div>	
-		    </div>
-		    
-			<hr>
-			
-			  <div class="col-xs-12" style="text-align: center;" >
-			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
-			  <hr>
-			  </div>
-			
+      
              	
 		     <?php } ?>
-    
-    
-     </div>
     </div>
-  
-    </form>
+    
+    
+    <div  class="col-lg-7">
+     <h4 style="color:#ec971f;">Lista de Cartones</h4>
+            <hr/>
+    		<div class="col-xs-4">
+			
+           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
+           <div id="mensaje_contenido_busqueda" class="errores"></div>
+            </div>
+            
+           <div class="col-xs-4">
+           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
+                                    <?php foreach($resultMenu_busqueda as $val=>$desc) {?>
+                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+                                    <?php } ?>
+                                        
+           </select>
+           <div id="mensaje_criterio" class="errores"></div>
+           </div>
+           
+           <div class="col-xs-4" >
+		
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("GenerarSolicitud","index"); ?>'" value="buscar" class="btn btn-default"/>
+			</div>
+		<div class="col-xs-12" style="margin: 10px;">	
+
+	</div>
+	<div class="col-xs-12">
       
-  </div>
+      
+        
+   
+		 
+		 
+		 
+       <section   style="height:400px;overflow-y:scroll;">
+        <table class="table table-hover ">
+	         <tr >
+	         <th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" name="origen[]" id="origen" class="checkbox"> </th>
+	    		<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Años</th>
+	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
+	    		
+	    		
+	    		
+	    		<th></th>
+	    		<th></th>
+	  		</tr>
+            
+	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
+	        		<tr>
+	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_cartones[]"   name="id_cartones[]"  value="<?php echo $res->id_cartones; ?>" class="marcados"></th>
+	                 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
+		                <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
+		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
+		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
+		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
+		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
+		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+		           	   <td>
+			           		
+			                <hr/>
+		               </td>
+		    		</tr>
+		        <?php } } ?>
+		        
+      
+        
+            <?php 
+          
+            
+            ?>
+            
+       	</table>     
+		     
+      </section>
+        </div>
+		 </div>
+        </div>
+    
+    
+    </form>
   
+
+    </div>
+   </div>
      </body>  
     </html>   

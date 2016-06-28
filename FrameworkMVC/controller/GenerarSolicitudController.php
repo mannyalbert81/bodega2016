@@ -19,6 +19,29 @@ class GenerarSolicitudController extends ControladorBase{
 			
 			$generar_solicitud = new MovimientosModel();
 		
+			$cartones = new CartonesModel();
+			$columnas = " cartones.id_cartones,
+					      cartones.numero_cartones,
+						  cartones.serie_cartones,
+						  cartones.contenido_cartones,
+						  cartones.year_cartones,
+						  cartones.cantidad_documentos_libros_cartones,
+					      tipo_contenido_cartones.id_tipo_contenido_cartones,
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
+						  cartones.digitalizado_cartones,
+					      entidades.id_entidades,
+						  entidades.nombre_entidades,
+					      bodegas.id_bodegas,
+						  bodegas.nombre_bodegas";
+			$tablas   = "public.cartones,
+						  public.bodegas,
+						  public.entidades,
+						  public.tipo_contenido_cartones";
+			$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+			$id       = "cartones.numero_cartones";
+			
+			$resultDatos=$cartones->getCondiciones($columnas ,$tablas ,$where, $id);
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "GenerarSolicitud";
 			$id_rol= $_SESSION['id_rol'];
@@ -33,8 +56,9 @@ class GenerarSolicitudController extends ControladorBase{
 					$resultCon=$controladores->getAll("nombre_controladores");
 					
 					$cartones = new CartonesModel();					
+					//$resultCartones=$cartones->getAll("numero_cartones || serie_cartones || contenido_cartones || year_cartones || cantidad_documentos_libros_cartones || digitalizado_cartones");
 					$resultCartones=$cartones->getAll("id_cartones");
-			
+						
 			
 					
 					$resultEdit = "";
@@ -73,11 +97,114 @@ class GenerarSolicitudController extends ControladorBase{
 						
 					}
 					
-				
+					if(isset($_POST["buscar"])){
+							
+						$criterio_busqueda=$_POST["criterio_busqueda"];
+						$contenido_busqueda=$_POST["contenido_busqueda"];
+							
+						$cartones = new CartonesModel();
+							
+							
+						$columnas = " cartones.id_cartones,
+					      cartones.numero_cartones, 
+						  cartones.serie_cartones, 
+						  cartones.contenido_cartones, 
+						  cartones.year_cartones, 
+						  cartones.cantidad_documentos_libros_cartones, 
+					      tipo_contenido_cartones.id_tipo_contenido_cartones,
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
+						  cartones.digitalizado_cartones,
+					      entidades.id_entidades,
+						  entidades.nombre_entidades, 
+					      bodegas.id_bodegas,
+						  bodegas.nombre_bodegas";
+			$tablas   = "public.cartones, 
+						  public.bodegas, 
+						  public.entidades, 
+						  public.tipo_contenido_cartones";
+			$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+			$id       = "cartones.numero_cartones";
+							
+							
+							
+						$where_0 = "";
+						$where_1 = "";
+						$where_2 = "";
+						$where_3 = "";
+						$where_4 = "";
+						$where_5 = "";
+						$where_6 = "";
+						$where_7 = "";
+						$where_8 = "";
+						$where_9 = "";
+							
+						switch ($criterio_busqueda) {
+							case 0:
+								$where_0 = " ";
+								break;
+							case 1:
+								//Ruc Cliente/Proveedor
+								$where_1 = " AND  cartones.numero_cartones LIKE '$contenido_busqueda'  ";
+								break;
+							case 2:
+								//Nombre Cliente/Proveedor
+								$where_2 = " AND cartones.serie_cartones LIKE '$contenido_busqueda'  ";
+								break;
+								
+							case 3:
+									//Nombre Cliente/Proveedor
+								$where_3 = " AND cartones.contenido_cartones LIKE '$contenido_busqueda'  ";
+								break;
+								
+							case 4:
+									//Nombre Cliente/Proveedor
+								$where_4 = " AND cartones.year_cartones LIKE '$contenido_busqueda'  ";
+								break;
+								
+							case 5:
+						     		//Nombre Cliente/Proveedor
+								$where_5 = " AND cartones.cantidad_documentos_libros_cartones LIKE '$contenido_busqueda'  ";
+								break;
+								
+								
+							case 6:
+									//Nombre Cliente/Proveedor
+								$where_6 = " AND tipo_contenido_cartones.nombre_tipo_contenido_cartones LIKE '$contenido_busqueda'  ";
+								break;
+								
+							case 7:
+									//Nombre Cliente/Proveedor
+								$where_7 = " AND cartones.digitalizado_cartones = '$contenido_busqueda'  ";
+								break;
+								
+								
+							case 8:
+									//Nombre Cliente/Proveedor
+								$where_8 = " AND entidades.nombre_entidades LIKE '$contenido_busqueda'  ";
+								break;
+								
+							case 9:
+									//Nombre Cliente/Proveedor
+								$where_9 = " AND bodegas.nombre_bodegas LIKE '$contenido_busqueda'  ";
+								break;
+					
+									
+						}
+							
+							
+							
+						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5 . $where_6 . $where_7 . $where_8 . $where_9;
+						
+						
+						$resultDatos=$cartones->getCondiciones($columnas ,$tablas ,$where_to, $id);
+					
+								
+									
+					}
 					
 					$this->view("GenerarSolicitud",array(
 							
-							"resultCon"=>$resultCon, "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultCartones"=>$resultCartones
+							"resultCon"=>$resultCon, "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultCartones"=>$resultCartones, "resultDatos"=>$resultDatos
 					));
 			
 			
