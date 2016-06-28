@@ -48,9 +48,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          
-
-             <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
+              <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
 			<li><a href="index.php?controller=TipoIdentificacion&action=index"><span class="glyphicon glyphicon-time" aria-hidden="true"> Tipo de Identificacion</span> </a>
 			</li>
@@ -64,15 +62,22 @@
 			</li>
 			 <li><a href="index.php?controller=TipoOperaciones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Tipo Operaciones</span> </a>
             </li>  
-			<li><a href="index.php?controller=Cartones&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Cartones</span> </a>
-			</li>
-			<li><a href="index.php?controller=Movimientos&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entradas</span> </a>
-			</li>
-			<li><a href="index.php?controller=Salidas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Salidas</span> </a>
-			</li>
+
           </ul>
         </li>
 
+		<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Cartones" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+
+			<li><a href="index.php?controller=Cartones&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Crear Cartones</span> </a>
+			</li>
+			<li><a href="index.php?controller=Movimientos&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entradas de Cartones</span> </a>
+			</li>
+			<li><a href="index.php?controller=Salidas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Salidas de Cartones</span> </a>
+			</li>
+          </ul>
+        </li>
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
