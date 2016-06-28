@@ -103,7 +103,7 @@ $(document).ready(function(){
   <div class="row" style=" background-color:#CB9F10;">
   
   <div style=" margin-top: 10px; "   class="col-xs-6 col-md-9"  >
-  <img src="view/images/logo-coctiva.png" class="img-responsive" alt="Responsive image">
+  <img src="view/images/logo-docstore.png" class="img-responsive" alt="Responsive image">
   </div>
   <!-- aqui va la class pull-right.... -->
   
