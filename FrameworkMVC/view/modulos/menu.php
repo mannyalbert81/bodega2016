@@ -76,6 +76,12 @@
 			</li>
 			<li><a href="index.php?controller=Salidas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Salidas de Cartones</span> </a>
 			</li>
+			<li><a href="index.php?controller=GenerarSolicitud&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Generar Solicitud de Cartones</span> </a>
+			</li>
+			<li><a href="index.php?controller=AnularSolicitud&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Anular Solicitud de Cartones</span> </a>
+			</li>
+			<li><a href="index.php?controller=Baja&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Baja de Cartones</span> </a>
+			</li>
           </ul>
         </li>
          <li class="dropdown">

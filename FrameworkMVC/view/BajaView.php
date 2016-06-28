@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Movimientos - bodega 2016</title>
+        <title>Baja de Cartones - bodega 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -74,15 +74,13 @@
 
     					$('#destino').append('<option value="'+respuesta.id_cartones+'" selected>'+$('#busqueda').val()+' </option>')
     					$('#busqueda').val("");
-    					$('#total_cartones').val($('#destino option').size());
+    					$('#total_cartones').val($('#destino option').size()); 
         			});
-    				 
+
     				
     			});   
 				
     		});
-
-			
      </script>
     <script>
 		function contador (campo, cuentacampo, limite) {
@@ -118,7 +116,7 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("Movimientos","InsertaMovimientos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("Baja","InsertaBaja"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
    
    
     <div class="col-lg-12">
@@ -130,7 +128,7 @@
 		     
 		  <h4 ALIGN="center"></h4>
 		   <hr/>
-		    <h4 style="color:#ec971f;" ALIGN="center" >ENTRADA DE CARTONES</h4>
+		    <h4 style="color:#ec971f;" ALIGN="center" >BAJA DE CARTONES</h4>
 		    
             	<hr/>
             <div class="row"> 

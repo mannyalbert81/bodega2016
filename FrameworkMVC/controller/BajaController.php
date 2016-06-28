@@ -1,6 +1,6 @@
 <?php
 
-class MovimientosController extends ControladorBase{
+class BajaController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
@@ -17,10 +17,10 @@ class MovimientosController extends ControladorBase{
 		{
 			
 			
-			$movimientos = new MovimientosModel();
+			$anular_solicitud = new MovimientosModel();
 		
 			$permisos_rol = new PermisosRolesModel();
-			$nombre_controladores = "Movimientos";
+			$nombre_controladores = "Baja";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
@@ -29,7 +29,6 @@ class MovimientosController extends ControladorBase{
 					
 					$rol = new RolesModel();
 					$resultRol=$rol->getAll("nombre_rol");
-					
 					$controladores=new ControladoresModel();
 					$resultCon=$controladores->getAll("nombre_controladores");
 					
@@ -43,7 +42,7 @@ class MovimientosController extends ControladorBase{
 			
 					if (isset ($_GET["id_movimientos"])   )
 					{
-						$nombre_controladores = "Movimientos";
+						$nombre_controladores = "Baja";
 						$id_rol= $_SESSION['id_rol'];
 						$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
@@ -53,7 +52,7 @@ class MovimientosController extends ControladorBase{
 							
 							
 							$traza=new TrazasModel();
-							$_nombre_controlador = "Movimientos";
+							$_nombre_controlador = "Baja";
 							$_accion_trazas  = "Editar";
 							$_parametros_trazas = $_id_asignacion_secretarios;
 							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
@@ -62,7 +61,7 @@ class MovimientosController extends ControladorBase{
 						else
 						{
 							$this->view("Error",array(
-									"resultado"=>"No tiene Permisos de Editar Movimientos"
+									"resultado"=>"No tiene Permisos de Editar Baja"
 						
 									
 							));
@@ -76,7 +75,7 @@ class MovimientosController extends ControladorBase{
 					
 				
 					
-					$this->view("Movimientos",array(
+					$this->view("Baja",array(
 							
 							"resultCon"=>$resultCon, "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultCartones"=>$resultCartones
 					));
@@ -98,16 +97,16 @@ class MovimientosController extends ControladorBase{
 	}
 	 
 	
-	public function InsertaMovimientos(){
+	public function InsertaBaja(){
 
 		session_start();
 		
 		$resultado = null;
 		$permisos_rol=new PermisosRolesModel();
-		$movimientos = new MovimientosModel();
-	    $nombre_controladores = "Movimientos";
+		$anular_solicitud = new MovimientosModel();
+	    $nombre_controladores = "Baja";
 		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $movimientos->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
+		$resultPer = $anular_solicitud->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
 		
 		if (!empty($resultPer))
 		{
@@ -124,7 +123,7 @@ class MovimientosController extends ControladorBase{
 				
 				$operaciones = new TipoOperacionesModel();
 				
-				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE 'ENTRADAS%' ");
+				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE 'BAJA%' ");
 				
 				$id_tipo_operacion=$resultOperaciones[0]->id_tipo_operaciones;
 				$consecutivo=$resultOperaciones[0]->consecutivo;
@@ -144,15 +143,15 @@ class MovimientosController extends ControladorBase{
 							$_id_usuario_creador=$_SESSION['id_usuarios'];
 							$_id_usuario_solicita=$_id_usuario_creador;
 							
-							$movimientos = new MovimientosModel();
+							$anular_solicitud = new MovimientosModel();
 							
 							$funcion = "ins_movimientos";
 							$parametros = "'$_numero_movimientos','$id_tipo_operacion', '$_id_cartones','$_id_usuario_creador','$_id_usuario_solicita','$_observaciones'";
 							
 							
-							$movimientos->setFuncion($funcion);
-							$movimientos->setParametros($parametros);
-							$resultado=$movimientos->Insert();
+							$anular_solicitud->setFuncion($funcion);
+							$anular_solicitud->setParametros($parametros);
+							$resultado=$anular_solicitud->Insert();
 							
 							$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$id_tipo_operacion'");
 							
@@ -169,7 +168,7 @@ class MovimientosController extends ControladorBase{
 					 
 				}
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Movimientos";
+				$_nombre_controlador = "Baja";
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_id_cartones;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
@@ -178,14 +177,14 @@ class MovimientosController extends ControladorBase{
 			}
 			
 
-			$this->redirect("Movimientos", "index");
+			$this->redirect("Baja", "index");
 				
 			
 		}
 		else
 		{
 			$this->view("Error",array(
-					"resultado"=>"No tiene Permisos de Guardar Entradas"
+					"resultado"=>"No tiene Permisos de Guardar Baja"
 		
 			));
 		
@@ -202,7 +201,7 @@ class MovimientosController extends ControladorBase{
 		
 		$numero_cartones = $_GET['term'];
 		
-		$resultSet=$cartones->getBy("numero_cartones LIKE '$numero_cartones%'");
+		$resultSet=$cartones->getAll("numero_cartones");
 		
 		
 		if(!empty($resultSet)){

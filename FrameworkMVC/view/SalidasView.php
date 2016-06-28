@@ -50,9 +50,9 @@
         $().ready(function() 
 	   {
 		$('.pasar').click(function() {   !$('#origen option:selected').remove().appendTo('#destino'); $('#total_cartones').val($('#destino option').size()); return  true;});  
-		$('.quitar').click(function() { return !$('#destino option:selected').remove().appendTo('#origen'); });
+		$('.quitar').click(function() { !$('#destino option:selected').remove().appendTo('#origen'); $('#total_cartones').val($('#destino option').size()); return true});
 		$('.pasartodos').click(function() { $('#origen option').each(function() { $(this).remove().appendTo('#destino'); $('#total_cartones').val($('#destino option').size());  }); });
-		$('.quitartodos').click(function() { $('#destino option').each(function() { $(this).remove().appendTo('#origen'); }); });
+		$('.quitartodos').click(function() { $('#destino option').each(function() { $(this).remove().appendTo('#origen'); $('#total_cartones').val($('#destino option').size()); return  true;}); });
 		$('.submit').click(function() { $('#destino option').prop('selected', 'selected'); });
 	  });
     </script>
