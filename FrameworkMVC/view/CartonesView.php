@@ -307,7 +307,7 @@
 			  	<p  class="formulario-subtitulo" >Tipo Contenido Cartones</p>
 			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
 					<?php foreach($resultTipoConCar as $res) {?>
-					<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"  <?php if ($res->id_tipo_contenido_cartones == $resEdit->id_tipo_contenido_cartones ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_contenido_cartones; ?> </option>
+					<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"  <?php if ($res->id_tipo_contenido_cartones == $resEdit->id_tipo_contenido_cartones ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_tipo_contenido_cartones; ?> </option>
 					
 					  <?php } ?>
 				</select> 			  
@@ -394,7 +394,7 @@
 			  	<p  class="formulario-subtitulo" >Tipo Contenido Cartones</p>
 			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
 					<?php foreach($resultTipoConCar as $res) {?>
-						<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"  ><?php echo $res->nombre_contenido_cartones; ?> </option>
+						<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"  ><?php echo $res->nombre_tipo_contenido_cartones; ?> </option>
 			        <?php } ?>
 				</select> 			  
 			  </div>
@@ -523,7 +523,7 @@
 		                <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
 		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
 		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
-		                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_contenido_cartones; ?>  </td>
+		                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
 		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
 		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
 		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>

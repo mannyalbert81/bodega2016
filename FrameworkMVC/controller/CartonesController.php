@@ -19,7 +19,7 @@ public function index(){
 			$resultBodegas = $bodegas->getAll("nombre_bodegas");
 			
 			$tipo_contenido_cartones = new TipoContenidoCartonesModel();
-			$resultTipoConCar =$tipo_contenido_cartones->getAll("nombre_contenido_cartones");
+			$resultTipoConCar =$tipo_contenido_cartones->getAll("nombre_tipo_contenido_cartones");
 			
 			$entidades = new EntidadesModel();
 			$resultEnt = $entidades->getAll("nombre_entidades");
@@ -32,7 +32,7 @@ public function index(){
 						  cartones.year_cartones, 
 						  cartones.cantidad_documentos_libros_cartones, 
 					      tipo_contenido_cartones.id_tipo_contenido_cartones,
-						  tipo_contenido_cartones.nombre_contenido_cartones, 
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
 						  cartones.digitalizado_cartones,
 					      entidades.id_entidades,
 						  entidades.nombre_entidades, 
@@ -95,7 +95,7 @@ public function index(){
 						  cartones.contenido_cartones,
 						  cartones.year_cartones,
 						  cartones.cantidad_documentos_libros_cartones,
-						  tipo_contenido_cartones.nombre_contenido_cartones,
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
 						  cartones.digitalizado_cartones,
 						  entidades.nombre_entidades,
 						  bodegas.nombre_bodegas";
@@ -158,7 +158,7 @@ public function index(){
 								
 							case 6:
 									//Nombre Cliente/Proveedor
-								$where_6 = " AND tipo_contenido_cartones.nombre_contenido_cartones LIKE '$contenido'  ";
+								$where_6 = " AND tipo_contenido_cartones.nombre_tipo_contenido_cartones LIKE '$contenido'  ";
 								break;
 								
 							case 7:
