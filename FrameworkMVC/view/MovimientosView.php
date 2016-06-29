@@ -49,13 +49,26 @@
      <script>
         $().ready(function() 
 	   {
-		$('.pasar').click(function() {   !$('#origen option:selected').remove().appendTo('#destino'); $('#total_cartones').val($('#destino option').size()); return  true;});  
-		$('.quitar').click(function() { !$('#destino option:selected').remove().appendTo('#origen'); $('#total_cartones').val($('#destino option').size()); return true});
-		$('.pasartodos').click(function() { $('#origen option').each(function() { $(this).remove().appendTo('#destino'); $('#total_cartones').val($('#destino option').size());  }); });
-		$('.quitartodos').click(function() { $('#destino option').each(function() { $(this).remove().appendTo('#origen'); $('#total_cartones').val($('#destino option').size()); return  true;}); });
-		$('.submit').click(function() { $('#destino option').prop('selected', 'selected'); });
+		$('#pasar').click(function() 
+		 {   !$('#origen option:selected').remove().appendTo('#destino'); 
+		      $('#total_cartones').val($('#destino option').size()); 
+		      return  true;});
+	        
+		$('#quitar').click(function() { !$('#destino option:selected').remove().appendTo('#origen'); $('#total_cartones').val($('#destino option').size()); return true});
+		$('#pasartodos').click(function() { $('#origen option').each(function() { $(this).remove().appendTo('#destino'); $('#total_cartones').val($('#destino option').size());  }); });
+		$('#quitartodos').click(function() { $('#destino option').each(function() { $(this).remove().appendTo('#origen'); $('#total_cartones').val($('#destino option').size()); return  true;}); });
+		$('#btnGuardar').click(function() 
+	    	{ 
+				
+			$('#destino option').prop('selected', 'selected'); 
+
+			});
 	  });
     </script>
+    
+    
+    
+     
      
     <script>
 	       	$(document).ready(function(){ 	
@@ -126,20 +139,20 @@
 		    
             	<hr/>
             <div class="row"> 
-            <div class="col-xs-2">
-           	</div>
-           	<div class="col-xs-3">
-           	<p  class="formulario-subtitulo" > Ingrese Numero Carton: </p>
-			  <input type="text" id="busqueda" name="busqueda" class="form-control" placeholder="Search" >
-           	</div>
+              <div class="col-xs-2 col-md-2">
+           	  </div>
+           	
+           	  <div class="col-xs-3 col-md-3">
+           	   <p  class="formulario-subtitulo" > Ingrese Numero Carton: </p>
+			   <input type="text" id="busqueda" name="busqueda" class="form-control" placeholder="Search" >
+           	  </div>
            	</div>
            	
-           <div class="row"> 
-           	<div class="col-xs-2">
-           	</div>
-           	
-           <div class="col-xs-3">
-           <p  class="formulario-subtitulo" >Cartones</p>
+            <div class="row"> 
+           	 <div class="col-xs-2 col-md-2">
+           	 </div>
+           	 <div class="col-xs-3 col-md-3">
+                <p  class="formulario-subtitulo" >Cartones</p>
 			  	<select  name="origen[]" id="origen" multiple="multiple" size="10" class="form-control">
 			  	<?php foreach($resultCartones as $resCartones) {?>
 						<option value="<?php echo $resCartones->id_cartones; ?>" <?php if($sel_id_cartones==$resCartones->id_cartones){echo "selected";}?> ><?php echo $resCartones->numero_cartones; ?> </option>
@@ -148,47 +161,71 @@
 			  </div>
             
             
-            <div class="col-xs-2">
+             <div class="col-xs-2 col-md-2" >
+            	
+            	<div style=  "margin-top: 80px; text-align: center; ">
+            	
+            	
+            	<div class="row" >
+            		
+            		<button type="button" class="btn btn-info" id= "pasar" >
+  						<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Pasar
+					</button>
+                	<button type="button" class="btn btn-info" id="quitar">
+  						Quitar <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span> 
+					</button>
+					
+				</div>
+				<div style="margin-top: 5px;">
+				</div>
+				<div class="row">
+					<button type="button" class="btn btn-info" id="pasartodos">
+  						<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Todos
+					</button>
+					<button type="button" class="btn btn-info" id="quitartodos">
+  							Todos <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+					</button>
+	       	    </div>
             
-          <p  class="formulario-subtitulo" ><font color="White">.</font></p>
-			 <p  class="formulario-subtitulo" ><font color="White">.</font></p> 
-	          <input type="button" class="pasar izq" value="Pasar »"><input type="button" class="quitar der" value="« Quitar"><br />
-	         <input type="button" class="pasartodos izq" value="Todos »"><input type="button" class="quitartodos der" value="« Todos">
-	       	<div id="mensaje_criterio" class="errores"></div>	   
-		    </div>
-            
-            
+              </div>
+            </div>
 			
-			<div class="col-xs-3">
-			  <p  class="formulario-subtitulo" ><font color="White">Agregar </font></p>
-	           <select  name="destino[]" id="destino" multiple="multiple" size="10" class="form-control"></select> 
+			 <div class="col-xs-3 col-md-3">
+			   <p  class="formulario-subtitulo" ><font color="White">Agregar </font></p>
+	           <select  name="destino[]" id="destino" multiple size="10" class="form-control"></select> 
 		   	 	
-		   	 </div>
+		   	  </div>
+		   	  <div class="col-xs-2 col-md-2">
+           	  </div>
+		   </div>
+		   
+		   
+		 
+		   <div class="row">
+		     <div class="col-xs-2 col-md-2">
+           	 </div>
+           	 
+		     <div class="col-xs-3 col-md-3" >
+			  	<p  class="formulario-subtitulo" >Observaciones </p>
+	          	<textarea  class="form-control" id="observaciones" name="observaciones" wrap="physical" rows="8"  onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
+	          	<p  class="formulario-subtitulo" >Te quedan <input type="text" name="remLen" size="2" maxlength="2" value="400" readonly="readonly"> letras por escribir. </p>
+	        		   
 		     </div>
+		    <div class="col-xs-2 col-md-2">
+           		
+           	 </div>
+		     <div class="col-xs-3 col-md-3" style="margin-top:20px">
+			 	 <p  class="formulario-subtitulo" > Total Cartones: </p>
+			 	 <input type="text" id="total_cartones" name="total_cartones" class="form-control" readonly="readonly">
+			 	 <div style="margin-top:10px ; text-align: center; " >
+           			<input type="submit" id="btnGuardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+           	 	</div>
+		   	  </div>	
+		   	  <div class="col-xs-2 col-md-2">
+           	 </div>
+		   </div>
 		    
-		    <div class="row">
-		    <div class="col-xs-2">
-           	</div>
-		     <div class="col-xs-5" style="margin-top:20px">
-			  <p  class="formulario-subtitulo" >Observaciones </p>
-	          <textarea  id="observaciones" name="observaciones" wrap="physical" rows="8" cols="33" onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
-	        <p  class="formulario-subtitulo" >Te quedan <input type="text" name="remLen" size="2" maxlength="2" value="400" readonly="readonly"> letras por escribir. </p>
-	        <div id="mensaje_criterio" class="errores"></div>	   
-		    </div>
-		    
-		    <div class="col-xs-3" style="margin-top:20px">
-			  <p  class="formulario-subtitulo" > Total Cartones: </p>
-			  <input type="text" id="total_cartones" name="total_cartones" class="form-control" readonly="readonly">
-		   	</div>	
-		    </div>
-		    
-			<hr>
 			
-			  <div class="col-xs-12" style="text-align: center;" >
-			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
-			  <hr>
-			  </div>
-	
     </form>
     </div>
       
