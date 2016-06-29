@@ -54,47 +54,41 @@
         });
     </script>
 
+  <style>
+   
+       .fila{
+       
+       }
+       
+       .seleccionado{
+          background: rgb(255,255,153);
+       }
+     </style>
+    
+    <script src="jquery.js"></script>
     <script>
-    $(document).ready(function(){
-        
- 		$("#buscar").click(function () {
-             
-             var fecha_asignacion = $("#fecha_asignacion").val();
-             var contenido = $("#contenido_busqueda").val();
-             if(fecha_asignacion!=0 && contenido==""){
-          	   $("#mensaje_contenido").text("Ingrese contenido");
-  	    	   $("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
-                 return false;
-                 }else if(fecha_asignacion==0 && contenido!=""){
-               $("#mensaje_criterio").text("Selecione una busqueda");
-        	   $("#mensaje_criterio").fadeIn("slow");
-        	     return false;
-                 }else{
-                	 return true;
-                     }
+      $(function(){          
+          $("table.tablaBBDD tr").each(function(){
+            $(this).click(function(){
+              if($(this).attr("class") == 'fila'){
+                $(this).removeClass('fila');
+                $(this).addClass('seleccionado');   
+              }else{
+                $(this).removeClass('seleccionado');
+                $(this).addClass('fila');
+              }   
+            })
           });
-          
-          $( "#contenido_busqueda" ).focus(function() {
-  			  $("#mensaje_contenido").fadeOut("slow");
-  		    });
-          $( "#fecha_asignacion" ).focus(function() {
-  			  $("#mensaje_criterio").fadeOut("slow");
-  		    });
-        });
-
+         $("#pasar").click(function(){
+            $("table.tablaBBDD tr").each(function(){
+               if($(this).attr("class") == 'seleccionado'){
+                  $("#guardarRegistros").append($(this));
+               } 
+            })
+         }) 
+                       
+      })
     </script>
-    
-    <script>
-        $().ready(function() 
-	   {
-		$('.pasar').click(function() {   !$('#origen option:selected').remove().appendTo('#destino'); $('#total_cartones').val($('#destino option').size()); return  true;});  
-		$('.quitar').click(function() { !$('#destino option:selected').remove().appendTo('#origen'); $('#total_cartones').val($('#destino option').size()); return true});
-		$('.pasartodos').click(function() { $('#origen option').each(function() { $(this).remove().appendTo('#destino'); $('#total_cartones').val($('#destino option').size());  }); });
-		$('.quitartodos').click(function() { $('#destino option').each(function() { $(this).remove().appendTo('#origen'); $('#total_cartones').val($('#destino option').size()); return  true;}); });
-		$('.submit').click(function() { $('#destino option').prop('selected', 'selected'); });
-	  });
-    </script>
-    
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -125,40 +119,16 @@
      
       <form action="<?php echo $helper->url("GenerarSolicitud","InsertaGenerarSolicitud"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
     
-    <div class="col-lg-5">
-    <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-           <?php //no hay datos para editar?>
-        
-            
-		     <?php } } else {?>
-		     
-		 
-		    <h4 style="color:#ec971f;">GENERAR SOLICITUD</h4>
+    <h4 style="color:#ec971f;" ALIGN="center">GENERAR SOLICITUD</h4>
             	<hr/>
-            	
-            <div class="row"> 
-            <div class="col-xs-3">
-			  <p  class="formulario-subtitulo" ><font color="White">Agregar </font></p>
-	           <select  name="destino[]" id="destino" multiple="multiple" size="10" class="form-control"></select> 
-		   	 </div>
-		   	  <div class="col-xs-2">
-             <p  class="formulario-subtitulo" ><font color="White">.</font></p>
-			 <p  class="formulario-subtitulo" ><font color="White">.</font></p> 
-	          <input type="button" class="pasar izq" value="Pasar »"><input type="button" class="quitar der" value="« Quitar"><br />
-	         <input type="button" class="pasartodos izq" value="Todos »"><input type="button" class="quitartodos der" value="« Todos">
-	       	<div id="mensaje_criterio" class="errores"></div>	   
-		    </div>
-            </div>
-			
-      
-             	
-		     <?php } ?>
-    </div>
     
+   
     
-    <div  class="col-lg-7">
-     <h4 style="color:#ec971f;">Lista de Cartones</h4>
+     <div  class="col-lg-6">
+     <h4 style="color:#ec971f;">Seleccionar Cartones</h4>
             <hr/>
+            <div class="col-xs-2">
+            </div>
     		<div class="col-xs-4">
 			
            <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
@@ -175,24 +145,20 @@
            <div id="mensaje_criterio" class="errores"></div>
            </div>
            
-           <div class="col-xs-4" >
+           <div class="col-xs-2" >
 		
 			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("GenerarSolicitud","index"); ?>'" value="buscar" class="btn btn-default"/>
 			</div>
-		<div class="col-xs-12" style="margin: 10px;">	
-
-	</div>
+		
 	<div class="col-xs-12">
       
-      
+    	 
+		 
+       <section   class="col-lg-6 usuario"   style="height:300px; overflow-y:scroll;     ">
         
-   
-		 
-		 
-		 
-       <section   style="height:400px;overflow-y:scroll;">
-        <table class="table table-hover ">
-	         <tr >
+        
+        <table  class="tablaBBDD" >
+	         <tr  class="fila">
 	         <th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" name="origen[]" id="origen" class="checkbox"> </th>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
@@ -212,9 +178,8 @@
 	  		</tr>
             
 	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
-	        		<tr>
-	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_cartones[]"   name="id_cartones[]"  value="<?php echo $res->id_cartones; ?>" class="marcados"></th>
-	                 
+	        		<tr class="fila">
+	        		
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
@@ -244,6 +209,57 @@
       </section>
         </div>
 		 </div>
+    <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+           <?php //no hay datos para editar?>
+        
+            
+		     <?php } } else {?>
+		     
+		 
+		    
+            	
+           
+      
+             	
+		     <?php } ?>
+   
+    <div  class="col-lg-6">
+     <h4 style="color:#ec971f;">Cartones Seleccionados</h4>
+            <hr/>
+    		
+            
+           
+        
+		<div class="col-xs-12" style="margin: 20px;">	
+
+	</div>
+	<div class="col-xs-12">
+      
+      
+       <section   class="col-lg-6 usuario" style="height:300px; overflow-y:scroll;">
+        <table id="guardarRegistros">
+        <tr>
+	       <th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Años</th>
+	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>  
+	    		</tr>
+       	</table>     
+		     
+      </section>
+        </div>
+        
+        <div class="col-xs-5">
+         <input type="button" id="pasar" value="Pasar Datos">
+        </div>
+		 </div>
+    
         </div>
     
     

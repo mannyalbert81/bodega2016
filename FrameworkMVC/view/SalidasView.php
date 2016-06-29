@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Salidas- bodega 2016</title>
+        <title>Salidas - bodega 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -74,13 +74,15 @@
 
     					$('#destino').append('<option value="'+respuesta.id_cartones+'" selected>'+$('#busqueda').val()+' </option>')
     					$('#busqueda').val("");
-    					$('#total_cartones').val($('#destino option').size()); 
+    					$('#total_cartones').val($('#destino option').size());
         			});
-
+    				 
     				
     			});   
 				
     		});
+
+			
      </script>
     <script>
 		function contador (campo, cuentacampo, limite) {
@@ -116,17 +118,9 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-    <form action="<?php echo $helper->url("Salidas","InsertaSalidas"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+  <form action="<?php echo $helper->url("Salidas","InsertaSalidas"); ?>" method="post" class="col-lg-12">
    
-   
-    <div class="col-lg-12">
-    <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-           <?php //no hay datos para editar?>
-        
-            
-		     <?php } } else {?>
-		     
-		   <h4 ALIGN="center"></h4>
+     <h4 ALIGN="center"></h4>
 		   <hr/>
 		    <h4 style="color:#ec971f;" ALIGN="center" >SALIDA DE CARTONES</h4>
 		    
@@ -136,7 +130,7 @@
            	</div>
            	<div class="col-xs-3">
            	<p  class="formulario-subtitulo" > Ingrese Numero Carton: </p>
-			  <input type="text" id="busqueda" name="busqueda"  class="form-control"  placeholder="Search" >
+			  <input type="text" id="busqueda" name="busqueda" class="form-control" placeholder="Search" >
            	</div>
            	</div>
            	
@@ -168,6 +162,7 @@
 			<div class="col-xs-3">
 			  <p  class="formulario-subtitulo" ><font color="White">Agregar </font></p>
 	           <select  name="destino[]" id="destino" multiple="multiple" size="10" class="form-control"></select> 
+		   	 	
 		   	 </div>
 		     </div>
 		    
@@ -193,16 +188,10 @@
 			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
 			  <hr>
 			  </div>
-			
-             	
-		     <?php } ?>
-    
-    
-     </div>
-    
-  
+	
     </form>
-    </div>  
+    </div>
+      
   </div>
   
      </body>  
