@@ -82,7 +82,7 @@
     
     <script>
       $(function(){          
-          $("#tabla_uno tr").each(function(){
+          $("table.tablaBBDD tr").each(function(){
             $(this).click(function(){
               if($(this).attr("class") == 'fila'){
                 $(this).removeClass('fila');
@@ -94,7 +94,7 @@
             })
           });
          $("#pasar").click(function(){
-            $("#tabla_uno tr").each(function(){
+            $("table.tablaBBDD tr").each(function(){
                if($(this).attr("class") == 'seleccionado'){
                   $("#guardarRegistros").append($(this));
                } 
@@ -188,7 +188,7 @@
        <section   class="col-lg-5 usuario" class="table table-hover "  style="height:300px; overflow-y:scroll;     ">
         
         
-        <table  id="tabla_uno"  class="table table-hover" >
+        <table  class="tablaBBDD" >
 	         <tr  class="fila">
 	        	<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
@@ -243,7 +243,7 @@
         </div>
         
         <section   class="col-lg-5 usuario" style="height:300px; overflow-y:scroll;">
-        <table id="guardarRegistros" class="table table-hover">
+        <table id="guardarRegistros">
         <tr>
 	       <th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
