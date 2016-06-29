@@ -45,6 +45,7 @@
         </style>
      
       
+      
     
      <script>
         $().ready(function() 
@@ -218,7 +219,7 @@
 			 	 <p  class="formulario-subtitulo" > Total Cartones: </p>
 			 	 <input type="text" id="total_cartones" name="total_cartones" class="form-control" readonly="readonly">
 			 	 <div style="margin-top:10px ; text-align: center; " >
-           			<input type="submit" id="btnGuardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+           			<input type="submit" id="btnGuardar" name="Guardar" value="Guardar" class="btn btn-success "/>
            	 	</div>
 		   	  </div>	
 		   	  <div class="col-xs-2 col-md-2">
