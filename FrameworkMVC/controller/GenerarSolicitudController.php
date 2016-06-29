@@ -391,5 +391,85 @@ class GenerarSolicitudController extends ControladorBase{
 		}
 	
 	}
+	
+	public function buscarCartones()
+	{
+		$dato = $_POST['dato'];
+		
+		$cartones = new CartonesModel();
+		
+		$columnas = " cartones.id_cartones,
+					      cartones.numero_cartones,
+						  cartones.serie_cartones,
+						  cartones.contenido_cartones,
+						  cartones.year_cartones,
+						  cartones.cantidad_documentos_libros_cartones,
+					      tipo_contenido_cartones.id_tipo_contenido_cartones,
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
+						  cartones.digitalizado_cartones,
+					      entidades.id_entidades,
+						  entidades.nombre_entidades,
+					      bodegas.id_bodegas,
+						  bodegas.nombre_bodegas";
+		$tablas   = "public.cartones,
+						  public.bodegas,
+						  public.entidades,
+						  public.tipo_contenido_cartones";
+		$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones 
+				      AND numero_cartones LIKE '%$dato%' ";
+		
+		$id       = "cartones.numero_cartones";
+		
+		$resultCartones=$cartones->getCondiciones($columnas ,$tablas ,$where, $id);
+		
+
+		
+		echo '<section   class="col-lg-5 usuario"   style="height:300px; overflow-y:scroll;     ">
+				<table  class="table table-hover " id="tabla_uno" >
+	         <tr  class="fila">
+	        	<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Años</th>
+	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
+	    		
+	    		
+	    		
+	    		<th></th>
+	    		<th></th>
+	  		</tr>';
+		
+		if(!empty($resultCartones)){
+			foreach ($resultCartones as $res){
+				echo '<tr class="fila">
+	        		
+	                   <td style="color:#000000;font-size:80%;">'.$res->id_cartones.'</td>
+		               <td style="color:#000000;font-size:80%;">'.$res->numero_cartones.'</td> 
+		               <td style="color:#000000;font-size:80%;">'. $res->serie_cartones.'</td>
+		               <td style="color:#000000;font-size:80%;">'. $res->contenido_cartones.'</td>
+		                <td style="color:#000000;font-size:80%;">'. $res->year_cartones.'</td>
+		                 <td style="color:#000000;font-size:80%;">'. $res->cantidad_documentos_libros_cartones  .'</td>
+		                 <td style="color:#000000;font-size:80%;">'. $res->nombre_tipo_contenido_cartones  .'</td>
+		                  <td style="color:#000000;font-size:80%;">'. $res->digitalizado_cartones  .'</td>
+		                    <td style="color:#000000;font-size:80%;">'. $res->nombre_entidades  .'</td>
+		                    <td style="color:#000000;font-size:80%;">'. $res->nombre_bodegas  .'</td>
+		           	   <td>
+			           		
+			                <hr/>
+		               </td>
+		    		</tr>';
+			}
+		}else{
+			echo '<tr>
+				<td colspan="6">No existen Resultados</td>
+			</tr>';
+		}
+		echo '</table> </section>';
+	}
 }
 ?>      

@@ -42,7 +42,8 @@
             </li>
             <li><a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entidades</span> </a>
 			</li> 
-			
+			<li><a href="index.php?controller=AsignarUsuarioBodega&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Asignar Usuario Bodega</span> </a>
+			</li>
          </ul>
         </li>
         <li class="dropdown">

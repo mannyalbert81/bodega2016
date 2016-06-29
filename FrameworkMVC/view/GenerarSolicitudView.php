@@ -37,7 +37,20 @@
             
         </style>
      
-       	
+		       	<style>
+		#tabla1 tr:hover{
+			background:#9C0
+		}
+		#tabla1 tr.selected, #tabla1 tr.selected:hover{
+			background:#F00
+		}
+		#tabla2 tr:hover{
+			background:#9C0
+		}
+		#tabla2 tr.selected, #tabla2 tr.selected:hover{
+			background:#F00
+		}
+		</style>
 	
     <script>
     $(document).ready(function(){
@@ -60,15 +73,16 @@
        
        }
        
-       .seleccionado{
-          background: rgb(255,255,153);
+       .seleccionado {
+          background:#9C0;
        }
+       
      </style>
     
     <script src="jquery.js"></script>
     <script>
       $(function(){          
-          $("table.tablaBBDD tr").each(function(){
+          $("#tabla_uno tr").each(function(){
             $(this).click(function(){
               if($(this).attr("class") == 'fila'){
                 $(this).removeClass('fila');
@@ -80,7 +94,7 @@
             })
           });
          $("#pasar").click(function(){
-            $("table.tablaBBDD tr").each(function(){
+            $("#tabla_uno tr").each(function(){
                if($(this).attr("class") == 'seleccionado'){
                   $("#guardarRegistros").append($(this));
                } 
@@ -89,6 +103,26 @@
                        
       })
     </script>
+    
+    <script>
+    $(document).ready(function(){
+    $('#contenido_busqueda').keyup(function(){
+		var dato = $('#contenido_busqueda').val();
+		var url = '<?php echo $helper->url("GenerarSolicitud","buscarCartones"); ?>';
+		$.ajax({
+		type:'POST',
+		url:url,
+		data:'dato='+dato,
+		success: function(datos){
+			$('#agrega-registros').html(datos);
+		}
+	});
+	return false;
+	});
+    });
+    </script>
+    
+			
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -101,8 +135,6 @@
        
        <?php
        
-     	$resultMenu_busqueda=array(0=>'--Seleccione--',1=>'Numero', 2=>'Serie', 3=>'Contenido', 4=>'Año', 5=>'Cantidad Documentos', 6=>'Nombre Contenido', 7=>'Digitalizado', 8=>'Nombre Entidades', 9=>'Nombre Bodega');
-     	
      	
      
      		 
@@ -122,45 +154,43 @@
     <h4 style="color:#ec971f;" ALIGN="center">GENERAR SOLICITUD</h4>
             	<hr/>
     
+   <div  class="col-xs-6 col-md-6">
+     
+     	<h4 style="color:#ec971f;">Seleccionar Cartones</h4>
+            <hr/>
+     
+     </div>
+   <div  class="col-xs-6 col-md-6">
+     
+     	<h4 style="color:#ec971f;">Cartones Seleccionados</h4>
+ 		       <hr/>
+         
+     </div>
    
     
-     <div  class="col-lg-6">
-     <h4 style="color:#ec971f;">Seleccionar Cartones</h4>
-            <hr/>
-            <div class="col-xs-2">
-            </div>
-    		<div class="col-xs-4">
+     <div  class="col-xs-6 col-md-6">
+     
+     <div class="row" >
+     
+     
+    		<div class="col-xs-4 col-md-4">
 			
-           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
-           <div id="mensaje_contenido_busqueda" class="errores"></div>
-            </div>
+           		<input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
+          		 <div id="mensaje_contenido_busqueda" class="errores"></div>
+           	</div>
             
-           <div class="col-xs-4">
-           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
-                                    <?php foreach($resultMenu_busqueda as $val=>$desc) {?>
-                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
-                                    <?php } ?>
-                                        
-           </select>
-           <div id="mensaje_criterio" class="errores"></div>
-           </div>
-           
-           <div class="col-xs-2" >
-		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("GenerarSolicitud","index"); ?>'" value="buscar" class="btn btn-default"/>
-			</div>
-		
-	<div class="col-xs-12">
+    </div>
+    </div>
+	<div class="col-xs-12 col-md-12">
       
     	 
-		 
-       <section   class="col-lg-6 usuario"   style="height:300px; overflow-y:scroll;     ">
+		<div id="agrega-registros">
+       <section   class="col-lg-5 usuario" class="table table-hover "  style="height:300px; overflow-y:scroll;     ">
         
         
-        <table  class="tablaBBDD" >
+        <table  id="tabla_uno"  class="table table-hover" >
 	         <tr  class="fila">
-	         <th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" name="origen[]" id="origen" class="checkbox"> </th>
-	    		<th style="color:#456789;font-size:80%;">Id</th>
+	        	<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
 	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
@@ -207,37 +237,13 @@
        	</table>     
 		     
       </section>
+      </div> 
+        <div class="col-lg-1 usuario">
+        		 <input type="button" id="pasar" value="Pasar Datos">
         </div>
-		 </div>
-    <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-           <?php //no hay datos para editar?>
         
-            
-		     <?php } } else {?>
-		     
-		 
-		    
-            	
-           
-      
-             	
-		     <?php } ?>
-   
-    <div  class="col-lg-6">
-     <h4 style="color:#ec971f;">Cartones Seleccionados</h4>
-            <hr/>
-    		
-            
-           
-        
-		<div class="col-xs-12" style="margin: 20px;">	
-
-	</div>
-	<div class="col-xs-12">
-      
-      
-       <section   class="col-lg-6 usuario" style="height:300px; overflow-y:scroll;">
-        <table id="guardarRegistros">
+        <section   class="col-lg-5 usuario" style="height:300px; overflow-y:scroll;">
+        <table id="guardarRegistros" class="table table-hover">
         <tr>
 	       <th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
@@ -253,13 +259,15 @@
        	</table>     
 		     
       </section>
-        </div>
         
-        <div class="col-xs-5">
-         <input type="button" id="pasar" value="Pasar Datos">
-        </div>
-		 </div>
+        
+        
+        
+    </div>
+		 
     
+   
+  
         </div>
     
     
