@@ -79,7 +79,7 @@
        
      </style>
     
-    <script src="jquery.js"></script>
+    
     <script>
       $(function(){          
           $("#tabla_uno tr").each(function(){
