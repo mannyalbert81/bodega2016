@@ -7,7 +7,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Cartones - bodega 2016</title>
+        <title>Asignar Usuario Bodega- bodega 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -49,6 +49,8 @@
        
          
        
+        
+        
         
 			
 			
@@ -208,10 +210,10 @@
     
       <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Cartones","InsertaCartones"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("AsignarUsuarioBodega","InsertaAsignarUsuarioBodega"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
-        	    <h4 style="color:#ec971f;">Insertar Cartones</h4>
+        	    <h4 style="color:#ec971f;">Asignar Usuarios Bodegas</h4>
             	<hr/>
             	
 		   		
@@ -222,10 +224,11 @@
          <div class="row">
 		    
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Entidades</p>
-			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
-					<?php foreach($resultEnt as $res) {?>
-					<option value="<?php echo $res->id_entidades; ?>"  <?php if ($res->id_entidades == $resEdit->id_entidades ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_entidades; ?> </option>
+			  	<p  class="formulario-subtitulo" >Usuarios</p>
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
+			  	<option value="">--Seleccione-- </option>
+					<?php foreach($resultUsu as $res) {?>
+					<option value="<?php echo $res->id_usuarios; ?>"  <?php if ($res->id_usuarios == $resEdit->id_usuarios ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_usuarios; ?> </option>
 					
 						  <?php } ?>
 				</select> 			  
@@ -234,72 +237,18 @@
 		   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Bodegas</p>
 			  	<select name="id_bodegas" id="id_bodegas"  class="form-control" >
+			  	<option value="">--Seleccione-- </option>
 					<?php foreach($resultBodegas as $res) {?>
 					<option value="<?php echo $res->id_bodegas; ?>"  <?php if ($res->id_bodegas == $resEdit->id_bodegas ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_bodegas; ?> </option>
 					
-						   <?php } ?>
+						  <?php } ?>
 				</select> 			  
 			  </div>
-			   </div>
+			  
+			  </div>
 			   
 			   
-		    <div class="row">
-		    <div class="col-xs-6 col-md-6" style= "margin-top:10px">
-			  	<p  class="formulario-subtitulo" >Tipo Contenido Cartones</p>
-			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
-					<?php foreach($resultTipoConCar as $res) {?>
-					<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"  <?php if ($res->id_tipo_contenido_cartones == $resEdit->id_tipo_contenido_cartones ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_tipo_contenido_cartones; ?> </option>
-					
-					  <?php } ?>
-				</select> 			  
-			  </div>
-			  
-			  <div class="col-xs-6 col-md-6" style= "margin-top:10px">
-			  	<p  class="formulario-subtitulo" >Numero Cartones</p>
-			  	<input type="text" name="numero_cartones" id="numero_cartones" value="<?php echo $resEdit->numero_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_numero_cartones" class="errores"></div>
-			  </div>
-		    </div>
 		    
-		    <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Serie Cartones</p>
-			  	<input type="text" name="serie_cartones" id="serie_cartones" value="<?php echo $resEdit->serie_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_serie_cartones" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Contenido Cartones</p>
-			  	<input type="text" name="contenido_cartones" id="contenido_cartones" value="<?php echo $resEdit->contenido_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_contenido_cartones" class="errores"></div>
-			  </div>
-		    </div>
-		    
-		    
-		    <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Años Cartones</p>
-			  	<input type="text" name="year_cartones" id="year_cartones" value="<?php echo $resEdit->year_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_year_cartones" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Cantidad Documentos</p>
-			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" onkeypress="return numeros(event)" value="<?php echo $resEdit->cantidad_documentos_libros_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_cantidad_documentos_libros_cartones" class="errores"></div>
-			  </div>
-		    </div>
-		      
-		      <div class="row">
-		      <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Digitalizado Cartones</p>
-			  	<select name="digitalizado_cartones" id="digitalizado_cartones"  class="form-control" >
-					<option value="TRUE"  <?php  if ( $resEdit->digitalizado_cartones =='t')  echo ' selected="selected" ' ; ?> >TRUE </option>
-					<option value="FALSE" <?php  if ( $resEdit->digitalizado_cartones =='f')  echo ' selected="selected" ' ; ?> >FALSE </option>
-					 
-				</select> 			  
-			  </div>
-		      </div>
 		    
 		    <hr>
 		    
@@ -311,10 +260,12 @@
 		    <div class="row">
 		    
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Entidades</p>
-			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
-					<?php foreach($resultEnt as $res) {?>
-						<option value="<?php echo $res->id_entidades; ?>"  ><?php echo $res->nombre_entidades; ?> </option>
+			  	<p  class="formulario-subtitulo" >Usuarios</p>
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
+					<option value="">--Seleccione-- </option>
+					
+					<?php foreach($resultUsu as $res) {?>
+						<option value="<?php echo $res->id_usuarios; ?>"  ><?php echo $res->nombre_usuarios; ?> </option>
 			        <?php } ?>
 				</select> 			  
 			  </div>
@@ -322,6 +273,7 @@
 		   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Bodegas</p>
 			  	<select name="id_bodegas" id="id_bodegas"  class="form-control" >
+					<option value="">--Seleccione-- </option>
 					<?php foreach($resultBodegas as $res) {?>
 						<option value="<?php echo $res->id_bodegas; ?>"  ><?php echo $res->nombre_bodegas; ?> </option>
 			        <?php } ?>
@@ -330,61 +282,7 @@
 			   </div>
 			   
 			   
-		    <div class="row">
-		    <div class="col-xs-6 col-md-6" style= "margin-top:10px">
-			  	<p  class="formulario-subtitulo" >Tipo Contenido Cartones</p>
-			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
-					<?php foreach($resultTipoConCar as $res) {?>
-						<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"  ><?php echo $res->nombre_tipo_contenido_cartones; ?> </option>
-			        <?php } ?>
-				</select> 			  
-			  </div>
-			  
-			  <div class="col-xs-6 col-md-6" style= "margin-top:10px">
-			  	<p  class="formulario-subtitulo" >Numero Cartones</p>
-			  	<input type="text" name="numero_cartones" id="numero_cartones" value="" class="form-control"/>
-			  <div id="mensaje_numero_cartones" class="errores"></div>
-			  </div>
-		    </div>
 		    
-		    <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Serie Cartones</p>
-			  	<input type="text" name="serie_cartones" id="serie_cartones" value="" class="form-control"/>
-			  <div id="mensaje_serie_cartones" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Contenido Cartones</p>
-			  	<input type="text" name="contenido_cartones" id="contenido_cartones" value="" class="form-control"/>
-			  <div id="mensaje_contenido_cartones" class="errores"></div>
-			  </div>
-		    </div>
-		    
-		    
-		    <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Años Cartones</p>
-			  	<input type="text" name="year_cartones" id="year_cartones" value="" class="form-control"/>
-			  <div id="mensaje_year_cartones" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Cantidad Documentos</p>
-			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" onkeypress="return numeros(event)" class="form-control"/>
-			  <div id="mensaje_cantidad_documentos_libros_cartones" class="errores"></div>
-			  </div>
-		    </div>
-		      
-		      <div class="row">
-		      <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Digitalizado Cartones</p>
-			  	<select name="digitalizado_cartones" id="digitalizado_cartones"  class="form-control" >
-					<option value="TRUE"  >TRUE </option>
-					<option value="FALSE"  >FALSE</option>
-				</select> 			  
-			  </div>
-		      </div>
 		    <hr>
 		    
 		   
@@ -404,13 +302,13 @@
          <!-- termina el form -->
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Cartones</h4>
+            <h4 style="color:#ec971f;">Lista de Asignaciones Realizadas</h4>
            
      <!-- empieza formulario de busqueda -->
      
             <hr>
         <div class="row">
-           <form action="<?php echo $helper->url("Cartones","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+           <form action="<?php echo $helper->url("AsignarUsuarioBodega","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
            
            <div class="col-lg-4">
            <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
@@ -442,15 +340,11 @@
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
-	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
-	    		<th style="color:#456789;font-size:80%;">Contenido</th>
-	    		<th style="color:#456789;font-size:80%;">Años</th>
-	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
-	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Usuario</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Rol</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Bodega</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Asignacion</th>
+	    	
 	    		
 	    		<th></th>
 	    		<th></th>
@@ -458,25 +352,22 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
-		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
-		                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
-		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
-		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
-		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_asignacion_usuarios_bodegas; ?></td>
+		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>  </td>
+		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_rol; ?>  </td>
+		           	   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+		           	   <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
+		           	  
+		           	  
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Cartones","index"); ?>&id_cartones=<?php echo $res->id_cartones; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("AsignarUsuarioBodega","index"); ?>&id_asignacion_usuarios_bodegas=<?php echo $res->id_asignacion_usuarios_bodegas; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Cartones","borrarId"); ?>&id_cartones=<?php echo $res->id_cartones; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("AsignarUsuarioBodega","borrarId"); ?>&id_asignacion_usuarios_bodegas=<?php echo $res->id_asignacion_usuarios_bodegas; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			              
 		               </td>

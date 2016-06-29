@@ -17,7 +17,7 @@ class SalidasController extends ControladorBase{
 		{
 			
 			
-			$salidas = new SalidasModel();
+			$movimientos_cabeza = new MovimientosCabezaModel();
 		
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Salidas";
@@ -33,11 +33,11 @@ class SalidasController extends ControladorBase{
 					$controladores=new ControladoresModel();
 					$resultCon=$controladores->getAll("nombre_controladores");
 					
-					$cartones = new CartonesModel();					
-					$resultCartones=$cartones->getAll("id_cartones");
+					$cartones = new CartonesModel();				
+					//MOSTRAR SOLO LOS CARTINES AFUERA O POR INGRESAR
+					$where = "id_tipo_operaciones = '2' OR id_tipo_operaciones = '6' ";
+					$resultCartones=$cartones->getBy($where);
 			
-			
-					
 					$resultEdit = "";
 					
 			
@@ -50,6 +50,13 @@ class SalidasController extends ControladorBase{
 						if (!empty($resultPer))
 						{
 							
+							
+							
+							$traza=new TrazasModel();
+							$_nombre_controlador = "Salidas";
+							$_accion_trazas  = "Editar";
+							$_parametros_trazas = $_id_asignacion_secretarios;
+							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 							
 						}
 						else
@@ -97,10 +104,18 @@ class SalidasController extends ControladorBase{
 		
 		$resultado = null;
 		$permisos_rol=new PermisosRolesModel();
-		$salidas = new SalidasModel();
-	    $nombre_controladores = "Salidas";
+		$operaciones = new TipoOperacionesModel();
+		$movimientos_cabeza = new MovimientosCabezaModel();
+		$movimientos_detalle = new MovimientosDetalleModel();
+		$cartones = new CartonesModel();
+		
+		
+		$nombre_controladores = "Salidas";
 		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $salidas->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
+		$resultPer = $movimientos_cabeza->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
+		
+		
+		
 		
 		if (!empty($resultPer))
 		{
@@ -111,67 +126,86 @@ class SalidasController extends ControladorBase{
 				
 				$_array_numero_cartones = $_POST['destino'];
 				
-				$_observaciones = $_POST['observaciones'];
+				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE '%ENTRADAS%' ");
 				
-				$_numero_movimientos=$_POST['total_cartones'];
-				
-				$operaciones = new TipoOperacionesModel();
-				
-				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE 'SALIDAS%' ");
-				
-				$id_tipo_operacion=$resultOperaciones[0]->id_tipo_operaciones;
-				$consecutivo=$resultOperaciones[0]->consecutivo;
+				$_id_tipo_operaciones=$resultOperaciones[0]->id_tipo_operaciones;
+				$_numero_movimientos=$resultOperaciones[0]->consecutivo;
+				$_cantidad_cartones_movimientos_cabeza = $_POST['total_cartones'];
+				$_id_usuario_creador=$_SESSION['id_usuarios'];
+				$_id_usuario_solicita=$_id_usuario_creador;
+				$_observaciones_movimientos_cabeza = $_POST['observaciones'];
 				
 				
-				foreach($_array_numero_cartones as $id  )
-				{					
+				///PRIMERO INSERTAMOS LA CABEZA DEL MOVIMIENTO
+				try 
+				{
 					
-						if (!empty($id) )
-					    {
-					    		
+					$funcion = "ins_movimientos_cabeza";
+					$parametros = "'$_numero_movimientos','$_id_tipo_operaciones', '$_id_usuario_creador','$_id_usuario_solicita','$_observaciones_movimientos_cabeza' ,'$_cantidad_cartones_movimientos_cabeza'        ";
+					$movimientos_cabeza->setFuncion($funcion);
+					$movimientos_cabeza->setParametros($parametros);
+					$resultado=$movimientos_cabeza->Insert();
+					$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$_id_tipo_operaciones'");
+				
+					
+
+					///INSERTAMOS DETALLE  DEL MOVIMIENTO
+					foreach($_array_numero_cartones as $id  )
+					{
+							
 						//busco si existe este nuevo id
-						try 
+						try
 						{
-							//parametrso _numero_movimientos integer, _id_tipo_operaciones integer, _id_cartones integer, _id_usuario_creador integer, _id_usuario_solicita integer, _observaciones_movimientos character varying
 							$_id_cartones = $id;
-							$_id_usuario_creador=$_SESSION['id_usuarios'];
-							$_id_usuario_solicita=$_id_usuario_creador;
+							$funcion = "ins_movimientos_detalle";
+							$parametros = "'$_numero_movimientos','$_id_tipo_operaciones', '$_id_cartones' ";
+							$movimientos_detalle->setFuncion($funcion);
+							$movimientos_detalle->setParametros($parametros);
+							$resultado=$movimientos_detalle->Insert();
+								
 							
-							$movimientos = new SalidasModel();
+							 ///TRABAJAMOS EL estado DEL CQRTON
+							 $colval="id_tipo_operaciones = '$_id_tipo_operaciones'";
+							 $tabla="cartones";
+							 $where="id_cartones = '$_id_cartones' ";
+							 $resultado=$cartones->UpdateBy($colval, $tabla, $where);
+									
 							
-							$funcion = "ins_movimientos";
-							$parametros = "'$_numero_movimientos','$id_tipo_operacion', '$_id_cartones','$_id_usuario_creador','$_id_usuario_solicita','$_observaciones'";
-							
-							
-							$salidas->setFuncion($funcion);
-							$salidas->setParametros($parametros);
-							$resultado=$salidas->Insert();
-							
-							$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$id_tipo_operacion'");
-							
-							
-										
-						} catch (Exception $e) 
+							///LAS TRAZAS
+							$traza=new TrazasModel();
+							$_nombre_controlador = "Salidas";
+							$_accion_trazas  = "Guardar";
+							$_parametros_trazas = $_id_cartones;
+							$resulta = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+								
+								
+						} catch (Exception $e)
 						{
 							$this->view("Error",array(
-									"resultado"=>"Eror al Asignar ->". $id
+									"resultado"=>"Eror al Insertar Carton en Salidas ->". $id
 							));
+							exit();
 						}
 							
 					}
-					 
-				}
-				$traza=new TrazasModel();
-				$_nombre_controlador = "Salidas";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_id_cartones;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+					
+				} 
+				catch (Exception $e) 
+				{
+				
+					
 		
+				}
+				
+				
+				
+				
+				$this->redirect("Salidas", "index");
 				
 			}
 			
 
-			$this->redirect("Salidas", "index");
+			
 				
 			
 		}
@@ -195,7 +229,7 @@ class SalidasController extends ControladorBase{
 		
 		$numero_cartones = $_GET['term'];
 		
-		$resultSet=$cartones->getAll("numero_cartones");
+		$resultSet=$cartones->getBy("numero_cartones LIKE '$numero_cartones%'");
 		
 		
 		if(!empty($resultSet)){

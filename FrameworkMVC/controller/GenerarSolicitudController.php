@@ -17,7 +17,7 @@ class GenerarSolicitudController extends ControladorBase{
 		{
 			
 			
-			$generar_solicitud = new MovimientosModel();
+			$movimientos_cabeza = new MovimientosCabezaModel();
 		
 			$cartones = new CartonesModel();
 			$columnas = " cartones.id_cartones,
@@ -39,7 +39,7 @@ class GenerarSolicitudController extends ControladorBase{
 						  public.tipo_contenido_cartones";
 			$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
 			$id       = "cartones.numero_cartones";
-			
+				
 			$resultDatos=$cartones->getCondiciones($columnas ,$tablas ,$where, $id);
 			
 			$permisos_rol = new PermisosRolesModel();
@@ -52,15 +52,15 @@ class GenerarSolicitudController extends ControladorBase{
 					
 					$rol = new RolesModel();
 					$resultRol=$rol->getAll("nombre_rol");
+					
 					$controladores=new ControladoresModel();
 					$resultCon=$controladores->getAll("nombre_controladores");
 					
-					$cartones = new CartonesModel();					
-					//$resultCartones=$cartones->getAll("numero_cartones || serie_cartones || contenido_cartones || year_cartones || cantidad_documentos_libros_cartones || digitalizado_cartones");
-					$resultCartones=$cartones->getAll("id_cartones");
-						
+					$cartones = new CartonesModel();				
+					//MOSTRAR SOLO LOS CARTINES AFUERA O POR INGRESAR
+					$where = "id_tipo_operaciones = '2' OR id_tipo_operaciones = '6' ";
+					$resultCartones=$cartones->getBy($where);
 			
-					
 					$resultEdit = "";
 					
 			
@@ -97,6 +97,7 @@ class GenerarSolicitudController extends ControladorBase{
 						
 					}
 					
+				
 					if(isset($_POST["buscar"])){
 							
 						$criterio_busqueda=$_POST["criterio_busqueda"];
@@ -106,24 +107,24 @@ class GenerarSolicitudController extends ControladorBase{
 							
 							
 						$columnas = " cartones.id_cartones,
-					      cartones.numero_cartones, 
-						  cartones.serie_cartones, 
-						  cartones.contenido_cartones, 
-						  cartones.year_cartones, 
-						  cartones.cantidad_documentos_libros_cartones, 
+					      cartones.numero_cartones,
+						  cartones.serie_cartones,
+						  cartones.contenido_cartones,
+						  cartones.year_cartones,
+						  cartones.cantidad_documentos_libros_cartones,
 					      tipo_contenido_cartones.id_tipo_contenido_cartones,
-						  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
 						  cartones.digitalizado_cartones,
 					      entidades.id_entidades,
-						  entidades.nombre_entidades, 
+						  entidades.nombre_entidades,
 					      bodegas.id_bodegas,
 						  bodegas.nombre_bodegas";
-			$tablas   = "public.cartones, 
-						  public.bodegas, 
-						  public.entidades, 
+						$tablas   = "public.cartones,
+						  public.bodegas,
+						  public.entidades,
 						  public.tipo_contenido_cartones";
-			$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
-			$id       = "cartones.numero_cartones";
+						$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+						$id       = "cartones.numero_cartones";
 							
 							
 							
@@ -150,56 +151,56 @@ class GenerarSolicitudController extends ControladorBase{
 								//Nombre Cliente/Proveedor
 								$where_2 = " AND cartones.serie_cartones LIKE '$contenido_busqueda'  ";
 								break;
-								
+					
 							case 3:
-									//Nombre Cliente/Proveedor
+								//Nombre Cliente/Proveedor
 								$where_3 = " AND cartones.contenido_cartones LIKE '$contenido_busqueda'  ";
 								break;
-								
+					
 							case 4:
-									//Nombre Cliente/Proveedor
+								//Nombre Cliente/Proveedor
 								$where_4 = " AND cartones.year_cartones LIKE '$contenido_busqueda'  ";
 								break;
-								
+					
 							case 5:
-						     		//Nombre Cliente/Proveedor
+								//Nombre Cliente/Proveedor
 								$where_5 = " AND cartones.cantidad_documentos_libros_cartones LIKE '$contenido_busqueda'  ";
 								break;
-								
-								
+					
+					
 							case 6:
-									//Nombre Cliente/Proveedor
+								//Nombre Cliente/Proveedor
 								$where_6 = " AND tipo_contenido_cartones.nombre_tipo_contenido_cartones LIKE '$contenido_busqueda'  ";
 								break;
-								
+					
 							case 7:
-									//Nombre Cliente/Proveedor
+								//Nombre Cliente/Proveedor
 								$where_7 = " AND cartones.digitalizado_cartones = '$contenido_busqueda'  ";
 								break;
-								
-								
+					
+					
 							case 8:
-									//Nombre Cliente/Proveedor
+								//Nombre Cliente/Proveedor
 								$where_8 = " AND entidades.nombre_entidades LIKE '$contenido_busqueda'  ";
 								break;
-								
+					
 							case 9:
-									//Nombre Cliente/Proveedor
+								//Nombre Cliente/Proveedor
 								$where_9 = " AND bodegas.nombre_bodegas LIKE '$contenido_busqueda'  ";
 								break;
-					
+									
 									
 						}
 							
 							
 							
 						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5 . $where_6 . $where_7 . $where_8 . $where_9;
-						
-						
-						$resultDatos=$cartones->getCondiciones($columnas ,$tablas ,$where_to, $id);
 					
-								
-									
+					
+						$resultDatos=$cartones->getCondiciones($columnas ,$tablas ,$where_to, $id);
+							
+					
+							
 					}
 					
 					$this->view("GenerarSolicitud",array(
@@ -230,10 +231,18 @@ class GenerarSolicitudController extends ControladorBase{
 		
 		$resultado = null;
 		$permisos_rol=new PermisosRolesModel();
-		$generar_solicitud = new MovimientosModel();
-	    $nombre_controladores = "GenerarSolicitud";
+		$operaciones = new TipoOperacionesModel();
+		$movimientos_cabeza = new MovimientosCabezaModel();
+		$movimientos_detalle = new MovimientosDetalleModel();
+		$cartones = new CartonesModel();
+		
+		
+		$nombre_controladores = "GenerarSolicitud";
 		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $generar_solicitud->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
+		$resultPer = $movimientos_cabeza->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
+		
+		
+		
 		
 		if (!empty($resultPer))
 		{
@@ -244,74 +253,93 @@ class GenerarSolicitudController extends ControladorBase{
 				
 				$_array_numero_cartones = $_POST['destino'];
 				
-				$_observaciones = $_POST['observaciones'];
+				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE '%ENTRADAS%' ");
 				
-				$_numero_movimientos=$_POST['total_cartones'];
-				
-				$operaciones = new TipoOperacionesModel();
-				
-				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE 'SOLICITUD%' ");
-				
-				$id_tipo_operacion=$resultOperaciones[0]->id_tipo_operaciones;
-				$consecutivo=$resultOperaciones[0]->consecutivo;
+				$_id_tipo_operaciones=$resultOperaciones[0]->id_tipo_operaciones;
+				$_numero_movimientos=$resultOperaciones[0]->consecutivo;
+				$_cantidad_cartones_movimientos_cabeza = $_POST['total_cartones'];
+				$_id_usuario_creador=$_SESSION['id_usuarios'];
+				$_id_usuario_solicita=$_id_usuario_creador;
+				$_observaciones_movimientos_cabeza = $_POST['observaciones'];
 				
 				
-				foreach($_array_numero_cartones as $id  )
-				{					
+				///PRIMERO INSERTAMOS LA CABEZA DEL MOVIMIENTO
+				try 
+				{
 					
-						if (!empty($id) )
-					    {
-					    		
+					$funcion = "ins_movimientos_cabeza";
+					$parametros = "'$_numero_movimientos','$_id_tipo_operaciones', '$_id_usuario_creador','$_id_usuario_solicita','$_observaciones_movimientos_cabeza' ,'$_cantidad_cartones_movimientos_cabeza'        ";
+					$movimientos_cabeza->setFuncion($funcion);
+					$movimientos_cabeza->setParametros($parametros);
+					$resultado=$movimientos_cabeza->Insert();
+					$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$_id_tipo_operaciones'");
+				
+					
+
+					///INSERTAMOS DETALLE  DEL MOVIMIENTO
+					foreach($_array_numero_cartones as $id  )
+					{
+							
 						//busco si existe este nuevo id
-						try 
+						try
 						{
-							//parametrso _numero_movimientos integer, _id_tipo_operaciones integer, _id_cartones integer, _id_usuario_creador integer, _id_usuario_solicita integer, _observaciones_movimientos character varying
 							$_id_cartones = $id;
-							$_id_usuario_creador=$_SESSION['id_usuarios'];
-							$_id_usuario_solicita=$_id_usuario_creador;
+							$funcion = "ins_movimientos_detalle";
+							$parametros = "'$_numero_movimientos','$_id_tipo_operaciones', '$_id_cartones' ";
+							$movimientos_detalle->setFuncion($funcion);
+							$movimientos_detalle->setParametros($parametros);
+							$resultado=$movimientos_detalle->Insert();
+								
 							
-							$generar_solicitud = new MovimientosModel();
+							 ///TRABAJAMOS EL estado DEL CQRTON
+							 $colval="id_tipo_operaciones = '$_id_tipo_operaciones'";
+							 $tabla="cartones";
+							 $where="id_cartones = '$_id_cartones' ";
+							 $resultado=$cartones->UpdateBy($colval, $tabla, $where);
+									
 							
-							$funcion = "ins_movimientos";
-							$parametros = "'$_numero_movimientos','$id_tipo_operacion', '$_id_cartones','$_id_usuario_creador','$_id_usuario_solicita','$_observaciones'";
-							
-							
-							$generar_solicitud->setFuncion($funcion);
-							$generar_solicitud->setParametros($parametros);
-							$resultado=$generar_solicitud->Insert();
-							
-							$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$id_tipo_operacion'");
-							
-							
-										
-						} catch (Exception $e) 
+							///LAS TRAZAS
+							$traza=new TrazasModel();
+							$_nombre_controlador = "GenerarSolicitud";
+							$_accion_trazas  = "Guardar";
+							$_parametros_trazas = $_id_cartones;
+							$resulta = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+								
+								
+						} catch (Exception $e)
 						{
 							$this->view("Error",array(
-									"resultado"=>"Eror al Asignar ->". $id
+									"resultado"=>"Eror al Insertar Generar Solicitud ->". $id
 							));
+							exit();
 						}
 							
 					}
-					 
-				}
-				$traza=new TrazasModel();
-				$_nombre_controlador = "GenerarSolicitud";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_id_cartones;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+					
+				} 
+				catch (Exception $e) 
+				{
+				
+					
 		
+				}
+				
+				
+				
+				
+				$this->redirect("GenerarSolicitud", "index");
 				
 			}
 			
 
-			$this->redirect("GenerarSolicitud", "index");
+			
 				
 			
 		}
 		else
 		{
 			$this->view("Error",array(
-					"resultado"=>"No tiene Permisos de Guardar Generar Solicitud"
+					"resultado"=>"No tiene Permisos de Guardar GenerarSolicitud"
 		
 			));
 		
@@ -328,7 +356,7 @@ class GenerarSolicitudController extends ControladorBase{
 		
 		$numero_cartones = $_GET['term'];
 		
-		$resultSet=$cartones->getAll("numero_cartones");
+		$resultSet=$cartones->getBy("numero_cartones LIKE '$numero_cartones%'");
 		
 		
 		if(!empty($resultSet)){
@@ -362,6 +390,86 @@ class GenerarSolicitudController extends ControladorBase{
 			echo json_encode($respuesta);
 		}
 	
+	}
+	
+	public function buscarCartones()
+	{
+		$dato = $_POST['dato'];
+		
+		$cartones = new CartonesModel();
+		
+		$columnas = " cartones.id_cartones,
+					      cartones.numero_cartones,
+						  cartones.serie_cartones,
+						  cartones.contenido_cartones,
+						  cartones.year_cartones,
+						  cartones.cantidad_documentos_libros_cartones,
+					      tipo_contenido_cartones.id_tipo_contenido_cartones,
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
+						  cartones.digitalizado_cartones,
+					      entidades.id_entidades,
+						  entidades.nombre_entidades,
+					      bodegas.id_bodegas,
+						  bodegas.nombre_bodegas";
+		$tablas   = "public.cartones,
+						  public.bodegas,
+						  public.entidades,
+						  public.tipo_contenido_cartones";
+		$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones 
+				      AND numero_cartones LIKE '%$dato%' ";
+		
+		$id       = "cartones.numero_cartones";
+		
+		$resultCartones=$cartones->getCondiciones($columnas ,$tablas ,$where, $id);
+		
+
+		
+		echo '<section   class="col-lg-5 usuario"   style="height:300px; overflow-y:scroll;     ">
+				<table  class="table table-hover " id="tabla_uno" >
+	         <tr  class="fila">
+	        	<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Años</th>
+	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
+	    		
+	    		
+	    		
+	    		<th></th>
+	    		<th></th>
+	  		</tr>';
+		
+		if(!empty($resultCartones)){
+			foreach ($resultCartones as $res){
+				echo '<tr class="fila">
+	        		
+	                   <td style="color:#000000;font-size:80%;">'.$res->id_cartones.'</td>
+		               <td style="color:#000000;font-size:80%;">'.$res->numero_cartones.'</td> 
+		               <td style="color:#000000;font-size:80%;">'. $res->serie_cartones.'</td>
+		               <td style="color:#000000;font-size:80%;">'. $res->contenido_cartones.'</td>
+		                <td style="color:#000000;font-size:80%;">'. $res->year_cartones.'</td>
+		                 <td style="color:#000000;font-size:80%;">'. $res->cantidad_documentos_libros_cartones  .'</td>
+		                 <td style="color:#000000;font-size:80%;">'. $res->nombre_tipo_contenido_cartones  .'</td>
+		                  <td style="color:#000000;font-size:80%;">'. $res->digitalizado_cartones  .'</td>
+		                    <td style="color:#000000;font-size:80%;">'. $res->nombre_entidades  .'</td>
+		                    <td style="color:#000000;font-size:80%;">'. $res->nombre_bodegas  .'</td>
+		           	   <td>
+			           		
+			                <hr/>
+		               </td>
+		    		</tr>';
+			}
+		}else{
+			echo '<tr>
+				<td colspan="6">No existen Resultados</td>
+			</tr>';
+		}
+		echo '</table> </section>';
 	}
 }
 ?>      
