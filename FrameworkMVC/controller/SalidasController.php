@@ -35,7 +35,7 @@ class SalidasController extends ControladorBase{
 					
 					$cartones = new CartonesModel();				
 					//MOSTRAR SOLO LOS CARTINES AFUERA O POR INGRESAR
-					$where = "id_tipo_operaciones = '2' OR id_tipo_operaciones = '6' ";
+					$where = "id_tipo_operaciones = '6' OR id_tipo_operaciones = '2'  ";
 					$resultCartones=$cartones->getBy($where);
 			
 					$resultEdit = "";
@@ -126,7 +126,7 @@ class SalidasController extends ControladorBase{
 				
 				$_array_numero_cartones = $_POST['destino'];
 				
-				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE '%ENTRADAS%' ");
+				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE '%SALIDAS%' ");
 				
 				$_id_tipo_operaciones=$resultOperaciones[0]->id_tipo_operaciones;
 				$_numero_movimientos=$resultOperaciones[0]->consecutivo;
