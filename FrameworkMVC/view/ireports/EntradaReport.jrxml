@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-29T18:02:42 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8a32f3aa-0875-45b3-bdef-4a4d08639cd1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="dXN1YXJpb3MgQVMgLDgyNywxOTAsNmY2OTI5OGMtODNmMy00NTdiLWI4ZDYtOWMxYTlmY2E3ZmU0&#xA;O2NhcnRvbmVzIEFTICwxMzIsODAsNzM1NjRiMGYtMDBiOS00ZGYwLWE2N2UtNzM0YmU5YzYwNmZk&#xA;O2VudGlkYWRlcyBBUyAsNTE4LDEyMixiZmQzYzJhNS1lMzdiLTRlODQtOTQ2Yy0yNjRiZGEzZGU3&#xA;OTE7"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
+	<queryString>
+		<![CDATA[SELECT cartones.id_cartones,
+	cartones.numero_cartones,
+	cartones.serie_cartones,
+	cartones.contenido_cartones,
+	cartones.year_cartones,
+	cartones.cantidad_documentos_libros_cartones,
+	entidades.nombre_entidades,
+	usuarios.nombre_usuarios
+FROM cartones
+	INNER JOIN entidades ON 
+	 cartones.id_entidades = entidades.id_entidades 
+	 AND usuarios.id_entidades = entidades.id_entidades ,
+	usuarios]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
