@@ -80,49 +80,8 @@
      </style>
     
     
-    <script>
-      $(function(){          
-          $("table.tablaBBDD tr").each(function(){
-            $(this).click(function(){
-              if($(this).attr("class") == 'fila'){
-                $(this).removeClass('fila');
-                $(this).addClass('seleccionado');   
-              }else{
-                $(this).removeClass('seleccionado');
-                $(this).addClass('fila');
-              }   
-            })
-          });
-         $("#pasar").click(function(){
-            $("table.tablaBBDD tr").each(function(){
-               if($(this).attr("class") == 'seleccionado'){
-                  $("#guardarRegistros").append($(this));
-               } 
-            })
-         }) 
-                       
-      })
-    </script>
-    
-    <script>
-    $(document).ready(function(){
-    $('#contenido_busqueda').keyup(function(){
-		var dato = $('#contenido_busqueda').val();
-		var url = '<?php echo $helper->url("GenerarSolicitud","buscarCartones"); ?>';
-		$.ajax({
-		type:'POST',
-		url:url,
-		data:'dato='+dato,
-		success: function(datos){
-			$('#agrega-registros').html(datos);
-		}
-	});
-	return false;
-	});
-    });
-    </script>
-    
-			
+   
+   
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -133,15 +92,7 @@
        
        
        
-       <?php
-       
-     	
-     
-     		 
-     			
-     	
-		   
-		?>
+      
  
   
   <div class="container">
@@ -149,50 +100,62 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("GenerarSolicitud","InsertaGenerarSolicitud"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
     
-    <h4 style="color:#ec971f;" ALIGN="center">GENERAR SOLICITUD</h4>
-            	<hr/>
-    
-   <div  class="col-xs-6 col-md-6">
-     
-     	<h4 style="color:#ec971f;">Seleccionar Cartones</h4>
-            <hr/>
-     
-     </div>
-   <div  class="col-xs-6 col-md-6">
-     
-     	<h4 style="color:#ec971f;">Cartones Seleccionados</h4>
- 		       <hr/>
-         
-     </div>
+    <h4 style="color:#ec971f;" align="center">GENERAR SOLICITUD</h4>
+    <hr/>
+
+	<div  class="col-xs-12 col-md-12">
+ 
+    	
+ 		<nav class="navbar navbar-default">
+  			<div class="container-fluid">
+   				 <!-- Brand and toggle get grouped for better mobile display -->
+    			<div class="navbar-header">
+      				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        				<span class="sr-only">Toggle navigation</span>
+        				<span class="icon-bar"></span>
+       					<span class="icon-bar"></span>
+        				<span class="icon-bar"></span>
+      				</button>
+     			</div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+		    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+		      		<button class="btn btn-default" type="button" style="margin-top: 10px;">
+					  Cartones Seleccionados <span class="badge">4</span>
+					</button>
+		      	
+		      	
+		      		<form class="navbar-form navbar-right" role="search" action="<?php echo $helper->url("Documentos","Buscador");?>"  method="post" >
+		  		   	<div class="form-group">
+		          		<input type="text" class="form-control" name="contenido_busqueda" id="criterio_busqueda" placeholder="texto a buscar">
+		          		<select id="criterio_busqueda" name="criterio_busqueda" class="form-control">
+							<option value="1"  >Numero de Carton</option>
+							<option value="2"  >Serie de Documental</option>
+							<option value="3"  >Número Carton</option>
+							<option value="4"  >Años</option>
+							<option value="6"  >Contenido</option>
+						</select>
+				   		<button type="submit"  name="btn_buscar" class="btn btn-default"><span class="glyphicon glyphicon-search	" ><?php echo " Buscar" ;?> </span></button>					   		
+		        	</div>
+		        
+		      		</form>
+		      
+    			</div><!-- /.navbar-collapse -->
+  			</div><!-- /.container-fluid -->
+		</nav>
    
-    
-     <div  class="col-xs-6 col-md-6">
-     
-     <div class="row" >
-     
-     
-    		<div class="col-xs-4 col-md-4">
-			
-           		<input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
-          		 <div id="mensaje_contenido_busqueda" class="errores"></div>
-           	</div>
-            
-    </div>
+   
     </div>
 	<div class="col-xs-12 col-md-12">
-      
-    	 
-		<div id="agrega-registros">
-       <section   class="col-lg-5 usuario" class="table table-hover "  style="height:300px; overflow-y:scroll;     ">
-        
-        
-        <table  class="tablaBBDD" >
+     	
+        <section   class="col-xs-12 col-md-12" class="table table-hover "  style="height:300px; overflow-y:scroll;     ">
+        <table  class="table table-hover" >
 	         <tr  class="fila">
-	        	<th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
-	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
+	        	<th style="color:#456789;font-size:80%;"></th>
+	        	<th style="color:#456789;font-size:80%;"></th>
+	    		<th style="color:#456789;font-size:80%;">Numero de Carton</th>
+	    		<th style="color:#456789;font-size:80%;">Serie de Documental</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
 	    		<th style="color:#456789;font-size:80%;">Años</th>
 	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
@@ -200,81 +163,38 @@
 	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
-	    		
-	    		
-	    		
-	    		<th></th>
-	    		<th></th>
-	  		</tr>
+	    	  </tr>
             
-	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
-	        		<tr class="fila">
-	        		
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
-		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
-		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
-		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
-		           	   <td>
-			           		
-			                <hr/>
-		               </td>
-		    		</tr>
-		        <?php } } ?>
-		        
+	          <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
+	          <tr class="fila">
+	        	    <td >
+	        	    	<a href="<?php echo $helper->url("Documentos","index"); ?>&id_cartones=<?php echo $res->id_cartones; ?>" class="btn btn-info"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  </a>
+	        	    </td>
+	        	    <td >
+	        	    	<a href="<?php echo $helper->url("Documentos","index"); ?>&id_cartones=<?php echo $res->id_cartones; ?>" class="btn btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  </a>
+	        	    </td>
+	        	            
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+		      </tr>
+		      <?php } } ?>
+		</table>     
+		     
+      </section>
       
-        
-            <?php 
-          
-            
-            ?>
-            
-       	</table>     
-		     
-      </section>
-      </div> 
-        <div class="col-lg-1 usuario">
-        		 <input type="button" id="pasar" value="Pasar Datos">
-        </div>
-        
-        <section   class="col-lg-5 usuario" style="height:300px; overflow-y:scroll;">
-        <table id="guardarRegistros">
-        <tr>
-	       <th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
-	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
-	    		<th style="color:#456789;font-size:80%;">Contenido</th>
-	    		<th style="color:#456789;font-size:80%;">Años</th>
-	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
-	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>  
-	    		</tr>
-       	</table>     
-		     
-      </section>
-        
-        
-        
-        
+    
     </div>
-		 
-    
-   
   
-        </div>
-    
-    
-    </form>
   
-
-    </div>
+	
    </div>
-     </body>  
-    </html>   
+   </div>
+  </body>  
+</html>   
