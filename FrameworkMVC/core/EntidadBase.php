@@ -440,56 +440,6 @@ class EntidadBase{
     }
     
     
-    
-    public function CartonesSaldo($_id_cartones, $_id_tipo_operaciones)
-    {
-    
-    	//ins_cartones_saldo(_id_bodegas integer, _id_cartones integer, _id_tipo_operaciones integer)
-    	$cartones_saldo = new CartonesSaldoModel();
-    	$cartones = new CartonesModel();
-    	$_id_bodegas = 0;
-    	
-    	$resultCar=$cartones->getBy("id_cartones = '$_id_cartones'");
-    	
-    	
-    	if(!empty($resultCar)){
-    			
-    		foreach ($resultCar as $res){
-    	
-    			$_id_bodegas = $res->id_bodegas;
-    		}
-    		
-    	}
-    	
-    	///inserto en saldo segun el tipo de operacion
-    	if ($_id_tipo_operaciones == '2')
-    	{
-    		$funcion = "ins_cartones_saldo";
-	    	$parametros = "'_id_bodegas','$_id_cartones', '$_id_tipo_operaciones'";
-	    	$cartones_saldo->setFuncion($funcion);
-	    	$cartones_saldo->setParametros($parametros);
-	    	$resultadoN=$cartones_saldo->Insert();
-    	}
-    	if ($_id_tipo_operaciones == '1' || $_id_tipo_operaciones == '3' || $_id_tipo_operaciones == '6')
-    	{
-    	
-    		$colval="id_tipo_operaciones= '$_id_tipo_operaciones' ";
-    		$tabla="cartones_saldo";
-    		$where="id_cartones = '$_id_cartones' ";
-    		$resultado=$cartones_saldo->UpdateBy($colval, $tabla, $where);
-    	}
-    	
-    	if ($_id_tipo_operaciones == '7')
-    	{
-    		 
-    		$colval="id_tipo_operaciones= '$_id_tipo_operaciones' ";
-    		$tabla="cartones_saldo";
-    		$where="id_cartones = '2' ";
-    		$resultado=$cartones_saldo->UpdateBy($colval, $tabla, $where);
-    	}
-    	 
-    
-    }
-    
+        
 }
 ?>

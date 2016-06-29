@@ -33,11 +33,11 @@ class MovimientosController extends ControladorBase{
 					$controladores=new ControladoresModel();
 					$resultCon=$controladores->getAll("nombre_controladores");
 					
-					$cartones = new CartonesModel();					
-					$resultCartones=$cartones->getAll("id_cartones");
+					$cartones = new CartonesModel();				
+					//MOSTRAR SOLO LOS CARTINES AFUERA O POR INGRESAR
+					$where = "id_tipo_operaciones = '8' OR id_tipo_operaciones = '1'  ";
+					$resultCartones=$cartones->getBy($where);
 			
-			
-					
 					$resultEdit = "";
 					
 			
@@ -104,10 +104,18 @@ class MovimientosController extends ControladorBase{
 		
 		$resultado = null;
 		$permisos_rol=new PermisosRolesModel();
-		$movimientos = new MovimientosModel();
-	    $nombre_controladores = "Movimientos";
+		$operaciones = new TipoOperacionesModel();
+		$movimientos_cabeza = new MovimientosCabezaModel();
+		$movimientos_detalle = new MovimientosDetalleModel();
+		$cartones = new CartonesModel();
+		
+		
+		$nombre_controladores = "Movimientos";
 		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $movimientos->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
+		$resultPer = $movimientos_cabeza->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
+		
+		
+		
 		
 		if (!empty($resultPer))
 		{
@@ -118,18 +126,40 @@ class MovimientosController extends ControladorBase{
 				
 				$_array_numero_cartones = $_POST['destino'];
 				
-				$_observaciones = $_POST['observaciones'];
-				
-				$_numero_movimientos=$_POST['total_cartones'];
-				
-				$operaciones = new TipoOperacionesModel();
-				
-				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE 'ENTRADAS%' ");
-				
-				$id_tipo_operacion=$resultOperaciones[0]->id_tipo_operaciones;
-				$consecutivo=$resultOperaciones[0]->consecutivo;
 				
 				
+				
+				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE '%ENTRADAS%' ");
+				
+				$_id_tipo_operaciones=$resultOperaciones[0]->id_tipo_operaciones;
+				$_numero_movimientos=$resultOperaciones[0]->consecutivo;
+				$_cantidad_cartones_movimientos_cabeza = $_POST['total_cartones'];
+				$_id_usuario_creador=$_SESSION['id_usuarios'];
+				$_id_usuario_solicita=$_id_usuario_creador;
+				$_observaciones_movimientos_cabeza = $_POST['observaciones'];
+				
+				
+				///PRIMERO INSERTAMOS LA CABEZA DEL MOVIMIENTO
+				try {
+					$funcion = "ins_movimientos_cabeza";
+					$parametros = "'$_numero_movimientos','$_id_tipo_operaciones', '$_id_usuario_creador','$_id_usuario_solicita','$_observaciones_movimientos_cabeza' ,'$_cantidad_cartones_movimientos_cabeza'        ";
+					$movimientos_cabeza->setFuncion($funcion);
+					$movimientos_cabeza->setParametros($parametros);
+					$resultado=$movimientos_cabeza->Insert();
+						
+					$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$_id_tipo_operaciones'");
+					
+					
+				} catch (Exception $e) {
+				
+					$this->view("Error",array(
+							"resultado"=>"Eror al Insertar Carton en movimietno ->". $_numero_movimientos
+					));
+					exit();
+				}
+				
+				
+				///INSERTAMOS DETALLE  DEL MOVIMIENTO
 				foreach($_array_numero_cartones as $id  )
 				{					
 					
@@ -141,33 +171,37 @@ class MovimientosController extends ControladorBase{
 						{
 							//parametrso _numero_movimientos integer, _id_tipo_operaciones integer, _id_cartones integer, _id_usuario_creador integer, _id_usuario_solicita integer, _observaciones_movimientos character varying
 							$_id_cartones = $id;
-							$_id_usuario_creador=$_SESSION['id_usuarios'];
-							$_id_usuario_solicita=$_id_usuario_creador;
 							
-							$movimientos = new MovimientosModel();
+							//ins_movimientos_detalle(_numero_movimientos_detalle integer, _id_tipo_operaciones integer, _id_cartones integer)
+							$funcion = "ins_movimientos_detalle";
+							$parametros = "'$_numero_movimientos','$_id_tipo_operaciones', '$_id_cartones' ";
+							$movimientos_detalle->setFuncion($funcion);
+							$movimientos_detalle->setParametros($parametros);
+							$resultado=$movimientos_detalle->Insert();
+				
+							///TRABAJAMOS EL estado DEL CQRTON
+							$colval="id_tipo_operaciones = '$_id_tipo_operaciones'";
+    						$tabla="cartones";
+    						$where="id_cartones = '$_id_cartones' ";
+    				    	$resultado=$cartones->UpdateBy($colval, $tabla, $where);
 							
-							$funcion = "ins_movimientos";
-							$parametros = "'$_numero_movimientos','$id_tipo_operacion', '$_id_cartones','$_id_usuario_creador','$_id_usuario_solicita','$_observaciones'";
-							
-							
-							$movimientos->setFuncion($funcion);
-							$movimientos->setParametros($parametros);
-							$resultado=$movimientos->Insert();
-							
-							$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$id_tipo_operacion'");
-							
-							
-										
 						} catch (Exception $e) 
 						{
 							$this->view("Error",array(
-									"resultado"=>"Eror al Asignar ->". $id
+									"resultado"=>"Eror al Insertar Carton en movimietno ->". $id
 							));
+							exit();
 						}
 							
 					}
 					 
 				}
+				
+				
+				
+				
+				
+				///LAS TRAZAS
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Movimientos";
 				$_accion_trazas  = "Guardar";
