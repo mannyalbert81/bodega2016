@@ -18,18 +18,18 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="view/images/banner/1.jpg" alt="Chania">
+      <img src="view/images/banner/11.jpg" alt="AlldocStore">
     </div>
 
     <div class="item">
-      <img src="view/images/banner/2.jpg" alt="Chania">
+      <img src="view/images/banner/22.jpg" alt="AlldocStore">
     </div>
 
   <div class="item">
-      <img src="view/images/banner/3.jpg" alt="Chania">
+      <img src="view/images/banner/33.jpg" alt="AlldocStore">
     </div>
       <div class="item">
-      <img src="view/images/banner/4.jpg" alt="Chania">
+      <img src="view/images/banner/44.jpg" alt="AlldocStore">
     </div>
     
   <!-- Left and right controls -->
