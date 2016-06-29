@@ -425,7 +425,7 @@ class GenerarSolicitudController extends ControladorBase{
 
 		
 		echo '<section   class="col-lg-5 usuario"   style="height:300px; overflow-y:scroll;     ">
-				<table  class="table table-hover " id="tabla_uno" >
+				<table  class="tablaBBDD" >
 	         <tr  class="fila">
 	        	<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
