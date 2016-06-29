@@ -17,7 +17,7 @@ class MovimientosController extends ControladorBase{
 		{
 			
 			
-			$movimientos = new MovimientosModel();
+			$movimientos_cabeza = new MovimientosCabezaModel();
 		
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Movimientos";
@@ -126,9 +126,6 @@ class MovimientosController extends ControladorBase{
 				
 				$_array_numero_cartones = $_POST['destino'];
 				
-				
-				
-				
 				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE '%ENTRADAS%' ");
 				
 				$_id_tipo_operaciones=$resultOperaciones[0]->id_tipo_operaciones;
@@ -140,52 +137,49 @@ class MovimientosController extends ControladorBase{
 				
 				
 				///PRIMERO INSERTAMOS LA CABEZA DEL MOVIMIENTO
-				try {
+				try 
+				{
+					
 					$funcion = "ins_movimientos_cabeza";
 					$parametros = "'$_numero_movimientos','$_id_tipo_operaciones', '$_id_usuario_creador','$_id_usuario_solicita','$_observaciones_movimientos_cabeza' ,'$_cantidad_cartones_movimientos_cabeza'        ";
 					$movimientos_cabeza->setFuncion($funcion);
 					$movimientos_cabeza->setParametros($parametros);
 					$resultado=$movimientos_cabeza->Insert();
-						
 					$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$_id_tipo_operaciones'");
-					
-					
-				} catch (Exception $e) {
 				
-					$this->view("Error",array(
-							"resultado"=>"Eror al Insertar Carton en movimietno ->". $_numero_movimientos
-					));
-					exit();
-				}
-				
-				
-				///INSERTAMOS DETALLE  DEL MOVIMIENTO
-				foreach($_array_numero_cartones as $id  )
-				{					
 					
-						if (!empty($id) )
-					    {
-					    		
-						//busco si existe este nuevo id
-						try 
-						{
-							//parametrso _numero_movimientos integer, _id_tipo_operaciones integer, _id_cartones integer, _id_usuario_creador integer, _id_usuario_solicita integer, _observaciones_movimientos character varying
-							$_id_cartones = $id;
+
+					///INSERTAMOS DETALLE  DEL MOVIMIENTO
+					foreach($_array_numero_cartones as $id  )
+					{
 							
-							//ins_movimientos_detalle(_numero_movimientos_detalle integer, _id_tipo_operaciones integer, _id_cartones integer)
+						//busco si existe este nuevo id
+						try
+						{
+							$_id_cartones = $id;
 							$funcion = "ins_movimientos_detalle";
 							$parametros = "'$_numero_movimientos','$_id_tipo_operaciones', '$_id_cartones' ";
 							$movimientos_detalle->setFuncion($funcion);
 							$movimientos_detalle->setParametros($parametros);
 							$resultado=$movimientos_detalle->Insert();
-				
-							///TRABAJAMOS EL estado DEL CQRTON
-							$colval="id_tipo_operaciones = '$_id_tipo_operaciones'";
-    						$tabla="cartones";
-    						$where="id_cartones = '$_id_cartones' ";
-    				    	$resultado=$cartones->UpdateBy($colval, $tabla, $where);
+								
 							
-						} catch (Exception $e) 
+							 ///TRABAJAMOS EL estado DEL CQRTON
+							 $colval="id_tipo_operaciones = '$_id_tipo_operaciones'";
+							 $tabla="cartones";
+							 $where="id_cartones = '$_id_cartones' ";
+							 $resultado=$cartones->UpdateBy($colval, $tabla, $where);
+									
+							
+							///LAS TRAZAS
+							$traza=new TrazasModel();
+							$_nombre_controlador = "Movimientos";
+							$_accion_trazas  = "Guardar";
+							$_parametros_trazas = $_id_cartones;
+							$resulta = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+								
+								
+						} catch (Exception $e)
 						{
 							$this->view("Error",array(
 									"resultado"=>"Eror al Insertar Carton en movimietno ->". $id
@@ -194,25 +188,24 @@ class MovimientosController extends ControladorBase{
 						}
 							
 					}
-					 
+					
+				} 
+				catch (Exception $e) 
+				{
+				
+					
+		
 				}
 				
 				
 				
 				
-				
-				///LAS TRAZAS
-				$traza=new TrazasModel();
-				$_nombre_controlador = "Movimientos";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_id_cartones;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-		
+				$this->redirect("Movimientos", "index");
 				
 			}
 			
 
-			$this->redirect("Movimientos", "index");
+			
 				
 			
 		}

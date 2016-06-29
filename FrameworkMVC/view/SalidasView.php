@@ -116,7 +116,7 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("Salidas","InsertaSalidas"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+    <form action="<?php echo $helper->url("Salidas","InsertaSalidas"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
    
    
     <div class="col-lg-12">
@@ -199,10 +199,10 @@
     
     
      </div>
-    </div>
+    
   
     </form>
-      
+    </div>  
   </div>
   
      </body>  

@@ -118,17 +118,9 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("Movimientos","InsertaMovimientos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+  <form action="<?php echo $helper->url("Movimientos","InsertaMovimientos"); ?>" method="post" class="col-lg-12">
    
-   
-    <div class="col-lg-12">
-    <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-           <?php //no hay datos para editar?>
-        
-            
-		     <?php } } else {?>
-		     
-		  <h4 ALIGN="center"></h4>
+     <h4 ALIGN="center"></h4>
 		   <hr/>
 		    <h4 style="color:#ec971f;" ALIGN="center" >ENTRADA DE CARTONES</h4>
 		    
@@ -170,6 +162,7 @@
 			<div class="col-xs-3">
 			  <p  class="formulario-subtitulo" ><font color="White">Agregar </font></p>
 	           <select  name="destino[]" id="destino" multiple="multiple" size="10" class="form-control"></select> 
+		   	 	
 		   	 </div>
 		     </div>
 		    
@@ -195,15 +188,9 @@
 			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
 			  <hr>
 			  </div>
-			
-             	
-		     <?php } ?>
-    
-    
-     </div>
-    </div>
-  
+	
     </form>
+    </div>
       
   </div>
   
