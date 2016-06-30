@@ -63,13 +63,13 @@
 			</li>
 			 <li><a href="index.php?controller=TipoOperaciones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Tipo Operaciones</span> </a>
             </li>  
-<<<<<<< HEAD
-         </ul>
-=======
-             <li><a href="index.php?controller=TipoContenidoCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Contenido Cartones</span> </a>
+            <li><a href="index.php?controller=TipoContenidoCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Contenido Cartones</span> </a>
             </li>
-          </ul>
->>>>>>> branch 'master' of https://github.com/mannyalbert81/bodega2016.git
+         </ul>
+
+             
+          
+
         </li>
 
 		<li class="dropdown">
