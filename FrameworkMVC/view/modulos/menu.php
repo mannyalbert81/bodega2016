@@ -63,8 +63,7 @@
 			</li>
 			 <li><a href="index.php?controller=TipoOperaciones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Tipo Operaciones</span> </a>
             </li>  
-
-          </ul>
+         </ul>
         </li>
 
 		<li class="dropdown">
@@ -99,6 +98,20 @@
 </ul>
 </li>
 
+<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo "Reportes" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          
+          <li><a href="/bodega2016/FrameworkMVC/view/ireports/ContEntradasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Entradas de Cartones</span> </a>
+            </li>
+    
+            <li><a href="/FrameworkMVC/view/ireports/ContBajasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Bajas de Cartones</span> </a>
+            </li>
+           <li><a href="/FrameworkMVC/view/ireports/ContSalidasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Salidas de Cartones</span> </a>
+            </li>
+			
+</ul>
+</li>
      
 
 </ul>
