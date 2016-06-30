@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-30T15:15:17 -->
+<!-- 2016-06-30T15:44:09 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -88,14 +88,14 @@ where		tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones AND
 	<pageHeader>
 		<band height="51" splitType="Stretch">
 			<rectangle>
-				<reportElement x="9" y="6" width="791" height="30" forecolor="#999999" backcolor="#999999" uuid="dd2960b0-a116-4e1a-8792-0f2d88719651"/>
+				<reportElement x="0" y="6" width="799" height="30" forecolor="#999999" backcolor="#999999" uuid="dd2960b0-a116-4e1a-8792-0f2d88719651"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="10" y="15" width="30" height="21" forecolor="#FFFFFF" uuid="4f8e287b-20ff-4456-9186-aeb70940fc76"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID]]></text>
+				<text><![CDATA[Id.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="40" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="0f072f68-3594-428d-a9e8-41291fa8b282"/>
