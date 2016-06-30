@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-30T16:31:27 -->
+<!-- 2016-06-30T17:31:42 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -59,7 +59,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[REPORTE ENTRADA DE CARTONES]]></text>
+				<text><![CDATA[REPORTE ENTRADAS DE CARTONES]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="633" y="49" width="50" height="20" forecolor="#000000" backcolor="#000000" uuid="6dfd737b-2aef-45ec-a506-cde85d20c479"/>
@@ -89,7 +89,7 @@ WHERE
 		</band>
 	</title>
 	<pageHeader>
-		<band height="40" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<rectangle>
 				<reportElement x="9" y="6" width="782" height="30" forecolor="#999999" backcolor="#999999" uuid="dd2960b0-a116-4e1a-8792-0f2d88719651"/>
 			</rectangle>
@@ -136,28 +136,28 @@ WHERE
 				<text><![CDATA[Cant]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="11" width="90" height="21" forecolor="#FFFFFF" uuid="3dda231c-2d2f-44fe-9f8c-a024b4bdf194"/>
+				<reportElement x="436" y="11" width="90" height="21" forecolor="#FFFFFF" uuid="3dda231c-2d2f-44fe-9f8c-a024b4bdf194"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo Contenido]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="519" y="11" width="30" height="21" forecolor="#FFFFFF" uuid="507465bd-7f2e-44ba-bb1c-593f633bc86c"/>
+				<reportElement x="520" y="11" width="30" height="21" forecolor="#FFFFFF" uuid="507465bd-7f2e-44ba-bb1c-593f633bc86c"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Dig]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="556" y="11" width="70" height="21" forecolor="#FFFFFF" uuid="b39eb987-024f-4713-a325-eeac895e1521"/>
+				<reportElement x="586" y="11" width="70" height="21" forecolor="#FFFFFF" uuid="b39eb987-024f-4713-a325-eeac895e1521"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Entidades]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="664" y="11" width="73" height="21" forecolor="#FFFFFF" uuid="af5f6164-0d68-4b53-8de9-75ddd67e7279"/>
+				<reportElement x="699" y="11" width="60" height="21" forecolor="#FFFFFF" uuid="af5f6164-0d68-4b53-8de9-75ddd67e7279"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
@@ -213,28 +213,28 @@ WHERE
 				<textFieldExpression><![CDATA[$F{cantidad_documentos_libros_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="441" y="0" width="90" height="20" uuid="02145ca8-f5e0-4403-a71a-9100ec5e4650"/>
+				<reportElement x="446" y="0" width="90" height="20" uuid="02145ca8-f5e0-4403-a71a-9100ec5e4650"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_tipo_contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="524" y="0" width="30" height="20" uuid="b95acd0f-c932-4b82-8d79-9c0e54ea333b"/>
+				<reportElement x="526" y="0" width="30" height="20" uuid="b95acd0f-c932-4b82-8d79-9c0e54ea333b"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{digitalizado_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="556" y="0" width="70" height="20" uuid="f0b0fce9-ed24-4349-9194-1fb25ca4d53d"/>
+				<reportElement x="585" y="0" width="70" height="20" uuid="f0b0fce9-ed24-4349-9194-1fb25ca4d53d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="665" y="0" width="89" height="20" uuid="3dd3d405-9c2d-48cd-b8c7-799ab6427df9"/>
+				<reportElement x="703" y="0" width="68" height="20" uuid="3dd3d405-9c2d-48cd-b8c7-799ab6427df9"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -284,63 +284,58 @@ WHERE
 			<rectangle>
 				<reportElement x="0" y="4" width="800" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="8ac08d5d-5421-4329-a281-8c957e3e0936"/>
 			</rectangle>
+			<textField>
+				<reportElement x="65" y="5" width="366" height="30" uuid="6f8568df-c8e6-403b-bae7-6610b20ddd2e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="36" width="250" height="30" uuid="4220ccc4-3a41-4aa9-ac5e-495e71911564"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="5" width="63" height="69" forecolor="#999999" backcolor="#999999" uuid="d10de60c-2313-4fd9-b815-44154784fc6a"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="0" y="11" width="60" height="30" uuid="1c8e8744-dd0e-4e3e-8d33-f504720168d7"/>
+				<reportElement x="7" y="11" width="60" height="30" forecolor="#FFFFFF" backcolor="#DBD5D5" uuid="1c8e8744-dd0e-4e3e-8d33-f504720168d7"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Entidad:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="43" width="60" height="30" uuid="5eb52b39-1c77-46f5-9967-fddced75b41d"/>
+				<reportElement x="7" y="42" width="60" height="30" forecolor="#FFFFFF" uuid="5eb52b39-1c77-46f5-9967-fddced75b41d"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Entrega:]]></text>
 			</staticText>
+			<rectangle>
+				<reportElement x="437" y="4" width="63" height="69" forecolor="#999999" backcolor="#999999" uuid="f4ec53d0-7213-4ec6-958c-97f47a5a2c2a"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="360" y="44" width="100" height="30" uuid="20ed1ab9-b661-45c7-b579-462eafc7fc62"/>
+				<reportElement x="440" y="12" width="67" height="30" forecolor="#FFFFFF" uuid="2657c87f-b2de-4ca6-9d00-9517c79e7611"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bodega:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="39" width="100" height="30" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="20ed1ab9-b661-45c7-b579-462eafc7fc62"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Recibe:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="584" y="4" width="67" height="30" uuid="2657c87f-b2de-4ca6-9d00-9517c79e7611"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[BODEGA:]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="60" y="5" width="366" height="30" uuid="6f8568df-c8e6-403b-bae7-6610b20ddd2e"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="60" y="36" width="250" height="30" uuid="4220ccc4-3a41-4aa9-ac5e-495e71911564"/>
-				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
-			</textField>
-			<componentElement>
-				<reportElement key="" x="693" y="35" width="100" height="30" uuid="abca796d-2290-47ac-acde-72bccc4eb4b4">
-					<property name="com.jaspersoft.studio.unit.margin" value="pixel"/>
-					<printWhenExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
-    new com.google.zxing.qrcode.QRCodeWriter().encode(
-            "contenido", com.google.zxing.BarcodeFormat.QR_CODE, 200, 200))]]></printWhenExpression>
-				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<jr:codeExpression><![CDATA["123456789"]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
-			<textField>
-				<reportElement x="656" y="7" width="105" height="20" uuid="89c21685-581b-4dca-90f3-5c1c2c2ce6df"/>
+				<reportElement x="508" y="14" width="277" height="20" uuid="89c21685-581b-4dca-90f3-5c1c2c2ce6df"/>
 				<textElement>
-					<font size="8"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_bodegas}]]></textFieldExpression>
 			</textField>
