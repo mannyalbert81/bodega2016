@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-30T15:44:09 -->
+<!-- 2016-06-30T15:51:16 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -88,7 +88,7 @@ where		tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones AND
 	<pageHeader>
 		<band height="51" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="6" width="799" height="30" forecolor="#999999" backcolor="#999999" uuid="dd2960b0-a116-4e1a-8792-0f2d88719651"/>
+				<reportElement x="9" y="6" width="791" height="30" forecolor="#999999" backcolor="#999999" uuid="dd2960b0-a116-4e1a-8792-0f2d88719651"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="10" y="15" width="30" height="21" forecolor="#FFFFFF" uuid="4f8e287b-20ff-4456-9186-aeb70940fc76"/>
@@ -236,7 +236,42 @@ where		tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones AND
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="70" splitType="Stretch"/>
+		<band height="45" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="12" width="781" height="20" forecolor="#000000" backcolor="#000000" uuid="df592b9c-348c-41fa-9533-e518c8c715cb"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="704" y="16" width="20" height="20" forecolor="#FFFFFF" uuid="ca3e0a73-f6a4-4167-9c47-78a5a041488d"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="744" y="16" width="40" height="20" forecolor="#FFFFFF" uuid="aa51d488-540f-485e-a44f-bb0ae6afaddf"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="724" y="15" width="20" height="20" forecolor="#FFFFFF" uuid="dc578264-a1db-47fe-a9ff-22d64e61a8f2"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="16" width="320" height="12" forecolor="#FFFFFF" uuid="749a3706-629a-422b-9fcf-74845698f47d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Coactivas  - AllDocStore 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
