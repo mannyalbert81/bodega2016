@@ -13,13 +13,11 @@ $driver  = driver;
 ini_set('display_errors', 0);
 
 
-$xml =  simplexml_load_file("SalidasReport.jrxml");
-
+$xml = simplexml_load_file("SalidasReport.jrxml");
 
 $PHPJasperXML = new PHPJasperXML();
-$PHPJasperXML->xml_dismantle($xml); 
+$PHPJasperXML->xml_dismantle($xml);
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I");
-
 
 ?>
