@@ -329,87 +329,72 @@ public function index(){
    
 	
 	
-		
-	public function ReporteClientes(){
-	
-		session_start();
-		
-		//$id_clientes=$_GET['id_clientes'];
-		//echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=".$id_clientes."' target='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
-		    //echo "<a href='tuArchivo.php?variablePorURL=".$variablePorURL."' target='tuArchivo' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\"> Contrato </a>";
-		
-		//$this->ireport("ContClientes");
-		
-	
-	}
-	
-	public function consulta(){
+	public function consulta_cartones(){
 	
 		session_start();
 	
 		//Creamos el objeto usuario
 		$resultSet="";
 	
-		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		$entidades = new EntidadesModel();
+		$resultEnt = $entidades->getAll("nombre_entidades");
+		
+		$tipo_operaciones = new TipoOperacionesModel();
+		$resultTipoOpe = $tipo_operaciones->getAll("nombre_tipo_operaciones");
+		
+		$tipo_contenido_cartones = new TipoContenidoCartonesModel();
+		$resultTipoCont = $tipo_contenido_cartones->getAll("nombre_tipo_contenido_cartones");
 	
-		$citaciones = new CitacionesModel();
+		$cartones = new CartonesModel();
 	
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$permisos_rol = new PermisosRolesModel();
-			$nombre_controladores = "Clientes";
+			$nombre_controladores = "Cartones";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $citaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $cartones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 	
 			if (!empty($resultPer))
 			{
 					
 				if(isset($_POST["buscar"])){
 	
-					$id_ciudad=$_POST['id_ciudad'];
-					$identificacion=$_POST['identificacion'];
-					$numero_juicio=$_POST['numero_juicio'];
-					$titulo_credito=$_POST['numero_titulo'];
+					$id_entidades=$_POST['id_entidades'];
+					$id_tipo_operaciones=$_POST['id_tipo_operaciones'];
+					$id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
+					$numero_cartones=$_POST['numero_cartones'];
 					$fechadesde=$_POST['fecha_desde'];
 					$fechahasta=$_POST['fecha_hasta'];
+					
+					$cartones = new CartonesModel();
 	
-					$citaciones= new CitacionesModel();
 	
+					$columnas = " cartones.id_cartones,
+							      cartones.numero_cartones, 
+								  cartones.serie_cartones, 
+								  cartones.contenido_cartones, 
+								  cartones.year_cartones, 
+								  cartones.cantidad_documentos_libros_cartones, 
+								  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
+								  cartones.digitalizado_cartones, 
+								  entidades.nombre_entidades, 
+								  bodegas.nombre_bodegas, 
+								  tipo_operaciones.nombre_tipo_operaciones, 
+								  cartones.creado";
 	
-					$columnas = "juicios.id_juicios,
-					clientes.id_clientes,
-  					clientes.nombres_clientes,
-  					clientes.identificacion_clientes,
-  					ciudad.nombre_ciudad,
-  					tipo_persona.nombre_tipo_persona,
-  					juicios.juicio_referido_titulo_credito,
-  					usuarios.nombre_usuarios,
-  					titulo_credito.id_titulo_credito,
-  					etapas_juicios.nombre_etapas,
-  					tipo_juicios.nombre_tipo_juicios,
-  					juicios.creado,
-  					titulo_credito.total";
+					$tablas="public.cartones, 
+							  public.tipo_operaciones, 
+							  public.bodegas, 
+							  public.entidades, 
+							  public.tipo_contenido_cartones";
 	
-					$tablas="public.clientes,
-					  public.ciudad,
-					  public.tipo_persona,
-					  public.juicios,
-					  public.titulo_credito,
-					  public.etapas_juicios,
-					  public.tipo_juicios,
-					  public.usuarios";
-	
-					$where="ciudad.id_ciudad = clientes.id_ciudad AND
-					  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
-					  juicios.id_titulo_credito = titulo_credito.id_titulo_credito AND
-					  juicios.id_clientes = clientes.id_clientes AND
-					  juicios.id_tipo_juicios = tipo_juicios.id_tipo_juicios AND
-					  etapas_juicios.id_etapas_juicios = juicios.id_etapas_juicios AND
-					  usuarios.id_usuarios=juicios.id_usuarios";
-	
-					$id="juicios.id_juicios";
+					$where="tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones AND
+							  bodegas.id_bodegas = cartones.id_bodegas AND
+							  entidades.id_entidades = cartones.id_entidades AND
+							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+								
+					$id="cartones.id_cartones";
 	
 	
 					$where_0 = "";
@@ -419,21 +404,21 @@ public function index(){
 					$where_4 = "";
 	
 	
-					if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
+					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
 	
-					if($numero_juicio!=""){$where_1=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
+					if($id_tipo_operaciones!=0){$where_1=" AND tipo_operaciones.id_tipo_operaciones='$id_tipo_operaciones'";}
 	
-					if($identificacion!=""){$where_2=" AND clientes.identificacion='$identificacion'";}
+					if($id_tipo_contenido_cartones!=0){$where_2=" AND tipo_contenido_cartones.id_tipo_contenido_cartones='$id_tipo_contenido_cartones'";}
 	
-					if($titulo_credito!=""){$where_3=" AND juicios.id_titulo_credito='$titulo_credito'";}
+					if($numero_cartones!=""){$where_3=" AND cartones.numero_cartones='$numero_cartones'";}
 	
-					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  juicios.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  cartones.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
 	
 	
 					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
 	
 	
-					$resultSet=$citaciones->getCondiciones($columnas ,$tablas , $where_to, $id);
+					$resultSet=$cartones->getCondiciones($columnas ,$tablas , $where_to, $id);
 	
 	
 				}
@@ -441,8 +426,8 @@ public function index(){
 	
 	
 	
-				$this->view("ConsultaClientes",array(
-						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu
+				$this->view("ConsultaCartones",array(
+						"resultSet"=>$resultSet, "resultTipoCont"=> $resultTipoCont, "resultEnt"=>$resultEnt, "resultTipoOpe"=>$resultTipoOpe
 							
 				));
 	
@@ -452,7 +437,7 @@ public function index(){
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Citaciones"
+						"resultado"=>"No tiene Permisos de Acceso a Consulta Cartones"
 	
 				));
 	

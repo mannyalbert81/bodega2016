@@ -63,7 +63,13 @@
 			</li>
 			 <li><a href="index.php?controller=TipoOperaciones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Tipo Operaciones</span> </a>
             </li>  
+<<<<<<< HEAD
          </ul>
+=======
+             <li><a href="index.php?controller=TipoContenidoCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Contenido Cartones</span> </a>
+            </li>
+          </ul>
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/bodega2016.git
         </li>
 
 		<li class="dropdown">
@@ -90,10 +96,9 @@
           
           <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-save-file" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
-          <li><a href="index.php?controller=Clientes&action=consulta"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Clientes</span> </a>
+          <li><a href="index.php?controller=Cartones&action=consulta_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Estado Cartones</span> </a>
             </li>   
-             <li><a href="index.php?controller=TipoContenidoCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Contenido Cartones</span> </a>
-            </li>   
+               
 			
 </ul>
 </li>
