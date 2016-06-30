@@ -199,7 +199,7 @@
 	                   
 	                  
 	                   <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=<?php echo $res->id_clientes; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:80%;">Reporte</a>
+		               <a href="/FrameworkMVC/view/ireports/ContCartonesSubReport.php?id_cartones=<?php echo $res->id_cartones; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:80%;">Reporte</a>
 		               </td> 
 		    		</tr>
 		        <?php } }  ?>
