@@ -68,8 +68,27 @@
        
        <?php
        
-      
-		?>
+       $sel_id_entidades = "";
+       $sel_id_tipo_operaciones="";
+       $sel_id_tipo_contenido_cartones="";
+       $sel_numero_cartones="";
+       $sel_fecha_desde="";
+       $sel_fecha_hasta="";
+        
+       if($_SERVER['REQUEST_METHOD']=='POST' )
+       {
+       	
+       	
+       	$sel_id_entidades = $_POST['id_entidades'];
+       	$sel_id_tipo_operaciones=$_POST['id_tipo_operaciones'];
+       	$sel_id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
+       	$sel_numero_cartones=$_POST['numero_cartones'];
+       	$sel_fecha_desde=$_POST['fecha_desde'];
+       	$sel_fecha_hasta=$_POST['fecha_hasta'];
+       
+       }
+       ?>
+ 
  
   
   <div class="container">
@@ -96,7 +115,7 @@
 			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
 			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
 					<?php foreach($resultEnt as $res) {?>
-						<option value="<?php echo $res->id_entidades; ?>"><?php echo $res->nombre_entidades;  ?> </option>
+						<option value="<?php echo $res->id_entidades; ?>"<?php if($sel_id_entidades==$res->id_entidades){echo "selected";}?>><?php echo $res->nombre_entidades;  ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
@@ -106,7 +125,7 @@
 			  	<select name="id_tipo_operaciones" id="id_tipo_operaciones"  class="form-control" >
 			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
 					<?php foreach($resultTipoOpe as $res) {?>
-						<option value="<?php echo $res->id_tipo_operaciones; ?>"><?php echo $res->nombre_tipo_operaciones;  ?> </option>
+						<option value="<?php echo $res->id_tipo_operaciones; ?>" <?php if($sel_id_tipo_operaciones==$res->id_tipo_operaciones){echo "selected";}?>><?php echo $res->nombre_tipo_operaciones;  ?> </option>
 			            <?php } ?>
 				</select>	
 
@@ -117,34 +136,40 @@
 			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
 			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
 					<?php foreach($resultTipoCont as $res) {?>
-						<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"><?php echo $res->nombre_tipo_contenido_cartones;  ?> </option>
+						<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"<?php if($sel_id_tipo_contenido_cartones==$res->id_tipo_contenido_cartones){echo "selected";}?> ><?php echo $res->nombre_tipo_contenido_cartones;  ?> </option>
 			            <?php } ?>
 				</select>
 
          </div>
           <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Nº Carton:</p>
-			  	<input type="text"  name="numero_cartones" id="numero_cartones" value="" class="form-control"/> 
+			  	<input type="text"  name="numero_cartones" id="numero_cartones" value="<?php echo $sel_numero_cartones;?>" class="form-control"/> 
 			    <div id="mensaje_numero_titulo" class="errores"></div>
 
          </div>
          
          <div class="col-xs-2 ">
          		<p class="formulario-subtitulo" >Desde:</p>
-			  	<input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control "/> 
+			  	<input type="date"  name="fecha_desde" id="fecha_desde" value="<?php echo $sel_fecha_desde;?>" class="form-control "/> 
 			    <div id="mensaje_fecha_desde" class="errores"></div>
 		</div>
          
           <div class="col-xs-2 ">
           		<p class="formulario-subtitulo" >Hasta:</p>
-			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="" class="form-control "/> 
+			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="<?php echo $sel_fecha_hasta;?>" class="form-control "/> 
 			    <div id="mensaje_fecha_hasta" class="errores"></div>
 		</div>
 		 
   			</div>
+  		
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
-		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " style="margin-top: 10px;"/> 	
-		 </div>
+  		
+		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " style="margin-top: 10px;"/> 
+	    
+		 <a href="/FrameworkMVC/view/ireports/ContCartonesSubReport.php?dato=<?php ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
+		 
+		  </div>
+		 
 		</div>
         	
 		 </div>
