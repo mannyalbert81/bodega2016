@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-30T16:10:25 -->
+<!-- 2016-06-30T16:27:56 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -59,7 +59,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[REPORTE SALIDA DE CARTONES]]></text>
+				<text><![CDATA[REPORTE SALIDAS DE CARTONES]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="633" y="49" width="50" height="20" forecolor="#000000" backcolor="#000000" uuid="6dfd737b-2aef-45ec-a506-cde85d20c479"/>
@@ -257,57 +257,91 @@ WHERE
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="95" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="70" splitType="Stretch">
+		<band height="106" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="8ac08d5d-5421-4329-a281-8c957e3e0936"/>
+				<reportElement x="10" y="80" width="781" height="20" forecolor="#000000" backcolor="#000000" uuid="15bc4cb8-4c92-4d43-9717-297395b0ddd9"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="704" y="84" width="20" height="20" forecolor="#FFFFFF" uuid="ef24d9f2-6c97-43d8-bd95-4aabba943c1f"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="744" y="84" width="40" height="20" forecolor="#FFFFFF" uuid="521ecaab-5dd3-4617-8e7e-0a9bcb67cf89"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="724" y="83" width="20" height="20" forecolor="#FFFFFF" uuid="da797ea5-a08f-4b20-8324-fc02e041214a"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="84" width="320" height="12" forecolor="#FFFFFF" uuid="b7e56fef-4393-4d8c-a0e1-14711dc9d0e5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Bodega - AllDocStore 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="4" width="800" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="8ac08d5d-5421-4329-a281-8c957e3e0936"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="7" width="60" height="30" uuid="1c8e8744-dd0e-4e3e-8d33-f504720168d7"/>
+				<reportElement x="0" y="11" width="60" height="30" uuid="1c8e8744-dd0e-4e3e-8d33-f504720168d7"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Entidad:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="39" width="60" height="30" uuid="5eb52b39-1c77-46f5-9967-fddced75b41d"/>
+				<reportElement x="0" y="43" width="60" height="30" uuid="5eb52b39-1c77-46f5-9967-fddced75b41d"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Entrega:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="360" y="40" width="100" height="30" uuid="20ed1ab9-b661-45c7-b579-462eafc7fc62"/>
+				<reportElement x="360" y="44" width="100" height="30" uuid="20ed1ab9-b661-45c7-b579-462eafc7fc62"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Recibe:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="723" y="0" width="67" height="30" uuid="2657c87f-b2de-4ca6-9d00-9517c79e7611"/>
+				<reportElement x="723" y="4" width="67" height="30" uuid="2657c87f-b2de-4ca6-9d00-9517c79e7611"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[BODEGA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="60" y="1" width="366" height="30" uuid="6f8568df-c8e6-403b-bae7-6610b20ddd2e"/>
+				<reportElement x="60" y="5" width="366" height="30" uuid="6f8568df-c8e6-403b-bae7-6610b20ddd2e"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="60" y="32" width="250" height="30" uuid="4220ccc4-3a41-4aa9-ac5e-495e71911564"/>
+				<reportElement x="60" y="36" width="250" height="30" uuid="4220ccc4-3a41-4aa9-ac5e-495e71911564"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement key="" x="693" y="31" width="100" height="30" uuid="abca796d-2290-47ac-acde-72bccc4eb4b4">
+				<reportElement key="" x="693" y="35" width="100" height="30" uuid="abca796d-2290-47ac-acde-72bccc4eb4b4">
 					<property name="com.jaspersoft.studio.unit.margin" value="pixel"/>
 					<printWhenExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
     new com.google.zxing.qrcode.QRCodeWriter().encode(
