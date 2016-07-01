@@ -51,7 +51,26 @@
 			background:#F00
 		}
 		</style>
+	<script >
+	$(document).ready(function(){
+			
+		$("#visualizar_seleccionados").click(function(){
+
+			
+				$("#div_seleccionados").fadeIn("slow");
+			    	
+	  
+		});
+	});
+	</script>
+	<script >
+	$(document).ready(function(){
 	
+		$("#div_seleccionados").fadeOut("slow");
+		
+	});
+	</script>
+
     <script>
     $(document).ready(function(){
         $("#marcar_todo").change(function () {
@@ -121,8 +140,8 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
 		    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
-		      		<button class="btn btn-default" type="button" style="margin-top: 10px;">
-					  Cartones Seleccionados <span class="badge">4</span>
+		      		<button id="visualizar_seleccionados" class="btn btn-default" type="button" style="margin-top: 10px;">
+					  Cartones Seleccionados <span class="badge"><?php echo count($resultSol); ?></span>
 					</button>
 		      	
 		      	
@@ -147,13 +166,13 @@
    
    
     </div>
-	<div class="col-xs-12 col-md-12">
+	<div class="col-xs-12 col-md-12" id="div_seleccionados" style="display: none;" >
      	
         <section   class="col-xs-12 col-md-12" class="table table-hover "  style="height:300px; overflow-y:scroll;     ">
         <table  class="table table-hover" >
 	         <tr  class="fila">
 	        	<th style="color:#456789;font-size:80%;"></th>
-	        	<th style="color:#456789;font-size:80%;"></th>
+	        	
 	    		<th style="color:#456789;font-size:80%;">Numero de Carton</th>
 	    		<th style="color:#456789;font-size:80%;">Serie de Documental</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
@@ -165,13 +184,11 @@
 	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
 	    	  </tr>
             
-	          <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
+	          <?php if (!empty($resultSol)) {  foreach($resultSol as $res) {?>
 	          <tr class="fila">
+	        	    
 	        	    <td >
-	        	    	<a href="<?php echo $helper->url("Documentos","index"); ?>&id_cartones=<?php echo $res->id_cartones; ?>" class="btn btn-info"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  </a>
-	        	    </td>
-	        	    <td >
-	        	    	<a href="<?php echo $helper->url("Documentos","index"); ?>&id_cartones=<?php echo $res->id_cartones; ?>" class="btn btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  </a>
+	        	    	<a href="<?php echo $helper->url("GenerarSolicitud","index"); ?>&id_cartones_eliminar=<?php echo $res->id_cartones; ?>" class="btn btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  </a>
 	        	    </td>
 	        	            
 		            <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
@@ -192,6 +209,48 @@
     
     </div>
   
+  	<div class="col-xs-12 col-md-12">
+     	
+        <section   class="col-xs-12 col-md-12" class="table table-hover "  style="height:300px; overflow-y:scroll;     ">
+        <table  class="table table-hover" >
+	         <tr  class="fila">
+	        	<th style="color:#456789;font-size:80%;"></th>
+	        	<th style="color:#456789;font-size:80%;"></th>
+	    		<th style="color:#456789;font-size:80%;">Numero de Carton</th>
+	    		<th style="color:#456789;font-size:80%;">Serie de Documental</th>
+	    		<th style="color:#456789;font-size:80%;">Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Años</th>
+	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
+	    	  </tr>
+            
+	          <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
+	          <tr class="fila">
+	        	    <td >
+	        	    	<a href="<?php echo $helper->url("GenerarSolicitud","index"); ?>&id_cartones_agregar=<?php echo $res->id_cartones; ?>" class="btn btn-info"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  </a>
+	        	    </td>
+	        	    
+	        	            
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+		      </tr>
+		      <?php } } ?>
+		</table>     
+		     
+      </section>
+      
+    
+    </div>
   
 	
    </div>

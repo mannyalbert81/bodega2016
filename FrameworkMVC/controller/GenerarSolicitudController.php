@@ -12,14 +12,19 @@ class GenerarSolicitudController extends ControladorBase{
 	
 		session_start();
 	
+		
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			
+			$_id_usuarios= $_SESSION['id_usuarios'];
+				
 			
-			$movimientos_cabeza = new MovimientosCabezaModel();
 		
 			$cartones = new CartonesModel();
+			$cartones_solicitudes = new CartonesSolicitudesModel();
+			
+				
 			$columnas = " cartones.id_cartones,
 					      cartones.numero_cartones,
 						  cartones.serie_cartones,
@@ -203,9 +208,60 @@ class GenerarSolicitudController extends ControladorBase{
 							
 					}
 					
+					
+					
+					///botones agregar y guardar
+					
+					if (isset ($_GET["id_cartones_agregar"])   )
+					{
+						$_id_cartones= $_GET["id_cartones_agregar"];
+						
+						$funcion = "ins_cartones_solicitudes";
+						$parametros = "'$_id_usuarios','$_id_cartones'      ";
+						$cartones_solicitudes->setFuncion($funcion);
+						$cartones_solicitudes->setParametros($parametros);
+						$resultado=$cartones_solicitudes->Insert();
+								
+					}
+					if (isset ($_GET["id_cartones_eliminar"])   )
+					{
+						$_id_usuarios= $_SESSION['id_usuarios'];
+						$_id_cartones= $_GET["id_cartones_eliminar"];
+					
+						$where = "id_usuarios = '$_id_usuarios' AND id_cartones = '$_id_cartones'  ";
+						$resultado = $cartones_solicitudes->deleteByWhere($where);
+					}
+					
+					
+					////lo solicitdo
+					
+					$columnas_sol = " cartones.id_cartones,
+					      cartones.numero_cartones,
+						  cartones.serie_cartones,
+						  cartones.contenido_cartones,
+						  cartones.year_cartones,
+						  cartones.cantidad_documentos_libros_cartones,
+					      tipo_contenido_cartones.id_tipo_contenido_cartones,
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
+						  cartones.digitalizado_cartones,
+					      entidades.id_entidades,
+						  entidades.nombre_entidades,
+					      bodegas.id_bodegas,
+						  bodegas.nombre_bodegas";
+					$tablas_sol   = "public.cartones, public.cartones_solicitudes ,
+						  public.bodegas,
+						  public.entidades,
+						  public.tipo_contenido_cartones";
+					$where_sol    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND cartones.id_cartones = cartones_solicitudes.id_cartones AND cartones_solicitudes.id_usuarios = '$_id_usuarios'  ";
+					$id_sol       = "cartones.numero_cartones";
+					
+					
+					$resultSol = $cartones_solicitudes->getCondiciones($columnas_sol, $tablas_sol, $where_sol, $id_sol);
+					
+					
 					$this->view("GenerarSolicitud",array(
 							
-							"resultCon"=>$resultCon, "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultCartones"=>$resultCartones, "resultDatos"=>$resultDatos
+							"resultSol"=>$resultSol, "resultDatos"=>$resultDatos
 					));
 			
 			
