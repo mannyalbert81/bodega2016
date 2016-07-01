@@ -1,35 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-30T16:24:07 -->
+<!-- 2016-07-01T14:49:56 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
-	<parameter name="_id_cartones" class="java.lang.String"/>
+	<parameter name="sql" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select      cartones.id_cartones,
-							      cartones.numero_cartones, 
-								  cartones.serie_cartones, 
-								  cartones.contenido_cartones, 
-								  cartones.year_cartones, 
-								  cartones.cantidad_documentos_libros_cartones, 
-								  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
-								  cartones.digitalizado_cartones, 
-								  entidades.nombre_entidades, 
-								  bodegas.nombre_bodegas, 
-								  tipo_operaciones.nombre_tipo_operaciones, 
-								  cartones.creado
-	
-from	public.cartones, 
-							  public.tipo_operaciones, 
-							  public.bodegas, 
-							  public.entidades, 
-							  public.tipo_contenido_cartones
-	
-where		tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones AND
-							  bodegas.id_bodegas = cartones.id_bodegas AND
-							  entidades.id_entidades = cartones.id_entidades AND
-							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones 
-							  AND cartones.id_cartones= $P{_id_cartones}]]>
+		<![CDATA[ $P{sql}]]>
 	</queryString>
 	<field name="id_cartones" class="java.lang.String"/>
 	<field name="numero_cartones" class="java.lang.String"/>
