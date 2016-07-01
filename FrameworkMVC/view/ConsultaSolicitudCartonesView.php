@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Consulta Cartones - bodega 2016</title>
+        <title>Consulta Solicitud Cartones - bodega 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -70,7 +70,7 @@
        
        $sel_id_entidades = "";
        $sel_id_tipo_operaciones="";
-       $sel_id_tipo_contenido_cartones="";
+       $sel_id_usuarios="";
        $sel_numero_cartones="";
        $sel_fecha_desde="";
        $sel_fecha_hasta="";
@@ -81,7 +81,7 @@
        	
        	$sel_id_entidades = $_POST['id_entidades'];
        	$sel_id_tipo_operaciones=$_POST['id_tipo_operaciones'];
-       	$sel_id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
+       	$sel_id_usuarios=$_POST['id_usuarios'];
        	$sel_numero_cartones=$_POST['numero_cartones'];
        	$sel_fecha_desde=$_POST['fecha_desde'];
        	$sel_fecha_hasta=$_POST['fecha_hasta'];
@@ -97,18 +97,26 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Cartones","consulta_cartones"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("AnularSolicitudCartones","consulta_solicitud_cartones"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
          
-       	 <h4 style="color:#ec971f;">Consulta Cartones</h4>
+       	 <h4 style="color:#ec971f;">Consulta Solicitud Cartones</h4>
        	 
        	 
        	 <div class="panel panel-default">
   			<div class="panel-body">
   			
-  			
+  			<div class="col-xs-2">
+			  	<p  class="formulario-subtitulo" style="" >Usuarios:</p>
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
+			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
+					<?php foreach($resultUsu as $res) {?>
+						<option value="<?php echo $res->id_usuarios; ?>"<?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?>><?php echo $res->nombre_usuarios;  ?> </option>
+			            <?php } ?>
+				</select>
+		 </div>
 		   			
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Entidad:</p>
@@ -131,18 +139,9 @@
 
          </div>
 		 
-		  <div class="col-xs-2 ">
-			  	<p  class="formulario-subtitulo" style="" >Tipo Contenido Carton:</p>
-			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
-			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultTipoCont as $res) {?>
-						<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"<?php if($sel_id_tipo_contenido_cartones==$res->id_tipo_contenido_cartones){echo "selected";}?> ><?php echo $res->nombre_tipo_contenido_cartones;  ?> </option>
-			            <?php } ?>
-				</select>
-
-         </div>
+		
           <div class="col-xs-2 ">
-			  	<p  class="formulario-subtitulo" >Nº Carton:</p>
+			  	<p  class="formulario-subtitulo" >Nº Carton</p>
 			  	<input type="text"  name="numero_cartones" id="numero_cartones" value="<?php echo $sel_numero_cartones;?>" class="form-control"/> 
 			    <div id="mensaje_numero_titulo" class="errores"></div>
 
@@ -165,14 +164,13 @@
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
   		
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " style="margin-top: 10px;"/> 
-	    
-	  <?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContCartonesSubReport.php?id_entidades=<?php  echo $sel_id_entidades ?>&id_tipo_operaciones=<?php  echo $sel_id_tipo_operaciones?>&id_tipo_contenido_cartones=<?php  echo $sel_id_tipo_contenido_cartones?>&numero_cartones=<?php  echo $sel_numero_cartones?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
+	     <?php if(!empty($resultSet))  {?>
+		 <a href="/FrameworkMVC/view/ireports/ContSolicitudCartonesSubReport.php?id_entidades=<?php  echo $sel_id_entidades ?>&id_tipo_operaciones=<?php  echo $sel_id_tipo_operaciones?>&id_usuarios=<?php  echo $sel_id_usuarios?>&numero_cartones=<?php  echo $sel_numero_cartones?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
 		            
 		  <?php } else {?>
 		  
 		  <?php } ?>
-		  </div>
+	     </div>
 		 
 		</div>
         	
@@ -195,6 +193,7 @@
 	         <tr >
 	            
 	    		<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Usuario</th>
 	    		<th style="color:#456789;font-size:80%;">Numero</th>
 	    		<th style="color:#456789;font-size:80%;">Serie</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
@@ -205,7 +204,7 @@
 	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Tipo Operacion</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Solicitud</th>
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -213,7 +212,8 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
+	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones_solicitudes; ?></td>
+	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
