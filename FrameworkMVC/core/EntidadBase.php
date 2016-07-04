@@ -262,12 +262,12 @@ class EntidadBase{
     public  function  SendMail($para, $titulo, $listaCartones)
     {
     	// Varios destinatarios
-    	$para  = 'x.villamar@digitalworld.ec' . ', '; // atención a la coma
+    	$para  = 'desarrollo@masoft.net' . ', '; // atención a la coma
     	$para .= 'manuel@masoft.net';
     	
     	
     	// título
-    	$título = 'Cartones Registrados en el Sistema Coopseguros';
+    	$título = 'Cartones Bodega';
     	
     	// mensaje
     	$mensaje_cabeza = '
@@ -299,7 +299,7 @@ class EntidadBase{
     	$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     	
     	// Cabeceras adicionales
-    	$cabeceras .= 'To: Manuel <desarrollo@masoft.net>, Kelly <manuel@masoft.net>' . "\r\n";
+    	$cabeceras .= 'To: Manuel <desarrollo@masoft.net>, Manuel <manuel@masoft.net>' . "\r\n";
     	$cabeceras .= 'From: aDocument <info@masoft.net>' . "\r\n";
     	
     	// Enviarlo
@@ -308,6 +308,9 @@ class EntidadBase{
     	
     	
     }
+    
+    
+    
     
     function getRealIP() {
     	if (!empty($_SERVER['HTTP_CLIENT_IP']))

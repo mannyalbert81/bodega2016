@@ -117,8 +117,9 @@
     <hr/>
 
 	<div  class="col-xs-12 col-md-12">
- 
-    	
+	
+	
+	
  		<nav class="navbar navbar-default">
   			<div class="container-fluid">
    				 <!-- Brand and toggle get grouped for better mobile display -->
@@ -259,7 +260,7 @@
 	<div style="margin-top:10px ; text-align: center; " >
 			  
      <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
-     </div>
+            </div>
        </div>    	 		
        </div>
    </form>
