@@ -103,7 +103,7 @@
        	 
        	 <div class="panel panel-default">
   			<div class="panel-body">
-  			
+  			<div class="col-xs-2"></div>
   			<div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Solicita:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >

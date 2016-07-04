@@ -122,14 +122,8 @@ class AnularSolicitudCartonesController extends ControladorBase{
     	//Creamos el objeto usuario
     $resultSet="";
     	
-    	$entidades = new EntidadesModel();
-		$resultEnt = $entidades->getAll("nombre_entidades");
-		
-		$tipo_operaciones = new TipoOperacionesModel();
-		$resultTipoOpe = $tipo_operaciones->getAll("nombre_tipo_operaciones");
-		
-		$tipo_contenido_cartones = new TipoContenidoCartonesModel();
-		$resultTipoCont = $tipo_contenido_cartones->getAll("nombre_tipo_contenido_cartones");
+    	$usuarios = new UsuariosModel();
+		$resultUsu = $usuarios->getAll("nombre_usuarios");
     
     	
     	$anular_cartones = new AnularSolicitudCartonesModel();
@@ -147,68 +141,48 @@ class AnularSolicitudCartonesController extends ControladorBase{
     				
     			if(isset($_POST["buscar"])){
     				
-    				$id_entidades=$_POST['id_entidades'];
-    				$id_tipo_operaciones=$_POST['id_tipo_operaciones'];
-    				$id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
-    				$numero_cartones=$_POST['numero_cartones'];
+    				$id_usuarios=$_POST['id_usuarios'];
+    				$numero_movimientos_cabeza=$_POST['numero_movimientos_cabeza'];
     				$fechadesde=$_POST['fecha_desde'];
     				$fechahasta=$_POST['fecha_hasta'];
     					
-    			    $anular_cartones = new MovimientosDetalleModel();
-    			   
+    			    $anular_cartones = new MovimientosCabezaModel();
+    
     
     			    	
-    				$columnas = " cartones.id_cartones, 
-								  movimientos_detalle.id_movimientos_detalle, 
-								  movimientos_detalle.numero_movimientos_detalle, 
-								  cartones.numero_cartones, 
-								  cartones.serie_cartones, 
-								  movimientos_detalle.creado, 
-								  cartones.contenido_cartones, 
-								  cartones.year_cartones, 
-								  cartones.cantidad_documentos_libros_cartones, 
-								  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
-								  cartones.digitalizado_cartones, 
-								  entidades.nombre_entidades, 
-								  bodegas.nombre_bodegas, 
-								  tipo_operaciones.nombre_tipo_operaciones";
-    
-    				$tablas="public.movimientos_detalle, 
-							  public.cartones, 
-							  public.bodegas, 
-							  public.entidades, 
+    				$columnas = "movimientos_cabeza.id_movimientos_cabeza, 
+								  movimientos_cabeza.numero_movimientos_cabeza, 
+								  tipo_operaciones.nombre_tipo_operaciones, 
+								  usuarios.nombre_usuarios, 
+								  movimientos_cabeza.observaciones_movimientos, 
+								  movimientos_cabeza.cantidad_cartones_movimientos_cabeza, 
+								  movimientos_cabeza.creado";
+								    
+    				$tablas="public.movimientos_cabeza, 
 							  public.tipo_operaciones, 
-							  public.tipo_contenido_cartones";
+							  public.usuarios";
     
-    				$where="movimientos_detalle.id_cartones = cartones.id_cartones AND
-							  bodegas.id_bodegas = cartones.id_bodegas AND
-							  entidades.id_entidades = cartones.id_entidades AND
-							  tipo_operaciones.id_tipo_operaciones = movimientos_detalle.id_tipo_operaciones AND
-							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND tipo_operaciones.nombre_tipo_operaciones='SOLICITUD'";
+    				$where="tipo_operaciones.id_tipo_operaciones = movimientos_cabeza.id_tipo_operaciones AND
+							  usuarios.id_usuarios = movimientos_cabeza.id_usuario_solicita AND tipo_operaciones.nombre_tipo_operaciones ='SOLICITUD'
+    						 AND movimientos_cabeza.estado_movimientos='TRUE'";
 														    
-					$id="cartones.id_cartones";
+					$id="movimientos_cabeza.id_movimientos_cabeza";
     
     
     				$where_0 = "";
 					$where_1 = "";
 					$where_2 = "";
-					$where_3 = "";
-					$where_4 = "";
+					
 	
 	
-					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
+					if($id_usuarios!=0){$where_0=" AND usuarios.id_usuarios='$id_usuarios'";}
 	
-					if($id_tipo_operaciones!=0){$where_1=" AND tipo_operaciones.id_tipo_operaciones='$id_tipo_operaciones'";}
+					if($numero_movimientos_cabeza!=""){$where_1=" AND movimientos_cabeza.numero_movimientos_cabeza='$numero_movimientos_cabeza'";}
 	
-					if($id_tipo_contenido_cartones!=0){$where_2=" AND tipo_contenido_cartones.id_tipo_contenido_cartones='$id_tipo_contenido_cartones'";}
-	
-					if($numero_cartones!=""){$where_3=" AND cartones.numero_cartones='$numero_cartones'";}
-	
-					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  cartones.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+					if($fechadesde!="" && $fechahasta!=""){$where_2=" AND  movimientos_cabeza.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
 	
 	
-					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
-	
+					$where_to  = $where . $where_0 . $where_1 . $where_2;
     
     
     				$resultSet=$anular_cartones->getCondiciones($columnas ,$tablas , $where_to, $id);
@@ -220,7 +194,7 @@ class AnularSolicitudCartonesController extends ControladorBase{
     
     
     			$this->view("ConsultaSolicitudCartones",array(
-    					"resultSet"=>$resultSet, "resultEnt"=>$resultEnt, "resultTipoOpe"=>$resultTipoOpe,  "resultUsu"=>$resultUsu
+    					"resultSet"=>$resultSet,"resultUsu"=>$resultUsu
     
     			));
     
