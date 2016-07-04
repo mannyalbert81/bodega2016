@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-07-04T09:50:50 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SolicitudesReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e7c8179d-0ed5-4003-9e00-a849a316e569">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="23215e16-52f4-47b8-9337-ff4efd770306"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="20" width="800" height="50" forecolor="#000000" backcolor="#FFFFFF" uuid="2480c7f6-e9ac-48a0-bbb0-1eadce00fe51"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[REPORTE ENTRADAS DE CARTONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="633" y="49" width="50" height="20" forecolor="#000000" backcolor="#000000" uuid="54496161-e731-4f97-b624-5d8d618b82d5"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="685" y="50" width="115" height="20" forecolor="#000000" uuid="71593525-4096-4dfe-8548-8385e5e50a59"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="5" y="10" width="190" height="50" uuid="d71198f7-e9ab-4441-8b07-d54c8bac2b66"/>
+				<imageExpression><![CDATA["C:/Users/User/git/bodega2016/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement x="752" y="4" width="67" height="30" uuid="ef8df3a7-364e-4ca2-9d8b-c49d064af760"/>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" textPosition="bottom">
+					<jr:codeExpression><![CDATA["123456789"]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="104" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="80" width="781" height="20" forecolor="#000000" backcolor="#000000" uuid="f38f3314-a094-4798-ade3-cc9f95015eb9"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="704" y="84" width="20" height="20" forecolor="#FFFFFF" uuid="da769c1d-f893-4035-a85f-4a639f0db5ef"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="744" y="84" width="40" height="20" forecolor="#FFFFFF" uuid="f0e222c4-7000-49eb-ba8f-65bcb190f449"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="724" y="83" width="20" height="20" forecolor="#FFFFFF" uuid="c2f983dc-715c-4d2b-ad44-79ac6caa5c24"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="84" width="320" height="12" forecolor="#FFFFFF" uuid="bc5b50bc-740b-41b0-a0cb-aab90efd8d8a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Bodega - AllDocStore 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="4" width="800" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="5c86cbb3-ce0d-478f-9a04-8841c1132a9f"/>
+			</rectangle>
+			<textField>
+				<reportElement x="65" y="5" width="366" height="30" uuid="cbd92414-efe7-4bb7-9d48-22d64808cc1c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="36" width="250" height="30" uuid="12751c47-c4f7-46ec-8f96-831cbf04a58f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="5" width="63" height="69" forecolor="#999999" backcolor="#999999" uuid="c6a05c67-5c27-4195-bde6-b85605efbdc8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="7" y="11" width="60" height="30" forecolor="#FFFFFF" backcolor="#DBD5D5" uuid="864073cb-b86d-48b8-8137-261ebb461385"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="42" width="60" height="30" forecolor="#FFFFFF" uuid="574edd26-c3b5-49ea-a158-c7775779a40b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrega:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="437" y="4" width="63" height="69" forecolor="#999999" backcolor="#999999" uuid="33033b41-baae-43d4-b6db-fc6420113658"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="440" y="12" width="67" height="30" forecolor="#FFFFFF" uuid="f6503790-5e9a-4955-8347-1c9f133712a1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bodega:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="39" width="100" height="30" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="094ce360-8c57-4f2e-909a-3d8b4e5d1f75"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibe:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="508" y="14" width="277" height="20" uuid="f77e1cbd-87d9-4568-ae2c-9446208d0a3d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_bodegas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

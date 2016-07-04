@@ -425,35 +425,34 @@ class EntidadBase{
     	return $result_notificaciones;
     }
     
-	public function InsertaNotificaciones($id_tipo_notificacion ,$id_usuarios_dirigido_notificacion, $descripcion_notificaciones )
+	
+    public  function CrearNotificacion($id_tipoNotificacion,$usuarioDestino,$descripcion,$id_movimiento,$cantidad_cartones)
     {
-    
-    
-    	$notificaciones=new NotificacionesModel();
+    	$notificaciones = new NotificacionesModel();
     	
-    	$usuarios = new UsuariosModel();
-    		
     	$funcion = "ins_notificaciones";
+    	
+    	$_usuario_origen=$_SESSION['id_usuarios'];
+    	
     
-    	$id_usuarios=$_SESSION['id_usuarios'];
+    	$parametros = "'$id_tipoNotificacion', '$_usuario_origen', '$usuarioDestino', '$descripcion','$id_movimiento','$cantidad_cartones' ";
     	
-    	$resultUsuario=$usuarios->getBy("id_usuarios='$id_usuarios'");
-    	
-    	$descripcion_notificaciones.=" (".$resultUsuario[0]->usuario_usuarios.")";
-    
-    	
-    	$parametros = "'$id_tipo_notificacion','$id_usuarios_dirigido_notificacion', '$descripcion_notificaciones'";
-    	
-    	    
     	$notificaciones->setFuncion($funcion);
-    		
-    	$notificaciones->setParametros($parametros);
-    		
-    	$resultadoN=$notificaciones->Insert();
     	
-    
+    	$notificaciones->setParametros($parametros);
+    	
+    	$resultadoT=$notificaciones->Insert();
     }
     
+    public function VerNotificaciones($id_usuario)
+    {
+    	session_start();
+    	 
+    	$_SESSION["cantidad_notificaciones"]=$id_usuario;
+    	
+    	 
+    	 
+    }
     
         
 }
