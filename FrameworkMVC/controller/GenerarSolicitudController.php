@@ -291,6 +291,9 @@ class GenerarSolicitudController extends ControladorBase{
 		$movimientos_cabeza = new MovimientosCabezaModel();
 		$movimientos_detalle = new MovimientosDetalleModel();
 		$cartones_solicitud = new CartonesSolicitudesModel();
+		$tipo_notificacion = new TipoNotificacionModel();
+		$asigancion_usuarios = new AsignarUsuarioBodegaModel();
+		
 		
 		$cartones = new CartonesModel();
 		
@@ -304,15 +307,13 @@ class GenerarSolicitudController extends ControladorBase{
 		
 		if (!empty($resultPer))
 		{
-			
+			$resultTipoNotificaciones=$tipo_notificacion->getBy("descripcion_notificacion = 'Solicitud'");
+			$id_tipo_notificacion=$resultTipoNotificaciones[0]->id_tipo_notificacion;
+			$resultAsignacionUsuarios = $asigancion_usuarios->getAll("id_usuarios");
+			$id_usuario_destino=$resultAsignacionUsuarios[0]->id_usuarios;
 
 			if (isset ($_POST["Guardar"])   )
 			{
-				
-				$this->view("Error",array(
-						"resultado"=>"Entre"
-				
-				));
 				
 				
 				$_id_usuarios = $_SESSION['id_usuarios'];
@@ -323,6 +324,7 @@ class GenerarSolicitudController extends ControladorBase{
 				
 				$_id_tipo_operaciones=$resultOperaciones[0]->id_tipo_operaciones;
 				$_numero_movimientos=$resultOperaciones[0]->consecutivo;
+				
 				$_cantidad_cartones_movimientos_cabeza = count($resultCar);
 				$_id_usuario_creador=$_SESSION['id_usuarios'];
 				$_id_usuario_solicita=$_id_usuario_creador;
@@ -375,8 +377,6 @@ class GenerarSolicitudController extends ControladorBase{
 							$_parametros_trazas = $_id_cartones;
 							$resulta = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 							
-							
-							
 							///borro de las solicitudes el carton
 							$where_del = "id_usuarios = '$_id_usuarios' AND id_cartones = '$_id_cartones'  ";
 							
@@ -385,7 +385,15 @@ class GenerarSolicitudController extends ControladorBase{
 							
 							///insertar la notificacion
 							
+							$notificaciones = new NotificacionesModel();
 							
+							$id_tipoNotificacion = $id_tipo_notificacion;
+							$usuarioDestino=$id_usuario_destino;
+							$descripcion="Solicitud creada por ";
+							$tipo_movimiento=0;
+							$cantidad_cartones=$_cantidad_cartones_movimientos_cabeza;
+							
+							$notificaciones->CrearNotificacion($id_tipoNotificacion, $usuarioDestino, $descripcion, $tipo_movimiento, $cantidad_cartones);
 							
 							
 							
