@@ -400,10 +400,6 @@ class GenerarSolicitudController extends ControladorBase{
 						
 							
 							
-							// enviar mail 
-							
-							
-							
 							
 								
 						} catch (Exception $e)
@@ -415,6 +411,8 @@ class GenerarSolicitudController extends ControladorBase{
 						}
 							
 					}
+					
+					
 					
 				} 
 				catch (Exception $e) 
