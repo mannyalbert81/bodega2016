@@ -67,25 +67,12 @@
 	$(document).ready(function(){
 	
 		$("#div_seleccionados").fadeOut("slow");
+		$("#seleccionados").fadeOut("slow");
 		
 	});
 	</script>
 
-    <script>
-    $(document).ready(function(){
-        $("#marcar_todo").change(function () {
-            if ($(this).is(':checked')) {
-               
-                $(".marcados").prop('checked', true); 
-            } else {
-                
-                $("input:checkbox").prop('checked', false);
-                $("input[type=checkbox]").prop('checked', false);
-            }
-        });
-        });
-    </script>
-
+    
   <style>
    
        .fila{
@@ -98,6 +85,7 @@
        
      </style>
     
+   
     <script>
 		function contador (campo, cuentacampo, limite) {
 		if (campo.value.length > limite) campo.value = campo.value.substring(0, limite);
@@ -256,19 +244,28 @@
       
     
     </div>
-  
+  <form class="navbar-form navbar-right" role="search" action="<?php echo $helper->url("GenerarSolicitud","InsertaGenerarSolicitud");?>"  method="post" >
+	
 	<div class="col-xs-12 col-md-12" >
 			  	<p  class="formulario-subtitulo" >Observaciones </p>
 	          	<textarea  class="form-control" id="observaciones" name="observaciones" wrap="physical" rows="3"  onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
 	          	<p  class="formulario-subtitulo" >Te quedan <input type="text" name="remLen" size="2" maxlength="2" value="400" readonly="readonly"> letras por escribir. </p>
 	        		   
-   </div>
+    </div>
    
-   <div class="col-xs-12 col-md-12" >
-   <div style="margin-top:10px ; text-align: center; " >
-     <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("GenerarSolicitud","InsertaGenerarSolicitud"); ?>'" value="Guardar" class="btn btn-success"/>
-           	 	</div>
-	 </div>
+  
+  
+    <div class="col-xs-12 col-md-12">
+	<div style="margin-top:10px ; text-align: center; " >
+			  
+     <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+     </div>
+       </div>    	 		
+       
+   </form>
+  
+           	 	
+	
    </div>
    </div>
   </body>  

@@ -290,6 +290,8 @@ class GenerarSolicitudController extends ControladorBase{
 		$operaciones = new TipoOperacionesModel();
 		$movimientos_cabeza = new MovimientosCabezaModel();
 		$movimientos_detalle = new MovimientosDetalleModel();
+		$cartones_solicitud = new CartonesSolicitudesModel();
+		
 		$cartones = new CartonesModel();
 		
 		
@@ -307,16 +309,26 @@ class GenerarSolicitudController extends ControladorBase{
 			if (isset ($_POST["Guardar"])   )
 			{
 				
-				$_array_numero_cartones = $_POST['div_seleccionados'];
+				$this->view("Error",array(
+						"resultado"=>"Entre"
+				
+				));
+				
+				
+				$_id_usuarios = $_SESSION['id_usuarios'];
+				$where =  " id_usuarios = '$_id_usuarios' ";
+				$resultCar =  $cartones_solicitud->getBy($where);
 				
 				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE '%SOLICITUD%' ");
 				
 				$_id_tipo_operaciones=$resultOperaciones[0]->id_tipo_operaciones;
 				$_numero_movimientos=$resultOperaciones[0]->consecutivo;
-				$_cantidad_cartones_movimientos_cabeza = $_POST['count($resultSol)'];
+				$_cantidad_cartones_movimientos_cabeza = count($resultCar);
 				$_id_usuario_creador=$_SESSION['id_usuarios'];
 				$_id_usuario_solicita=$_id_usuario_creador;
 				$_observaciones_movimientos_cabeza = $_POST['observaciones'];
+				
+				
 				
 				
 				///PRIMERO INSERTAMOS LA CABEZA DEL MOVIMIENTO
@@ -333,13 +345,15 @@ class GenerarSolicitudController extends ControladorBase{
 					
 
 					///INSERTAMOS DETALLE  DEL MOVIMIENTO
-					foreach($_array_numero_cartones as $id  )
+					
+					foreach($resultCar as $res) 
 					{
-							
+						
 						//busco si existe este nuevo id
 						try
 						{
-							$_id_cartones = $id;
+							$_id_cartones = $res->id_cartones;
+								
 							$funcion = "ins_movimientos_detalle";
 							$parametros = "'$_numero_movimientos','$_id_tipo_operaciones', '$_id_cartones' ";
 							$movimientos_detalle->setFuncion($funcion);
@@ -360,7 +374,21 @@ class GenerarSolicitudController extends ControladorBase{
 							$_accion_trazas  = "Guardar";
 							$_parametros_trazas = $_id_cartones;
 							$resulta = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-								
+							
+							
+							
+							///borro de las solicitudes el carton
+							$where_del = "id_usuarios = '$_id_usuarios' AND id_cartones = '$_id_cartones'  ";
+							
+							$cartones_solicitud->deleteByWhere($where_del);
+							
+							
+							///insertar la notificacion
+							
+							
+							
+							
+							
 								
 						} catch (Exception $e)
 						{
@@ -383,7 +411,7 @@ class GenerarSolicitudController extends ControladorBase{
 				
 				
 				
-				$this->redirect("GenerarSolicitud", "index");
+				///$this->redirect("GenerarSolicitud", "index");
 				
 			}
 			
