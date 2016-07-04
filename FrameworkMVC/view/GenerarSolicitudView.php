@@ -141,7 +141,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
 		    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
 		      		<button id="visualizar_seleccionados" class="btn btn-default" type="button" style="margin-top: 10px;">
-					  Cartones Seleccionados <span class="badge"><?php echo count($resultSol); ?></span>
+					  Ver Seleccionados <span class="badge"><?php echo count($resultSol); ?></span>
 					</button>
 		      	
 		      	
