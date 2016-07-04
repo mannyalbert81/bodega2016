@@ -137,8 +137,9 @@ $(document).ready(function(){
 		<div class="" style="float: left;">
 
             <form action="<?php echo $helper->url("",""); ?>" method="post" >
-            <?php $cantidad=$_SESSION['cantidad_notificaciones'];
-            	  $resultNotificaciones=$_SESSION['resultNotificaciones'];
+            <?php 
+            $cantidad=$_SESSION['cantidad_notificaciones'];
+            $resultNotificaciones=$_SESSION['resultNotificaciones'];
             ?>
             
 			<div class="dropdown" id="">
