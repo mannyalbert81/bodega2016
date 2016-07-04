@@ -283,6 +283,9 @@ class GenerarSolicitudController extends ControladorBase{
 							$resultConsecutivo=$operaciones->UpdateBy("consecutivo=consecutivo+1", "tipo_operaciones", "id_tipo_operaciones='$id_tipo_operacion'");
 							
 							
+							
+							
+							
 										
 						} catch (Exception $e) 
 						{
