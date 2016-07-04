@@ -209,11 +209,11 @@
 			  	<p  class="formulario-subtitulo" >Observaciones </p>
 	          	<textarea  class="form-control" id="observaciones" name="observaciones" wrap="physical" rows="8"  onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
 	          	<p  class="formulario-subtitulo" >Te quedan <input type="text" name="remLen" size="2" maxlength="2" value="400" readonly="readonly"> letras por escribir. </p>
-	        		   
-		     </div>
+	        </div>
+	        
 		    <div class="col-xs-2 col-md-2">
-           		
-           	 </div>
+           	</div>
+           	
 		     <div class="col-xs-3 col-md-3" style="margin-top:20px">
 			 	 <p  class="formulario-subtitulo" > Total Cartones: </p>
 			 	 <input type="text" id="total_cartones" name="total_cartones" class="form-control" readonly="readonly">

@@ -314,6 +314,7 @@ class GenerarSolicitudController extends ControladorBase{
 
 			if (isset ($_POST["Guardar"])   )
 			{
+
 				
 				
 				$_id_usuarios = $_SESSION['id_usuarios'];
