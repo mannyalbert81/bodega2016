@@ -36,10 +36,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Procesos" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-        	  <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
-            </li>
-          	<li><a href="index.php?controller=Clientes&action=ImportacionClientes"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"> Importacion Clientes</span> </a>
-            </li>
+        	
             <li><a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entidades</span> </a>
 			</li> 
 			<li><a href="index.php?controller=AsignarUsuarioBodega&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Asignar Usuario Bodega</span> </a>
