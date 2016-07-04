@@ -444,13 +444,27 @@ class EntidadBase{
     	$resultadoT=$notificaciones->Insert();
     }
     
-    public function VerNotificaciones($id_usuario)
+    public function MostrarNotificaciones($id_usuario)
     {
-    	session_start();
-    	 
-    	$_SESSION["cantidad_notificaciones"]=$id_usuario;
+    	//session_start();
     	
-    	 
+    	$notificaciones= new NotificacionesModel();
+    	
+   		$resultNotificaciones=$notificaciones->getBy("usuario_destino_notificaciones='$id_usuario'");
+   		
+   		$cantidad_notificaciones=count($resultNotificaciones);
+   		
+   		
+    	if($cantidad_notificaciones<0)
+    	{
+    		$cantidad_notificaciones=0;
+    		$resultNotificaciones=array();
+    	}
+    	
+    	$_SESSION["cantidad_notificaciones"]=$cantidad_notificaciones;
+    	$_SESSION["resultNotificaciones"]=$resultNotificaciones;
+    	
+    
     	 
     }
     
