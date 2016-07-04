@@ -136,8 +136,20 @@ $(document).ready(function(){
 			<!-- empieza notificacion -->
 		<div class="" style="float: left;">
 
-            <form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
-			<div class="dropdown" id="div_head">
+            <form action="<?php echo $helper->url("",""); ?>" method="post" >
+            <?php $cantidad=$_SESSION['cantidad_notificaciones'];
+            	  $resultNotificaciones=$_SESSION['resultNotificaciones'];
+            ?>
+            
+			<div class="dropdown" id="">
+			<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge"><?php echo $cantidad; ?></span></button>
+			<?php if($cantidad>0){ ?>
+			<ul class="dropdown-menu" id="ul_notificacion">
+			<?php foreach ($resultNotificaciones as $res){?>
+			<li><a href=""><?php echo $res->descripcion_notificaciones; ?></a></li>			
+			<?php }?>
+			</ul>
+			<?php }?>
 			</div>
 			</form>
 		</div>

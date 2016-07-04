@@ -350,7 +350,7 @@ public function index(){
     			
     			///registro sesion
     			$usuarios->registrarSesion($id_usuario, $usuario_usuario, $id_rol, $nombre_usuario, $correo_usuario, $ip_usuario);
-    			
+    			$usuarios->MostrarNotificaciones(1);
     			//inserto en la tabla
     			$_id_usuario = $_SESSION['id_usuarios'];
     			$_ip_usuario = $_SESSION['ip_usuarios'];
