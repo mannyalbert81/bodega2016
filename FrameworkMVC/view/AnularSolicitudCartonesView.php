@@ -68,10 +68,8 @@
        
        <?php
        
-       $sel_id_entidades = "";
-       $sel_id_tipo_operaciones="";
-       $sel_id_usuarios="";
-       $sel_numero_cartones="";
+       $sel_id_usuarios = "";
+       $sel_numero_movimientos_cabeza="";
        $sel_fecha_desde="";
        $sel_fecha_hasta="";
         
@@ -79,10 +77,8 @@
        {
        	
        	
-       	$sel_id_entidades = $_POST['id_entidades'];
-       	$sel_id_tipo_operaciones=$_POST['id_tipo_operaciones'];
-       	$sel_id_usuarios=$_POST['id_usuarios'];
-       	$sel_numero_cartones=$_POST['numero_cartones'];
+       	$sel_id_usuarios = $_POST['id_usuarios'];
+       	$sel_numero_movimientos_cabeza=$_POST['numero_movimientos_cabeza'];
        	$sel_fecha_desde=$_POST['fecha_desde'];
        	$sel_fecha_hasta=$_POST['fecha_hasta'];
        
@@ -109,7 +105,7 @@
   			<div class="panel-body">
   			
   			<div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Usuarios:</p>
+			  	<p  class="formulario-subtitulo" style="" >Solicita:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
 			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
 					<?php foreach($resultUsu as $res) {?>
@@ -117,32 +113,11 @@
 			            <?php } ?>
 				</select>
 		 </div>
-		   			
-          <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Entidad:</p>
-			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
-			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultEnt as $res) {?>
-						<option value="<?php echo $res->id_entidades; ?>"<?php if($sel_id_entidades==$res->id_entidades){echo "selected";}?>><?php echo $res->nombre_entidades;  ?> </option>
-			            <?php } ?>
-				</select>
-		 </div>
 		 
-		 <div class="col-xs-2 ">
-			    <p  class="formulario-subtitulo" style="" >Tipo Operación:</p>
-			  	<select name="id_tipo_operaciones" id="id_tipo_operaciones"  class="form-control" >
-			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultTipoOpe as $res) {?>
-						<option value="<?php echo $res->id_tipo_operaciones; ?>" <?php if($sel_id_tipo_operaciones==$res->id_tipo_operaciones){echo "selected";}?>><?php echo $res->nombre_tipo_operaciones;  ?> </option>
-			            <?php } ?>
-				</select>	
-
-         </div>
 		 
-		
           <div class="col-xs-2 ">
-			  	<p  class="formulario-subtitulo" >Nº Carton</p>
-			  	<input type="text"  name="numero_cartones" id="numero_cartones" value="<?php echo $sel_numero_cartones;?>" class="form-control"/> 
+			  	<p  class="formulario-subtitulo" >Nº Movimiento:</p>
+			  	<input type="text"  name="numero_movimientos_cabeza" id="numero_movimientos_cabeza" value="<?php echo $sel_numero_movimientos_cabeza;?>" class="form-control"/> 
 			    <div id="mensaje_numero_titulo" class="errores"></div>
 
          </div>
@@ -187,18 +162,13 @@
 	         <tr >
 	            
 	    		<th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Usuario</th>
-	    		<th style="color:#456789;font-size:80%;">Numero</th>
-	    		<th style="color:#456789;font-size:80%;">Serie</th>
-	    		<th style="color:#456789;font-size:80%;">Contenido</th>
-	    		<th style="color:#456789;font-size:80%;">Años</th>
-	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
-	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Tipo Operacion</th>
+	    		<th style="color:#456789;font-size:80%;">Numero Movimientos</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo Operación</th>
+	    		<th style="color:#456789;font-size:80%;">Solicita</th>
+	    		<th style="color:#456789;font-size:80%;">Observación</th>
+	    		<th style="color:#456789;font-size:80%;">Cantidad de Cartones</th>
 	    		<th style="color:#456789;font-size:80%;">Fecha Solicitud</th>
+	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -206,24 +176,17 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones_solicitudes; ?></td>
-	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_operaciones; ?>  </td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
-	                   
-	                  
+	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_movimientos_cabeza; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_movimientos_cabeza; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_operaciones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->observaciones_movimientos; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_cartones_movimientos_cabeza; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
+		               
 	                   <td style="color:#000000;font-size:80%;">
 	                   <div class="right">
-			                    <a href="<?php echo $helper->url("AnularSolicitudCartones","borrarId"); ?>&id_cartones_solicitudes=<?php echo $res->id_cartones_solicitudes; ?>" class="btn btn-danger" style="font-size:65%;">Anular</a>
+			                    <a href="<?php echo $helper->url("AnularSolicitudCartones","borrarId"); ?>&id_movimientos_cabeza=<?php echo $res->id_movimientos_cabeza; ?>&numero_movimientos_cabeza=<?php echo $res->numero_movimientos_cabeza; ?>" class="btn btn-danger" style="font-size:65%;">Anular</a>
 			                </div>
 	                   
 		              </td> 

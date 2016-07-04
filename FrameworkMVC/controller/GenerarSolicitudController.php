@@ -309,10 +309,7 @@ class GenerarSolicitudController extends ControladorBase{
 			if (isset ($_POST["Guardar"])   )
 			{
 				
-				$this->view("Error",array(
-						"resultado"=>"Entre"
-				
-				));
+			
 				
 				
 				$_id_usuarios = $_SESSION['id_usuarios'];

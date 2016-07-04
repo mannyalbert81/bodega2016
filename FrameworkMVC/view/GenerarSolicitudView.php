@@ -241,11 +241,11 @@
 		</table>     
 		     
       </section>
-      
-    
-    </div>
-  <form class="navbar-form navbar-right" role="search" action="<?php echo $helper->url("GenerarSolicitud","InsertaGenerarSolicitud");?>"  method="post" >
+     </div>
+  
+   <form action="<?php echo $helper->url("GenerarSolicitud","InsertaGenerarSolicitud");?>"  method="post" enctype="multipart/form-data"  class="col-lg-12">
 	
+	 <div class="row">
 	<div class="col-xs-12 col-md-12" >
 			  	<p  class="formulario-subtitulo" >Observaciones </p>
 	          	<textarea  class="form-control" id="observaciones" name="observaciones" wrap="physical" rows="3"  onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
@@ -261,12 +261,11 @@
      <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
      </div>
        </div>    	 		
-       
+       </div>
    </form>
   
-           	 	
-	
+  
    </div>
-   </div>
+  </div>
   </body>  
 </html>   
