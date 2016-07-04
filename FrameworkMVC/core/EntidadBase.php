@@ -444,6 +444,15 @@ class EntidadBase{
     	$resultadoT=$notificaciones->Insert();
     }
     
+    public function VerNotificaciones($id_usuario)
+    {
+    	session_start();
+    	 
+    	$_SESSION["cantidad_notificaciones"]=$id_usuario;
+    	
+    	 
+    	 
+    }
     
         
 }
