@@ -117,7 +117,8 @@
             </li>
 			  <li><a href="/FrameworkMVC/view/ireports/ContSolicitudesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Solicitud de Cartones</span> </a>
             </li>
-			
+			  <li><a href="/FrameworkMVC/view/ireports/ContAnularReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Anulacion de Cartones</span> </a>
+            </li>
 </ul>
 </li>
      	
