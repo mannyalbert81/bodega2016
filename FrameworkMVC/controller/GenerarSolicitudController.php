@@ -397,6 +397,13 @@ class GenerarSolicitudController extends ControladorBase{
 							$notificaciones->CrearNotificacion($id_tipoNotificacion, $usuarioDestino, $descripcion, $tipo_movimiento, $cantidad_cartones);
 							
 							
+						
+							
+							
+							// enviar mail 
+							
+							
+							
 							
 								
 						} catch (Exception $e)
@@ -418,10 +425,7 @@ class GenerarSolicitudController extends ControladorBase{
 				}
 				
 				
-				
-				
-				///$this->redirect("GenerarSolicitud", "index");
-				
+				$this->redirect("GenerarSolicitud","index")	;			
 			}
 			
 
@@ -442,6 +446,8 @@ class GenerarSolicitudController extends ControladorBase{
 		
 		
 	}
+	
+	
 	
 	public function AutocompleteMovimientos(){
 		
