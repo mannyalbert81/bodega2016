@@ -136,7 +136,7 @@ $(document).ready(function(){
 			<!-- empieza notificacion -->
 		<div class="" style="float: left;">
 
-            <form action="<?php echo $helper->url("",""); ?>" method="post" >
+            <form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
             <?php 
             $cantidad=$_SESSION['cantidad_notificaciones'];
             $resultNotificaciones=$_SESSION['resultNotificaciones'];
@@ -147,7 +147,11 @@ $(document).ready(function(){
 			<?php if($cantidad>0){ ?>
 			<ul class="dropdown-menu" id="ul_notificacion">
 			<?php foreach ($resultNotificaciones as $res){?>
-			<li><a href=""><?php echo $res->descripcion_notificaciones; ?></a></li>			
+			<?php $fecha= new DateTime($res->creado);?>
+			<li>
+			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>">
+			<?php echo $res->descripcion_notificaciones; echo ' '.$res->usuario_usuarios; echo '<br>'; echo $fecha->format('Y-m-d'); echo ' Cant cartones ('.$res->cantidad_cartones_notificaciones.')';?>
+			</a></li>			
 			<?php }?>
 			</ul>
 			<?php }?>
