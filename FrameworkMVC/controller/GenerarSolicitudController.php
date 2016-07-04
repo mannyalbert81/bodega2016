@@ -307,13 +307,13 @@ class GenerarSolicitudController extends ControladorBase{
 			if (isset ($_POST["Guardar"])   )
 			{
 				
-				$_array_numero_cartones = $_POST['destino'];
+				$_array_numero_cartones = $_POST['div_seleccionados'];
 				
-				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE '%ENTRADAS%' ");
+				$resultOperaciones = $operaciones->getBy("nombre_tipo_operaciones LIKE '%SOLICITUD%' ");
 				
 				$_id_tipo_operaciones=$resultOperaciones[0]->id_tipo_operaciones;
 				$_numero_movimientos=$resultOperaciones[0]->consecutivo;
-				$_cantidad_cartones_movimientos_cabeza = $_POST['total_cartones'];
+				$_cantidad_cartones_movimientos_cabeza = $_POST['count($resultSol)'];
 				$_id_usuario_creador=$_SESSION['id_usuarios'];
 				$_id_usuario_solicita=$_id_usuario_creador;
 				$_observaciones_movimientos_cabeza = $_POST['observaciones'];
