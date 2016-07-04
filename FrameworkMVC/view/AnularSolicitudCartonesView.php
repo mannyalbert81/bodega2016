@@ -186,7 +186,7 @@
 		               
 	                   <td style="color:#000000;font-size:80%;">
 	                   <div class="right">
-			                    <a href="<?php echo $helper->url("AnularSolicitudCartones","borrarId"); ?>&id_movimientos_cabeza=<?php echo $res->id_movimientos_cabeza; ?>&numero_movimientos_cabeza=<?php echo $res->numero_movimientos_cabeza; ?>" class="btn btn-danger" style="font-size:65%;">Anular</a>
+			                    <a href="<?php echo $helper->url("AnularSolicitudCartones","borrarId"); ?>&id_movimientos_cabeza=<?php echo $res->id_movimientos_cabeza; ?>&numero_movimientos_cabeza=<?php echo $res->numero_movimientos_cabeza; ?>" class="btn btn-danger" style="font-size:75%;">Anular</a>
 			                </div>
 	                   
 		              </td> 
