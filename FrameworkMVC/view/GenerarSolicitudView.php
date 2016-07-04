@@ -67,25 +67,12 @@
 	$(document).ready(function(){
 	
 		$("#div_seleccionados").fadeOut("slow");
+		$("#seleccionados").fadeOut("slow");
 		
 	});
 	</script>
 
-    <script>
-    $(document).ready(function(){
-        $("#marcar_todo").change(function () {
-            if ($(this).is(':checked')) {
-               
-                $(".marcados").prop('checked', true); 
-            } else {
-                
-                $("input:checkbox").prop('checked', false);
-                $("input[type=checkbox]").prop('checked', false);
-            }
-        });
-        });
-    </script>
-
+    
   <style>
    
        .fila{
@@ -98,7 +85,13 @@
        
      </style>
     
-    
+   
+    <script>
+		function contador (campo, cuentacampo, limite) {
+		if (campo.value.length > limite) campo.value = campo.value.substring(0, limite);
+		else cuentacampo.value = limite - campo.value.length;
+		} 
+    </script>
    
    
     
@@ -141,21 +134,22 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
 		    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
 		      		<button id="visualizar_seleccionados" class="btn btn-default" type="button" style="margin-top: 10px;">
-					  Cartones Seleccionados <span class="badge"><?php echo count($resultSol); ?></span>
+					  Ver Seleccionados <span class="badge"><?php echo count($resultSol); ?></span>
 					</button>
 		      	
 		      	
-		      		<form class="navbar-form navbar-right" role="search" action="<?php echo $helper->url("Documentos","Buscador");?>"  method="post" >
+		      		<form class="navbar-form navbar-right" role="search" action="<?php echo $helper->url("GenerarSolicitud","index");?>"  method="post" >
 		  		   	<div class="form-group">
 		          		<input type="text" class="form-control" name="contenido_busqueda" id="criterio_busqueda" placeholder="texto a buscar">
 		          		<select id="criterio_busqueda" name="criterio_busqueda" class="form-control">
+							<option value="0"  >--Seleccione--</option>
 							<option value="1"  >Numero de Carton</option>
 							<option value="2"  >Serie de Documental</option>
 							<option value="3"  >Número Carton</option>
 							<option value="4"  >Años</option>
 							<option value="6"  >Contenido</option>
 						</select>
-				   		<button type="submit"  name="btn_buscar" class="btn btn-default"><span class="glyphicon glyphicon-search	" ><?php echo " Buscar" ;?> </span></button>					   		
+				   		<button type="submit" id="buscar" name="buscar" class="btn btn-default"><span class="glyphicon glyphicon-search	" ><?php echo " Buscar" ;?> </span></button>					   		
 		        	</div>
 		        
 		      		</form>
@@ -172,8 +166,7 @@
         <table  class="table table-hover" >
 	         <tr  class="fila">
 	        	<th style="color:#456789;font-size:80%;"></th>
-	        	
-	    		<th style="color:#456789;font-size:80%;">Numero de Carton</th>
+	        	<th style="color:#456789;font-size:80%;">Numero de Carton</th>
 	    		<th style="color:#456789;font-size:80%;">Serie de Documental</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
 	    		<th style="color:#456789;font-size:80%;">Años</th>
@@ -214,7 +207,7 @@
         <section   class="col-xs-12 col-md-12" class="table table-hover "  style="height:300px; overflow-y:scroll;     ">
         <table  class="table table-hover" >
 	         <tr  class="fila">
-	        	<th style="color:#456789;font-size:80%;"></th>
+	       
 	        	<th style="color:#456789;font-size:80%;"></th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Carton</th>
 	    		<th style="color:#456789;font-size:80%;">Serie de Documental</th>
@@ -248,12 +241,31 @@
 		</table>     
 		     
       </section>
-      
-    
-    </div>
+     </div>
   
+   <form action="<?php echo $helper->url("GenerarSolicitud","InsertaGenerarSolicitud");?>"  method="post" enctype="multipart/form-data"  class="col-lg-12">
 	
+	 <div class="row">
+	<div class="col-xs-12 col-md-12" >
+			  	<p  class="formulario-subtitulo" >Observaciones </p>
+	          	<textarea  class="form-control" id="observaciones" name="observaciones" wrap="physical" rows="3"  onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
+	          	<p  class="formulario-subtitulo" >Te quedan <input type="text" name="remLen" size="2" maxlength="2" value="400" readonly="readonly"> letras por escribir. </p>
+	        		   
+    </div>
+   
+  
+  
+    <div class="col-xs-12 col-md-12">
+	<div style="margin-top:10px ; text-align: center; " >
+			  
+     <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+     </div>
+       </div>    	 		
+       </div>
+   </form>
+  
+  
    </div>
-   </div>
+  </div>
   </body>  
 </html>   

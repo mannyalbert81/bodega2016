@@ -13,16 +13,10 @@ class AnularSolicitudCartonesController extends ControladorBase{
     	//Creamos el objeto usuario
     	$resultSet="";
     	
-    	$usuarios= new UsuariosModel();
-    	$resultUsu = $usuarios->getAll("nombre_usuarios");
-    	
-    	$entidades = new EntidadesModel();
-    	$resultEnt = $entidades->getAll("nombre_entidades");
-    
-    	$tipo_operaciones = new TipoOperacionesModel();
-    	$resultTipoOpe = $tipo_operaciones->getAll("nombre_tipo_operaciones");
-    
-    	
+    	$usuarios = new UsuariosModel();
+		$resultUsu = $usuarios->getAll("nombre_usuarios");
+		
+		
     	$anular_cartones = new AnularSolicitudCartonesModel();
     
     
@@ -37,68 +31,50 @@ class AnularSolicitudCartonesController extends ControladorBase{
     		{
     				
     			if(isset($_POST["buscar"])){
+    				
     				$id_usuarios=$_POST['id_usuarios'];
-    				$id_entidades=$_POST['id_entidades'];
-    				$id_tipo_operaciones=$_POST['id_tipo_operaciones'];
-    				$numero_cartones=$_POST['numero_cartones'];
+    				$numero_movimientos_cabeza=$_POST['numero_movimientos_cabeza'];
     				$fechadesde=$_POST['fecha_desde'];
     				$fechahasta=$_POST['fecha_hasta'];
     					
-    			    	$anular_cartones = new AnularSolicitudCartonesModel();
+    			    $anular_cartones = new MovimientosCabezaModel();
     
     
+    			    	
+    				$columnas = "movimientos_cabeza.id_movimientos_cabeza, 
+								  movimientos_cabeza.numero_movimientos_cabeza, 
+								  tipo_operaciones.nombre_tipo_operaciones, 
+								  usuarios.nombre_usuarios, 
+								  movimientos_cabeza.observaciones_movimientos, 
+								  movimientos_cabeza.cantidad_cartones_movimientos_cabeza, 
+								  movimientos_cabeza.creado";
+								    
+    				$tablas="public.movimientos_cabeza, 
+							  public.tipo_operaciones, 
+							  public.usuarios";
     
-    				$columnas = "  cartones_solicitudes.id_cartones_solicitudes, 
-									  usuarios.nombre_usuarios, 
-									  cartones.numero_cartones, 
-									  cartones.serie_cartones, 
-									  cartones.contenido_cartones, 
-									  cartones.year_cartones, 
-									  cartones.cantidad_documentos_libros_cartones, 
-									  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
-									  cartones.digitalizado_cartones, 
-									  entidades.nombre_entidades, 
-									  cartones_solicitudes.creado, 
-									  bodegas.nombre_bodegas, 
-									  tipo_operaciones.nombre_tipo_operaciones";
-    
-    				$tablas="public.cartones_solicitudes, 
-							  public.usuarios, 
-							  public.cartones, 
-							  public.entidades, 
-							  public.tipo_contenido_cartones, 
-							  public.bodegas, 
-							  public.tipo_operaciones";
-    
-    				$where="usuarios.id_usuarios = cartones_solicitudes.id_usuarios AND
-							  cartones.id_cartones = cartones_solicitudes.id_cartones AND
-							  entidades.id_entidades = cartones.id_entidades AND
-							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND
-							  bodegas.id_bodegas = cartones.id_bodegas AND
-							  tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones";
-							    
-    				$id="cartones_solicitudes.id_cartones_solicitudes";
+    				$where="tipo_operaciones.id_tipo_operaciones = movimientos_cabeza.id_tipo_operaciones AND
+							  usuarios.id_usuarios = movimientos_cabeza.id_usuario_solicita AND tipo_operaciones.nombre_tipo_operaciones ='SOLICITUD'
+    						 AND movimientos_cabeza.estado_movimientos='TRUE'";
+														    
+					$id="movimientos_cabeza.id_movimientos_cabeza";
     
     
     				$where_0 = "";
-    				$where_1 = "";
-    				$where_2 = "";
-    				$where_3 = "";
-    				$where_4 = "";
-    				
-    
-    				if($id_usuarios!=0){$where_0=" AND usuarios.id_usuarios='$id_usuarios'";}
-    				
-    				if($id_entidades!=0){$where_1=" AND entidades.id_entidades='$id_entidades'";}
-    
-    				if($id_tipo_operaciones!=0){$where_2=" AND tipo_operaciones.id_tipo_operaciones='$id_tipo_operaciones'";}
-    
-    				if($numero_cartones!=""){$where_3=" AND cartones.numero_cartones='$numero_cartones'";}
-    
-    				if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  cartones.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
-    
-    
-    				$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4  ;
+					$where_1 = "";
+					$where_2 = "";
+					
+	
+	
+					if($id_usuarios!=0){$where_0=" AND usuarios.id_usuarios='$id_usuarios'";}
+	
+					if($numero_movimientos_cabeza!=""){$where_1=" AND movimientos_cabeza.numero_movimientos_cabeza='$numero_movimientos_cabeza'";}
+	
+					if($fechadesde!="" && $fechahasta!=""){$where_2=" AND  movimientos_cabeza.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+	
+	
+					$where_to  = $where . $where_0 . $where_1 . $where_2;
+	
     
     
     				$resultSet=$anular_cartones->getCondiciones($columnas ,$tablas , $where_to, $id);
@@ -110,8 +86,8 @@ class AnularSolicitudCartonesController extends ControladorBase{
     
     
     			$this->view("AnularSolicitudCartones",array(
-    					"resultSet"=>$resultSet, "resultEnt"=>$resultEnt, "resultTipoOpe"=>$resultTipoOpe,  "resultUsu"=>$resultUsu
-    						
+    					"resultSet"=>$resultSet, "resultUsu"=> $resultUsu
+							
     			));
     
     
@@ -120,7 +96,7 @@ class AnularSolicitudCartonesController extends ControladorBase{
     		else
     		{
     			$this->view("Error",array(
-    					"resultado"=>"No tiene Permisos de Acceso a Consulta Cartones"
+    					"resultado"=>"No tiene Permisos de Acceso A Anular Solicitud"
     
     			));
     
@@ -144,18 +120,18 @@ class AnularSolicitudCartonesController extends ControladorBase{
     	session_start();
     
     	//Creamos el objeto usuario
-    	$resultSet="";
-    	 
-    	$usuarios= new UsuariosModel();
-    	$resultUsu = $usuarios->getAll("nombre_usuarios");
-    	 
+    $resultSet="";
+    	
     	$entidades = new EntidadesModel();
-    	$resultEnt = $entidades->getAll("nombre_entidades");
+		$resultEnt = $entidades->getAll("nombre_entidades");
+		
+		$tipo_operaciones = new TipoOperacionesModel();
+		$resultTipoOpe = $tipo_operaciones->getAll("nombre_tipo_operaciones");
+		
+		$tipo_contenido_cartones = new TipoContenidoCartonesModel();
+		$resultTipoCont = $tipo_contenido_cartones->getAll("nombre_tipo_contenido_cartones");
     
-    	$tipo_operaciones = new TipoOperacionesModel();
-    	$resultTipoOpe = $tipo_operaciones->getAll("nombre_tipo_operaciones");
-    
-    	 
+    	
     	$anular_cartones = new AnularSolicitudCartonesModel();
     
     
@@ -168,70 +144,71 @@ class AnularSolicitudCartonesController extends ControladorBase{
     
     		if (!empty($resultPer))
     		{
-    
+    				
     			if(isset($_POST["buscar"])){
-    				$id_usuarios=$_POST['id_usuarios'];
+    				
     				$id_entidades=$_POST['id_entidades'];
     				$id_tipo_operaciones=$_POST['id_tipo_operaciones'];
+    				$id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
     				$numero_cartones=$_POST['numero_cartones'];
     				$fechadesde=$_POST['fecha_desde'];
     				$fechahasta=$_POST['fecha_hasta'];
     					
-    				$anular_cartones = new AnularSolicitudCartonesModel();
+    			    $anular_cartones = new MovimientosDetalleModel();
+    			   
     
+    			    	
+    				$columnas = " cartones.id_cartones, 
+								  movimientos_detalle.id_movimientos_detalle, 
+								  movimientos_detalle.numero_movimientos_detalle, 
+								  cartones.numero_cartones, 
+								  cartones.serie_cartones, 
+								  movimientos_detalle.creado, 
+								  cartones.contenido_cartones, 
+								  cartones.year_cartones, 
+								  cartones.cantidad_documentos_libros_cartones, 
+								  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
+								  cartones.digitalizado_cartones, 
+								  entidades.nombre_entidades, 
+								  bodegas.nombre_bodegas, 
+								  tipo_operaciones.nombre_tipo_operaciones";
     
+    				$tablas="public.movimientos_detalle, 
+							  public.cartones, 
+							  public.bodegas, 
+							  public.entidades, 
+							  public.tipo_operaciones, 
+							  public.tipo_contenido_cartones";
     
-    				$columnas = "  cartones_solicitudes.id_cartones_solicitudes,
-									  usuarios.nombre_usuarios,
-									  cartones.numero_cartones,
-									  cartones.serie_cartones,
-									  cartones.contenido_cartones,
-									  cartones.year_cartones,
-									  cartones.cantidad_documentos_libros_cartones,
-									  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
-									  cartones.digitalizado_cartones,
-									  entidades.nombre_entidades,
-									  cartones_solicitudes.creado,
-									  bodegas.nombre_bodegas,
-									  tipo_operaciones.nombre_tipo_operaciones";
-    
-    				$tablas="public.cartones_solicitudes,
-							  public.usuarios,
-							  public.cartones,
-							  public.entidades,
-							  public.tipo_contenido_cartones,
-							  public.bodegas,
-							  public.tipo_operaciones";
-    
-    				$where="usuarios.id_usuarios = cartones_solicitudes.id_usuarios AND
-							  cartones.id_cartones = cartones_solicitudes.id_cartones AND
-							  entidades.id_entidades = cartones.id_entidades AND
-							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND
+    				$where="movimientos_detalle.id_cartones = cartones.id_cartones AND
 							  bodegas.id_bodegas = cartones.id_bodegas AND
-							  tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones";
-    					
-    				$id="cartones_solicitudes.id_cartones_solicitudes";
+							  entidades.id_entidades = cartones.id_entidades AND
+							  tipo_operaciones.id_tipo_operaciones = movimientos_detalle.id_tipo_operaciones AND
+							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND tipo_operaciones.nombre_tipo_operaciones='SOLICITUD'";
+														    
+					$id="cartones.id_cartones";
     
     
     				$where_0 = "";
-    				$where_1 = "";
-    				$where_2 = "";
-    				$where_3 = "";
-    				$where_4 = "";
-    
-    
-    				if($id_usuarios!=0){$where_0=" AND usuarios.id_usuarios='$id_usuarios'";}
-    
-    				if($id_entidades!=0){$where_1=" AND entidades.id_entidades='$id_entidades'";}
-    
-    				if($id_tipo_operaciones!=0){$where_2=" AND tipo_operaciones.id_tipo_operaciones='$id_tipo_operaciones'";}
-    
-    				if($numero_cartones!=""){$where_3=" AND cartones.numero_cartones='$numero_cartones'";}
-    
-    				if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  cartones.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
-    
-    
-    				$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4  ;
+					$where_1 = "";
+					$where_2 = "";
+					$where_3 = "";
+					$where_4 = "";
+	
+	
+					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
+	
+					if($id_tipo_operaciones!=0){$where_1=" AND tipo_operaciones.id_tipo_operaciones='$id_tipo_operaciones'";}
+	
+					if($id_tipo_contenido_cartones!=0){$where_2=" AND tipo_contenido_cartones.id_tipo_contenido_cartones='$id_tipo_contenido_cartones'";}
+	
+					if($numero_cartones!=""){$where_3=" AND cartones.numero_cartones='$numero_cartones'";}
+	
+					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  cartones.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+	
+	
+					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
+	
     
     
     				$resultSet=$anular_cartones->getCondiciones($columnas ,$tablas , $where_to, $id);
@@ -272,45 +249,58 @@ class AnularSolicitudCartonesController extends ControladorBase{
     
     }
     
-	public function borrarId()
-	{
-		
-		session_start();
-		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "Cartones";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-			
-		if (!empty($resultPer))
-		{
-		
-		if(isset($_GET["id_cartones_solicitudes"]))
-		{
-			$id_cartones_solicitudes=(int)$_GET["id_cartones_solicitudes"];
+    public function borrarId()
+    {
+    
+    	session_start();
+    	$permisos_rol=new PermisosRolesModel();
+    	$nombre_controladores = "AnularSolicitudCartones";
+    	$id_rol= $_SESSION['id_rol'];
+    	$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+    		
+    	if (!empty($resultPer))
+    	{
+    		
+    	if(isset($_GET["id_movimientos_cabeza"]))
+    	{
+    		
+    		$anular_solicitud=new MovimientosCabezaModel();
+    		
+    		$_id_movimientos_cabeza = $_GET["id_movimientos_cabeza"];
+    		
+    		$colval = " estado_movimientos = 'FALSE'";
+    		$tabla = "movimientos_cabeza";
+    		$where = "id_movimientos_cabeza = '$_id_movimientos_cabeza' ";
+    		$resultado=$anular_solicitud->UpdateBy($colval, $tabla, $where);
+    
+    		
+    		//ELIMINA CARTONES DEL DETALLE
+    		$eliminar=new MovimientosDetalleModel();
+    		$_numero_cabeza =  $_GET["numero_movimientos_cabeza"];
+    		$where_del = "numero_movimientos_detalle = '$_numero_cabeza'";
+    		$eliminar->deleteByWhere($where_del);
+    		
+    		
+    	}
+    	
+    	
+    	$this->redirect("AnularSolicitudCartones", "anula_solicitud_cartones");
+    	}
+    	
+    	else
+    	{
+    		$this->view("Error",array(
+    				"resultado"=>"No tiene Permisos de Anular"
+    
+    		));
+    	}
+    
+    }
 	
-			$anular_cartones = new AnularSolicitudCartonesModel();;
-				
-			$anular_cartones ->deleteBy(" id_cartones_solicitudes",$id_cartones_solicitudes);
-		
-			$traza=new TrazasModel();
-			$_nombre_controlador = "AnularSolicitudCartones";
-			$_accion_trazas  = "Borrar";
-			$_parametros_trazas = $id_cartones_solicitudes;
-			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-				
-		}
 	
-		$this->redirect("AnularSolicitudCartones", "consulta_cartones");
-	}
-	else
-	{
-		$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Anular Solicitud Cartones"
-		
-		));
-	}
 	
-	}
+	
+	
 	
 }
 ?>

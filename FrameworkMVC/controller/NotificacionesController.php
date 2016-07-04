@@ -248,6 +248,7 @@ class NotificacionesController extends ControladorBase{
 		return $result_notificaciones;
 	}
 	
+	
 	function actualizaNotificaciones(){
 		
 		session_start();
