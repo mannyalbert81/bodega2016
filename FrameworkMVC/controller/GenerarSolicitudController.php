@@ -425,7 +425,10 @@ class GenerarSolicitudController extends ControladorBase{
 				}
 				
 				
-				$this->redirect("GenerarSolicitud","index")	;			
+				
+				
+				$this->redirect("GenerarSolicitud","index")	;	
+				//$this->ireport("ContClientes");
 			}
 			
 
@@ -447,7 +450,20 @@ class GenerarSolicitudController extends ControladorBase{
 		
 	}
 	
-	
+	public function Reporte(){
+		
+		
+		session_start();
+		
+		$id_clientes=$_GET['id_clientes'];
+		echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=".$id_clientes."' target='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
+		//echo "<a href='tuArchivo.php?variablePorURL=".$variablePorURL."' target='tuArchivo' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\"> Contrato </a>";
+		
+		$this->ireport("ContClientes");
+		
+		
+		
+	}
 	
 	public function AutocompleteMovimientos(){
 		

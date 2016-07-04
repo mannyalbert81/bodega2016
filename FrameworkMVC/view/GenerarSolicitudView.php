@@ -259,7 +259,7 @@
     <div class="col-xs-12 col-md-12">
 	<div style="margin-top:10px ; text-align: center; " >
 			  
-     <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("GenerarSolicitud","index"); ?>'" value="Guardar" class="btn btn-success"/>
+     <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
             </div>
        </div>    	 		
        </div>
