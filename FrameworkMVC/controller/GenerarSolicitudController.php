@@ -409,6 +409,23 @@ class GenerarSolicitudController extends ControladorBase{
 					
 					
 					
+					// enviar mail
+					//$para  = 'desarrollo@masoft.net' . ', '; // atención a la coma
+					//$para .= 'manuel@masoft.net';
+					   
+					
+					$para = "manuel@masoft.net" .","."desarrollo@masoft.net" ;
+					$titulo = "";
+					$columnas = "  cartones.numero_cartones, cartones.serie_cartones, cartones.contenido_cartones, cartones.year_cartones, cartones.cantidad_documentos_libros_cartones, cartones.digitalizado_cartones,   movimientos_detalle.numero_movimientos_detalle,   movimientos_detalle.id_tipo_operaciones";
+					$tablas   = "public.cartones, public.movimientos_detalle";
+					$where    = " movimientos_detalle.id_cartones = cartones.id_cartones AND movimientos_detalle.numero_movimientos_detalle = '$_numero_movimientos' AND movimientos_detalle.id_tipo_operaciones = '$_id_tipo_operaciones' ";
+					$id       = "cartones.numero_cartones";
+					$listaCartones = $cartones_solicitud->getCondiciones($columnas, $tablas, $where, $id);
+					$cartones_solicitud->SendMail($para, $titulo, $listaCartones);
+					
+					
+					
+					
 				} 
 				catch (Exception $e) 
 				{
@@ -417,8 +434,12 @@ class GenerarSolicitudController extends ControladorBase{
 		
 				}
 				
-				
-				
+				/*	
+				$this->view("Error",array(
+						"resultado"=>"Enciado"
+			
+				));
+				*/
 				
 				$this->redirect("GenerarSolicitud","index")	;	
 				//$this->ireport("ContClientes");

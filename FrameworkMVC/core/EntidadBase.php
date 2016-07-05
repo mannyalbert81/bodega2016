@@ -262,16 +262,20 @@ class EntidadBase{
     public  function  SendMail($para, $titulo, $listaCartones)
     {
     	// Varios destinatarios
+
     	$para  = 'desarrollo@masoft.net' . ', '; // atención a la coma
-    	$para .= 'manuel@masoft.net';
-    	
+    	$para .= 'steven@masoft.net';
+
+    	//$para  = 'desarrollo@masoft.net' . ', '; // atención a la coma
+    	//$para .= 'manuel@masoft.net';
+
     	
     	// título
     	$título = 'Cartones Bodega';
     	
     	// mensaje
     	$mensaje_cabeza = '
-				<html>
+				<html	>
 				<head>
 				  <title>Cartones Registrados en Coopseguros</title>
 				</head>
@@ -280,14 +284,17 @@ class EntidadBase{
 				  <table>
 				    <tr>
 				      <th>Número Carton</th>
+    				 <th>Serie Carton</th>	 
 				    </tr>';
     	
     	$mensaje_detalle = "";
-    		for ($i=0;$i<count($listaCartones);$i++)
-			
-              {
-	    		  $mensaje_detalle .=  '<tr> <td>'. $listaCartones[$i] .'   </td></tr>' ;
-              }
+    	foreach($listaCartones as $res)
+    	{
+    		$mensaje_detalle .=  '<tr> <td>'. $res->numero_cartones .'   </td></tr>' ;
+    		$mensaje_detalle .=  '<tr> <td>'. $res->serie_cartones_cartones .'   </td></tr>' ;
+    	
+    	}
+    		
 				  
 		$mensaje_pie =  '</table>
 				</body>
@@ -418,15 +425,7 @@ class EntidadBase{
     	}
     }
     
-    function verNotificaciones(){
-    	//session_start();
-    	$id_usuario=$_SESSION['id_usuarios'];
-    	$notificaciones=new NotificacionesModel();
-    	$where_notificacion = " id_usuarios = '$id_usuario' AND visto_notificaciones=false";
-    	$result_notificaciones=$notificaciones->getBy($where_notificacion);
-    	
-    	return $result_notificaciones;
-    }
+   
     
 	
     public  function CrearNotificacion($id_tipoNotificacion,$usuarioDestino,$descripcion,$id_movimiento,$cantidad_cartones)
@@ -453,7 +452,29 @@ class EntidadBase{
     	
     	$notificaciones= new NotificacionesModel();
     	
-   		$resultNotificaciones=$notificaciones->getBy("usuario_destino_notificaciones='$id_usuario'");
+    	$columnas=" notificaciones.id_notificaciones, 
+			  notificaciones.descripcion_notificaciones, 
+			  notificaciones.usuario_destino_notificaciones, 
+			  notificaciones.usuario_origen_notificaciones, 
+			  notificaciones.tipo_movimiento_notificaciones, 
+			  notificaciones.cantidad_cartones_notificaciones, 
+    		  notificaciones.creado,
+			  usuarios.usuario_usuarios, 
+			  usuarios.nombre_usuarios, 
+			  notificaciones.visto_notificaciones, 
+			  tipo_notificacion.controlador_tipo_notificacion, 
+			  tipo_notificacion.accion_tipo_notificacion";
+    	
+    	$tablas=" public.notificaciones, 
+				  public.usuarios, 
+				  public.tipo_notificacion";
+    	
+    	$where="notificaciones.usuario_destino_notificaciones = usuarios.id_usuarios AND
+  				tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion 
+    			AND  notificaciones.visto_notificaciones='FALSE' 
+    			AND notificaciones.usuario_destino_notificaciones='$id_usuario'";
+    	
+   		$resultNotificaciones=$notificaciones->getCondiciones($columnas, $tablas, $where, "notificaciones.id_notificaciones");
    		
    		$cantidad_notificaciones=count($resultNotificaciones);
    		
@@ -463,9 +484,32 @@ class EntidadBase{
     		$cantidad_notificaciones=0;
     		$resultNotificaciones=array();
     	}
+    	/*
+    	$contar=array();
+    	$result=array();
+    	
+    	foreach($resultNotificaciones as $value)
+    	{
+    	
+    		if(isset($contar[$value->usuario_origen_notificaciones]))
+    			{
+    	
+    			$contar[$value->usuario_origen_notificaciones]+=1;
+    	
+    			}else{
+    			
+    			array_push($result, $resultNotificaciones);    			
+    	
+    			$contar[$value->usuario_origen_notificaciones]=1;
+    	
+    		}
+    	
+    	}*/
     	
     	$_SESSION["cantidad_notificaciones"]=$cantidad_notificaciones;
     	$_SESSION["resultNotificaciones"]=$resultNotificaciones;
+    	//$_SESSION["cantidad_fila_notificaciones"]=$contar;
+    	
     	
     
     	 

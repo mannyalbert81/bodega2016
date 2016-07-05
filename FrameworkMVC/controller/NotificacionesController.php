@@ -254,22 +254,47 @@ class NotificacionesController extends ControladorBase{
 		session_start();
 		
 		$id_notificaciones=$_GET['id_notificaciones'];
+		
 		$notificaciones= new NotificacionesModel();
-		$colval="visto_notificaciones=1";
+		$resultNotificaciones=array();
+		
+		$colval="visto_notificaciones=TRUE";
+		
 		$tabla="notificaciones";
+		
 		$where="id_notificaciones='$id_notificaciones'";
-		$resultado=$notificaciones->UpdateBy($colval, $tabla, $where);
 		
-		$_usuario=$_SESSION['usuario_usuarios'];
+		$columnas=" notificaciones.id_notificaciones, 
+			  tipo_notificacion.controlador_tipo_notificacion, 
+			  tipo_notificacion.accion_tipo_notificacion";
+		$tablas="public.notificaciones, 
+  				public.tipo_notificacion";
+		$where1="tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion
+ 				 AND notificaciones.id_notificaciones='$id_notificaciones'";
 		
-		$id_usuario=$_SESSION['id_usuarios'];
-		$result_notificaciones=$notificaciones->verNotificaciones($id_usuario);
 		
-	
-		$this->view("Bienvenida",array(
-    				"allusers"=>$_usuario,"result_notificaciones"=>$result_notificaciones
-	    		));
-		 
+		$resultado=$notificaciones->UpdateBy($colval, $tabla, $where);	
+		
+		/*$this->view("Error",array(
+				"resultado"=>'CON '.print_r($resultado)
+		));
+		exit();*/
+		
+		
+			
+			$id_usuario=$_SESSION['id_usuarios'];
+			
+			$notificaciones->MostrarNotificaciones($id_usuario);
+			
+			
+			$resultNotificaciones=$notificaciones->getCondiciones($columnas, $tablas, $where1, "notificaciones.id_notificaciones");
+		    
+			$controlador=$resultNotificaciones[0]->controlador_tipo_notificacion;
+		    $accion=$resultNotificaciones[0]->accion_tipo_notificacion;;
+		
+		$this->redirect($controlador,'index');
+			
+	 
 	}
 	
 	
