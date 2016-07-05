@@ -346,7 +346,10 @@ public function index(){
 		$resultTipoCont = $tipo_contenido_cartones->getAll("nombre_tipo_contenido_cartones");
 	
 		$cartones = new CartonesModel();
-	
+		
+		//notificaciones 
+		$cartones->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
