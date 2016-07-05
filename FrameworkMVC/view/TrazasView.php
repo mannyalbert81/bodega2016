@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Actividades - coactiva 2016</title>
+        <title>Actividades - Alldocstore 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -204,8 +204,9 @@
 		 </div>
 		 <div class="col-lg-12">
        
-        <section class="col-lg-12 actividades" style="height:400px;overflow-y:scroll;">
-        <table class="table table-hover ">
+        <section class="col-lg-12 actividades" style="max-height:400px; overflow-y:scroll;" >
+        <table class="table table-hover  "  >
+        
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Usuario</th>
@@ -217,7 +218,7 @@
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
-            
+          
 	            <?php if (!empty($resultActi)) {  foreach($resultActi as $res) {?>
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_trazas; ?></td>
@@ -227,21 +228,23 @@
 		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->parametros_trazas; ?></td> 
 		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?></td> 
 		              
-		           	  
-		    		</tr>
+		           	  </tr>
+		    		
 		        <?php } }else{ ?>
-                <tr>
+               <tr>
 	                  	<td></td>
             			<td></td>
 	                    <td colspan="4" style="color:#ec971f;font-size:8;"> <?php echo '<span id="snResult">No existen resultados</span>' ?></td>
 	       				<td></td>
-		    	</tr>
+		    	
+		   </tr>
             
             <?php 
 		}
             //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
             
             ?>
+            
             
        	</table>     
       </section>
