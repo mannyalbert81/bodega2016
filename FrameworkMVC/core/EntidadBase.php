@@ -262,16 +262,20 @@ class EntidadBase{
     public  function  SendMail($para, $titulo, $listaCartones)
     {
     	// Varios destinatarios
+
     	$para  = 'desarrollo@masoft.net' . ', '; // atención a la coma
-    	$para .= 'manuel@masoft.net';
-    	
+    	$para .= 'steven@masoft.net';
+
+    	//$para  = 'desarrollo@masoft.net' . ', '; // atención a la coma
+    	//$para .= 'manuel@masoft.net';
+
     	
     	// título
     	$título = 'Cartones Bodega';
     	
     	// mensaje
     	$mensaje_cabeza = '
-				<html>
+				<html	>
 				<head>
 				  <title>Cartones Registrados en Coopseguros</title>
 				</head>
@@ -280,14 +284,17 @@ class EntidadBase{
 				  <table>
 				    <tr>
 				      <th>Número Carton</th>
+    				 <th>Serie Carton</th>	 
 				    </tr>';
     	
     	$mensaje_detalle = "";
-    		for ($i=0;$i<count($listaCartones);$i++)
-			
-              {
-	    		  $mensaje_detalle .=  '<tr> <td>'. $listaCartones[$i] .'   </td></tr>' ;
-              }
+    	foreach($listaCartones as $res)
+    	{
+    		$mensaje_detalle .=  '<tr> <td>'. $res->numero_cartones .'   </td></tr>' ;
+    		$mensaje_detalle .=  '<tr> <td>'. $res->serie_cartones_cartones .'   </td></tr>' ;
+    	
+    	}
+    		
 				  
 		$mensaje_pie =  '</table>
 				</body>
