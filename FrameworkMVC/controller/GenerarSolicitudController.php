@@ -607,20 +607,80 @@ class GenerarSolicitudController extends ControladorBase{
 		session_start();
 		$numero_movimiento=$_SESSION['numero_movimiento'];
 		
+		$notificaciones = new NotificacionesModel();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+			
+		$notificaciones->MostrarNotificaciones(1);//cambiar a id_usuarios
+		
 		$movimientoDetalle = new MovimientosDetalleModel();
+		$movimientoCabeza = new MovimientosCabezaModel();
 		
+		if(isset($_POST['aprobar']))
+		{
+			
+			$_numero_movimiento=$_POST['numero_movimiento'];
+			
+			$colval="aprobado_movimientos='TRUE'";
+			$tabla="movimientos_cabeza";
+			$where="numero_movimientos_cabeza='$_numero_movimiento'";
+			
+			$resultado=$movimientoCabeza->UpdateBy($colval ,$tabla , $where);
+			
+			$_SESSION['numero_movimiento']="";
+			
+			$this->redirect("GenerarSolicitud","index");
 		
-		
-		$columnas="";
-		$tablas="";
-		$where="";
-		
-		$resulSet=$movimientoDetalle->getCondiciones($columnas, $tablas, $where, $id);
-		
-		$this->view("AprobarSolicitud",array(
-					
-		
+		}else
+		{
+			$columnas="movimientos_detalle.id_movimientos_detalle,
+				cartones.id_cartones,
+				movimientos_detalle.creado,
+				cartones.numero_cartones,
+				cartones.serie_cartones,
+				cartones.contenido_cartones,
+				cartones.year_cartones,
+				cartones.cantidad_documentos_libros_cartones,
+				cartones.digitalizado_cartones,
+				entidades.nombre_entidades,
+				tipo_contenido_cartones.nombre_tipo_contenido_cartones";
+			
+			$tablas="  public.movimientos_detalle,
+				  public.cartones,
+				  public.entidades,
+				  public.tipo_contenido_cartones";
+			
+			$where="cartones.id_cartones = movimientos_detalle.id_cartones AND
+			entidades.id_entidades = cartones.id_entidades AND
+			tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND
+			movimientos_detalle.numero_movimientos_detalle='$numero_movimiento' ";
+			
+			
+			$resulSet=$movimientoDetalle->getCondiciones($columnas ,$tablas ,$where, "movimientos_detalle.id_movimientos_detalle");
+			
+			$columnas="  movimientos_cabeza.numero_movimientos_cabeza,
+				  tipo_operaciones.nombre_tipo_operaciones,
+				  usuarios.usuario_usuarios,
+				  movimientos_cabeza.cantidad_cartones_movimientos_cabeza,
+				  movimientos_cabeza.creado";
+			
+			$tablas=" public.movimientos_cabeza,
+				  public.tipo_operaciones,
+				  public.usuarios";
+			
+			$where="tipo_operaciones.id_tipo_operaciones = movimientos_cabeza.id_tipo_operaciones AND
+			usuarios.id_usuarios = movimientos_cabeza.id_usuario_creador AND
+			movimientos_cabeza.numero_movimientos_cabeza='$numero_movimiento' ";
+			
+			$resulCabecera=$movimientoCabeza->getCondiciones($columnas ,$tablas ,$where, " movimientos_cabeza.numero_movimientos_cabeza");;
+			
+			$this->view("AprobarSolicitud",array(
+					'resulSet'=>$resulSet,'resulCabecera'=>$resulCabecera
+			
 			));
+			
+		}
 	}
+	
+
 }
 ?>      

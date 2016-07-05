@@ -287,7 +287,7 @@ class NotificacionesController extends ControladorBase{
 		    	
 		    $notificaciones->MostrarNotificaciones($id_usuario);
 		
-		$this->redirect($controlador,'index');
+		$this->redirect($controlador,$accion);
 			
 	 
 	}
