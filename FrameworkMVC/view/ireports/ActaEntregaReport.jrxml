@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-07-04T18:09:41 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ActaEntrega" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d8537a4-eb16-4e41-a936-322433a0a1d2">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FrameworkMVC\view\ireports\BodegaDataAdapter.xml"/>
+	<queryString>
+		<![CDATA[SELECT 
+  cartones.numero_cartones, 
+  cartones.serie_cartones, 
+  cartones.contenido_cartones, 
+  cartones_solicitudes.id_cartones_solicitudes, 
+  usuarios.nombre_usuarios, 
+  cartones.cantidad_documentos_libros_cartones, 
+  entidades.nombre_entidades, 
+  bodegas.nombre_bodegas
+FROM 
+  public.cartones_solicitudes, 
+  public.cartones, 
+  public.usuarios, 
+  public.entidades, 
+  public.bodegas
+WHERE 
+  cartones.id_cartones = cartones_solicitudes.id_cartones AND
+  usuarios.id_usuarios = cartones_solicitudes.id_usuarios AND
+  entidades.id_entidades = usuarios.id_entidades AND
+  bodegas.id_bodegas = cartones.id_bodegas]]>
+	</queryString>
+	<field name="numero_cartones" class="java.lang.String"/>
+	<field name="serie_cartones" class="java.lang.String"/>
+	<field name="contenido_cartones" class="java.lang.String"/>
+	<field name="id_cartones_solicitudes" class="java.lang.Integer"/>
+	<field name="nombre_usuarios" class="java.lang.String"/>
+	<field name="cantidad_documentos_libros_cartones" class="java.lang.Integer"/>
+	<field name="nombre_entidades" class="java.lang.String"/>
+	<field name="nombre_bodegas" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="557" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="21fddbfd-8436-4593-8994-4f9802779124"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="130" y="10" width="260" height="50" forecolor="#000000" backcolor="#FFFFFF" uuid="e8e02836-27de-4472-a88c-37429c20499c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ ACTA ENTREGA DE CARTONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="50" width="50" height="20" forecolor="#000000" backcolor="#000000" uuid="91ca3cf9-f048-4e57-96e4-b55367832435"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="450" y="50" width="115" height="20" forecolor="#000000" uuid="68187c99-91b6-47af-9ca7-dac93814b1c4"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="5" y="20" width="125" height="30" uuid="54b6ead7-b173-4e70-a7e5-b4fc1a134a99"/>
+				<imageExpression><![CDATA["C:/Users/User/git/bodega2016/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement x="490" y="0" width="67" height="30" uuid="8bf22587-4879-413a-9ee5-9f17e3585f01"/>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" textPosition="bottom">
+					<jr:codeExpression><![CDATA["123456789"]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="13" y="12" width="531" height="30" forecolor="#999999" backcolor="#999999" uuid="bf4f57e4-beac-409b-921b-287fb50927e2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="19" y="21" width="31" height="21" forecolor="#FFFFFF" uuid="412fb2de-2e4e-4a1a-87da-e1508d8cec13"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="21" width="90" height="21" forecolor="#FFFFFF" uuid="374d4370-61ea-4acb-8d88-0b6380d466c2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="21" width="180" height="21" forecolor="#FFFFFF" uuid="1e05577f-a92d-4467-8c16-79f6a10c2f56"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="21" width="90" height="21" forecolor="#FFFFFF" uuid="94ffdcd7-637c-4686-960b-c7427cd17250"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serie]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="21" width="90" height="21" forecolor="#FFFFFF" uuid="3b58ad68-e813-4a2b-802a-f8731fc9328f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="0" width="31" height="20" uuid="440f85f2-6805-4426-bbc2-00de46a43b10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_cartones_solicitudes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="90" height="20" uuid="282c814c-a934-4f4e-aa93-69783082763c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="180" height="20" uuid="6f7ded5e-2d4e-4373-a8e6-a2b522ca8c5d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contenido_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="90" height="20" uuid="0bd77231-92b3-45d2-b97c-ca0d1ff736c3"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{serie_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="0" width="90" height="20" uuid="c62d8cd3-9aa0-4ad8-b6ec-da5022c1e0c7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_documentos_libros_cartones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="104" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="80" width="540" height="20" forecolor="#000000" backcolor="#000000" uuid="d1e255f9-1512-47c8-a1f0-cf423179a656"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="454" y="84" width="20" height="20" forecolor="#FFFFFF" uuid="3e1a139e-46ce-420a-a062-cead2f9460f3"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="494" y="84" width="40" height="20" forecolor="#FFFFFF" uuid="425369f2-4bb5-427e-b5f7-f0560bec092c"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="83" width="20" height="20" forecolor="#FFFFFF" uuid="9737511c-7ae7-462a-b412-ca746b2e4eb8"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="84" width="320" height="12" forecolor="#FFFFFF" uuid="62fe794d-191e-4e36-915b-9a83df2e8727"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Bodega - AllDocStore 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="4" width="557" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="5ea55798-c1c4-4f05-8073-6691dad14123"/>
+			</rectangle>
+			<textField>
+				<reportElement x="65" y="5" width="205" height="30" uuid="ffa9f901-95a9-4bf6-8ee9-3311d81012ec"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="36" width="175" height="30" uuid="ed773926-032b-4395-bb65-4450cad39fb1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="5" width="63" height="69" forecolor="#999999" backcolor="#999999" uuid="4f650728-656d-40a4-a709-97aac48e99b4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="7" y="11" width="60" height="30" forecolor="#FFFFFF" backcolor="#DBD5D5" uuid="e632f7bb-a66a-4ad4-9d1e-104149ca39af"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="42" width="60" height="30" forecolor="#FFFFFF" uuid="c41bf857-fad1-494c-b1c2-18c361e4f424"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrega:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="277" y="4" width="63" height="69" forecolor="#999999" backcolor="#999999" uuid="37ca8ba5-60f4-485e-baea-d5e72f608bd4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="280" y="12" width="67" height="30" forecolor="#FFFFFF" uuid="bc0f2429-3271-466f-8f31-ed247def16fd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bodega:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="39" width="100" height="30" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="3ec2cd1f-b292-4e52-96b3-34c820a1f816"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibe:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="348" y="14" width="202" height="20" uuid="23e961af-7147-410e-b5a1-a97eac682f50"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_bodegas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
