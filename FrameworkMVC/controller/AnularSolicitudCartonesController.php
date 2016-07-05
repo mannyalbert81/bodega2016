@@ -154,24 +154,25 @@ class AnularSolicitudCartonesController extends ControladorBase{
     				$fechahasta=$_POST['fecha_hasta'];
     					
     			    $anular_cartones = new MovimientosCabezaModel();
-    
+                    $cartones = new CartonesModel();
     
     			    	
-    				$columnas = "movimientos_cabeza.id_movimientos_cabeza, 
-								  movimientos_cabeza.numero_movimientos_cabeza, 
-								  tipo_operaciones.nombre_tipo_operaciones, 
-								  usuarios.nombre_usuarios, 
-								  movimientos_cabeza.observaciones_movimientos, 
-								  movimientos_cabeza.cantidad_cartones_movimientos_cabeza, 
-								  movimientos_cabeza.creado";
+    				$columnas = "movimientos_cabeza.id_movimientos_cabeza,
+    			    tipo_operaciones.nombre_tipo_operaciones,
+    			    usuarios.nombre_usuarios,
+    			    movimientos_cabeza.observaciones_movimientos,
+    			    movimientos_cabeza.cantidad_cartones_movimientos_cabeza,
+    			    movimientos_cabeza.creado,
+    			    movimientos_cabeza.numero_movimientos_cabeza";
 								    
-    				$tablas="public.movimientos_cabeza, 
-							  public.tipo_operaciones, 
-							  public.usuarios";
+    				$tablas="public.usuarios,
+    			    public.movimientos_cabeza,
+    			    public.tipo_operaciones";
     
-    				$where="tipo_operaciones.id_tipo_operaciones = movimientos_cabeza.id_tipo_operaciones AND
-							  usuarios.id_usuarios = movimientos_cabeza.id_usuario_solicita AND tipo_operaciones.nombre_tipo_operaciones ='SOLICITUD'
-    						 AND movimientos_cabeza.estado_movimientos='TRUE'";
+    				$where="usuarios.id_usuarios = movimientos_cabeza.id_usuario_solicita AND
+    			    movimientos_cabeza.id_tipo_operaciones = tipo_operaciones.id_tipo_operaciones AND
+    			     tipo_operaciones.nombre_tipo_operaciones ='SOLICITUD'
+    			    		AND movimientos_cabeza.estado_movimientos='TRUE' AND movimientos_cabeza.aprobado_movimientos ='TRUE'";
 														    
 					$id="movimientos_cabeza.id_movimientos_cabeza";
     
@@ -184,7 +185,7 @@ class AnularSolicitudCartonesController extends ControladorBase{
 	
 					if($id_usuarios!=0){$where_0=" AND usuarios.id_usuarios='$id_usuarios'";}
 	
-					if($numero_movimientos_cabeza!=""){$where_1=" AND movimientos_cabeza.numero_movimientos_cabeza='$numero_movimientos_cabeza'";}
+					if($numero_movimientos_cabeza!=""){$where_1=" AND movimientos_detalle.numero_movimientos_detalle='$numero_movimientos_cabeza'";}
 	
 					if($fechadesde!="" && $fechahasta!=""){$where_2=" AND  movimientos_cabeza.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
 	
@@ -192,7 +193,7 @@ class AnularSolicitudCartonesController extends ControladorBase{
 					$where_to  = $where . $where_0 . $where_1 . $where_2;
     
     
-    				$resultSet=$anular_cartones->getCondiciones($columnas ,$tablas , $where_to, $id);
+    				$resultSet=$cartones->getCondiciones($columnas ,$tablas , $where_to, $id);
     
     
     			}

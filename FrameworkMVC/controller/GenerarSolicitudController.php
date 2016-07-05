@@ -436,7 +436,7 @@ class GenerarSolicitudController extends ControladorBase{
 				}
 				
 				$this->redirect("GenerarSolicitud","index")	;	
-				echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
+			//	echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
 				
 				//$this->ireport("ContClientes");
 			}
@@ -465,11 +465,11 @@ class GenerarSolicitudController extends ControladorBase{
 		
 		session_start();
 		
-		$id_clientes=$_GET['id_clientes'];
-		echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
+		$id_cartones=$_GET['id_cartones_agregar'];
+		echo "<a href='/FrameworkMVC/view/ireports/ContSolicitudesReport.php?id_cartones_agregar=".$id_cartones."' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
 		//echo "<a href='tuArchivo.php?variablePorURL=".$variablePorURL."' target='tuArchivo' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\"> Contrato </a>";
 		
-		$this->ireport("ContClientes");
+		//$this->ireport("ContClientes");
 		
 		
 		
