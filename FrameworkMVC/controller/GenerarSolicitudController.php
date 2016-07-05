@@ -11,14 +11,14 @@ class GenerarSolicitudController extends ControladorBase{
 	public function index(){
 	
 		session_start();
-	
-		
+				
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-			
+			$notificaciones = new NotificacionesModel();
 			$_id_usuarios= $_SESSION['id_usuarios'];
-				
+			
+			$notificaciones->MostrarNotificaciones($_id_usuarios);//cambiar a id_usuarios
 			
 		
 			$cartones = new CartonesModel();
@@ -384,17 +384,7 @@ class GenerarSolicitudController extends ControladorBase{
 							$cartones_solicitud->deleteByWhere($where_del);
 							
 							
-							///insertar la notificacion
 							
-							$notificaciones = new NotificacionesModel();
-							
-							$id_tipoNotificacion = $id_tipo_notificacion;
-							$usuarioDestino=$id_usuario_destino;
-							$descripcion="Solicitud creada por ";
-							$tipo_movimiento=0;
-							$cantidad_cartones=$_cantidad_cartones_movimientos_cabeza;
-							
-							$notificaciones->CrearNotificacion($id_tipoNotificacion, $usuarioDestino, $descripcion, $tipo_movimiento, $cantidad_cartones);
 							
 								
 						} catch (Exception $e)
@@ -407,6 +397,17 @@ class GenerarSolicitudController extends ControladorBase{
 							
 					}
 					
+					///insertar la notificacion
+						
+					$notificaciones = new NotificacionesModel();
+						
+					$id_tipoNotificacion = $id_tipo_notificacion;
+					$usuarioDestino=$id_usuario_destino;
+					$descripcion="Solicitud creada por ";
+					$numero_movimiento=$_numero_movimientos;
+					$cantidad_cartones=$_cantidad_cartones_movimientos_cabeza;
+						
+					$notificaciones->CrearNotificacion($id_tipoNotificacion, $usuarioDestino, $descripcion, $numero_movimiento, $cantidad_cartones);
 					
 					
 					// enviar mail
@@ -414,7 +415,7 @@ class GenerarSolicitudController extends ControladorBase{
 					//$para .= 'manuel@masoft.net';
 					   
 					
-					$para = "manuel@masoft.net" .","."desarrollo@masoft.net" ;
+					$para = "steven@masoft.net" .","."desarrollo@masoft.net" ;
 					$titulo = "";
 					$columnas = "  cartones.numero_cartones, cartones.serie_cartones, cartones.contenido_cartones, cartones.year_cartones, cartones.cantidad_documentos_libros_cartones, cartones.digitalizado_cartones,   movimientos_detalle.numero_movimientos_detalle,   movimientos_detalle.id_tipo_operaciones";
 					$tablas   = "public.cartones, public.movimientos_detalle";
@@ -434,14 +435,9 @@ class GenerarSolicitudController extends ControladorBase{
 		
 				}
 				
-				/*	
-				$this->view("Error",array(
-						"resultado"=>"Enciado"
-			
-				));
-				*/
-				
 				$this->redirect("GenerarSolicitud","index")	;	
+			//	echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
+				
 				//$this->ireport("ContClientes");
 			}
 			
@@ -469,11 +465,11 @@ class GenerarSolicitudController extends ControladorBase{
 		
 		session_start();
 		
-		$id_clientes=$_GET['id_clientes'];
-		echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=".$id_clientes."' target='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
+		$id_cartones=$_GET['id_cartones_agregar'];
+		echo "<a href='/FrameworkMVC/view/ireports/ContSolicitudesReport.php?id_cartones_agregar=".$id_cartones."' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
 		//echo "<a href='tuArchivo.php?variablePorURL=".$variablePorURL."' target='tuArchivo' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\"> Contrato </a>";
 		
-		$this->ireport("ContClientes");
+		//$this->ireport("ContClientes");
 		
 		
 		
@@ -600,5 +596,86 @@ class GenerarSolicitudController extends ControladorBase{
 		}
 		echo '</table> </section>';
 	}
+	
+	public  function AprobarSolicitud()
+	{
+		session_start();
+		$numero_movimiento=$_SESSION['numero_movimiento'];
+		
+		$notificaciones = new NotificacionesModel();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+			
+		$notificaciones->MostrarNotificaciones($_id_usuarios);//cambiar a id_usuarios
+		
+		$movimientoDetalle = new MovimientosDetalleModel();
+		$movimientoCabeza = new MovimientosCabezaModel();
+		
+		if(isset($_POST['aprobar']))
+		{
+			
+			$_numero_movimiento=$_POST['numero_movimiento'];
+			
+			$colval="aprobado_movimientos='TRUE'";
+			$tabla="movimientos_cabeza";
+			$where="numero_movimientos_cabeza='$_numero_movimiento'";
+			
+			$resultado=$movimientoCabeza->UpdateBy($colval ,$tabla , $where);
+			
+			$_SESSION['numero_movimiento']="";
+			
+			$this->redirect("GenerarSolicitud","index");
+		
+		}else
+		{
+			$columnas="movimientos_detalle.id_movimientos_detalle,
+				cartones.id_cartones,
+				movimientos_detalle.creado,
+				cartones.numero_cartones,
+				cartones.serie_cartones,
+				cartones.contenido_cartones,
+				cartones.year_cartones,
+				cartones.cantidad_documentos_libros_cartones,
+				cartones.digitalizado_cartones,
+				entidades.nombre_entidades,
+				tipo_contenido_cartones.nombre_tipo_contenido_cartones";
+			
+			$tablas="  public.movimientos_detalle,
+				  public.cartones,
+				  public.entidades,
+				  public.tipo_contenido_cartones";
+			
+			$where="cartones.id_cartones = movimientos_detalle.id_cartones AND
+			entidades.id_entidades = cartones.id_entidades AND
+			tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND
+			movimientos_detalle.numero_movimientos_detalle='$numero_movimiento' ";
+			
+			
+			$resulSet=$movimientoDetalle->getCondiciones($columnas ,$tablas ,$where, "movimientos_detalle.id_movimientos_detalle");
+			
+			$columnas="  movimientos_cabeza.numero_movimientos_cabeza,
+				  tipo_operaciones.nombre_tipo_operaciones,
+				  usuarios.usuario_usuarios,
+				  movimientos_cabeza.cantidad_cartones_movimientos_cabeza,
+				  movimientos_cabeza.creado";
+			
+			$tablas=" public.movimientos_cabeza,
+				  public.tipo_operaciones,
+				  public.usuarios";
+			
+			$where="tipo_operaciones.id_tipo_operaciones = movimientos_cabeza.id_tipo_operaciones AND
+			usuarios.id_usuarios = movimientos_cabeza.id_usuario_creador AND
+			movimientos_cabeza.numero_movimientos_cabeza='$numero_movimiento' ";
+			
+			$resulCabecera=$movimientoCabeza->getCondiciones($columnas ,$tablas ,$where, " movimientos_cabeza.numero_movimientos_cabeza");;
+			
+			$this->view("AprobarSolicitud",array(
+					'resulSet'=>$resulSet,'resulCabecera'=>$resulCabecera
+			
+			));
+			
+		}
+	}
+	
+
 }
 ?>      

@@ -102,13 +102,13 @@ $(document).ready(function(){
   
   <div class="row" style=" background-color:#CB9F10;">
   
-  <div style=" margin-top: 10px; "   class="col-xs-6 col-md-9"  >
+  <div style=" margin-top: 10px; "   class="col-xs-6 col-md-8"  >
   <img src="view/images/logo-docstore.png" class="img-responsive" alt="Responsive image">
   </div>
   <!-- aqui va la class pull-right.... -->
   
   
-  <div  style="margin-top: 20px;" class="col-xs-6 col-md-3">
+  <div  style="margin-top: 20px;" class="col-xs-6 col-md-4">
  		<div class="">
  		
  		<p> <strong> <?php //echo CLIENTE?>  </strong>  </p>
@@ -119,7 +119,7 @@ $(document).ready(function(){
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
 		
-		<div class="col-xs-7 col-md-9">
+		<div class="col-xs-7 col-md-5">
 		
 		 	 <div class="dropdown">
 				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><FONT  SIZE=2><?php echo " ".$_SESSION['nombre_usuarios'];?></FONT></span>
@@ -134,7 +134,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 			<!-- empieza notificacion -->
-		<div class="" style="float: left;">
+		<div class="col-xs-7 col-md-3" style="float: left; margin-left: 5px;">
 
             <form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
             <?php 
@@ -158,6 +158,8 @@ $(document).ready(function(){
 			</div>
 			</form>
 		</div>
+		
+		
 
 			
 		 	 <?php  ?> 

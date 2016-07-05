@@ -72,6 +72,11 @@
 	});
 	</script>
 
+			<script>
+			function abrir() {
+			open('/FrameworkMVC/view/ireports/ContSolicitudesReport.php','','top=150,left=150,width=300,height=300') ;
+			}
+			</script>
     
   <style>
    
@@ -96,7 +101,7 @@
    
     
     </head>
-    <body style="background-color: #d9e3e4;">
+    <body style="background-color: #d9e3e4;" >
     
        <?php include("view/modulos/modal.php"); ?>
        <?php include("view/modulos/head.php"); ?>
@@ -259,7 +264,7 @@
     <div class="col-xs-12 col-md-12">
 	<div style="margin-top:10px ; text-align: center; " >
 			  
-     <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+   <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
             </div>
        </div>    	 		
        </div>

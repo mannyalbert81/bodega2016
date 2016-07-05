@@ -68,7 +68,7 @@
        
        <?php
        
-       $sel_id_usuarios = "";
+     
        $sel_numero_movimientos_cabeza="";
        $sel_fecha_desde="";
        $sel_fecha_hasta="";
@@ -77,7 +77,7 @@
        {
        	
        	
-       	$sel_id_usuarios = $_POST['id_usuarios'];
+       
        	$sel_numero_movimientos_cabeza=$_POST['numero_movimientos_cabeza'];
        	$sel_fecha_desde=$_POST['fecha_desde'];
        	$sel_fecha_hasta=$_POST['fecha_hasta'];
@@ -109,10 +109,8 @@
   			<div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Solicita:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultUsu as $res) {?>
-						<option value="<?php echo $res->id_usuarios; ?>"<?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?>><?php echo $res->nombre_usuarios;  ?> </option>
-			            <?php } ?>
+			  		<option value="<?php echo $_SESSION['id_usuarios'];  ?>"><?php echo $_SESSION['usuario_usuarios'];  ?></option>
+					
 				</select>
 		 </div>
 		 
@@ -141,12 +139,6 @@
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
   		
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " style="margin-top: 10px;"/> 
-	     <?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContSolicitudCartonesSubReport.php?id_entidades=<?php  echo $sel_id_entidades ?>&id_tipo_operaciones=<?php  echo $sel_id_tipo_operaciones?>&id_usuarios=<?php  echo $sel_id_usuarios?>&numero_cartones=<?php  echo $sel_numero_cartones?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
-		            
-		  <?php } else {?>
-		  
-		  <?php } ?>
 	     </div>
 		 
 		</div>
@@ -192,6 +184,12 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_cartones_movimientos_cabeza; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
 		                
+		                <td style="color:#000000;font-size:80%;">
+	                   <div class="right">
+			                	<a href="/FrameworkMVC/view/ireports/ContSolicitudesSubReport.php?id_movimientos_cabeza=<?php echo $res->id_movimientos_cabeza; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Ver Detalle</a>
+			                 </div>
+	                   
+		              </td> 
 		    		</tr>
 		        <?php } }  ?>
            

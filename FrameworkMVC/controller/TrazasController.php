@@ -34,6 +34,7 @@ class TrazasController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$usuarios->MostrarNotificaciones($_SESSION['id_usuarios']);
 	
 			$nombre_controladores = "Trazas";
 			$id_rol= $_SESSION['id_rol'];

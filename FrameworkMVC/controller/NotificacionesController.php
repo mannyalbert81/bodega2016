@@ -259,12 +259,12 @@ class NotificacionesController extends ControladorBase{
 		$resultNotificaciones=array();
 		
 		$colval="visto_notificaciones=TRUE";
-		
 		$tabla="notificaciones";
-		
 		$where="id_notificaciones='$id_notificaciones'";
+		$resultado=$notificaciones->UpdateBy($colval, $tabla, $where);
 		
-		$columnas=" notificaciones.id_notificaciones, 
+		$columnas=" notificaciones.id_notificaciones,
+			  notificaciones.numero_movimiento_notificaciones,
 			  tipo_notificacion.controlador_tipo_notificacion, 
 			  tipo_notificacion.accion_tipo_notificacion";
 		$tablas="public.notificaciones, 
@@ -272,27 +272,22 @@ class NotificacionesController extends ControladorBase{
 		$where1="tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion
  				 AND notificaciones.id_notificaciones='$id_notificaciones'";
 		
-		
-		$resultado=$notificaciones->UpdateBy($colval, $tabla, $where);	
-		
-		/*$this->view("Error",array(
-				"resultado"=>'CON '.print_r($resultado)
-		));
-		exit();*/
+
+		$resultNotificaciones=$notificaciones->getCondiciones($columnas, $tablas, $where1, "notificaciones.id_notificaciones");
 		
 		
-			
-			$id_usuario=$_SESSION['id_usuarios'];
-			
-			$notificaciones->MostrarNotificaciones($id_usuario);
-			
-			
-			$resultNotificaciones=$notificaciones->getCondiciones($columnas, $tablas, $where1, "notificaciones.id_notificaciones");
-		    
+		    //crear variable se session numero movimiento para aprobar solicitud
+		
+		    $_SESSION['numero_movimiento']=$resultNotificaciones[0]->numero_movimiento_notificaciones;
+		
 			$controlador=$resultNotificaciones[0]->controlador_tipo_notificacion;
-		    $accion=$resultNotificaciones[0]->accion_tipo_notificacion;;
+		    $accion=$resultNotificaciones[0]->accion_tipo_notificacion;
+		    
+		    $id_usuario=$_SESSION['id_usuarios'];
+		    	
+		    $notificaciones->MostrarNotificaciones($id_usuario);
 		
-		$this->redirect($controlador,'index');
+		$this->redirect($controlador,$accion);
 			
 	 
 	}
