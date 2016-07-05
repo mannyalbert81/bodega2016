@@ -11,14 +11,14 @@ class GenerarSolicitudController extends ControladorBase{
 	public function index(){
 	
 		session_start();
-	
-		
+				
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-			
+			$notificaciones = new NotificacionesModel();
 			$_id_usuarios= $_SESSION['id_usuarios'];
-				
+			
+			$notificaciones->MostrarNotificaciones(1);//cambiar a id_usuarios
 			
 		
 			$cartones = new CartonesModel();
@@ -384,17 +384,7 @@ class GenerarSolicitudController extends ControladorBase{
 							$cartones_solicitud->deleteByWhere($where_del);
 							
 							
-							///insertar la notificacion
 							
-							$notificaciones = new NotificacionesModel();
-							
-							$id_tipoNotificacion = $id_tipo_notificacion;
-							$usuarioDestino=$id_usuario_destino;
-							$descripcion="Solicitud creada por ";
-							$tipo_movimiento=0;
-							$cantidad_cartones=$_cantidad_cartones_movimientos_cabeza;
-							
-							$notificaciones->CrearNotificacion($id_tipoNotificacion, $usuarioDestino, $descripcion, $tipo_movimiento, $cantidad_cartones);
 							
 								
 						} catch (Exception $e)
@@ -407,6 +397,17 @@ class GenerarSolicitudController extends ControladorBase{
 							
 					}
 					
+					///insertar la notificacion
+						
+					$notificaciones = new NotificacionesModel();
+						
+					$id_tipoNotificacion = $id_tipo_notificacion;
+					$usuarioDestino=$id_usuario_destino;
+					$descripcion="Solicitud creada por ";
+					$numero_movimiento=$_numero_movimientos;
+					$cantidad_cartones=$_cantidad_cartones_movimientos_cabeza;
+						
+					$notificaciones->CrearNotificacion($id_tipoNotificacion, $usuarioDestino, $descripcion, $numero_movimiento, $cantidad_cartones);
 					
 					
 					// enviar mail
@@ -414,7 +415,7 @@ class GenerarSolicitudController extends ControladorBase{
 					//$para .= 'manuel@masoft.net';
 					   
 					
-					$para = "manuel@masoft.net" .","."desarrollo@masoft.net" ;
+					$para = "steven@masoft.net" .","."desarrollo@masoft.net" ;
 					$titulo = "";
 					$columnas = "  cartones.numero_cartones, cartones.serie_cartones, cartones.contenido_cartones, cartones.year_cartones, cartones.cantidad_documentos_libros_cartones, cartones.digitalizado_cartones,   movimientos_detalle.numero_movimientos_detalle,   movimientos_detalle.id_tipo_operaciones";
 					$tablas   = "public.cartones, public.movimientos_detalle";
@@ -594,6 +595,27 @@ class GenerarSolicitudController extends ControladorBase{
 			</tr>';
 		}
 		echo '</table> </section>';
+	}
+	
+	public  function AprobarSolicitud()
+	{
+		session_start();
+		$numero_movimiento=$_SESSION['numero_movimiento'];
+		
+		$movimientoDetalle = new MovimientosDetalleModel();
+		
+		
+		
+		$columnas="";
+		$tablas="";
+		$where="";
+		
+		$resulSet=$movimientoDetalle->getCondiciones($columnas, $tablas, $where, $id);
+		
+		$this->view("AprobarSolicitud",array(
+					
+		
+			));
 	}
 }
 ?>      
