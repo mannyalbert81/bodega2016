@@ -419,7 +419,7 @@ class GenerarSolicitudController extends ControladorBase{
 					//$para .= 'manuel@masoft.net';
 					   
 					
-					$para = "manuel@masoft.net" .","."desarrollo@masoft.net" ;
+					$para = "steven@masoft.net" .","."desarrollo@masoft.net" ;
 					$titulo = "";
 					$columnas = "  cartones.numero_cartones, cartones.serie_cartones, cartones.contenido_cartones, cartones.year_cartones, cartones.cantidad_documentos_libros_cartones, cartones.digitalizado_cartones,   movimientos_detalle.numero_movimientos_detalle,   movimientos_detalle.id_tipo_operaciones";
 					$tablas   = "public.cartones, public.movimientos_detalle";

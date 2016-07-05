@@ -270,6 +270,7 @@ class EntidadBase{
     	//$para .= 'manuel@masoft.net';
 
     	
+    	
     	// título
     	$título = 'Cartones Bodega';
     	
