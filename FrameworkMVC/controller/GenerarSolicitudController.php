@@ -396,11 +396,6 @@ class GenerarSolicitudController extends ControladorBase{
 							
 							$notificaciones->CrearNotificacion($id_tipoNotificacion, $usuarioDestino, $descripcion, $tipo_movimiento, $cantidad_cartones);
 							
-							
-						
-							
-							
-							
 								
 						} catch (Exception $e)
 						{
