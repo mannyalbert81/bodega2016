@@ -18,7 +18,7 @@ class GenerarSolicitudController extends ControladorBase{
 			$notificaciones = new NotificacionesModel();
 			$_id_usuarios= $_SESSION['id_usuarios'];
 			
-			$notificaciones->MostrarNotificaciones(1);//cambiar a id_usuarios
+			$notificaciones->MostrarNotificaciones($_id_usuarios);//cambiar a id_usuarios
 			
 		
 			$cartones = new CartonesModel();
@@ -607,7 +607,7 @@ class GenerarSolicitudController extends ControladorBase{
 		$notificaciones = new NotificacionesModel();
 		$_id_usuarios= $_SESSION['id_usuarios'];
 			
-		$notificaciones->MostrarNotificaciones(1);//cambiar a id_usuarios
+		$notificaciones->MostrarNotificaciones($_id_usuarios);//cambiar a id_usuarios
 		
 		$movimientoDetalle = new MovimientosDetalleModel();
 		$movimientoCabeza = new MovimientosCabezaModel();

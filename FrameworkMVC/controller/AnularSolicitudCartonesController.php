@@ -10,6 +10,7 @@ class AnularSolicitudCartonesController extends ControladorBase{
     
     	session_start();
     
+    	
     	//Creamos el objeto usuario
     	$resultSet="";
     	
@@ -22,6 +23,12 @@ class AnularSolicitudCartonesController extends ControladorBase{
     
     	if (isset(  $_SESSION['usuario_usuarios']) )
     	{
+    		$notificaciones = new NotificacionesModel();
+    		$_id_usuarios= $_SESSION['id_usuarios'];
+    			
+    		$notificaciones->MostrarNotificaciones($_id_usuarios);
+    		
+    		
     		$permisos_rol = new PermisosRolesModel();
     		$nombre_controladores = "AnularSolicitudCartones";
     		$id_rol= $_SESSION['id_rol'];
@@ -165,7 +172,7 @@ class AnularSolicitudCartonesController extends ControladorBase{
     				$where="usuarios.id_usuarios = movimientos_cabeza.id_usuario_solicita AND
     			    movimientos_cabeza.id_tipo_operaciones = tipo_operaciones.id_tipo_operaciones AND
     			     tipo_operaciones.nombre_tipo_operaciones ='SOLICITUD'
-    			    		AND movimientos_cabeza.estado_movimientos='TRUE'";
+    			    		AND movimientos_cabeza.estado_movimientos='TRUE' AND movimientos_cabeza.aprobado_movimientos ='TRUE'";
 														    
 					$id="movimientos_cabeza.id_movimientos_cabeza";
     
