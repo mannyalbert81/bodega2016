@@ -263,13 +263,14 @@ class EntidadBase{
     {
     
 
-
+    	
 
 
 
     	// Varios destinatarios
 
-    	$para  = 'steven642010@hotmail.com' . ', '; // atención a la coma
+    	$para  = 'steven@masoft.net' . ', '; // atención a la coma
+
     	$para .= 'desarrollo@masoft.net';
 
     	//$para  = 'desarrollo@masoft.net' . ', '; // atención a la coma
@@ -285,43 +286,53 @@ class EntidadBase{
 				
     <html>
 		<head>
-			<title>CARONES REGISTRADOS</title>
+			<title>CARTONES REGISTRADOS</title>
+    			
 			    </head>
 				     <body>
-				         <h2><center><b>CARTONES REGISTRADOS EN ALLCOERCIVE</b></center></h2>		
-						     <TABLE BORDER=1 WIDTH="100%">
-								<TR>
-									<TD WIDTH=200 bgcolor="#D8D8D8">
+				         
+				<center><img src="http://localhost:4000/bodega2016/FrameworkMVC/view/images/logo-docstore.png" WIDTH="250" HEIGHT="90" /></center>
+			
+    			<br/>
+    		
+    			
+    			<h2><center><b>SOLICITUD DE CARTONES</b></center></h2>		
+    			
+    			<TABLE rules="all" WIDTH="100%">
+				
+    			<TR>
+									<TD WIDTH=200 bgcolor="#A4A4A4">
 									  <h4><center><b>NUMERO DE CARTON</b>
 									</TD>
 									
-									<TD WIDTH=200 bgcolor="#D8D8D8">
+									<TD WIDTH=200 bgcolor="#A4A4A4">
 									  <h4><center><b>SERIE DE CARTON</b>
 									</TD>
 									    			
-									<TD WIDTH=200 bgcolor="#D8D8D8">
+									<TD WIDTH=200 bgcolor="#A4A4A4">
 									  <h4><center><b>CONTENIDO</b>
 									</TD>
 									
-									<TD WIDTH=200 bgcolor="#D8D8D8">
+									<TD WIDTH=200 bgcolor="#A4A4A4">
 									  <h4><center><b>AÑO</b>
 									</TD>
 								
-									<TD WIDTH=200 bgcolor="#D8D8D8">
+									<TD WIDTH=200 bgcolor="#A4A4A4">
 									  <h4><center><b>CANTIDAD</b>
 									</TD>
 									
-									<TD WIDTH=200 bgcolor="#D8D8D8">
+									<TD WIDTH=200 bgcolor="#A4A4A4">
 									  <h4><center><b>DIGITALIZADO</b>
 									</TD>
 								    			
-									<TD WIDTH=200 bgcolor="#D8D8D8">
+									<TD WIDTH=200 bgcolor="#A4A4A4">
 									  <h4><center><b>Nº DE MOVIMIENTO</b>
 									</TD>
-								    			
-									<TD WIDTH=200 bgcolor="#D8D8D8">
-									  <h4><center><b>TIPO DE OPERACION</b>
-									</TD>
+    			
+								    <TD WIDTH=200 bgcolor="#A4A4A4">
+									  <h4><center><b>TIPO OPERACIONES</b>
+									</TD>			
+									
 								</TR>
 								
 								  ';
@@ -329,6 +340,11 @@ class EntidadBase{
     	$mensaje_detalle = "";
     	foreach($listaCartones as $res)
     	{
+    		
+    
+    		
+    		
+    		
     		$mensaje_detalle .=  '<td><center>'. $res->numero_cartones .'   </td>' ;
     		$mensaje_detalle .=  '<td><center>'. $res->serie_cartones .'   </td>' ;
     		$mensaje_detalle .=  '<td><center>'. $res->contenido_cartones .'   </td>' ;
@@ -336,12 +352,29 @@ class EntidadBase{
     		$mensaje_detalle .=  '<td><center>'. $res->cantidad_documentos_libros_cartones .'   </td>' ;
     		$mensaje_detalle .=  '<td><center>'. $res->digitalizado_cartones .'   </td>' ;
     		$mensaje_detalle .=  '<td><center>'. $res->numero_movimientos_detalle .'   </td>' ;
-    		$mensaje_detalle .=  '<td><center>'. $res->id_tipo_operaciones .'   </td>. <TR>' ;
+    		$mensaje_detalle .=  '<td><center>'. $res->id_tipo_operaciones .'   </td>.</TR>' ;
     		
     	}
     		
 				  
 		$mensaje_pie =  '</table>
+    			
+				<br/>
+				<br/>
+				<br/>
+				
+    			<TABLE WIDTH="100%">
+				<TR>
+    			
+				
+				<tr style="background:#1C1C1C"><td WIDTH="1000" HEIGHT="50" align="center"><font color="white">All Docstore - Desarrollado por <a href="http://www.masoft.net">www.masoft.net</a> - Copyright © 2016-</font></td></tr>
+				
+				</TR>
+    			
+    			<br/>
+				<br/>
+				<br/>
+				<br/>
 				</body>
 				</html>
 				';
