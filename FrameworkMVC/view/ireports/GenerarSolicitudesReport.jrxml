@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-05T16:00:31 -->
+<!-- 2016-07-05T16:09:39 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
 	<parameter name="_id_usuarios" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 
+  movimientos_cabeza.id_movimientos_cabeza, 
+  tipo_operaciones.nombre_tipo_operaciones, 
+  usuarios.nombre_usuarios, 
+  movimientos_cabeza.observaciones_movimientos, 
+  movimientos_cabeza.cantidad_cartones_movimientos_cabeza, 
+  movimientos_cabeza.creado, 
+  movimientos_detalle.numero_movimientos_detalle, 
   cartones.numero_cartones, 
   cartones.serie_cartones, 
   cartones.contenido_cartones, 
   cartones.year_cartones, 
-  cartones.cantidad_documentos_libros_cartones, 
-  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
+  cartones.cantidad_documentos_libros_cartones, 		
   cartones.digitalizado_cartones, 
   entidades.nombre_entidades, 
-  bodegas.nombre_bodegas, 
-  tipo_operaciones.nombre_tipo_operaciones, 
-  usuarios.nombre_usuarios, 
-  cartones_solicitudes.creado, 
-  usuarios.id_usuarios
+  tipo_contenido_cartones.nombre_tipo_contenido_cartones, 
+  bodegas.nombre_bodegas
 FROM 
-  public.cartones_solicitudes, 
-  public.cartones, 
   public.usuarios, 
-  public.tipo_contenido_cartones, 
+  public.movimientos_cabeza, 
+  public.tipo_operaciones, 
+  public.movimientos_detalle, 
+  public.cartones, 
   public.entidades, 
-  public.bodegas, 
-  public.tipo_operaciones
+  public.tipo_contenido_cartones, 
+  public.bodegas
 WHERE 
-  cartones.id_cartones = cartones_solicitudes.id_cartones AND
-  cartones.id_tipo_operaciones = tipo_operaciones.id_tipo_operaciones AND
-  usuarios.id_usuarios = cartones_solicitudes.id_usuarios AND
-  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND
-  entidades.id_entidades = cartones.id_entidades AND
-  bodegas.id_bodegas = cartones.id_bodegas AND usuarios.id_usuarios= $P{_id_usuarios} 
+  usuarios.id_usuarios = movimientos_cabeza.id_usuario_solicita AND
+  movimientos_cabeza.id_tipo_operaciones = tipo_operaciones.id_tipo_operaciones AND
+  movimientos_detalle.numero_movimientos_detalle = movimientos_cabeza.numero_movimientos_cabeza AND
+  movimientos_detalle.id_cartones = cartones.id_cartones AND
+  cartones.id_entidades = entidades.id_entidades AND
+  cartones.id_tipo_contenido_cartones = tipo_contenido_cartones.id_tipo_contenido_cartones AND
+  bodegas.id_bodegas = cartones.id_bodegas AND usuarios.id_usuarios =  $P{_id_usuarios} 
 ]]>
 	</queryString>
 	<field name="numero_movimientos_detalle" class="java.lang.String"/>
