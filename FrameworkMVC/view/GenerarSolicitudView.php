@@ -55,11 +55,9 @@
 	$(document).ready(function(){
 			
 		$("#visualizar_seleccionados").click(function(){
-
-			
-				$("#div_seleccionados").fadeIn("slow");
-			    	
-	  
+					
+			$('#div_seleccionados').toggle("slow");
+		
 		});
 	});
 	</script>
@@ -67,7 +65,6 @@
 	$(document).ready(function(){
 	
 		$("#div_seleccionados").fadeOut("slow");
-		$("#seleccionados").fadeOut("slow");
 		
 	});
 	</script>
