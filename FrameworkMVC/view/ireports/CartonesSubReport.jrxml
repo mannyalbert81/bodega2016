@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-01T14:49:56 -->
+<!-- 2016-07-04T18:41:04 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="sql" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[ $P{sql}]]>
+		<![CDATA[$P{sql}]]>
 	</queryString>
 	<field name="id_cartones" class="java.lang.String"/>
 	<field name="numero_cartones" class="java.lang.String"/>
@@ -63,7 +72,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="51" splitType="Stretch">
+		<band height="36" splitType="Stretch">
 			<rectangle>
 				<reportElement x="9" y="6" width="791" height="30" forecolor="#999999" backcolor="#999999" uuid="dd2960b0-a116-4e1a-8792-0f2d88719651"/>
 			</rectangle>
@@ -159,10 +168,6 @@
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="10" y="3" width="28" height="16" uuid="aa4b7202-2663-4c69-9056-5b0af86dac4a"/>
-				<textFieldExpression><![CDATA[$F{id_cartones}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="38" y="3" width="72" height="16" uuid="b27551cd-7ac2-4693-a564-ca2c917a7af6"/>
 				<textFieldExpression><![CDATA[$F{numero_cartones}]]></textFieldExpression>
 			</textField>
@@ -206,6 +211,10 @@
 			<textField>
 				<reportElement x="740" y="3" width="52" height="16" uuid="6c29f0f0-ac52-4072-81b8-42eb027dc9ff"/>
 				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Band" pattern="">
+				<reportElement x="10" y="3" width="30" height="17" uuid="5136fe1f-732b-4999-9667-22ad51515b4c"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -251,6 +260,6 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="53" splitType="Stretch"/>
 	</summary>
 </jasperReport>

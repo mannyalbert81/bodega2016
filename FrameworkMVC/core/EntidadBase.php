@@ -429,7 +429,7 @@ class EntidadBase{
    
     
 	
-    public  function CrearNotificacion($id_tipoNotificacion,$usuarioDestino,$descripcion,$id_movimiento,$cantidad_cartones)
+    public  function CrearNotificacion($id_tipoNotificacion,$usuarioDestino,$descripcion,$numero_movimiento,$cantidad_cartones)
     {
     	$notificaciones = new NotificacionesModel();
     	
@@ -438,7 +438,7 @@ class EntidadBase{
     	$_usuario_origen=$_SESSION['id_usuarios'];
     	
     
-    	$parametros = "'$id_tipoNotificacion', '$_usuario_origen', '$usuarioDestino', '$descripcion','$id_movimiento','$cantidad_cartones' ";
+    	$parametros = "'$id_tipoNotificacion', '$_usuario_origen', '$usuarioDestino', '$descripcion','$numero_movimiento','$cantidad_cartones' ";
     	
     	$notificaciones->setFuncion($funcion);
     	
@@ -457,7 +457,7 @@ class EntidadBase{
 			  notificaciones.descripcion_notificaciones, 
 			  notificaciones.usuario_destino_notificaciones, 
 			  notificaciones.usuario_origen_notificaciones, 
-			  notificaciones.tipo_movimiento_notificaciones, 
+			  notificaciones.numero_movimiento_notificaciones, 
 			  notificaciones.cantidad_cartones_notificaciones, 
     		  notificaciones.creado,
 			  usuarios.usuario_usuarios, 
