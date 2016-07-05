@@ -261,10 +261,16 @@ class EntidadBase{
     
     public  function  SendMail($para, $titulo, $listaCartones)
     {
+    
+
+
+
+
+
     	// Varios destinatarios
 
-    	$para  = 'desarrollo@masoft.net' . ', '; // atención a la coma
-    	$para .= 'steven@masoft.net';
+    	$para  = 'steven642010@hotmail.com' . ', '; // atención a la coma
+    	$para .= 'desarrollo@masoft.net';
 
     	//$para  = 'desarrollo@masoft.net' . ', '; // atención a la coma
     	//$para .= 'manuel@masoft.net';
@@ -276,24 +282,62 @@ class EntidadBase{
     	
     	// mensaje
     	$mensaje_cabeza = '
-				<html	>
-				<head>
-				  <title>Cartones Registrados en Coopseguros</title>
-				</head>
-				<body>
-				  <p>Listado de Cartones Registrados!</p>
-				  <table>
-				    <tr>
-				      <th>Número Carton</th>
-    				 <th>Serie Carton</th>	 
-				    </tr>';
-    	
+				
+    <html>
+		<head>
+			<title>CARONES REGISTRADOS</title>
+			    </head>
+				     <body>
+				         <h2><center><b>CARTONES REGISTRADOS EN ALLCOERCIVE</b></center></h2>		
+						     <TABLE BORDER=1 WIDTH="100%">
+								<TR>
+									<TD WIDTH=200 bgcolor="#D8D8D8">
+									  <h4><center><b>NUMERO DE CARTON</b>
+									</TD>
+									
+									<TD WIDTH=200 bgcolor="#D8D8D8">
+									  <h4><center><b>SERIE DE CARTON</b>
+									</TD>
+									    			
+									<TD WIDTH=200 bgcolor="#D8D8D8">
+									  <h4><center><b>CONTENIDO</b>
+									</TD>
+									
+									<TD WIDTH=200 bgcolor="#D8D8D8">
+									  <h4><center><b>AÑO</b>
+									</TD>
+								
+									<TD WIDTH=200 bgcolor="#D8D8D8">
+									  <h4><center><b>CANTIDAD</b>
+									</TD>
+									
+									<TD WIDTH=200 bgcolor="#D8D8D8">
+									  <h4><center><b>DIGITALIZADO</b>
+									</TD>
+								    			
+									<TD WIDTH=200 bgcolor="#D8D8D8">
+									  <h4><center><b>Nº DE MOVIMIENTO</b>
+									</TD>
+								    			
+									<TD WIDTH=200 bgcolor="#D8D8D8">
+									  <h4><center><b>TIPO DE OPERACION</b>
+									</TD>
+								</TR>
+								
+								  ';
+							    	
     	$mensaje_detalle = "";
     	foreach($listaCartones as $res)
     	{
-    		$mensaje_detalle .=  '<tr> <td>'. $res->numero_cartones .'   </td></tr>' ;
-    		$mensaje_detalle .=  '<tr> <td>'. $res->serie_cartones_cartones .'   </td></tr>' ;
-    	
+    		$mensaje_detalle .=  '<td><center>'. $res->numero_cartones .'   </td>' ;
+    		$mensaje_detalle .=  '<td><center>'. $res->serie_cartones .'   </td>' ;
+    		$mensaje_detalle .=  '<td><center>'. $res->contenido_cartones .'   </td>' ;
+    		$mensaje_detalle .=  '<td><center>'. $res->year_cartones .'   </td>' ;
+    		$mensaje_detalle .=  '<td><center>'. $res->cantidad_documentos_libros_cartones .'   </td>' ;
+    		$mensaje_detalle .=  '<td><center>'. $res->digitalizado_cartones .'   </td>' ;
+    		$mensaje_detalle .=  '<td><center>'. $res->numero_movimientos_detalle .'   </td>' ;
+    		$mensaje_detalle .=  '<td><center>'. $res->id_tipo_operaciones .'   </td>. <TR>' ;
+    		
     	}
     		
 				  
@@ -307,7 +351,7 @@ class EntidadBase{
     	$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     	
     	// Cabeceras adicionales
-    	$cabeceras .= 'To: Manuel <desarrollo@masoft.net>, Manuel <manuel@masoft.net>' . "\r\n";
+    	$cabeceras .= 'To: Manuel <desarrollo@masoft.net>, Steven <steven@masoft.net>' . "\r\n";
     	$cabeceras .= 'From: aDocument <info@masoft.net>' . "\r\n";
     	
     	// Enviarlo
