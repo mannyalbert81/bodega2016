@@ -312,11 +312,9 @@ class GenerarSolicitudController extends ControladorBase{
 			$resultAsignacionUsuarios = $asigancion_usuarios->getAll("id_usuarios");
 			$id_usuario_destino=$resultAsignacionUsuarios[0]->id_usuarios;
 
-			if (isset ($_POST["Guardar"])   )
+			if (isset ($_POST["Guardar"]))
 			{
 
-				
-				
 				$_id_usuarios = $_SESSION['id_usuarios'];
 				$where =  " id_usuarios = '$_id_usuarios' ";
 				$resultCar =  $cartones_solicitud->getBy($where);
@@ -436,6 +434,7 @@ class GenerarSolicitudController extends ControladorBase{
 					
 		
 				}
+				
 				
 				$this->redirect("GenerarSolicitud","index")	;	
 			//	echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";

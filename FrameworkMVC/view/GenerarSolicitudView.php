@@ -77,6 +77,19 @@
 			open('/FrameworkMVC/view/ireports/ContSolicitudesReport.php','','top=150,left=150,width=300,height=300') ;
 			}
 			</script>
+			
+	<script type="text/javascript">
+		$(document).ready(function(){
+   		$("#Guardar").click(function() {
+   			
+   	   //FrameworkMVC/view/ireports/ContCartonesSubReport.php?id_entidades=0&id_tipo_operaciones=0&id_tipo_contenido_cartones=0&numero_cartones=&fecha_desde=&fecha_hasta=
+      	url = $("#enlace").attr("href");
+     	//window.open(url, '_blank');
+     	window.open(url, this.target, 'width=1000, height=800, menubar=no');
+     	return true;
+   		});
+		});
+</script>
     
   <style>
    
@@ -265,6 +278,11 @@
 	<div style="margin-top:10px ; text-align: center; " >
 			  
    <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+   <a id="enlace" href="/FrameworkMVC/view/ireports/ContGenerarSolicitudesReport.php?id_usuarios=<?php echo $_SESSION['id_usuarios']; ?>" style="margin-top: 10px; display: none;" class="btn">Reporte</a>
+	<!-- 
+	<a href="/FrameworkMVC/view/ireports/ContCartonesSubReport.php?id_entidades=<?php  echo $sel_id_entidades ?>&id_tipo_operaciones=<?php  echo $sel_id_tipo_operaciones?>&id_tipo_contenido_cartones=<?php  echo $sel_id_tipo_contenido_cartones?>&numero_cartones=<?php  echo $sel_numero_cartones?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" style="margin-top: 10px; display: none;" class="btn">Reporte</a>
+	
+	 -->	  
             </div>
        </div>    	 		
        </div>

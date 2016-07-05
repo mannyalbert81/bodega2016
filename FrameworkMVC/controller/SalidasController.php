@@ -18,6 +18,9 @@ class SalidasController extends ControladorBase{
 			
 			
 			$movimientos_cabeza = new MovimientosCabezaModel();
+			
+			//notificaciones
+			$movimientos_cabeza->MostrarNotificaciones($_SESSION['id_usuarios']);
 		
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Salidas";
