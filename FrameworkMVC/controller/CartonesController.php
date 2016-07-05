@@ -18,6 +18,9 @@ public function index(){
 			$bodegas = new BodegasModel();
 			$resultBodegas = $bodegas->getAll("nombre_bodegas");
 			
+			//notificaciones
+			$bodegas->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$tipo_contenido_cartones = new TipoContenidoCartonesModel();
 			$resultTipoConCar =$tipo_contenido_cartones->getAll("nombre_tipo_contenido_cartones");
 			

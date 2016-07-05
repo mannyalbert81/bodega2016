@@ -6,7 +6,7 @@ class GenerarSolicitudController extends ControladorBase{
 		parent::__construct();
 	}
 
-
+//maycol
 
 	public function index(){
 	
@@ -37,12 +37,13 @@ class GenerarSolicitudController extends ControladorBase{
 					      entidades.id_entidades,
 						  entidades.nombre_entidades,
 					      bodegas.id_bodegas,
-						  bodegas.nombre_bodegas";
+						  bodegas.nombre_bodegas,
+					      tipo_operaciones.nombre_tipo_operaciones";
 			$tablas   = "public.cartones,
 						  public.bodegas,
 						  public.entidades,
-						  public.tipo_contenido_cartones";
-			$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+						  public.tipo_contenido_cartones, public.tipo_operaciones";
+			$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND cartones.id_tipo_operaciones = tipo_operaciones.id_tipo_operaciones AND tipo_operaciones.nombre_tipo_operaciones LIKE '%ENTRADAS%'";
 			$id       = "cartones.numero_cartones";
 				
 			$resultDatos=$cartones->getCondiciones($columnas ,$tablas ,$where, $id);
@@ -63,7 +64,7 @@ class GenerarSolicitudController extends ControladorBase{
 					
 					$cartones = new CartonesModel();				
 					//MOSTRAR SOLO LOS CARTINES AFUERA O POR INGRESAR
-					$where = "id_tipo_operaciones = '2' OR id_tipo_operaciones = '6' ";
+					$where = "id_tipo_operaciones = '2' ";
 					$resultCartones=$cartones->getBy($where);
 			
 					$resultEdit = "";
@@ -123,12 +124,13 @@ class GenerarSolicitudController extends ControladorBase{
 					      entidades.id_entidades,
 						  entidades.nombre_entidades,
 					      bodegas.id_bodegas,
-						  bodegas.nombre_bodegas";
+						  bodegas.nombre_bodegas,
+						 tipo_operaciones.nombre_tipo_operaciones";
 						$tablas   = "public.cartones,
 						  public.bodegas,
 						  public.entidades,
-						  public.tipo_contenido_cartones";
-						$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+						  public.tipo_contenido_cartones, public.tipo_operaciones";
+						$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND cartones.id_tipo_operaciones = tipo_operaciones.id_tipo_operaciones AND tipo_operaciones.nombre_tipo_operaciones LIKE '%ENTRADAS%'";
 						$id       = "cartones.numero_cartones";
 							
 							
@@ -312,11 +314,9 @@ class GenerarSolicitudController extends ControladorBase{
 			$resultAsignacionUsuarios = $asigancion_usuarios->getAll("id_usuarios");
 			$id_usuario_destino=$resultAsignacionUsuarios[0]->id_usuarios;
 
-			if (isset ($_POST["Guardar"])   )
+			if (isset ($_POST["Guardar"]))
 			{
 
-				
-				
 				$_id_usuarios = $_SESSION['id_usuarios'];
 				$where =  " id_usuarios = '$_id_usuarios' ";
 				$resultCar =  $cartones_solicitud->getBy($where);
@@ -436,6 +436,7 @@ class GenerarSolicitudController extends ControladorBase{
 					
 		
 				}
+				
 				
 				$this->redirect("GenerarSolicitud","index")	;	
 			//	echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
