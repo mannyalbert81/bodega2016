@@ -222,13 +222,15 @@ public function index(){
 		
 		$resultado = null;
 		$cartones=new CartonesModel();
+		$tipo_operaciones = new TipoOperacionesModel();
+		$resultTipoOperaciones= $tipo_operaciones->getBy("nombre_tipo_operaciones LIKE 'ENTRADAS%'");
 	
 	
 		
 		//_nombre_categorias character varying, _path_categorias character varying
 		if (isset ($_POST["id_entidades"]) )
 		{
-
+			
 			$_numero_cartones     = $_POST["numero_cartones"];
 			$_serie_cartones      = $_POST["serie_cartones"];
 			$_contenido_cartones   = $_POST["contenido_cartones"];
@@ -238,6 +240,7 @@ public function index(){
 			$_digitalizado_cartones   = $_POST["digitalizado_cartones"];
 			$_id_entidades   = $_POST["id_entidades"];
 			$_id_bodegas   = $_POST["id_bodegas"];
+			$tipo_operaciones=$resultTipoOperaciones[0]->id_tipo_operaciones;
 			
 		
 			
@@ -259,10 +262,11 @@ public function index(){
 			
 				$funcion = "ins_cartones";
 					
-				$parametros = " '$_numero_cartones' ,'$_serie_cartones' , '$_contenido_cartones' , '$_year_cartones' , '$_cantidad_documentos_libros_cartones' , '$_id_tipo_contenido_cartones' , '$_digitalizado_cartones' , '$_id_entidades' , '$_id_bodegas'";
+				$parametros = " '$_numero_cartones' ,'$_serie_cartones' , '$_contenido_cartones' , '$_year_cartones' , '$_cantidad_documentos_libros_cartones' , '$_id_tipo_contenido_cartones' , '$_digitalizado_cartones' , '$_id_entidades' , '$_id_bodegas','$tipo_operaciones'";
 				$cartones->setFuncion($funcion);
 				$cartones->setParametros($parametros);
 				$resultado=$cartones->Insert();
+				
 				
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Cartones";
