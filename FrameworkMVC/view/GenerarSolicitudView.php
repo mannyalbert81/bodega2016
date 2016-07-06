@@ -276,11 +276,7 @@
 			  
    <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
    <a id="enlace" href="/FrameworkMVC/view/ireports/ContGenerarSolicitudesReport.php?id_usuarios=<?php echo $_SESSION['id_usuarios']; ?>" style="margin-top: 10px; display: none;" class="btn">Reporte</a>
-	<!-- 
-	<a href="/FrameworkMVC/view/ireports/ContCartonesSubReport.php?id_entidades=<?php  echo $sel_id_entidades ?>&id_tipo_operaciones=<?php  echo $sel_id_tipo_operaciones?>&id_tipo_contenido_cartones=<?php  echo $sel_id_tipo_contenido_cartones?>&numero_cartones=<?php  echo $sel_numero_cartones?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" style="margin-top: 10px; display: none;" class="btn">Reporte</a>
-	
-	 -->	  
-            </div>
+	        </div>
        </div>    	 		
        </div>
    </form>

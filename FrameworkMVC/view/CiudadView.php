@@ -19,6 +19,37 @@
  		
  		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
 		
+		<!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.error("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.log("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
+		
+		
+		
 		<script>
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
@@ -114,15 +145,9 @@
          
         	    <h4 style="color:#ec971f;">Insertar Ciudades</h4>
             	<hr/>
-            	
-		   		
             
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
-            
-            
-        
-			   
 			   <div class="row">
 		       <div class="col-xs-12 col-md-12">
 			  	<p  class="formulario-subtitulo" >Nombres tipos de Ciudades</p>
@@ -134,7 +159,7 @@
 		    
 		     <?php } } else {?>
 		    
-			   <div class="row">
+		     <div class="row">
 		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombres de Ciudades</p>
 			  	<input type="text"  name="nombre_ciudad" id="nombre_ciudad" value="" class="form-control"/> 
@@ -148,8 +173,9 @@
 		     
 		      <div class="row">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
-			  </div>
+			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
+			
+              </div>
 			  </div>     
               
             
@@ -179,13 +205,13 @@
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Ciudad","index"); ?>&id_ciudad=<?php echo $res->id_ciudad; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("Ciudad","index"); ?>&id_ciudad=<?php echo $res->id_ciudad; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Ciudad","borrarId"); ?>&id_ciudad=<?php echo $res->id_ciudad; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("Ciudad","borrarId"); ?>&id_ciudad=<?php echo $res->id_ciudad; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>
