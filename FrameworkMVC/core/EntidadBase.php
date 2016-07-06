@@ -287,7 +287,7 @@ class EntidadBase{
     <html>
 		<head>
 			<title>CARTONES REGISTRADOS</title>
-    			
+    		<meta charset="UTF-8">	
 			    </head>
 				     <body>
 				         
