@@ -353,6 +353,7 @@ class AnularSolicitudCartonesController extends ControladorBase{
 			
 			$resulCabecera=$movimientoCabeza->getCondiciones($columnas ,$tablas ,$where, " movimientos_cabeza.numero_movimientos_cabeza");;
 			
+			
 			$this->view("SolicitudAnulada",array(
 					'resulSet'=>$resulSet,'resulCabecera'=>$resulCabecera
 			
