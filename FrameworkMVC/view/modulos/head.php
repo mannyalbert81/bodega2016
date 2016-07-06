@@ -152,13 +152,17 @@ $(document).ready(function(){
 			<div class="dropdown" id="">
 			<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge"><?php echo $cantidad; ?></span></button>
 			<?php if($cantidad>0){ ?>
-			<ul class="dropdown-menu" id="ul_notificacion">
+			
+			<ul class="dropdown-menu" id="ul_notificacion" style="width: 300px;">
 			<?php foreach ($resultNotificaciones as $res){?>
 			<?php $fecha= new DateTime($res->creado);?>
-			<li class="list-group-item" style="list-style-image: url('images/logo_masoft.png');">
-			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>">
-			<?php echo '<b>'.$res->descripcion_notificaciones.'</b>'; echo ' '.$res->usuario_usuarios;  echo '<br>'.' Cant cartones ('.$res->cantidad_cartones_notificaciones.')'; echo '  '; echo $fecha->format('Y-m-d');?>
-			</a></li>			
+			
+			<li class="list-group-item" >
+			<img src="view/images/<?php echo $res->nombre_icon_tipo_notificacion;?>"  class="img-responsive img-thumbnail" height="50px" width="50px" alt="Responsive image" style="float:left;"/>
+			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>" style="display: inline-block; padding: 3px 5px;">
+			<?php echo '<b>'.$res->descripcion_notificaciones.'</b>'; echo ' '.$res->usuario_usuarios;  echo '<br>'.' Cant cartones ('.$res->cantidad_cartones_notificaciones.')'; echo '   '; echo ' '; echo $fecha->format('Y-m-d');?>
+			</a>
+			</li>			
 			<?php }?>
 			</ul>
 			<?php }?>

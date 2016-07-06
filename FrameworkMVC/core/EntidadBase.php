@@ -541,7 +541,8 @@ class EntidadBase{
 			  usuarios.nombre_usuarios, 
 			  notificaciones.visto_notificaciones, 
 			  tipo_notificacion.controlador_tipo_notificacion, 
-			  tipo_notificacion.accion_tipo_notificacion";
+			  tipo_notificacion.accion_tipo_notificacion,
+    		  tipo_notificacion.nombre_icon_tipo_notificacion";
     	
     	$tablas=" public.notificaciones, 
 				  public.usuarios, 
