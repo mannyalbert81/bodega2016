@@ -63,6 +63,7 @@ class GenerarSolicitudController extends ControladorBase{
 					$resultCon=$controladores->getAll("nombre_controladores");
 					
 					$cartones = new CartonesModel();				
+					
 					//MOSTRAR SOLO LOS CARTINES AFUERA O POR INGRESAR
 					$where = "id_tipo_operaciones = '2' ";
 					$resultCartones=$cartones->getBy($where);
@@ -624,7 +625,14 @@ class GenerarSolicitudController extends ControladorBase{
 			
 			$resultado=$movimientoCabeza->UpdateBy($colval ,$tabla , $where);
 			
+			///aqui se debe recorrer el detalle buscar los cartones de esta solicitud a aprobar 
+			/// y cambirle de estado en la tabla cartones 
+			/// o sea relizar la salida del carton 
+			
+			
+
 			$_SESSION['numero_movimiento']="";
+				
 			
 			$this->redirect("GenerarSolicitud","index");
 		

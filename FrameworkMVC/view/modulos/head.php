@@ -151,7 +151,7 @@ $(document).ready(function(){
 			<?php $fecha= new DateTime($res->creado);?>
 			<li>
 			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>">
-			<?php echo $res->descripcion_notificaciones; echo ' '.$res->usuario_usuarios; echo '<br>'; echo $fecha->format('Y-m-d'); echo ' Cant cartones ('.$res->cantidad_cartones_notificaciones.')';?>
+			<?php echo '<b>'.$res->descripcion_notificaciones.'</b>'; echo ' '.$res->usuario_usuarios; echo '<br>'; echo $fecha->format('Y-m-d'); echo ' Cant cartones ('.$res->cantidad_cartones_notificaciones.')';?>
 			</a></li>			
 			<?php }?>
 			</ul>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-05T15:20:49 -->
+<!-- 2016-07-05T18:50:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -81,7 +81,7 @@ WHERE
 				<imageExpression><![CDATA["C:/Users/User/git/bodega2016/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
 			</image>
 			<componentElement>
-				<reportElement x="752" y="4" width="67" height="30" uuid="12f35f68-1054-4e1c-b1e8-7fefe67135d1"/>
+				<reportElement x="681" y="10" width="67" height="30" uuid="12f35f68-1054-4e1c-b1e8-7fefe67135d1"/>
 				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" textPosition="bottom">
 					<jr:codeExpression><![CDATA["123456789"]]></jr:codeExpression>
 				</jr:Code128>
