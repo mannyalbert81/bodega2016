@@ -48,7 +48,35 @@
         </style>
        
          
-       
+       	<!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.error("Has Pulsado en Buscar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.log("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
+		
         
 			
 			
@@ -392,7 +420,7 @@
 		     <?php } ?>
 		       <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
 			  </div>
 			</div>     
                
@@ -430,7 +458,7 @@
            
           
            <div class="col-lg-3">
-           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar" onClick="Borrar()" class="btn btn-default"/>
            </div>
          
           </form>

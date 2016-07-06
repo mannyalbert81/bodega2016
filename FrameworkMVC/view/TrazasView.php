@@ -22,6 +22,41 @@
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
 		</script>
+		
+		
+		
+		<!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.error("Has Pulsado en Buscar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.log("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
+		
+		
+		
+		
 	<script>
 	$(document).ready(function(){
 
@@ -186,7 +221,7 @@
           
            <div class="col-lg-1">
            <span style="color:#ffffff;">Buscar:</span>
-           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar" onClick="Borrar()" class="btn btn-default"/>
            </div>
          
           </form>

@@ -30,7 +30,35 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
-        
+        <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.error("Has Pulsado en Quitar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.log("Has Pulsado en Pasar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
+		
         
        <style>
             input{
@@ -169,10 +197,10 @@
             	
             	<div class="row" >
             		
-            		<button type="button" class="btn btn-info" id= "pasar" >
+            		<button type="button" class="btn btn-info"  onClick="notificacion()" id= "pasar" >
   						<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Pasar
 					</button>
-                	<button type="button" class="btn btn-info" id="quitar">
+                	<button type="button" class="btn btn-info" onClick="Borrar()" id="quitar">
   						Quitar <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span> 
 					</button>
 					
@@ -180,10 +208,10 @@
 				<div style="margin-top: 5px;">
 				</div>
 				<div class="row">
-					<button type="button" class="btn btn-info" id="pasartodos">
+					<button type="button" class="btn btn-info" onClick="notificacion()" id="pasartodos">
   						<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Todos
 					</button>
-					<button type="button" class="btn btn-info" id="quitartodos">
+					<button type="button" class="btn btn-info"  onClick="Borrar()" id="quitartodos">
   							Todos <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
 					</button>
 	       	    </div>
@@ -219,7 +247,7 @@
 			 	 <p  class="formulario-subtitulo" > Total Cartones: </p>
 			 	 <input type="text" id="total_cartones" name="total_cartones" class="form-control" readonly="readonly">
 			 	 <div style="margin-top:10px ; text-align: center; " >
-           			<input type="submit" id="btnGuardar" name="Guardar" value="Guardar" class="btn btn-success "/>
+           			<input type="submit" id="btnGuardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success "/>
            	 	</div>
 		   	  </div>	
 		   	  <div class="col-xs-2 col-md-2">
