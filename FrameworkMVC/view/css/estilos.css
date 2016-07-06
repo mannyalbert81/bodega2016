@@ -387,7 +387,7 @@ figure img{
 
 /*para las notificaciones*/
 
-#ul_notificacion {
+/*#ul_notificacion {
     counter-reset: li; 
     list-style: none; 
     *list-style: none; 
@@ -446,3 +446,4 @@ figure img{
     left: -.5em;
     border-left-color: #fa8072;             
 }
+*/

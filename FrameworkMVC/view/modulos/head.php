@@ -25,65 +25,7 @@
 
 		
 		<style type="text/css">
-		#ul_notificacion {
-    counter-reset: li; 
-    list-style: none; 
-    *list-style: none; 
-    font: 15px 'trebuchet MS', 'lucida sans';
-    padding: 0;
-    margin-bottom: 1em;
-    text-shadow: 0 1px 0 rgba(255,255,255,.5);
-}
 
-#ul_notificacion ul {
-    margin: 0 0 0 2em; 
-}
-
-#ul_notificacion li{
-    position: relative;
-    display: block;
-    padding: .2em .2em .2em .4em;
-    *padding: .1em;
-    margin: .1em 0 0 2.5em;
-    background: #ddd;
-    color: #444;
-    text-decoration: none;
-    transition: all .3s ease-out;   
-}
-
-#ul_notificacion li:hover{
-    background: #eee;
-}   
-
-#ul_notificacion li:before{
-    content: counter(li);
-    counter-increment: li;
-    position: absolute; 
-    left: -2.5em;
-    top: 50%;
-    margin-top: -1em;
-    background: #fa8072;
-    height: 2em;
-    width: 2em;
-    line-height: 2em;
-    text-align: center;
-    font-weight: bold;
-}
-
-#ul_notificacion li:after{
-    position: absolute; 
-    content: '';
-    border: .5em solid transparent;
-    left: -1em;
-    top: 50%;
-    margin-top: -.5em;
-    transition: all .3s ease-out;               
-}
-
-#ul_notificacion li:hover:after{
-    left: -.5em;
-    border-left-color: #fa8072;             
-}
 		</style>
  
  <script type=text/javascript>
@@ -213,9 +155,9 @@ $(document).ready(function(){
 			<ul class="dropdown-menu" id="ul_notificacion">
 			<?php foreach ($resultNotificaciones as $res){?>
 			<?php $fecha= new DateTime($res->creado);?>
-			<li>
+			<li class="list-group-item" style="list-style-image: url('images/logo_masoft.png');">
 			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>">
-			<?php echo '<b>'.$res->descripcion_notificaciones.'</b>'; echo ' '.$res->usuario_usuarios; echo '<br>'; echo $fecha->format('Y-m-d'); echo ' Cant cartones ('.$res->cantidad_cartones_notificaciones.')';?>
+			<?php echo '<b>'.$res->descripcion_notificaciones.'</b>'; echo ' '.$res->usuario_usuarios;  echo '<br>'.' Cant cartones ('.$res->cantidad_cartones_notificaciones.')'; echo '  '; echo $fecha->format('Y-m-d');?>
 			</a></li>			
 			<?php }?>
 			</ul>
