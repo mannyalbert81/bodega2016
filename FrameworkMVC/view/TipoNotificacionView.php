@@ -38,12 +38,12 @@
 			}
 			
 			function Borrar(){
-				alertify.error("Has Pulsado en Borrar"); 
+				alertify.success("Has Pulsado en Borrar"); 
 				return false; 
 			}
 
 			function notificacion(){
-				alertify.log("Has Pulsado en Editar"); 
+				alertify.success("Has Pulsado en Editar"); 
 				return false; 
 			}
 		</script>

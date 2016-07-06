@@ -47,12 +47,12 @@
 			}
 			
 			function Borrar(){
-				alertify.error("Has Pulsado en Quitar"); 
+				alertify.success("Has Pulsado en Quitar"); 
 				return false; 
 			}
 
 			function notificacion(){
-				alertify.log("Has Pulsado en Pasar"); 
+				alertify.success("Has Pulsado en Pasar"); 
 				return false; 
 			}
 		</script>
