@@ -23,6 +23,33 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
+		
+		
+        <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Buscar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.error("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.log("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+	<!-- TERMINA NOTIFICAIONES -->
         
         
        <style>
@@ -138,7 +165,7 @@
   		
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
   		
-		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " style="margin-top: 10px;"/> 
+		 <input type="submit" id="buscar" name="buscar" value="Buscar" onClick="Ok()" class="btn btn-warning " style="margin-top: 10px;"/> 
 	     </div>
 		 
 		</div>

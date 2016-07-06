@@ -23,7 +23,35 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
-        
+        <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.error("Has Pulsado en Buscar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.log("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
+		
         
        <style>
             input{
@@ -165,7 +193,7 @@
 							<option value="4"  >Años</option>
 							<option value="6"  >Contenido</option>
 						</select>
-				   		<button type="submit" id="buscar" name="buscar" class="btn btn-default"><span class="glyphicon glyphicon-search	" ><?php echo " Buscar" ;?> </span></button>					   		
+				   		<button type="submit" id="buscar" name="buscar" onClick="Borrar()" class="btn btn-default"><span class="glyphicon glyphicon-search	" ><?php echo " Buscar" ;?> </span></button>					   		
 		        	</div>
 		        
 		      		</form>
@@ -274,7 +302,7 @@
     <div class="col-xs-12 col-md-12">
 	<div style="margin-top:10px ; text-align: center; " >
 			  
-   <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+   <input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
    <a id="enlace" href="/FrameworkMVC/view/ireports/ContGenerarSolicitudesReport.php?id_usuarios=<?php echo $_SESSION['id_usuarios']; ?>" style="margin-top: 10px; display: none;" class="btn">Reporte</a>
 	        </div>
        </div>    	 		

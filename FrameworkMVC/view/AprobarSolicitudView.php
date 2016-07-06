@@ -72,6 +72,33 @@
 	});
 	</script>
 
+
+ <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Aprobar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.error("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.log("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+	<!-- TERMINA NOTIFICAIONES -->
+        
     
   <style>
    
@@ -136,7 +163,7 @@
 		    	<form class="navbar-form navbar-right" role="search" action="<?php echo $helper->url("GenerarSolicitud","AprobarSolicitud");?>"  method="post" >
 		  		   	<div class="form-group">
 		          		
-				   		<button type="submit" id="aprobar" name="aprobar" class="btn btn-success"><span class="glyphicon glyphicon-ok" ><?php echo "Aprobar" ;?> </span></button>	
+				   		<button type="submit" id="aprobar" name="aprobar" onClick="Ok()"class="btn btn-success"><span class="glyphicon glyphicon-ok" ><?php echo "Aprobar" ;?> </span></button>	
 				   		<input type="hidden" id="numero_movimiento" name="numero_movimiento" value="<?php echo $resulCabecera[0]->numero_movimientos_cabeza;  ?>"/>				   		
 		        	</div>
 		        
