@@ -327,6 +327,13 @@
 					 
 				</select> 			  
 			  </div>
+			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad</p>
+			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" onkeypress="return numeros(event)" value="<?php echo $resEdit->cantidad_documentos_libros_cartones; ?>" class="form-control"/>
+			  <div id="mensaje_cantidad_documentos_libros_cartones" class="errores"></div>
+			  </div>
+		    </div>
 		      </div>
 		    
 		    <hr>
@@ -411,6 +418,14 @@
 					<option value="TRUE"  >TRUE </option>
 					<option value="FALSE"  >FALSE</option>
 				</select> 			  
+			  </div>
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultCiu as $resCiu) {?>
+						<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
+			        <?php } ?>
+				</select>
 			  </div>
 		      </div>
 		    <hr>

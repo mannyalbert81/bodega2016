@@ -26,6 +26,9 @@ public function index(){
 			
 			$entidades = new EntidadesModel();
 			$resultEnt = $entidades->getAll("nombre_entidades");
+			
+			$ciudad = new CiudadModel();
+			$resultCiu = $ciudad->getAll("nombre_ciudad");
 	        
 			$cartones = new CartonesModel();
 			$columnas = " cartones.id_cartones,
@@ -199,7 +202,7 @@ public function index(){
 			//"resultMenu"=>$resultMenu
 			
 			$this->view("Cartones",array(
-					"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultMenu"=>$resultMenu, "resultBodegas"=> $resultBodegas, "resultTipoConCar"=> $resultTipoConCar, "resultEnt"=>$resultEnt
+					"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultMenu"=>$resultMenu, "resultBodegas"=> $resultBodegas, "resultTipoConCar"=> $resultTipoConCar, "resultEnt"=>$resultEnt,"resultCiu"=>$resultCiu
 			
 			));
 			
@@ -241,6 +244,7 @@ public function index(){
 			$_id_entidades   = $_POST["id_entidades"];
 			$_id_bodegas   = $_POST["id_bodegas"];
 			$tipo_operaciones=$resultTipoOperaciones[0]->id_tipo_operaciones;
+			$_id_ciudad=$_POST["id_ciudad"];
 			
 		
 			
@@ -251,7 +255,7 @@ public function index(){
 	
 				$_id_cartones = $_POST["id_cartones"];
 					
-				$colval = " numero_cartones = '$_numero_cartones',  serie_cartones = '$_serie_cartones', contenido_cartones = '$_contenido_cartones', year_cartones = '$_year_cartones', cantidad_documentos_libros_cartones = '$_cantidad_documentos_libros_cartones', id_tipo_contenido_cartones = '$_id_tipo_contenido_cartones', digitalizado_cartones = '$_digitalizado_cartones', id_entidades = '$_id_entidades', id_bodegas = '$_id_bodegas'  ";
+				$colval = " numero_cartones = '$_numero_cartones',  serie_cartones = '$_serie_cartones', contenido_cartones = '$_contenido_cartones', year_cartones = '$_year_cartones', cantidad_documentos_libros_cartones = '$_cantidad_documentos_libros_cartones', id_tipo_contenido_cartones = '$_id_tipo_contenido_cartones', digitalizado_cartones = '$_digitalizado_cartones', id_entidades = '$_id_entidades', id_bodegas = '$_id_bodegas',id_tipo_operaciones = '$tipo_operaciones', id_ciudad = '$_id_ciudad'  ";
 				$tabla = "cartones";
 				$where = "id_cartones = '$_id_cartones'    ";
 					
@@ -262,7 +266,7 @@ public function index(){
 			
 				$funcion = "ins_cartones";
 					
-				$parametros = " '$_numero_cartones' ,'$_serie_cartones' , '$_contenido_cartones' , '$_year_cartones' , '$_cantidad_documentos_libros_cartones' , '$_id_tipo_contenido_cartones' , '$_digitalizado_cartones' , '$_id_entidades' , '$_id_bodegas','$tipo_operaciones'";
+				$parametros = " '$_numero_cartones' ,'$_serie_cartones' , '$_contenido_cartones' , '$_year_cartones' , '$_cantidad_documentos_libros_cartones' , '$_id_tipo_contenido_cartones' , '$_digitalizado_cartones' , '$_id_entidades' , '$_id_bodegas','$tipo_operaciones','$_id_ciudad'";
 				$cartones->setFuncion($funcion);
 				$cartones->setParametros($parametros);
 				$resultado=$cartones->Insert();
