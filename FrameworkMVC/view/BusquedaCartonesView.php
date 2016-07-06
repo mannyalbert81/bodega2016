@@ -7,7 +7,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Asignar Usuario Bodega- bodega 2016</title>
+        <title>Busqueda de Cartones - bodega 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -31,34 +31,7 @@
 		</script>
 		
         
-        <!-- AQUI NOTIFICAIONES -->
-		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
-		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
-		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
-		
-		
-		
-		<script>
-
-		function Ok(){
-				alertify.success("Has Pulsado en Guardar"); 
-				return false;
-			}
-			
-			function Borrar(){
-				alertify.success("Has Pulsado en Borrar"); 
-				return false; 
-			}
-
-			function notificacion(){
-				alertify.success("Has Pulsado en Editar"); 
-				return false; 
-			}
-		</script>
-		
-		
-		
-		<!-- TERMINA NOTIFICAIONES -->
+        
         
 			
 			
@@ -75,9 +48,35 @@
         </style>
        
          
-       
-        
-        
+       	<!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.error("Has Pulsado en Buscar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.log("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
+		
         
 			
 			
@@ -237,112 +236,27 @@
     
       <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("AsignarUsuarioBodega","InsertaAsignarUsuarioBodega"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
-            
-         
-        	    <h4 style="color:#ec971f;">Asignar Usuarios Bodegas</h4>
+        
+        <div class="col-lg-12">
+           <h4 ALIGN="center"></h4>
+		   <hr/>
+		    <h4 style="color:#ec971f;" ALIGN="center" >BUSQUEDA DE CARTONES</h4>
+		    
             	<hr/>
-            	
-		   		
-            
-          <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-            
-            
-         <div class="row">
-		    
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Usuarios</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-			  	<option value="">--Seleccione-- </option>
-					<?php foreach($resultUsu as $res) {?>
-					<option value="<?php echo $res->id_usuarios; ?>"  <?php if ($res->id_usuarios == $resEdit->id_usuarios ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_usuarios; ?> </option>
-					
-						  <?php } ?>
-				</select> 			  
-			  </div>
-		    
-		   <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Bodegas</p>
-			  	<select name="id_bodegas" id="id_bodegas"  class="form-control" >
-			  	<option value="">--Seleccione-- </option>
-					<?php foreach($resultBodegas as $res) {?>
-					<option value="<?php echo $res->id_bodegas; ?>"  <?php if ($res->id_bodegas == $resEdit->id_bodegas ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_bodegas; ?> </option>
-					
-						  <?php } ?>
-				</select> 			  
-			  </div>
-			  
-			  </div>
-			   
-			   
-		    
-		    
-		    <hr>
-		    
-         
-            
-            
-		     <?php } } else {?>
-		    
-		    <div class="row">
-		    
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Usuarios</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-					<option value="">--Seleccione-- </option>
-					
-					<?php foreach($resultUsu as $res) {?>
-						<option value="<?php echo $res->id_usuarios; ?>"  ><?php echo $res->nombre_usuarios; ?> </option>
-			        <?php } ?>
-				</select> 			  
-			  </div>
-		    
-		   <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Bodegas</p>
-			  	<select name="id_bodegas" id="id_bodegas"  class="form-control" >
-					<option value="">--Seleccione-- </option>
-					<?php foreach($resultBodegas as $res) {?>
-						<option value="<?php echo $res->id_bodegas; ?>"  ><?php echo $res->nombre_bodegas; ?> </option>
-			        <?php } ?>
-				</select> 			  
-			  </div>
-			   </div>
-			   
-			   
-		    
-		    <hr>
-		    
-		   
-               	
-		     <?php } ?>
-		       <div class="row">
-			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
-			  </div>
-			</div>     
-               
-		
-		 <hr>
-          
-          </form>
-       
-         <!-- termina el form -->
-       
-        <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Asignaciones Realizadas</h4>
-           
      <!-- empieza formulario de busqueda -->
      
-            <hr>
+            
         <div class="row">
-           <form action="<?php echo $helper->url("AsignarUsuarioBodega","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+           <form action="<?php echo $helper->url("Cartones","busqueda_cartones"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+           <div class="col-lg-6">
+           </div>
            
-           <div class="col-lg-4">
+           <div class="col-lg-2">
            <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
            <div id="mensaje_contenido" class="errores"></div>
             </div>
             
-           <div class="col-lg-4">
+           <div class="col-lg-2">
            <select name="criterio" id="criterio"  class="form-control">
                                     <?php foreach($resultMenu as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
@@ -354,8 +268,8 @@
           
            
           
-           <div class="col-lg-3">
-           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
+           <div class="col-lg-2">
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar" onClick="Borrar()" class="btn btn-default"/>
            </div>
          
           </form>
@@ -367,11 +281,15 @@
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Usuario</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Rol</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Bodega</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Asignacion</th>
-	    	
+	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Años</th>
+	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
 	    		
 	    		<th></th>
 	    		<th></th>
@@ -379,27 +297,17 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_asignacion_usuarios_bodegas; ?></td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>  </td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_rol; ?>  </td>
-		           	   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
-		           	   <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
-		           	  
-		           	  
-		           	   <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AsignarUsuarioBodega","index"); ?>&id_asignacion_usuarios_bodegas=<?php echo $res->id_asignacion_usuarios_bodegas; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("AsignarUsuarioBodega","borrarId"); ?>&id_asignacion_usuarios_bodegas=<?php echo $res->id_asignacion_usuarios_bodegas; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
-			                </div>
-			              
-		               </td>
-		               
-		               
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
+		                <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
+		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
+		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
+		                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
+		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
+		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
+		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+		           	   
 		    		</tr>
 		        <?php } } ?>
             

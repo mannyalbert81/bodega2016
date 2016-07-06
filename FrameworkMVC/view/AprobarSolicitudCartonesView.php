@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Anular Solicitud Cartones - bodega 2016</title>
+        <title>Aprobar Solicitud Cartones - bodega 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -40,12 +40,12 @@
 			}
 			
 			function Borrar(){
-				alertify.success("Has Pulsado en Borrar"); 
+				alertify.error("Has Pulsado en Borrar"); 
 				return false; 
 			}
 
 			function notificacion(){
-				alertify.success("Has Pulsado en Editar"); 
+				alertify.log("Has Pulsado en Editar"); 
 				return false; 
 			}
 		</script>
@@ -120,12 +120,12 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("AnularSolicitudCartones","anula_solicitud_cartones"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("AprobarSolicitudCartones","aprobar_solicitud_cartones"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
          
-       	 <h4 style="color:#ec971f;">Anular Solicitud Cartones</h4>
+       	 <h4 style="color:#ec971f;">Aprobar Solicitud Cartones</h4>
        	 
        	 
        	 <div class="panel panel-default">
@@ -213,7 +213,7 @@
 		               
 	                   <td style="color:#000000;font-size:80%;">
 	                   <div class="right">
-			                    <a href="<?php echo $helper->url("AnularSolicitudCartones","borrarId"); ?>&id_movimientos_cabeza=<?php echo $res->id_movimientos_cabeza; ?>&numero_movimientos_cabeza=<?php echo $res->numero_movimientos_cabeza; ?>" class="btn btn-danger" style="font-size:75%;">Anular</a>
+			                    <a href="<?php echo $helper->url("AprobarSolicitudCartones","actualizarId"); ?>&id_movimientos_cabeza=<?php echo $res->id_movimientos_cabeza; ?>&numero_movimientos_cabeza=<?php echo $res->numero_movimientos_cabeza; ?>" class="btn btn-success" style="font-size:75%;">Aprobar</a>
 			                </div>
 	                   
 		              </td> 

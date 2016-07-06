@@ -83,6 +83,8 @@
 			</li>
 			<li><a href="index.php?controller=AnularSolicitudCartones&action=anula_solicitud_cartones"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Anular Solicitud de Cartones</span> </a>
 			</li>
+			<li><a href="index.php?controller=AprobarSolicitudCartones&action=aprobar_solicitud_cartones"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Aprobar Solicitud de Cartones</span> </a>
+			</li>
 			<li><a href="index.php?controller=Baja&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Baja de Cartones</span> </a>
 			</li>
           </ul>
@@ -94,9 +96,13 @@
           <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-save-file" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
           <li><a href="index.php?controller=Cartones&action=consulta_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Estado Cartones</span> </a>
-            </li>   
+            </li>  
+            
+            <li><a href="index.php?controller=Cartones&action=busqueda_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Busqueda de  Cartones</span> </a>
+            </li>  
                <li><a href="index.php?controller=AnularSolicitudCartones&action=consulta_solicitud_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Solicitud Cartones</span> </a>
             </li> 
+            
 			
 </ul>
 </li>
