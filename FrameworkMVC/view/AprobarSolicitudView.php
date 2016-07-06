@@ -177,38 +177,7 @@
    
     </div>
     
-    <div class="col-xs-12 col-md-12" id="" style="display: ;" >
-     	
-        <section   class="col-xs-12 col-md-12" class="table table-hover "  style="max-height:300px; min-height:100px;">
-        <table  class="table table-hover" >
-	         <tr  class="fila">
-	        	<th style="color:#456789;font-size:80%;"></th>
-	        	<th style="color:#456789;font-size:80%;">Numero de Movimiento</th>
-	    		<th style="color:#456789;font-size:80%;">Tipo Operaciones</th>
-	    		<th style="color:#456789;font-size:80%;">Usuario Creador</th>
-	    		<th style="color:#456789;font-size:80%;">Cantidad Cartones</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha de creacion</th>
-	    		
-	    	  </tr>
-            
-	          <?php if (!empty($resulCabecera)) {  foreach($resulCabecera as $res) {?>
-	          <tr class="fila">
-	        	    
-	        	    <td >
-	        	    </td>	        	            
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_movimientos_cabeza; ?>     </td> 
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_operaciones; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->usuario_usuarios; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_cartones_movimientos_cabeza; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
-		      </tr>
-		      <?php } } ?>
-		</table>     
-		     
-      </section>
-      
-    
-    </div>
+   
 	
   <h4 style="color:#ec971f; margin-left: 30px;" align="left">Lista de Cartones</h4>
   	<div class="col-xs-12 col-md-12">
