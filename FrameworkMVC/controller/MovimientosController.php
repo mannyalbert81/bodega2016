@@ -38,7 +38,7 @@ class MovimientosController extends ControladorBase{
 					
 					$cartones = new CartonesModel();				
 					//MOSTRAR SOLO LOS CARTINES AFUERA O POR INGRESAR
-					$where = "id_tipo_operaciones = '8' OR id_tipo_operaciones = '1'  ";
+					$where = " id_tipo_operaciones = '1'  ";
 					$resultCartones=$cartones->getBy($where);
 			
 					$resultEdit = "";
