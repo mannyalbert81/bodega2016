@@ -18,6 +18,7 @@
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		
 		<link rel="stylesheet" href="view/css/estilos.css">
+		
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>

@@ -10,6 +10,7 @@ class CiudadController extends ControladorBase{
 
 	public function index(){
 	
+		session_start();
 		//Creamos el objeto usuario
      	$ciudad= new CiudadModel(); 
 		$resultSet=$ciudad->getAll("id_ciudad");
@@ -17,9 +18,6 @@ class CiudadController extends ControladorBase{
 		$resultEdit = "";
 
 		
-		session_start();
-
-	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$permisos_rol = new PermisosRolesModel();
@@ -111,7 +109,8 @@ class CiudadController extends ControladorBase{
 		{
 		
 		
-		
+			$error = FALSE;
+			$mensaje = "";
 			$resultado = null;
 			$ciudad=new CiudadModel();
 		
@@ -147,24 +146,29 @@ class CiudadController extends ControladorBase{
 				$ciudad->setFuncion($funcion);
 		
 				$ciudad->setParametros($parametros);
-		
-		
-				$resultado=$ciudad->Insert();
-			 
+		        $resultado=$ciudad->Insert();
+				
+				
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Ciudad";
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_nombre_ciudad;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
+				
+				
+				
+				
 				}
 			 
-			 
-		
 			}
-			$this->redirect("Ciudad", "index");
-
-		}
+			
+			
+			$this->redirect("Ciudad","index");
+			
+			
+			
+         }
 		else
 		{
 			$this->view("Error",array(
@@ -172,15 +176,9 @@ class CiudadController extends ControladorBase{
 					"resultado"=>"No tiene Permisos de Insertar Ciudades"
 		
 			));
-		
-		
 		}
 	
-
-		
-	}
-
-
+       }
 
 
 	public function borrarId()
