@@ -121,8 +121,7 @@ class AnularSolicitudCartonesController extends ControladorBase{
     	}
     
     }
-    
-    public function consulta_solicitud_cartones(){
+   public function consulta_solicitud_cartones(){
     
     	session_start();
     
