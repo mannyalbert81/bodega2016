@@ -253,6 +253,7 @@ class NotificacionesController extends ControladorBase{
 		
 		session_start();
 		
+		//toma el id de notificaciones
 		$id_notificaciones=$_GET['id_notificaciones'];
 		
 		$notificaciones= new NotificacionesModel();
