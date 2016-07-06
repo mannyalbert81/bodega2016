@@ -274,7 +274,6 @@ class AnularSolicitudCartonesController extends ControladorBase{
     		$resultAsignacionUsuarios = $asigancion_usuarios->getAll("id_usuarios");
     		$usuarioDestino=$resultAsignacionUsuarios[0]->id_usuarios;
     		
-
     		$descripcion="Solicitud Anulada por ";
     		$numero_movimiento=$_numero_cabeza;
     		$cantidad_cartones=0;

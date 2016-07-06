@@ -584,7 +584,6 @@ class EntidadBase{
     	
     	}*/
     	
-    	$_SESSION["cantidad_notificaciones"]=$cantidad_notificaciones;
     	$_SESSION["resultNotificaciones"]=$resultNotificaciones;
     	//$_SESSION["cantidad_fila_notificaciones"]=$contar;
     	
