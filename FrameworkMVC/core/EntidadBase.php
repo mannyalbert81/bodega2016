@@ -287,7 +287,7 @@ class EntidadBase{
     <html>
 		<head>
 			<title>CARTONES REGISTRADOS</title>
-    			
+    		<meta charset="UTF-8">	
 			    </head>
 				     <body>
 				         
@@ -584,7 +584,6 @@ class EntidadBase{
     	
     	}*/
     	
-    	$_SESSION["cantidad_notificaciones"]=$cantidad_notificaciones;
     	$_SESSION["resultNotificaciones"]=$resultNotificaciones;
     	//$_SESSION["cantidad_fila_notificaciones"]=$contar;
     	
