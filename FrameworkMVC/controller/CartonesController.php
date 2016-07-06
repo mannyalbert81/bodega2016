@@ -222,13 +222,15 @@ public function index(){
 		
 		$resultado = null;
 		$cartones=new CartonesModel();
+		$tipo_operaciones = new TipoOperacionesModel();
+		$resultTipoOperaciones= $tipo_operaciones->getBy("nombre_tipo_operaciones LIKE 'ENTRADAS%'");
 	
 	
 		
 		//_nombre_categorias character varying, _path_categorias character varying
 		if (isset ($_POST["id_entidades"]) )
 		{
-
+			
 			$_numero_cartones     = $_POST["numero_cartones"];
 			$_serie_cartones      = $_POST["serie_cartones"];
 			$_contenido_cartones   = $_POST["contenido_cartones"];
@@ -238,6 +240,7 @@ public function index(){
 			$_digitalizado_cartones   = $_POST["digitalizado_cartones"];
 			$_id_entidades   = $_POST["id_entidades"];
 			$_id_bodegas   = $_POST["id_bodegas"];
+			$tipo_operaciones=$resultTipoOperaciones[0]->id_tipo_operaciones;
 			
 		
 			
@@ -259,10 +262,11 @@ public function index(){
 			
 				$funcion = "ins_cartones";
 					
-				$parametros = " '$_numero_cartones' ,'$_serie_cartones' , '$_contenido_cartones' , '$_year_cartones' , '$_cantidad_documentos_libros_cartones' , '$_id_tipo_contenido_cartones' , '$_digitalizado_cartones' , '$_id_entidades' , '$_id_bodegas'";
+				$parametros = " '$_numero_cartones' ,'$_serie_cartones' , '$_contenido_cartones' , '$_year_cartones' , '$_cantidad_documentos_libros_cartones' , '$_id_tipo_contenido_cartones' , '$_digitalizado_cartones' , '$_id_entidades' , '$_id_bodegas','$tipo_operaciones'";
 				$cartones->setFuncion($funcion);
 				$cartones->setParametros($parametros);
 				$resultado=$cartones->Insert();
+				
 				
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Cartones";
@@ -462,6 +466,219 @@ public function index(){
 	
 	}
 	
+	
+	public function busqueda_cartones(){
+	
+		session_start();
+		if (isset(  $_SESSION['usuario_usuarios']) )
+		{
+			//creacion menu busqueda
+			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
+			$resultMenu=array(0=>'--Seleccione--',1=>'Numero', 2=>'Serie', 3=>'Contenido', 4=>'Año', 5=>'Cantidad Documentos', 6=>'Nombre Contenido', 7=>'Digitalizado', 8=>'Nombre Entidades', 9=>'Nombre Bodega');
+			//Creamos el objeto usuario
+				
+			$bodegas = new BodegasModel();
+			$resultBodegas = $bodegas->getAll("nombre_bodegas");
+				
+			//notificaciones
+			$bodegas->MostrarNotificaciones($_SESSION['id_usuarios']);
+				
+			$tipo_contenido_cartones = new TipoContenidoCartonesModel();
+			$resultTipoConCar =$tipo_contenido_cartones->getAll("nombre_tipo_contenido_cartones");
+				
+			$entidades = new EntidadesModel();
+			$resultEnt = $entidades->getAll("nombre_entidades");
+			 
+			$cartones = new CartonesModel();
+			$columnas = " cartones.id_cartones,
+					      cartones.numero_cartones,
+						  cartones.serie_cartones,
+						  cartones.contenido_cartones,
+						  cartones.year_cartones,
+						  cartones.cantidad_documentos_libros_cartones,
+					      tipo_contenido_cartones.id_tipo_contenido_cartones,
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
+						  cartones.digitalizado_cartones,
+					      entidades.id_entidades,
+						  entidades.nombre_entidades,
+					      bodegas.id_bodegas,
+						  bodegas.nombre_bodegas";
+			$tablas   = "public.cartones,
+						  public.bodegas,
+						  public.entidades,
+						  public.tipo_contenido_cartones";
+			$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+			$id       = "cartones.numero_cartones";
+	
+			$resultSet=$cartones->getCondiciones($columnas ,$tablas ,$where, $id);
+				
+			$nombre_controladores = "Cartones";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $cartones->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+	
+			if (!empty($resultPer))
+			{
+					
+					
+				$resultEdit = "";
+					
+				if (isset ($_GET["id_cartones"])   )
+				{
+					$_id_cartones = $_GET["id_cartones"];
+					$where    = " bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND cartones.id_cartones = '$_id_cartones' ";
+					$resultEdit = $cartones->getCondiciones($columnas ,$tablas ,$where, $id);
+						
+					$traza=new TrazasModel();
+					$_nombre_controlador = "Cartones";
+					$_accion_trazas  = "Editar";
+					$_parametros_trazas = $_id_cartones;
+					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+	
+				}
+	
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Cartones"
+		
+				));
+					
+			}
+				
+	
+			$resultPerVer= $cartones->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+				
+			if (!empty($resultPerVer))
+			{
+				if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
+				{
+	
+					$columnas = " cartones.id_cartones,
+						  cartones.numero_cartones,
+						  cartones.serie_cartones,
+						  cartones.contenido_cartones,
+						  cartones.year_cartones,
+						  cartones.cantidad_documentos_libros_cartones,
+						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
+						  cartones.digitalizado_cartones,
+						  entidades.nombre_entidades,
+						  bodegas.nombre_bodegas";
+					$tablas   = "public.cartones,
+						  public.bodegas,
+						  public.entidades,
+						  public.tipo_contenido_cartones";
+					$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+					$id       = "cartones.numero_cartones";
+						
+					$criterio = $_POST["criterio"];
+					$contenido = $_POST["contenido"];
+	
+						
+					//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+	
+					if ($contenido !="")
+					{
+							
+						$where_0 = "";
+						$where_1 = "";
+						$where_2 = "";
+						$where_3 = "";
+						$where_4 = "";
+						$where_5 = "";
+						$where_6 = "";
+						$where_7 = "";
+						$where_8 = "";
+						$where_9 = "";
+	
+							
+						switch ($criterio) {
+							case 0:
+								$where_0 = " ";
+								break;
+							case 1:
+								//Ruc Cliente/Proveedor
+								$where_1 = " AND  cartones.numero_cartones LIKE '$contenido'  ";
+								break;
+							case 2:
+								//Nombre Cliente/Proveedor
+								$where_2 = " AND cartones.serie_cartones LIKE '$contenido'  ";
+								break;
+	
+							case 3:
+								//Nombre Cliente/Proveedor
+								$where_3 = " AND cartones.contenido_cartones LIKE '$contenido'  ";
+								break;
+	
+							case 4:
+								//Nombre Cliente/Proveedor
+								$where_4 = " AND cartones.year_cartones LIKE '$contenido'  ";
+								break;
+	
+							case 5:
+								//Nombre Cliente/Proveedor
+								$where_5 = " AND cartones.cantidad_documentos_libros_cartones LIKE '$contenido'  ";
+								break;
+	
+	
+							case 6:
+								//Nombre Cliente/Proveedor
+								$where_6 = " AND tipo_contenido_cartones.nombre_tipo_contenido_cartones LIKE '$contenido'  ";
+								break;
+	
+							case 7:
+								//Nombre Cliente/Proveedor
+								$where_7 = " AND cartones.digitalizado_cartones = '$contenido'  ";
+								break;
+	
+	
+							case 8:
+								//Nombre Cliente/Proveedor
+								$where_8 = " AND entidades.nombre_entidades LIKE '$contenido'  ";
+								break;
+	
+							case 9:
+								//Nombre Cliente/Proveedor
+								$where_9 = " AND bodegas.nombre_bodegas LIKE '$contenido'  ";
+								break;
+						}
+							
+							
+							
+						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5 . $where_6 . $where_7 . $where_8 . $where_9;
+							
+							
+						$resul = $where_to;
+	
+						//Conseguimos todos los usuarios con filtros
+						$resultSet=$cartones->getCondiciones($columnas ,$tablas ,$where_to, $id);
+							
+	
+					}
+				}
+			}
+				
+			//"resultMenu"=>$resultMenu
+				
+			$this->view("BusquedaCartones",array(
+					"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultMenu"=>$resultMenu, "resultBodegas"=> $resultBodegas, "resultTipoConCar"=> $resultTipoConCar, "resultEnt"=>$resultEnt
+						
+			));
+				
+				
+		}
+		else
+		{
+			$this->view("ErrorSesion",array(
+					"resultSet"=>""
+	
+			));
+				
+				
+				
+		}
+	
+	}
 	
 	
 	
