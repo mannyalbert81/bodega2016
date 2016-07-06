@@ -204,7 +204,7 @@
 		 </div>
 		 <div class="col-lg-12">
        
-        <section class="col-lg-12 actividades" style="max-height:400px; overflow-y:scroll;" >
+        <section class="col-lg-12 actividades" style="height:400px; overflow-y:scroll;" >
         <table class="table table-hover  "  >
         
 	         <tr >

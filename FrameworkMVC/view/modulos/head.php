@@ -22,7 +22,69 @@
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+
 		
+		<style type="text/css">
+		#ul_notificacion {
+    counter-reset: li; 
+    list-style: none; 
+    *list-style: none; 
+    font: 15px 'trebuchet MS', 'lucida sans';
+    padding: 0;
+    margin-bottom: 1em;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+#ul_notificacion ul {
+    margin: 0 0 0 2em; 
+}
+
+#ul_notificacion li{
+    position: relative;
+    display: block;
+    padding: .2em .2em .2em .4em;
+    *padding: .1em;
+    margin: .1em 0 0 2.5em;
+    background: #ddd;
+    color: #444;
+    text-decoration: none;
+    transition: all .3s ease-out;   
+}
+
+#ul_notificacion li:hover{
+    background: #eee;
+}   
+
+#ul_notificacion li:before{
+    content: counter(li);
+    counter-increment: li;
+    position: absolute; 
+    left: -2.5em;
+    top: 50%;
+    margin-top: -1em;
+    background: #fa8072;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+}
+
+#ul_notificacion li:after{
+    position: absolute; 
+    content: '';
+    border: .5em solid transparent;
+    left: -1em;
+    top: 50%;
+    margin-top: -.5em;
+    transition: all .3s ease-out;               
+}
+
+#ul_notificacion li:hover:after{
+    left: -.5em;
+    border-left-color: #fa8072;             
+}
+		</style>
  
  <script type=text/javascript>
 //setTimeout("document.location=document.location",2000);
@@ -84,6 +146,7 @@ $(document).ready(function(){
 
 </script>  
 
+
 <script>
 $(document).ready(function(){
 	$("46").click(function(){
@@ -137,10 +200,11 @@ $(document).ready(function(){
 			<!-- empieza notificacion -->
 		<div class="col-xs-7 col-md-3" style="float: left; margin-left: 5px;">
 
-            <form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
+            <form action="<?php echo $helper->url("",""); ?>" method="post" >
             <?php 
-            $cantidad=$_SESSION['cantidad_notificaciones'];
+            
             $resultNotificaciones=$_SESSION['resultNotificaciones'];
+            $cantidad=count($resultNotificaciones);
             ?>
             
 			<div class="dropdown" id="">
