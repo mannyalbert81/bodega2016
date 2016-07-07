@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Generar Solicitud - bodega 2016</title>
+        <title>Aprobar Solicitud - bodega 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -72,6 +72,33 @@
 	});
 	</script>
 
+
+ <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Aprobar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.error("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.log("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+	<!-- TERMINA NOTIFICAIONES -->
+        
     
   <style>
    
@@ -113,7 +140,7 @@
   
      
     
-    <h4 style="color:#ec971f;" align="center">GENERAR SOLICITUD</h4>
+    <h4 style="color:#ec971f;" align="center">APROBAR SOLICITUD</h4>
     <hr/>
 
 	<div  class="col-xs-12 col-md-12">
@@ -133,66 +160,47 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
 		    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
-		      		<button id="visualizar_seleccionados" class="btn btn-default" type="button" style="margin-top: 10px;">
-					  Ver Seleccionados <span class="badge"><?php echo count($resultSol); ?></span>
-					</button>
-		      	
-		      	
-		      		<form class="navbar-form navbar-right" role="search" action="<?php echo $helper->url("GenerarSolicitud","index");?>"  method="post" >
+		    	<form class="navbar-form navbar-right" role="search" action="<?php echo $helper->url("GenerarSolicitud","AprobarSolicitud");?>"  method="post" >
 		  		   	<div class="form-group">
-		          		<input type="text" class="form-control" name="contenido_busqueda" id="criterio_busqueda" placeholder="texto a buscar">
-		          		<select id="criterio_busqueda" name="criterio_busqueda" class="form-control">
-							<option value="0"  >--Seleccione--</option>
-							<option value="1"  >Numero de Carton</option>
-							<option value="2"  >Serie de Documental</option>
-							<option value="3"  >Número Carton</option>
-							<option value="4"  >Años</option>
-							<option value="6"  >Contenido</option>
-						</select>
-				   		<button type="submit" id="buscar" name="buscar" class="btn btn-default"><span class="glyphicon glyphicon-search	" ><?php echo " Buscar" ;?> </span></button>					   		
+		          		
+				   		<button type="submit" id="aprobar" name="aprobar" onClick="Ok()"class="btn btn-success"><span class="glyphicon glyphicon-ok" ><?php echo "Aprobar" ;?> </span></button>	
+				   		<input type="hidden" id="numero_movimiento" name="numero_movimiento" value="<?php echo $resulCabecera[0]->numero_movimientos_cabeza;  ?>"/>				   		
 		        	</div>
 		        
 		      		</form>
-		      
+		      		
+		      	
     			</div><!-- /.navbar-collapse -->
   			</div><!-- /.container-fluid -->
 		</nav>
    
    
     </div>
-	<div class="col-xs-12 col-md-12" id="div_seleccionados" style="display: none;" >
+    
+    <div class="col-xs-12 col-md-12" id="" style="display: ;" >
      	
-        <section   class="col-xs-12 col-md-12" class="table table-hover "  style="height:300px; overflow-y:scroll;     ">
+        <section   class="col-xs-12 col-md-12" class="table table-hover "  style="max-height:300px; min-height:100px;">
         <table  class="table table-hover" >
 	         <tr  class="fila">
 	        	<th style="color:#456789;font-size:80%;"></th>
-	        	<th style="color:#456789;font-size:80%;">Numero de Carton</th>
-	    		<th style="color:#456789;font-size:80%;">Serie de Documental</th>
-	    		<th style="color:#456789;font-size:80%;">Contenido</th>
-	    		<th style="color:#456789;font-size:80%;">Años</th>
-	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
-	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
+	        	<th style="color:#456789;font-size:80%;">Numero de Movimiento</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo Operaciones</th>
+	    		<th style="color:#456789;font-size:80%;">Usuario Creador</th>
+	    		<th style="color:#456789;font-size:80%;">Cantidad Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha de creacion</th>
+	    		
 	    	  </tr>
             
-	          <?php if (!empty($resultSol)) {  foreach($resultSol as $res) {?>
+	          <?php if (!empty($resulCabecera)) {  foreach($resulCabecera as $res) {?>
 	          <tr class="fila">
 	        	    
 	        	    <td >
-	        	    	<a href="<?php echo $helper->url("GenerarSolicitud","index"); ?>&id_cartones_eliminar=<?php echo $res->id_cartones; ?>" class="btn btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  </a>
-	        	    </td>
-	        	            
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+	        	    </td>	        	            
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_movimientos_cabeza; ?>     </td> 
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_operaciones; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->usuario_usuarios; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_cartones_movimientos_cabeza; ?>  </td>
+		            <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
 		      </tr>
 		      <?php } } ?>
 		</table>     
@@ -201,7 +209,8 @@
       
     
     </div>
-  
+	
+  <h4 style="color:#ec971f; margin-left: 30px;" align="left">Lista de Cartones</h4>
   	<div class="col-xs-12 col-md-12">
      	
         <section   class="col-xs-12 col-md-12" class="table table-hover "  style="height:300px; overflow-y:scroll;     ">
@@ -217,16 +226,11 @@
 	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
 	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
 	    	  </tr>
             
-	          <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
+	          <?php if (!empty($resulSet)) {  foreach($resulSet as $res) {?>
 	          <tr class="fila">
-	        	    <td >
-	        	    	<a href="<?php echo $helper->url("GenerarSolicitud","index"); ?>&id_cartones_agregar=<?php echo $res->id_cartones; ?>" class="btn btn-info"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  </a>
-	        	    </td>
-	        	    
-	        	            
+	        	    <td style="color:#000000;font-size:80%;"> <?php  ?>     </td>
 		            <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
 		            <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
 		            <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
@@ -235,7 +239,7 @@
 		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
 		            <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
 		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
-		            <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+		           
 		      </tr>
 		      <?php } } ?>
 		</table>     
@@ -243,27 +247,7 @@
       </section>
      </div>
   
-   <form action="<?php echo $helper->url("GenerarSolicitud","InsertaGenerarSolicitud");?>"  method="post" enctype="multipart/form-data"  class="col-lg-12">
-	
-	 <div class="row">
-	<div class="col-xs-12 col-md-12" >
-			  	<p  class="formulario-subtitulo" >Observaciones </p>
-	          	<textarea  class="form-control" id="observaciones" name="observaciones" wrap="physical" rows="3"  onKeyDown="contador(this.form.observaciones,this.form.remLen,400);" onKeyUp="contador(this.form.observaciones,this.form.remLen,400);"></textarea>
-	          	<p  class="formulario-subtitulo" >Te quedan <input type="text" name="remLen" size="2" maxlength="2" value="400" readonly="readonly"> letras por escribir. </p>
-	        		   
-    </div>
    
-  
-  
-    <div class="col-xs-12 col-md-12">
-	<div style="margin-top:10px ; text-align: center; " >
-			  
-     <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
-     </div>
-       </div>    	 		
-       </div>
-   </form>
-  
   
    </div>
   </div>
