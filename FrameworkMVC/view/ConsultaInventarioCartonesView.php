@@ -184,7 +184,7 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar"  onClick="Borrar()" class="btn btn-warning " style="margin-top: 10px;"/> 
 	    
 	  <?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContInventarioSubReport.php?id_entidades=<?php  echo $sel_id_entidades ?>&id_tipo_operaciones=<?php  echo $sel_id_tipo_operaciones?>&id_tipo_contenido_cartones=<?php  echo $sel_id_tipo_contenido_cartones?>&numero_cartones=<?php  echo $sel_numero_cartones?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
+		 <a href="/FrameworkMVC/view/ireports/ContInventarioSubReport.php?id_entidades=<?php  echo $sel_id_entidades ?>&id_tipo_contenido_cartones=<?php  echo $sel_id_tipo_contenido_cartones?>&numero_cartones=<?php  echo $sel_numero_cartones?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
 		            
 		  <?php } else {?>
 		  
