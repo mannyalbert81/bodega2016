@@ -1,3 +1,25 @@
+<?php 
+
+$controladores=$_SESSION['controladores'];
+
+ function getcontrolador($controlador){
+ 	$display="display:none";
+ 	if (!empty($controladores))
+ 	{
+ 	foreach ($controladores as $res)
+ 	{
+ 		if($res->nombre_controladores==$controlador)
+ 		{
+ 			$display= "display:block";
+ 			break;
+ 		}
+ 	}
+ 	}
+ 	
+ 	return $display;
+ }
+
+?>
 <div class="container" style="margin-top: 15px;" >
 <div class="row">
 <div class="col-xs-12">
@@ -21,13 +43,17 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" ><?php echo " Administración" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu" >
         	
-        	<li>   <a href="index.php?controller=Usuarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Usuarios</span> </a>
+        	<li style="<?php echo getcontrolador("Usuarios") ?>">
+        	<a href="index.php?controller=Usuarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Usuarios</span> </a>
 		    </li>
-			<li><a href="index.php?controller=Roles&action=index"> <span class=" glyphicon glyphicon-asterisk" aria-hidden="true"> Roles de Usuario</span> </a>
+			<li style="<?php echo getcontrolador("Roles") ?>">
+			<a href="index.php?controller=Roles&action=index"> <span class=" glyphicon glyphicon-asterisk" aria-hidden="true"> Roles de Usuario</span> </a>
 			</li>
-			<li><a href="index.php?controller=PermisosRoles&action=index"><span class="glyphicon glyphicon-plus" aria-hidden="true"> Permisos Roles</span> </a>
+			<li style="<?php echo getcontrolador("PermisosRoles") ?>">
+			<a href="index.php?controller=PermisosRoles&action=index"><span class="glyphicon glyphicon-plus" aria-hidden="true"> Permisos Roles</span> </a>
 			</li>
-			<li><a href="index.php?controller=Controladores&action=index"><span class="glyphicon glyphicon-inbox" aria-hidden="true"> Controladores</span> </a>
+			<li style="<?php echo getcontrolador("Controladores") ?>">
+			<a href="index.php?controller=Controladores&action=index"><span class="glyphicon glyphicon-inbox" aria-hidden="true"> Controladores</span> </a>
 			</li>
 			
 			
@@ -38,9 +64,11 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Procesos" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
         	
-            <li><a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entidades</span> </a>
+            <li style="<?php echo getcontrolador("Controladores") ?>">
+            <a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entidades</span> </a>
 			</li> 
-			<li><a href="index.php?controller=AsignarUsuarioBodega&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Asignar Usuario Bodega</span> </a>
+			<li style="<?php echo getcontrolador("Controladores") ?>">
+			<a href="index.php?controller=AsignarUsuarioBodega&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Asignar Usuario Bodega</span> </a>
 			</li>
          </ul>
         </li>
@@ -48,15 +76,32 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           
+              <li style="<?php echo getcontrolador("TipoPersona") ?>">
+              <a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
+			</li>
+			<li style="<?php echo getcontrolador("TipoIdentificacion") ?>">
+			<a href="index.php?controller=TipoIdentificacion&action=index"><span class="glyphicon glyphicon-time" aria-hidden="true"> Tipo de Identificacion</span> </a>
+			</li>
+			<li style="<?php echo getcontrolador("TipoNotificacion") ?>">
+			<a href="index.php?controller=TipoNotificacion&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Tipo Notificacion</span> </a>
+			</li>
+			 <li style="<?php echo getcontrolador("Ciudad") ?>">
+			 <a href="index.php?controller=Ciudad&action=index"><span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"> Ciudades</span> </a>
+          
 			 <li><a href="index.php?controller=Ciudad&action=index"><span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"> Ciudades</span> </a>
+
 			</li>
-            <li><a href="index.php?controller=Bodegas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Bodegas</span> </a>
+            <li style="<?php echo getcontrolador("Bodegas") ?>"> 
+            <a href="index.php?controller=Bodegas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Bodegas</span> </a>
 			</li>
-			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
+			<li style="<?php echo getcontrolador("Notificaciones") ?>">
+			<a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
 			</li>
-			 <li><a href="index.php?controller=TipoOperaciones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Tipo Operaciones</span> </a>
+			 <li style="<?php echo getcontrolador("TipoOperaciones") ?>"> 
+			 <a href="index.php?controller=TipoOperaciones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Tipo Operaciones</span> </a>
             </li>  
-            <li><a href="index.php?controller=TipoContenidoCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Contenido Cartones</span> </a>
+            <li style="<?php echo getcontrolador("TipoContenidoCartones") ?>">
+            <a href="index.php?controller=TipoContenidoCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Contenido Cartones</span> </a>
             </li>
          </ul>
 
@@ -69,19 +114,26 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-book" ><?php echo " Cartones" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
 
-			<li><a href="index.php?controller=Cartones&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Crear Cartones</span> </a>
+			<li style="<?php echo getcontrolador("Cartones") ?>">
+			<a href="index.php?controller=Cartones&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Crear Cartones</span> </a>
 			</li>
-			<li><a href="index.php?controller=Movimientos&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entradas de Cartones</span> </a>
+			<li style="<?php echo getcontrolador("Movimientos") ?>"> 
+			<a href="index.php?controller=Movimientos&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entradas de Cartones</span> </a>
 			</li>
-			<li><a href="index.php?controller=Salidas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Salidas de Cartones</span> </a>
+			<li style="<?php echo getcontrolador("Salidas") ?>">
+			<a href="index.php?controller=Salidas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Salidas de Cartones</span> </a>
 			</li>
-			<li><a href="index.php?controller=GenerarSolicitud&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Generar Solicitud de Cartones</span> </a>
+			<li style="<?php echo getcontrolador("GenerarSolicitud") ?>">
+			<a href="index.php?controller=GenerarSolicitud&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Generar Solicitud de Cartones</span> </a>
 			</li>
-			<li><a href="index.php?controller=AnularSolicitudCartones&action=anula_solicitud_cartones"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Anular Solicitud de Cartones</span> </a>
+			<li style="<?php echo getcontrolador("AnularSolicitudCartones") ?>">
+			<a href="index.php?controller=AnularSolicitudCartones&action=anula_solicitud_cartones"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Anular Solicitud de Cartones</span> </a>
 			</li>
-			<li><a href="index.php?controller=AprobarSolicitudCartones&action=aprobar_solicitud_cartones"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Aprobar Solicitud de Cartones</span> </a>
+			<li style="<?php echo getcontrolador("AprobarSolicitudCartones") ?>">
+			<a href="index.php?controller=AprobarSolicitudCartones&action=aprobar_solicitud_cartones"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Aprobar Solicitud de Cartones</span> </a>
 			</li>
-			<li><a href="index.php?controller=Baja&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Baja de Cartones</span> </a>
+			<li style="<?php echo getcontrolador("Baja") ?>">
+			<a href="index.php?controller=Baja&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Baja de Cartones</span> </a>
 			</li>
 			
           </ul>
@@ -90,16 +142,23 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-flash" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           
-          <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-save-file" aria-hidden="true"> Auditoria del Sistema</span> </a>
+          <li style="<?php echo getcontrolador("Trazas") ?>">
+          <a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-save-file" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
-          <li><a href="index.php?controller=Cartones&action=consulta_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Estado Cartones</span> </a>
+          <li style="<?php echo getcontrolador("Cartones") ?>">
+          <a href="index.php?controller=Cartones&action=consulta_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Estado Cartones</span> </a>
             </li>  
             
-            <li><a href="index.php?controller=Cartones&action=busqueda_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Busqueda de  Cartones</span> </a>
+            <li style="<?php echo getcontrolador("Cartones") ?>">
+            <a href="index.php?controller=Cartones&action=busqueda_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Busqueda de  Cartones</span> </a>
             </li>  
-               <li><a href="index.php?controller=AnularSolicitudCartones&action=consulta_solicitud_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Solicitud Cartones</span> </a>
+            
+            <li style="<?php echo getcontrolador("AnularSolicitudCartones") ?>">
+               <a href="index.php?controller=AnularSolicitudCartones&action=consulta_solicitud_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Solicitud Cartones</span> </a>
             </li> 
-             <li><a href="index.php?controller=InventarioCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Inventario</span> </a>
+            
+             <li style="<?php echo getcontrolador("InventarioCartones") ?>">
+             <a href="index.php?controller=InventarioCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Inventario</span> </a>
             </li> 
             
 			
