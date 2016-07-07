@@ -260,6 +260,12 @@
 		        $( "#cantidad_documentos_libros_cartones" ).focus(function() {
 					  $("#mensaje_direccion_clientes").fadeOut("slow");
 				    });
+		        $( "#digitalizado_cartones" ).focus(function() {
+					  $("#mensaje_digitalizado_cartones").fadeOut("slow");
+				    });
+		        $( "#id_ciudad" ).focus(function() {
+					  $("#mensaje_id_ciudad").fadeOut("slow");
+				    });
 				
 		
 				
@@ -429,7 +435,8 @@
 					<option value="TRUE"  <?php  if ( $resEdit->digitalizado_cartones =='t')  echo ' selected="selected" ' ; ?> >TRUE </option>
 					<option value="FALSE" <?php  if ( $resEdit->digitalizado_cartones =='f')  echo ' selected="selected" ' ; ?> >FALSE </option>
 					 
-				</select> 			  
+				</select>
+				<div id="mensaje_digitalizado_cartones" class="errores"></div> 			  
 			  </div>
 			  
 			  <div class="col-xs-6 col-md-6">
@@ -441,6 +448,7 @@
 					
 						   <?php } ?>
 				</select> 			  
+			  <div id="mensaje_id_ciudad" class="errores"></div> 	
 			  </div>
 			 
 		    </div>
