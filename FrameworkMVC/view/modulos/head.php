@@ -111,11 +111,14 @@ $(document).ready(function(){
   <div style=" margin-top: 10px; "   class="col-xs-6 col-md-8"  >
   <img src="view/images/logo-docstore.png" class="img-responsive" alt="Responsive image">
   </div>
+  
+ 	 
   <!-- aqui va la class pull-right.... -->
   
   
   <div  style="margin-top: 20px;" class="col-xs-6 col-md-4">
  		<div class="">
+ 		<input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $_SESSION['id_usuarios']; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $_SESSION['id_usuarios'];?>" width="70" height="60"  style="float:left;" >
  		
  		<p> <strong> <?php //echo CLIENTE?>  </strong>  </p>
  		</div>	
@@ -124,11 +127,10 @@ $(document).ready(function(){
 		
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
-		
-		<div class="col-xs-7 col-md-5">
-		
-		 	 <div class="dropdown">
+		  <div class="col-xs-7 col-md-5">
+			<div class="dropdown">
 				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><FONT  SIZE=2><?php echo " ".$_SESSION['nombre_usuarios'];?></FONT></span>
+				  
 				  <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
