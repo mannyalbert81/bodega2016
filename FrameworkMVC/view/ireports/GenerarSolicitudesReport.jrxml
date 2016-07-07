@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T16:44:57 -->
+<!-- 2016-07-07T17:19:00 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -40,8 +40,7 @@ WHERE
   cartones.id_entidades = entidades.id_entidades AND
   cartones.id_tipo_contenido_cartones = tipo_contenido_cartones.id_tipo_contenido_cartones AND
   bodegas.id_bodegas = cartones.id_bodegas AND tipo_operaciones.nombre_tipo_operaciones ='SOLICITUD'
-   AND movimientos_cabeza.estado_movimientos='TRUE' AND movimientos_cabeza.numero_movimientos_cabeza= $P{_numero_movimientos_cabeza} 
-]]>
+   AND movimientos_cabeza.estado_movimientos='TRUE' AND movimientos_cabeza.numero_movimientos_cabeza= $P{_numero_movimientos_cabeza}]]>
 	</queryString>
 	<field name="numero_movimientos_cabeza" class="java.lang.String"/>
 	<field name="nombre_tipo_operaciones" class="java.lang.String"/>
