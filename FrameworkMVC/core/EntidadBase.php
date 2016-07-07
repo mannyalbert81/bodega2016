@@ -537,6 +537,7 @@ class EntidadBase{
 			  notificaciones.numero_movimiento_notificaciones, 
 			  notificaciones.cantidad_cartones_notificaciones, 
     		  notificaciones.creado,
+    		  usuarios.id_usuarios,
 			  usuarios.usuario_usuarios, 
 			  usuarios.nombre_usuarios, 
 			  notificaciones.visto_notificaciones, 

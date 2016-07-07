@@ -452,6 +452,8 @@
          
 
          </script>
+         
+     
 	
     </head>
     <body style="background-color: #d9e3e4;">
@@ -586,6 +588,15 @@
 			  </div>
 			  
 			  </div>
+			  
+			  <div class="row">
+               <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Foto</p>
+			  	<input type="file" name="imagen_usuarios" id="imagen_usuarios" value="" class="form-control" /> 
+			  <div id="mensaje_imagen_firmas_digitales" class="errores"></div>
+			  </div>
+			  
+			</div>
 		 <hr>
             
             
@@ -681,6 +692,20 @@
 				</select> 			  
 			  </div>
 			</div>
+			
+			
+			<div class="row">
+			
+               <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Foto</p>
+			  	
+			  	<input type="file" name="imagen_usuarios" id="imagen_usuarios" value="" class="form-control"/> 
+			     
+			  <div id="mensaje_imagen_firmas_digitales" class="errores"></div>
+			  </div>
+			  
+			</div>
+			
 		    <hr>
 		    
 		   
@@ -690,8 +715,9 @@
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
 			  </div>
-			</div>     
-               
+			</div>  
+			
+			
 		
 		 <hr>
           
@@ -738,6 +764,7 @@
        <section class="col-lg-12  usuario" style="height:450px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
+	            <th style="color:#456789;font-size:80%;"></th>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre</th>
 	    		<th style="color:#456789;font-size:80%;">Usuario</th>
@@ -750,7 +777,9 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_usuarios; ?></td>
+	        		
+	        		   <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_usuarios; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->usuario_usuarios; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->correo_usuarios; ?>  </td>
