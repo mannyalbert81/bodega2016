@@ -63,6 +63,22 @@
                 
             
         </style>
+        
+        <script type="text/javascript">
+		$(document).ready(function(){
+			
+	   		$("#aprobar").click(function() {
+		   		
+		   		url = $("#enlace").attr("href");
+
+		   	
+		     	//window.open(url, '_blank');
+		     	window.open(url, this.target, 'width=1000, height=800, menubar=no');
+		     	return true;
+	   		});
+		});
+       </script>
+       
          
          	<script>
 	$(document).ready(function(){
@@ -210,12 +226,16 @@
 		               
 	                   <td style="color:#000000;font-size:80%;">
 	                   <div class="right">
-			                    <a href="<?php echo $helper->url("AprobarSolicitudCartones","actualizarId"); ?>&id_movimientos_cabeza=<?php echo $res->id_movimientos_cabeza; ?>&numero_movimientos_cabeza=<?php echo $res->numero_movimientos_cabeza; ?>" class="btn btn-success" style="font-size:75%;">Aprobar</a>
+			                    <a id="aprobar" href="<?php echo $helper->url("AprobarSolicitudCartones","actualizarId"); ?>&id_movimientos_cabeza=<?php echo $res->id_movimientos_cabeza; ?>&numero_movimientos_cabeza=<?php echo $res->numero_movimientos_cabeza; ?>" class="btn btn-success" style="font-size:75%;">Aprobar</a>
+			                	<a id="enlace" href="/FrameworkMVC/view/ireports/ContGenerarSolicitudesReport.php?numero_movimientos_cabeza=<?php echo $res->numero_movimientos_cabeza; ?>" style="margin-top: 10px; display: none;" class="btn"></a>				   		
+		
 			                </div>
 	                   
 		              </td> 
 		    		</tr>
 		        <?php } }  ?>
+		        
+		        
            
        	</table>     
       </section>
