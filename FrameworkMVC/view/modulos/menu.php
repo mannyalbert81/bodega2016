@@ -47,12 +47,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-              <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
-			</li>
-			<li><a href="index.php?controller=TipoIdentificacion&action=index"><span class="glyphicon glyphicon-time" aria-hidden="true"> Tipo de Identificacion</span> </a>
-			</li>
-			<li><a href="index.php?controller=TipoNotificacion&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Tipo Notificacion</span> </a>
-			</li>
+          
 			 <li><a href="index.php?controller=Ciudad&action=index"><span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"> Ciudades</span> </a>
 			</li>
             <li><a href="index.php?controller=Bodegas&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Bodegas</span> </a>
@@ -92,7 +87,7 @@
           </ul>
         </li>
          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-flash" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           
           <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-save-file" aria-hidden="true"> Auditoria del Sistema</span> </a>
