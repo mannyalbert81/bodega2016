@@ -82,6 +82,14 @@ class BajaController extends ControladorBase{
 					));
 			
 			
+			}else{
+				
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos a Bajas de Cartones"
+				
+					
+				));
+				exit();
 			}
 			
 			

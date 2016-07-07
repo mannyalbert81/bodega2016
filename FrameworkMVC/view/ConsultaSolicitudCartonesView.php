@@ -138,7 +138,7 @@
   			<div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Solicita:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-			  		<option value="<?php echo $_SESSION['id_usuarios'];  ?>"><?php echo $_SESSION['usuario_usuarios'];  ?></option>
+			  		<option value="<?php echo $_SESSION['id_usuarios'];  ?>"><?php echo $_SESSION['nombre_usuarios'];  ?></option>
 					
 				</select>
 		 </div>

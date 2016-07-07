@@ -11,14 +11,9 @@ class MovimientosController extends ControladorBase{
 	public function index(){
 	
 		session_start();
-	
-	
-		if (isset(  $_SESSION['usuario_usuarios']) )
+	   if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-			
-			
 			$movimientos_cabeza = new MovimientosCabezaModel();
-			
 			//notificaciones
 			$movimientos_cabeza->MostrarNotificaciones($_SESSION['id_usuarios']);
 		
@@ -37,7 +32,6 @@ class MovimientosController extends ControladorBase{
 					$resultCon=$controladores->getAll("nombre_controladores");
 					
 					$cartones = new CartonesModel();				
-					//MOSTRAR SOLO LOS CARTINES AFUERA O POR INGRESAR
 					$where = " id_tipo_operaciones = '1'  ";
 					$resultCartones=$cartones->getBy($where);
 			
@@ -52,8 +46,6 @@ class MovimientosController extends ControladorBase{
 						
 						if (!empty($resultPer))
 						{
-							
-							
 							
 							$traza=new TrazasModel();
 							$_nombre_controlador = "Movimientos";
@@ -85,6 +77,14 @@ class MovimientosController extends ControladorBase{
 					));
 			
 			
+			}else{
+				
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos a Entradas de Cartones"
+				
+					
+				));
+				exit();
 			}
 			
 			
@@ -96,6 +96,8 @@ class MovimientosController extends ControladorBase{
 					"resultSet"=>""
 		
 						));
+			
+			exit();
 		}
 	
 	}

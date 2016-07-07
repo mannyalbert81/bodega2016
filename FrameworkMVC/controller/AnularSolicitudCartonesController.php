@@ -211,7 +211,7 @@ class AnularSolicitudCartonesController extends ControladorBase{
     		else
     		{
     			$this->view("Error",array(
-    					"resultado"=>"No tiene Permisos de Acceso a Consulta Cartones"
+    					"resultado"=>"No tiene Permisos de Acceso a Consulta Solicitud de Cartones"
     
     			));
     

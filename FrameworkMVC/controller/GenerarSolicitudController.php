@@ -268,6 +268,14 @@ class GenerarSolicitudController extends ControladorBase{
 					));
 			
 			
+			}else{
+				
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Generar Solicitudes"
+				
+					
+				));
+				exit();
 			}
 			
 			
