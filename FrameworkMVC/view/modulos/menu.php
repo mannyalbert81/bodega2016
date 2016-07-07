@@ -45,7 +45,7 @@
          </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
               <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
@@ -71,7 +71,7 @@
         </li>
 
 		<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Cartones" ;?> </span> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-book" ><?php echo " Cartones" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
 
 			<li><a href="index.php?controller=Cartones&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Crear Cartones</span> </a>
@@ -112,19 +112,19 @@
 </li>
 
 <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Reportes" ;?> </span> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-print" ><?php echo " Reportes" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           
-          <li><a href="/FrameworkMVC/view/ireports/ContEntradasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Entradas de Cartones</span> </a>
+          <li><a href="/FrameworkMVC/view/ireports/ContEntradasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"> Entradas de Cartones</span> </a>
             </li>
     
-            <li><a href="/FrameworkMVC/view/ireports/ContBajasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Bajas de Cartones</span> </a>
+            <li><a href="/FrameworkMVC/view/ireports/ContBajasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"> Bajas de Cartones</span> </a>
             </li>
-           <li><a href="/FrameworkMVC/view/ireports/ContSalidasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Salidas de Cartones</span> </a>
+           <li><a href="/FrameworkMVC/view/ireports/ContSalidasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"> Salidas de Cartones</span> </a>
             </li>
-			  <li><a href="/FrameworkMVC/view/ireports/ContSolicitudesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Solicitud de Cartones</span> </a>
+			  <li><a href="/FrameworkMVC/view/ireports/ContSolicitudesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"> Solicitud de Cartones</span> </a>
             </li>
-			  <li><a href="/FrameworkMVC/view/ireports/ContAnularReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Anulacion de Cartones</span> </a>
+			  <li><a href="/FrameworkMVC/view/ireports/ContAnularReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"> Anulacion de Cartones</span> </a>
             </li>
 </ul>
 </li>
