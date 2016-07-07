@@ -87,6 +87,7 @@
 			</li>
 			<li><a href="index.php?controller=Baja&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Baja de Cartones</span> </a>
 			</li>
+			
           </ul>
         </li>
          <li class="dropdown">
@@ -101,6 +102,8 @@
             <li><a href="index.php?controller=Cartones&action=busqueda_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Busqueda de  Cartones</span> </a>
             </li>  
                <li><a href="index.php?controller=AnularSolicitudCartones&action=consulta_solicitud_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Solicitud Cartones</span> </a>
+            </li> 
+             <li><a href="index.php?controller=InventarioCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Inventario</span> </a>
             </li> 
             
 			
