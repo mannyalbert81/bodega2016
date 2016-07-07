@@ -43,12 +43,15 @@ public function index(){
 					      entidades.id_entidades,
 						  entidades.nombre_entidades, 
 					      bodegas.id_bodegas,
-						  bodegas.nombre_bodegas";
+						  bodegas.nombre_bodegas,
+							ciudad.id_ciudad,
+							ciudad.nombre_ciudad";
 			$tablas   = "public.cartones, 
 						  public.bodegas, 
 						  public.entidades, 
-						  public.tipo_contenido_cartones";
-			$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+						  public.tipo_contenido_cartones,
+							public.ciudad";
+			$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND cartones.id_ciudad = ciudad.id_ciudad";
 			$id       = "cartones.numero_cartones";
 				
 			$resultSet=$cartones->getCondiciones($columnas ,$tablas ,$where, $id);
@@ -66,7 +69,7 @@ public function index(){
 					if (isset ($_GET["id_cartones"])   )
 					{
 						$_id_cartones = $_GET["id_cartones"];
-					    $where    = " bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND cartones.id_cartones = '$_id_cartones' "; 
+					    $where    = " bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND cartones.id_ciudad = ciudad.id_ciudad AND cartones.id_cartones = '$_id_cartones' "; 
 						$resultEdit = $cartones->getCondiciones($columnas ,$tablas ,$where, $id); 
 					
 						$traza=new TrazasModel();
