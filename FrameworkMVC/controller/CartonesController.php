@@ -85,6 +85,8 @@ public function index(){
 			
 				));
 			
+				exit();
+				
 			}
 			
 		
@@ -544,9 +546,10 @@ public function index(){
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Cartones"
+						"resultado"=>"No tiene Permisos de Acceso a Busqueda Cartones"
 		
 				));
+				exit();
 					
 			}
 				

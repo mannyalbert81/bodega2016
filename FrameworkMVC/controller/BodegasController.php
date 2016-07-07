@@ -14,7 +14,6 @@ class BodegasController extends ControladorBase{
      	$bodegas= new BodegasModel(); 
 		
 	   //Conseguimos todos los usuarios
-		$resultSet=$bodegas->getAll("id_bodegas");
 				
 		$resultEdit = "";
 
@@ -24,6 +23,23 @@ class BodegasController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			$entidades = new EntidadesModel();
+			$resultEnt = $entidades->getAll("nombre_entidades");
+			
+			$bodegas= new BodegasModel();
+			$columnas = " bodegas.id_bodegas, 
+						  bodegas.nombre_bodegas, 
+						  entidades.nombre_entidades, 
+						  bodegas.creado";
+			$tablas   = "public.bodegas, 
+  					     public.entidades";
+			$where    = "entidades.id_entidades = bodegas.id_entidades";
+			$id       = "bodegas.nombre_bodegas";
+			
+			$resultSet=$bodegas->getCondiciones($columnas ,$tablas ,$where, $id);
+			
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Bodegas";
 			$id_rol= $_SESSION['id_rol'];
@@ -41,13 +57,21 @@ class BodegasController extends ControladorBase{
 					if (!empty($resultPer))
 					{
 					
+						
+						$bodegas= new BodegasModel();
+						
 						$_id_bodegas = $_GET["id_bodegas"];
-						$columnas = " id_bodegas, nombre_bodegas";
-						$tablas   = "bodegas";
-						$where    = "id_bodegas = '$_id_bodegas' "; 
-						$id       = "nombre_bodegas";
-							
-						$resultEdit = $bodegas->getCondiciones($columnas ,$tablas ,$where, $id);
+						$columnas_edit= " bodegas.id_bodegas, 
+						  bodegas.nombre_bodegas, 
+						  entidades.id_entidades";
+						$tablas_edit   = "public.bodegas, 
+  					    				 public.entidades";
+						$where_edit    = "entidades.id_entidades = bodegas.id_entidades AND bodegas.id_bodegas = '$_id_bodegas'";
+						$id_edit      = "bodegas.id_bodegas";
+						
+						$resultEdit = $bodegas->getCondiciones($columnas_edit ,$tablas_edit ,$where_edit, $id_edit);
+						
+					
 
 						$traza=new TrazasModel();
 						$_nombre_controlador = "Bodegas";
@@ -69,7 +93,7 @@ class BodegasController extends ControladorBase{
 		
 				
 				$this->view("Bodegas",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEnt"=>$resultEnt
 			
 				));
 		
@@ -126,14 +150,15 @@ class BodegasController extends ControladorBase{
 				
 				
 				$_nombre_bodegas = $_POST["nombre_bodegas"];
+				$_id_entidades = $_POST["id_entidades"];
 				
 				if(isset($_POST["id_bodegas"])) 
 				{
 					
 					$_id_bodegas = $_POST["id_bodegas"];
-					$colval = " nombre_bodegas = '$_nombre_bodegas'   ";
+					$colval = " nombre_bodegas = '$_nombre_bodegas', id_entidades='$_id_entidades'   ";
 					$tabla = "bodegas";
-					$where = "id_bodegas = '$_id_bodegas'    ";
+					$where = "id_bodegas = '$_id_bodegas'";
 					
 					$resultado=$bodegas->UpdateBy($colval, $tabla, $where);
 					
@@ -144,7 +169,7 @@ class BodegasController extends ControladorBase{
 				
 				$funcion = "ins_bodegas";
 				
-				$parametros = " '$_nombre_bodegas'";
+				$parametros = " '$_nombre_bodegas', '$_id_entidades'";
 					
 				$bodegas->setFuncion($funcion);
 		
@@ -178,68 +203,6 @@ class BodegasController extends ControladorBase{
 		
 		}
 	
-
-		$bodegas=new BodegasModel();
-
-		$nombre_controladores = "Bodegas";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $bodegas->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-		
-		
-		if (!empty($resultPer))
-		{
-		
-		
-		
-			$resultado = null;
-			$bodegas=new BodegasModel();
-		
-			//_nombre_tipo_identificacion
-			
-			if (isset ($_POST["nombre_bodegas"]) )
-				
-			{
-				$_nombre_bodegas = $_POST["nombre_bodegas"];
-				
-				if(isset($_POST["id_bodegas"]))
-				{
-				$_id_bodegas = $_POST["id_bodegas"];
-				$colval = " nombre_bodegas = '$_nombre_bodegas'   ";
-				$tabla = "bodegas";
-				$where = "id_bodegas = '$_id_bodegas'    ";
-					
-				$resultado=$bodegas->UpdateBy($colval, $tabla, $where);
-					
-				}else {
-				
-			
-				$funcion = "ins_bodegas";
-				
-				$parametros = " '$_nombre_bodegas'  ";
-					
-				$bodegas->setFuncion($funcion);
-		
-				$bodegas->setParametros($parametros);
-		
-		
-				$resultado=$bodegas->Insert();
-			 }
-		
-			}
-			$this->redirect("Bodegas", "index");
-
-		}
-		else
-		{
-			$this->view("Error",array(
-					
-					"resultado"=>"No tiene Permisos de Insertar Bodegas"
-		
-			));
-		
-		
-		}
-		
 	}
 
 
