@@ -415,8 +415,8 @@
 		      <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Digitalizado Cartones</p>
 			  	<select name="digitalizado_cartones" id="digitalizado_cartones"  class="form-control" >
-					<option value="TRUE"  >TRUE </option>
-					<option value="FALSE"  >FALSE</option>
+					<option value="TRUE"  >SI </option>
+					<option value="FALSE"  >NO</option>
 				</select> 			  
 			  </div>
 			  <div class="col-xs-6 col-md-6">
@@ -504,13 +504,13 @@
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
-		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
-		                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
-		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
-		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
-		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
 		           	   <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("Cartones","index"); ?>&id_cartones=<?php echo $res->id_cartones; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
