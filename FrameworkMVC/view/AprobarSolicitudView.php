@@ -23,6 +23,18 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
+		<script type="text/javascript">
+		$(document).ready(function(){
+			
+	   		$("#aprobar").click(function() {
+		   		
+		   		url = $("#enlace").attr("href");
+		     	//window.open(url, '_blank');
+		     	window.open(url, this.target, 'width=1000, height=800, menubar=no');
+		     	return true;
+	   		});
+		});
+       </script>
         
         
        <style>
@@ -164,7 +176,8 @@
 		  		   	<div class="form-group">
 		          		
 				   		<button type="submit" id="aprobar" name="aprobar" onClick="Ok()"class="btn btn-success"><span class="glyphicon glyphicon-ok" ><?php echo "Aprobar" ;?> </span></button>	
-				   		<input type="hidden" id="numero_movimiento" name="numero_movimiento" value="<?php echo $resulCabecera[0]->numero_movimientos_cabeza;  ?>"/>				   		
+				   		<input type="hidden" id="numero_movimiento" name="numero_movimiento" value="<?php echo $resulCabecera[0]->numero_movimientos_cabeza;  ?>"/>
+				   		 <a id="enlace" href="/FrameworkMVC/view/ireports/ContGenerarSolicitudesReport.php?numero_movimientos_cabeza=<?php echo $resulCabecera[0]->numero_movimientos_cabeza; ?>" style="margin-top: 10px; display: none;" class="btn"></a>				   		
 		        	</div>
 		        
 		      		</form>

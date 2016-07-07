@@ -206,16 +206,28 @@
 		    		$("#mensaje_direccion_clientes").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-		    	if (cantidad_documentos_libros_cartones == "")
+		    	if (digitalizado_cartones == 0)
 		    	{
 			    	
-		    		$("#mensaje_direccion_clientes").text("Introduzca una Cantidad");
-		    		$("#mensaje_direccion_clientes").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_digitalizado_cartones").text("Introduzca True o False");
+		    		$("#mensaje_digitalizado_cartones").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_direccion_clientes").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_digitalizado_cartones").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	if (id_ciudad == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_ciudad").text("Introduzca una Ciudad");
+		    		$("#mensaje_id_ciudad").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_ciudad").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	

@@ -640,8 +640,8 @@ class GenerarSolicitudController extends ControladorBase{
 	
 			$_SESSION['numero_movimiento']="";
 	
-				
-			$this->redirect("GenerarSolicitud","index");
+			
+			$this->view("Bienvenida", array());
 	
 		}else
 		{

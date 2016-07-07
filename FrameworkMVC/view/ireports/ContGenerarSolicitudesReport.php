@@ -15,10 +15,10 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 $PHPJasperXML->debugsql=false;
 
 
-$id=$_GET['id_usuarios'];
+$id=$_GET['numero_movimientos_cabeza'];
 $PHPJasperXML = new PHPJasperXML("en","TCPDF");
 $PHPJasperXML->debugsql=false;
-$PHPJasperXML->arrayParameter=array("_id_usuarios"=>$id);
+$PHPJasperXML->arrayParameter=array("_numero_movimientos_cabeza"=>$id);
 $PHPJasperXML->load_xml_file("GenerarSolicitudesReport.jrxml");
 
 
