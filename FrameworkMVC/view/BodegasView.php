@@ -160,6 +160,16 @@
 			  	<input type="hidden"  name="id_bodegas"  value="<?php echo $resEdit->id_bodegas; ?>" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Entidades</p>
+			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
+				<option value="0">--Seleciione--</option>
+					<?php foreach($resultEnt as $res) {?>
+					<option value="<?php echo $res->id_entidades; ?>"  <?php if ($res->id_entidades == $resEdit->id_entidades ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_entidades; ?> </option>
+					
+						  <?php } ?>
+				</select> 			  
+			  </div>
 			   </div>
 		    
 		     <?php } } else {?>
@@ -170,6 +180,17 @@
 			  	<input type="text"  name="nombre_bodegas" id="nombre_bodegas" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
+			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Entidades</p>
+			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
+			  	<option value="0">--Seleciione--</option>
+					<?php foreach($resultEnt as $res) {?>
+						<option value="<?php echo $res->id_entidades; ?>"  ><?php echo $res->nombre_entidades; ?> </option>
+			        <?php } ?>
+				</select> 			  
+			  </div>
+			  
 			 </div>
 
 		    <hr>
@@ -180,7 +201,7 @@
 		     
 		     
 		       <div class="row">
-			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
+			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
 			  </div>
 			</div>     
@@ -198,7 +219,8 @@
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Nombre</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Bodega</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Entidad</th>
 	    		
 	    		<th></th>
 	    		<th></th>
@@ -208,7 +230,7 @@
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_bodegas; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>     </td> 
-		              
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td>
 		           	   <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("Bodegas","index"); ?>&id_bodegas=<?php echo $res->id_bodegas; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>

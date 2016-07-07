@@ -85,6 +85,14 @@ class SalidasController extends ControladorBase{
 					));
 			
 			
+			}else{
+				
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos a Salidas de Cartones"
+				
+					
+				));
+				exit();
 			}
 			
 			
