@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T10:58:46 -->
+<!-- 2016-07-07T15:12:30 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -264,58 +264,58 @@ WHERE
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="16" splitType="Stretch">
 			<textField>
-				<reportElement x="146" y="0" width="54" height="20" uuid="da1b775c-b5c4-4157-b455-ab4fc434007f"/>
+				<reportElement x="146" y="0" width="54" height="10" uuid="da1b775c-b5c4-4157-b455-ab4fc434007f"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{serie_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="62" y="0" width="70" height="20" uuid="385e1aec-4b5a-435e-88b8-ad8bdd00aa52"/>
+				<reportElement x="62" y="0" width="70" height="10" uuid="385e1aec-4b5a-435e-88b8-ad8bdd00aa52"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="215" y="0" width="84" height="20" uuid="8fa1a67e-ade8-4e98-9592-e137ef5849f0"/>
+				<reportElement x="215" y="0" width="84" height="10" uuid="8fa1a67e-ade8-4e98-9592-e137ef5849f0"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="308" y="0" width="102" height="21" uuid="4eef56b1-aaf2-4153-abbf-0f325d289db1"/>
+				<reportElement x="308" y="0" width="102" height="10" uuid="4eef56b1-aaf2-4153-abbf-0f325d289db1"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{year_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="417" y="0" width="110" height="20" uuid="4a55488e-e43f-45f3-900f-0771d5b4a7cd"/>
+				<reportElement x="417" y="0" width="110" height="10" uuid="4a55488e-e43f-45f3-900f-0771d5b4a7cd"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_documentos_libros_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="568" y="0" width="130" height="20" uuid="fcef5111-5f09-45a9-9f77-5bbbafe37cbd"/>
+				<reportElement x="568" y="0" width="130" height="10" uuid="fcef5111-5f09-45a9-9f77-5bbbafe37cbd"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_tipo_contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="708" y="0" width="70" height="20" uuid="8b9c9795-bc74-44b2-8113-9ee630156044"/>
+				<reportElement x="708" y="0" width="70" height="10" uuid="8b9c9795-bc74-44b2-8113-9ee630156044"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{digitalizado_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="5" y="0" width="30" height="21" uuid="3014b3b3-07d2-4799-9fa5-53a6036a15d1"/>
+				<reportElement x="5" y="0" width="30" height="10" uuid="3014b3b3-07d2-4799-9fa5-53a6036a15d1"/>
 				<textElement textAlignment="Center">
 					<font size="8"/>
 				</textElement>
@@ -445,7 +445,4 @@ WHERE
 			</rectangle>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

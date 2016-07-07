@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-04T18:09:41 -->
+<!-- 2016-07-07T15:19:19 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ActaEntrega" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d8537a4-eb16-4e41-a936-322433a0a1d2">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FrameworkMVC\view\ireports\BodegaDataAdapter.xml"/>
@@ -80,7 +80,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="46" splitType="Stretch">
 			<rectangle>
 				<reportElement x="13" y="12" width="531" height="30" forecolor="#999999" backcolor="#999999" uuid="bf4f57e4-beac-409b-921b-287fb50927e2"/>
 			</rectangle>
@@ -122,37 +122,37 @@ WHERE
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="12" splitType="Stretch">
 			<textField>
-				<reportElement x="19" y="0" width="31" height="20" uuid="440f85f2-6805-4426-bbc2-00de46a43b10"/>
+				<reportElement x="19" y="0" width="31" height="10" uuid="440f85f2-6805-4426-bbc2-00de46a43b10"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_cartones_solicitudes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="60" y="0" width="90" height="20" uuid="282c814c-a934-4f4e-aa93-69783082763c"/>
+				<reportElement x="60" y="0" width="90" height="10" uuid="282c814c-a934-4f4e-aa93-69783082763c"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="160" y="0" width="180" height="20" uuid="6f7ded5e-2d4e-4373-a8e6-a2b522ca8c5d"/>
+				<reportElement x="160" y="0" width="180" height="10" uuid="6f7ded5e-2d4e-4373-a8e6-a2b522ca8c5d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="350" y="0" width="90" height="20" uuid="0bd77231-92b3-45d2-b97c-ca0d1ff736c3"/>
+				<reportElement x="350" y="0" width="90" height="10" uuid="0bd77231-92b3-45d2-b97c-ca0d1ff736c3"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{serie_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="462" y="0" width="90" height="20" uuid="c62d8cd3-9aa0-4ad8-b6ec-da5022c1e0c7"/>
+				<reportElement x="462" y="0" width="90" height="10" uuid="c62d8cd3-9aa0-4ad8-b6ec-da5022c1e0c7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -161,7 +161,22 @@ WHERE
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="19" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="294" y="1" width="100" height="10" uuid="168a259f-ce9a-4d04-807a-9f1ab76e47c5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="170" y="0" width="135" height="10" uuid="6b79032b-db1f-4d07-b9d3-e1791e8a4d61"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Cartones :]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="104" splitType="Stretch">
@@ -259,7 +274,4 @@ WHERE
 			</textField>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

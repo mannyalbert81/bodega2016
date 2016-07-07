@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-30T17:28:47 -->
+<!-- 2016-07-07T15:18:58 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -157,7 +157,7 @@ WHERE
 				<text><![CDATA[Entidades]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="699" y="11" width="60" height="21" forecolor="#FFFFFF" uuid="af5f6164-0d68-4b53-8de9-75ddd67e7279"/>
+				<reportElement x="699" y="11" width="72" height="21" forecolor="#FFFFFF" uuid="af5f6164-0d68-4b53-8de9-75ddd67e7279"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
@@ -169,72 +169,72 @@ WHERE
 		<band height="2" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="12" splitType="Stretch">
 			<textField>
-				<reportElement x="9" y="0" width="31" height="20" uuid="360e20cf-e1e1-4290-89b5-399fec7493c7"/>
+				<reportElement x="9" y="0" width="31" height="10" uuid="360e20cf-e1e1-4290-89b5-399fec7493c7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="40" y="0" width="90" height="20" uuid="6789130f-eeec-4c25-9d75-28b584fae225"/>
+				<reportElement x="40" y="0" width="90" height="10" uuid="6789130f-eeec-4c25-9d75-28b584fae225"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="0" width="90" height="20" uuid="cb3b8b05-145b-4041-867a-45da939bde35"/>
+				<reportElement x="130" y="0" width="90" height="10" uuid="cb3b8b05-145b-4041-867a-45da939bde35"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{serie_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="220" y="0" width="90" height="20" uuid="6c924c7c-45e1-4894-9ef8-c4a39538349c"/>
+				<reportElement x="220" y="0" width="90" height="10" uuid="6c924c7c-45e1-4894-9ef8-c4a39538349c"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="310" y="0" width="90" height="20" uuid="9c700c54-c051-4d1f-9f66-b0a576301443"/>
+				<reportElement x="310" y="0" width="90" height="10" uuid="9c700c54-c051-4d1f-9f66-b0a576301443"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{year_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="397" y="0" width="30" height="20" uuid="4a3450a5-1970-4059-b8c7-8197d5d2cdd5"/>
+				<reportElement x="397" y="0" width="30" height="10" uuid="4a3450a5-1970-4059-b8c7-8197d5d2cdd5"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_documentos_libros_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="446" y="0" width="90" height="20" uuid="02145ca8-f5e0-4403-a71a-9100ec5e4650"/>
+				<reportElement x="446" y="0" width="90" height="10" uuid="02145ca8-f5e0-4403-a71a-9100ec5e4650"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_tipo_contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="526" y="0" width="30" height="20" uuid="b95acd0f-c932-4b82-8d79-9c0e54ea333b"/>
+				<reportElement x="526" y="0" width="30" height="10" uuid="b95acd0f-c932-4b82-8d79-9c0e54ea333b"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{digitalizado_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="585" y="0" width="70" height="20" uuid="f0b0fce9-ed24-4349-9194-1fb25ca4d53d"/>
+				<reportElement x="585" y="0" width="70" height="10" uuid="f0b0fce9-ed24-4349-9194-1fb25ca4d53d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="703" y="0" width="68" height="20" uuid="3dd3d405-9c2d-48cd-b8c7-799ab6427df9"/>
+				<reportElement x="703" y="0" width="68" height="10" uuid="3dd3d405-9c2d-48cd-b8c7-799ab6427df9"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -243,7 +243,22 @@ WHERE
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="95" splitType="Stretch"/>
+		<band height="17" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="444" y="1" width="100" height="10" uuid="54548464-5ca5-491f-a4f0-b7e5d18c80d0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="0" width="135" height="10" uuid="9dc7293c-03b8-4706-a22d-ea23b8221e84"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Cartones :]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="106" splitType="Stretch">
@@ -341,7 +356,4 @@ WHERE
 			</textField>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

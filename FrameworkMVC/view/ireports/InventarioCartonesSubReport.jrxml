@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T11:46:02 -->
+<!-- 2016-07-07T15:12:08 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -166,63 +166,78 @@
 		<band height="2" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<textField>
-				<reportElement x="38" y="3" width="72" height="16" uuid="b27551cd-7ac2-4693-a564-ca2c917a7af6"/>
+				<reportElement x="38" y="0" width="72" height="10" uuid="b27551cd-7ac2-4693-a564-ca2c917a7af6"/>
 				<textFieldExpression><![CDATA[$F{numero_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="110" y="3" width="60" height="16" uuid="33841b2e-e78d-4246-94f8-29d9133422c5"/>
+				<reportElement x="110" y="0" width="60" height="10" uuid="33841b2e-e78d-4246-94f8-29d9133422c5"/>
 				<textFieldExpression><![CDATA[$F{serie_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="170" y="3" width="70" height="16" uuid="2cb7dd2d-2bb8-44ea-b404-6eecaa7a651b"/>
+				<reportElement x="170" y="0" width="70" height="10" uuid="2cb7dd2d-2bb8-44ea-b404-6eecaa7a651b"/>
 				<textFieldExpression><![CDATA[$F{contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="250" y="3" width="70" height="16" uuid="8722f952-4d6b-4d6d-b262-639932c00f60"/>
+				<reportElement x="250" y="0" width="70" height="10" uuid="8722f952-4d6b-4d6d-b262-639932c00f60"/>
 				<textFieldExpression><![CDATA[$F{year_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="320" y="3" width="70" height="16" uuid="8830899e-48ef-40b2-8f4f-bd16bb8a1bbd"/>
+				<reportElement x="320" y="0" width="70" height="10" uuid="8830899e-48ef-40b2-8f4f-bd16bb8a1bbd"/>
 				<textFieldExpression><![CDATA[$F{cantidad_documentos_libros_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="390" y="3" width="70" height="16" uuid="da4e8590-9a64-47cc-bdca-ec7c5e353976"/>
+				<reportElement x="390" y="0" width="70" height="10" uuid="da4e8590-9a64-47cc-bdca-ec7c5e353976"/>
 				<textFieldExpression><![CDATA[$F{nombre_tipo_contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="460" y="3" width="30" height="16" uuid="8976ed6e-9d23-41c3-811e-effa8a614431"/>
+				<reportElement x="460" y="0" width="30" height="10" uuid="8976ed6e-9d23-41c3-811e-effa8a614431"/>
 				<textFieldExpression><![CDATA[$F{digitalizado_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="490" y="3" width="70" height="16" uuid="5e58775f-56f2-4713-8e24-afc8f8727ab9"/>
+				<reportElement x="490" y="0" width="70" height="10" uuid="5e58775f-56f2-4713-8e24-afc8f8727ab9"/>
 				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="560" y="3" width="100" height="16" uuid="de40c494-dd6f-4073-8ecd-1706a3705a0a"/>
+				<reportElement x="560" y="0" width="100" height="10" uuid="de40c494-dd6f-4073-8ecd-1706a3705a0a"/>
 				<textFieldExpression><![CDATA[$F{nombre_bodegas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="660" y="3" width="70" height="16" uuid="d3b2f3b5-b108-4ac2-9a57-3e5a6a895845"/>
+				<reportElement x="660" y="0" width="70" height="10" uuid="d3b2f3b5-b108-4ac2-9a57-3e5a6a895845"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{nombre_tipo_operaciones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="740" y="3" width="52" height="16" uuid="6c29f0f0-ac52-4072-81b8-42eb027dc9ff"/>
+				<reportElement x="740" y="0" width="52" height="10" uuid="6c29f0f0-ac52-4072-81b8-42eb027dc9ff"/>
 				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Band" pattern="">
-				<reportElement x="10" y="3" width="30" height="17" uuid="5136fe1f-732b-4999-9667-22ad51515b4c"/>
+				<reportElement x="10" y="0" width="30" height="10" uuid="5136fe1f-732b-4999-9667-22ad51515b4c"/>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="17" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="444" y="1" width="100" height="10" uuid="dab84c0a-316a-4e96-872e-c181fc585a23"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="0" width="135" height="10" uuid="eb46ed01-b6a1-41a2-8a59-a35129c2f649"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Cartones :]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="45" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<rectangle>
 				<reportElement x="10" y="12" width="781" height="20" forecolor="#000000" backcolor="#000000" uuid="df592b9c-348c-41fa-9533-e518c8c715cb"/>
 				<graphicElement>
@@ -259,7 +274,4 @@
 			</staticText>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="53" splitType="Stretch"/>
-	</summary>
 </jasperReport>

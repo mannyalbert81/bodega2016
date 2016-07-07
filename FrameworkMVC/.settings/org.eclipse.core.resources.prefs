@@ -2,10 +2,10 @@
 <<<<<<<=HEAD
 >>>>>>>=branch 'master' of https\://github.com/mannyalbert81/bodega2016.git
 eclipse.preferences.version=1
+encoding//view/ireports/ActaEntregaReport.jrxml=UTF-8
+encoding//view/ireports/AnularReport.jrxml=UTF-8
 encoding//view/ireports/BajasReport.jrxml=UTF-8
 encoding//view/ireports/CartonesSubReport.jrxml=UTF-8
-encoding//view/ireports/ClientesReport.jrxml=UTF-8
-encoding//view/ireports/ClientesSubReport.jrxml=UTF-8
 encoding//view/ireports/EntradaReport.jrxml=UTF-8
 encoding//view/ireports/GenerarSolicitudesReport.jrxml=UTF-8
 encoding//view/ireports/InventarioCartonesSubReport.jrxml=UTF-8
