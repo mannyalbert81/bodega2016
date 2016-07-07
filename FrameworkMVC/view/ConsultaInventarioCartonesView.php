@@ -99,8 +99,7 @@
        <?php
        
        $sel_id_entidades = "";
-       $sel_id_tipo_operaciones="";
-       $sel_id_tipo_contenido_cartones="";
+        $sel_id_tipo_contenido_cartones="";
        $sel_numero_cartones="";
        $sel_fecha_desde="";
        $sel_fecha_hasta="";
@@ -110,8 +109,7 @@
        	
        	
        	$sel_id_entidades = $_POST['id_entidades'];
-       	$sel_id_tipo_operaciones=$_POST['id_tipo_operaciones'];
-       	$sel_id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
+        	$sel_id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
        	$sel_numero_cartones=$_POST['numero_cartones'];
        	$sel_fecha_desde=$_POST['fecha_desde'];
        	$sel_fecha_hasta=$_POST['fecha_hasta'];
@@ -149,16 +147,6 @@
 			            <?php } ?>
 				</select>
 		 </div>
-		 
-		 <div class="col-xs-2 ">
-			    <p  class="formulario-subtitulo" style="" >Tipo Operación:</p>
-			  	<select name="id_tipo_operaciones" id="id_tipo_operaciones"  class="form-control" >
-			  			<?php foreach($resultTipoOpe as $res) {?>
-						<option value="<?php echo $res->id_tipo_operaciones; ?>" <?php if($sel_id_tipo_operaciones==$res->id_tipo_operaciones){echo "selected";}?>><?php echo $res->nombre_tipo_operaciones;  ?> </option>
-			            <?php } ?>
-				</select>	
-
-         </div>
 		 
 		  <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" style="" >Tipo Contenido Carton:</p>
