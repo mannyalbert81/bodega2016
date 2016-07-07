@@ -153,7 +153,7 @@ $(document).ready(function(){
 			<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge"><?php echo $cantidad; ?></span></button>
 			<?php if($cantidad>0){ ?>
 			
-			<ul class="dropdown-menu" id="ul_notificacion" style="width: 300px;">
+			<ul class="dropdown-menu" id="ul_notificacion" style="width: 300px; overflow: auto" >
 			<?php foreach ($resultNotificaciones as $res){?>
 			<?php $fecha= new DateTime($res->creado);?>
 			
