@@ -89,18 +89,63 @@
 		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
 
-		    	var identificacion_clientes = $("#identificacion_clientes").val();
-		    	var nombres_clientes = $("#nombres_clientes").val();
-		    	var telefono_clientes = $("#telefono_clientes").val();
-		    	var celular_clientes = $("#celular_clientes").val();
-		    	var direccion_clientes = $("#direccion_clientes").val();
+
+
+
+		    	var id_entidades = $("#id_entidades").val();
+		    	var id_bodegas = $("#id_bodegas").val();
+		    	var id_tipo_contenido_cartones = $("#id_tipo_contenido_cartones").val();
+		    	var numero_cartones = $("#numero_cartones").val();
+		    	var serie_cartones = $("#serie_cartones").val();
+		    	var contenido_cartones = $("#contenido_cartones").val();
+		    	var year_cartones = $("#year_cartones").val();
+		    	var cantidad_documentos_libros_cartones = $("#cantidad_documentos_libros_cartones").val();
+		    	var digitalizado_cartones = $("#digitalizado_cartones").val();
+		    	var id_ciudad = $("#id_ciudad").val();
+			    
+
 		    	
-		    	
-		    	
-		    	if (identificacion_clientes == "")
+
+		    	if (id_entidades == 0)
 		    	{
 			    	
-		    		$("#mensaje_identificacion_clientes").text("Introduzca una Identificacion");
+		    		$("#mensaje_entidades").text("Introduzca un Entidad");
+		    		$("#mensaje_entidades").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_entidades").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}   
+		    	if (id_bodegas == 0)
+		    	{
+			    	
+		    		$("#mensaje_bodegas").text("Introduzca una bodega ");
+		    		$("#mensaje_bodegas ").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_bodegas").fadeOut("slow"); //Muestra mensaje de error
+		            
+				} 
+		    	if (id_tipo_contenido_cartones == 0)
+		    	{
+			    	
+		    		$("#mensaje_tipo_contenido_cartones").text("Introduzca un tipo de contenido");
+		    		$("#mensaje_tipo_contenido_cartones").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_tipo_contenido_cartones").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}       
+		    	if (numero_cartones == "")
+		    	{
+			    	
+		    		$("#mensaje_identificacion_clientes").text("Introduzca un Numero de carton");
 		    		$("#mensaje_identificacion_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -110,10 +155,10 @@
 		            
 				}    
 				
-		    	if (nombres_clientes == "")
+		    	if (serie_cartones == "")
 		    	{
 			    	
-		    		$("#mensaje_nombres_clientes").text("Introduzca un Nombre");
+		    		$("#mensaje_nombres_clientes").text("Introduzca una serie");
 		    		$("#mensaje_nombres_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -123,10 +168,10 @@
 		            
 				}  
 
-		    	if (telefono_clientes == "")
+		    	if (contenido_cartones == "")
 		    	{
 			    	
-		    		$("#mensaje_telefono_clientes").text("Introduzca un Teléfono");
+		    		$("#mensaje_telefono_clientes").text("Introduzca un Contenido");
 		    		$("#mensaje_telefono_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -136,10 +181,10 @@
 		            
 				} 
 
-		    	if (celular_clientes == "")
+		    	if (year_cartones == "")
 		    	{
 			    	
-		    		$("#mensaje_celular_clientes").text("Introduzca un Celular");
+		    		$("#mensaje_celular_clientes").text("Introduzca un año");
 		    		$("#mensaje_celular_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -149,10 +194,10 @@
 		            
 				}
 
-		    	if (direccion_clientes == "")
+		    	if (cantidad_documentos_libros_cartones == "")
 		    	{
 			    	
-		    		$("#mensaje_direccion_clientes").text("Introduzca una Dirección");
+		    		$("#mensaje_direccion_clientes").text("Introduzca una Cantidad");
 		    		$("#mensaje_direccion_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -161,28 +206,58 @@
 		    		$("#mensaje_direccion_clientes").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
+		    	if (digitalizado_cartones == 0)
+		    	{
+			    	
+		    		$("#mensaje_digitalizado_cartones").text("Introduzca True o False");
+		    		$("#mensaje_digitalizado_cartones").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_digitalizado_cartones").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	if (id_ciudad == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_ciudad").text("Introduzca una Ciudad");
+		    		$("#mensaje_id_ciudad").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_ciudad").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
 		    	
-		    	
-
-		    					    
 
 			}); 
-
-		    $( "#identificacion_clientes" ).focus(function() {
+			
+		    $( "#id_entidades" ).focus(function() {
+				  $("#mensaje_entidades").fadeOut("slow");
+			    });
+		    $( "#id_bodegas" ).focus(function() {
+				  $("#mensaje_bodegas").fadeOut("slow");
+			    });
+		    $( "#id_tipo_contenido_cartones" ).focus(function() {
+				  $("#mensaje_tipo_contenido_cartones").fadeOut("slow");
+			    });
+		    $( "#numero_cartones" ).focus(function() {
 				  $("#mensaje_identificacion_clientes").fadeOut("slow");
 			    });
 				
-		        $( "#nombres_clientes" ).focus(function() {
+		        $( "#serie_cartones" ).focus(function() {
 				  $("#mensaje_nombres_clientes").fadeOut("slow");
 			    });
 
-		        $( "#telefono_clientes" ).focus(function() {
+		        $( "#contenido_cartones" ).focus(function() {
 					  $("#mensaje_telefono_clientes").fadeOut("slow");
 				    });
-		        $( "#celular_clientes" ).focus(function() {
+		        $( "#year_cartones" ).focus(function() {
 					  $("#mensaje_celular_clientes").fadeOut("slow");
 				    });
-		        $( "#direccion_clientes" ).focus(function() {
+		        $( "#cantidad_documentos_libros_cartones" ).focus(function() {
 					  $("#mensaje_direccion_clientes").fadeOut("slow");
 				    });
 				
@@ -199,6 +274,26 @@
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
     letras = " 0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+    if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+     }
+    </script > 
+    
+    <script >   
+    function años(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 0123456789-/";
     especiales = [8,37,39,46];
  
     tecla_especial = false
@@ -251,22 +346,28 @@
 		    
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Entidades</p>
+			  	
 			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
-					<?php foreach($resultEnt as $res) {?>
+			  	 	
+			  		<option value="0">--Seleccione--</option>
+			 <?php foreach($resultEnt as $res) {?>
 					<option value="<?php echo $res->id_entidades; ?>"  <?php if ($res->id_entidades == $resEdit->id_entidades ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_entidades; ?> </option>
-					
 						  <?php } ?>
-				</select> 			  
+				</select> 	
+				  
+					<div id="mensaje_entidades" class="errores"></div>		  
 			  </div>
 		    
 		   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Bodegas</p>
 			  	<select name="id_bodegas" id="id_bodegas"  class="form-control" >
+			  	<option value="0">--Seleccione--</option>
 					<?php foreach($resultBodegas as $res) {?>
 					<option value="<?php echo $res->id_bodegas; ?>"  <?php if ($res->id_bodegas == $resEdit->id_bodegas ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_bodegas; ?> </option>
-					
 						   <?php } ?>
-				</select> 			  
+				</select> 	
+				<div id="mensaje_bodegas" class="errores"></div>
+							  
 			  </div>
 			   </div>
 			   
@@ -275,17 +376,19 @@
 		    <div class="col-xs-6 col-md-6" style= "margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Tipo Contenido Cartones</p>
 			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
+			  	<option value="0">--Seleccione--</option>
 					<?php foreach($resultTipoConCar as $res) {?>
 					<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"  <?php if ($res->id_tipo_contenido_cartones == $resEdit->id_tipo_contenido_cartones ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_tipo_contenido_cartones; ?> </option>
-					
 					  <?php } ?>
-				</select> 			  
+				</select> 
+				<div id="mensaje_tipo_contenido_cartones" class="errores"></div>
+								  
 			  </div>
 			  
 			  <div class="col-xs-6 col-md-6" style= "margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Numero Cartones</p>
 			  	<input type="text" name="numero_cartones" id="numero_cartones" value="<?php echo $resEdit->numero_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_numero_cartones" class="errores"></div>
+			  <div id="mensaje_identificacion_clientes" class="errores"></div>
 			  </div>
 		    </div>
 		    
@@ -293,13 +396,13 @@
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Serie Cartones</p>
 			  	<input type="text" name="serie_cartones" id="serie_cartones" value="<?php echo $resEdit->serie_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_serie_cartones" class="errores"></div>
+			  <div id="mensaje_nombres_clientes" class="errores"></div>
 			  </div>
 			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Contenido Cartones</p>
 			  	<input type="text" name="contenido_cartones" id="contenido_cartones" value="<?php echo $resEdit->contenido_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_contenido_cartones" class="errores"></div>
+			  <div id="mensaje_telefono_clientes" class="errores"></div>
 			  </div>
 		    </div>
 		    
@@ -307,21 +410,22 @@
 		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Años Cartones</p>
-			  	<input type="text" name="year_cartones" id="year_cartones" value="<?php echo $resEdit->year_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_year_cartones" class="errores"></div>
+			  	<input type="text" name="year_cartones" id="year_cartones" onkeypress="return años(event)" value="<?php echo $resEdit->year_cartones; ?>" class="form-control"/>
+			  <div id="mensaje_celular_clientes" class="errores"></div>
 			  </div>
 			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cantidad Documentos</p>
 			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" onkeypress="return numeros(event)" value="<?php echo $resEdit->cantidad_documentos_libros_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_cantidad_documentos_libros_cartones" class="errores"></div>
+			  <div id="mensaje_direccion_clientes" class="errores"></div>
 			  </div>
 		    </div>
 		      
 		      <div class="row">
 		      <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Digitalizado Cartones</p>
-			  	<select name="digitalizado_cartones" id="digitalizado_cartones"  class="form-control" >
+			  	<select name="digitalizado_cartones" id="digitalizado_cartones"  class="form-control" 
+			  		<option value="0">--Seleccione--</option>
 					<option value="TRUE"  <?php  if ( $resEdit->digitalizado_cartones =='t')  echo ' selected="selected" ' ; ?> >TRUE </option>
 					<option value="FALSE" <?php  if ( $resEdit->digitalizado_cartones =='f')  echo ' selected="selected" ' ; ?> >FALSE </option>
 					 
@@ -330,11 +434,17 @@
 			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
-			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" onkeypress="return numeros(event)" value="<?php echo $resEdit->cantidad_documentos_libros_cartones; ?>" class="form-control"/>
-			  <div id="mensaje_cantidad_documentos_libros_cartones" class="errores"></div>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  	<option value="0">--Seleccione--</option>
+					<?php foreach($resultCiu as $resCiu) {?>
+					<option value="<?php echo $resCiu->id_ciudad; ?>"  <?php if ($resCiu->id_ciudad == $resEdit->id_ciudad ) echo ' selected="selected" '  ; ?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
+					
+						   <?php } ?>
+				</select> 			  
 			  </div>
+			 
 		    </div>
-		      </div>
+		      
 		    
 		    <hr>
 		    
@@ -347,20 +457,29 @@
 		    
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Entidades</p>
+			  
 			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
+			  		
+					<option value="0">--Seleccione--</option>
+					
 					<?php foreach($resultEnt as $res) {?>
 						<option value="<?php echo $res->id_entidades; ?>"  ><?php echo $res->nombre_entidades; ?> </option>
+						 
 			        <?php } ?>
-				</select> 			  
+				</select> 	
+				 <div id="mensaje_entidades" class="errores"></div>	  
 			  </div>
 		    
 		   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Bodegas</p>
 			  	<select name="id_bodegas" id="id_bodegas"  class="form-control" >
+					<option value="0">--Seleccione--</option>
 					<?php foreach($resultBodegas as $res) {?>
 						<option value="<?php echo $res->id_bodegas; ?>"  ><?php echo $res->nombre_bodegas; ?> </option>
+						
 			        <?php } ?>
-				</select> 			  
+				</select> 	
+				<div id="mensaje_bodegas" class="errores"></div>		  
 			  </div>
 			   </div>
 			   
@@ -369,16 +488,19 @@
 		    <div class="col-xs-6 col-md-6" style= "margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Tipo Contenido Cartones</p>
 			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
+					<option value="0">--Seleccione--</option>
 					<?php foreach($resultTipoConCar as $res) {?>
 						<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"  ><?php echo $res->nombre_tipo_contenido_cartones; ?> </option>
+						
 			        <?php } ?>
-				</select> 			  
+				</select> 
+				<div id="mensaje_tipo_contenido_cartones" class="errores"></div>			  
 			  </div>
 			  
 			  <div class="col-xs-6 col-md-6" style= "margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Numero Cartones</p>
 			  	<input type="text" name="numero_cartones" id="numero_cartones" value="" class="form-control"/>
-			  <div id="mensaje_numero_cartones" class="errores"></div>
+			  <div id="mensaje_identificacion_clientes" class="errores"></div>
 			  </div>
 		    </div>
 		    
@@ -386,13 +508,13 @@
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Serie Cartones</p>
 			  	<input type="text" name="serie_cartones" id="serie_cartones" value="" class="form-control"/>
-			  <div id="mensaje_serie_cartones" class="errores"></div>
+			  <div id="mensaje_nombres_clientes" class="errores"></div>
 			  </div>
 			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Contenido Cartones</p>
 			  	<input type="text" name="contenido_cartones" id="contenido_cartones" value="" class="form-control"/>
-			  <div id="mensaje_contenido_cartones" class="errores"></div>
+			  <div id="mensaje_telefono_clientes" class="errores"></div>
 			  </div>
 		    </div>
 		    
@@ -400,14 +522,14 @@
 		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Años Cartones</p>
-			  	<input type="text" name="year_cartones" id="year_cartones" value="" class="form-control"/>
-			  <div id="mensaje_year_cartones" class="errores"></div>
+			  	<input type="text" name="year_cartones" id="year_cartones" onkeypress="return años(event)"value="" class="form-control"/>
+			  <div id="mensaje_celular_clientes" class="errores"></div>
 			  </div>
 			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cantidad Documentos</p>
 			  	<input type="text" name="cantidad_documentos_libros_cartones" id="cantidad_documentos_libros_cartones" onkeypress="return numeros(event)" class="form-control"/>
-			  <div id="mensaje_cantidad_documentos_libros_cartones" class="errores"></div>
+			  <div id="mensaje_direccion_clientes" class="errores"></div>
 			  </div>
 		    </div>
 		      
@@ -415,13 +537,16 @@
 		      <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Digitalizado Cartones</p>
 			  	<select name="digitalizado_cartones" id="digitalizado_cartones"  class="form-control" >
+			  		<option value="0">--Seleccione--</option>
 					<option value="TRUE"  >SI </option>
 					<option value="FALSE"  >NO</option>
 				</select> 			  
 			  </div>
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
+			  	
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  	<option value="0">--Seleccione--</option>
 					<?php foreach($resultCiu as $resCiu) {?>
 						<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
 			        <?php } ?>
@@ -494,6 +619,7 @@
 	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Ciudad</th>
 	    		
 	    		<th></th>
 	    		<th></th>
@@ -511,6 +637,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>  </td>
 		           	   <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("Cartones","index"); ?>&id_cartones=<?php echo $res->id_cartones; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>

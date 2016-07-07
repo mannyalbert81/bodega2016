@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T15:24:12 -->
+<!-- 2016-07-07T15:42:35 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -52,17 +52,17 @@ WHERE
 	<title>
 		<band height="79" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="31234f13-0405-467c-8b39-f2b54016d959"/>
+				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="6cab0bec-a8db-4350-a1ea-939d0ed46220"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="20" width="800" height="50" forecolor="#000000" backcolor="#FFFFFF" uuid="1745fe55-903c-4b70-90f3-a6cedf08b196"/>
+				<reportElement x="0" y="20" width="800" height="50" forecolor="#000000" backcolor="#FFFFFF" uuid="7af77446-8801-4411-a690-3be634da0a50"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[REPORTE SOLICITUDES DE CARTONES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="633" y="49" width="50" height="20" forecolor="#000000" backcolor="#000000" uuid="6dfd737b-2aef-45ec-a506-cde85d20c479"/>
+				<reportElement x="633" y="49" width="50" height="20" forecolor="#000000" backcolor="#000000" uuid="a5835930-2dd4-4388-a157-f56611151158"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="10" isBold="true"/>
@@ -70,18 +70,18 @@ WHERE
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="685" y="50" width="115" height="20" forecolor="#000000" uuid="b88ae8f5-6e87-4133-bfb2-c8887bfe6061"/>
+				<reportElement x="685" y="50" width="115" height="20" forecolor="#000000" uuid="f5e3e9e7-f80f-43dc-b74f-0fb3fd6c8839"/>
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="5" y="10" width="190" height="50" uuid="1450479c-09aa-45b1-8ce2-a7a8b775598a"/>
-				<imageExpression><![CDATA["C:/Users/ManuelAlberto/git/bodega2016/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
+				<reportElement x="5" y="10" width="190" height="50" uuid="ce14e4bc-779c-4f06-8102-49598b6a1b3f"/>
+				<imageExpression><![CDATA["C:/Users/User/git/bodega2016/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
 			</image>
 			<componentElement>
-				<reportElement x="681" y="10" width="67" height="30" uuid="12f35f68-1054-4e1c-b1e8-7fefe67135d1"/>
+				<reportElement x="690" y="8" width="67" height="30" uuid="93d64014-d516-47a1-95c6-e4539c24e242"/>
 				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" textPosition="bottom">
 					<jr:codeExpression><![CDATA["123456789"]]></jr:codeExpression>
 				</jr:Code128>
