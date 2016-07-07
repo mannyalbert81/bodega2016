@@ -537,6 +537,7 @@ class EntidadBase{
 			  notificaciones.numero_movimiento_notificaciones, 
 			  notificaciones.cantidad_cartones_notificaciones, 
     		  notificaciones.creado,
+    		  usuarios.id_usuarios,
 			  usuarios.usuario_usuarios, 
 			  usuarios.nombre_usuarios, 
 			  notificaciones.visto_notificaciones, 
@@ -548,7 +549,7 @@ class EntidadBase{
 				  public.usuarios, 
 				  public.tipo_notificacion";
     	
-    	$where="notificaciones.usuario_destino_notificaciones = usuarios.id_usuarios AND
+    	$where="notificaciones.usuario_origen_notificaciones = usuarios.id_usuarios AND
   				tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion 
     			AND  notificaciones.visto_notificaciones='FALSE' 
     			AND notificaciones.usuario_destino_notificaciones='$id_usuario'";
