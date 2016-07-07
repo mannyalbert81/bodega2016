@@ -15,9 +15,6 @@ class InventarioCartonesController extends ControladorBase{
 		$entidades = new EntidadesModel();
 		$resultEnt = $entidades->getAll("nombre_entidades");
 		
-		$tipo_operaciones = new TipoOperacionesModel(); 
-		
-		$resultTipoOpe = $tipo_operaciones->getBy("nombre_tipo_operaciones='ENTRADAS' OR nombre_tipo_operaciones='SOLICITUD'");
 		
 		$tipo_contenido_cartones = new TipoContenidoCartonesModel();
 		$resultTipoCont = $tipo_contenido_cartones->getAll("nombre_tipo_contenido_cartones");
@@ -41,7 +38,6 @@ class InventarioCartonesController extends ControladorBase{
 				if(isset($_POST["buscar"])){
 	
 					$id_entidades=$_POST['id_entidades'];
-					$id_tipo_operaciones=$_POST['id_tipo_operaciones'];
 					$id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
 					$numero_cartones=$_POST['numero_cartones'];
 					$fechadesde=$_POST['fecha_desde'];
@@ -72,7 +68,7 @@ class InventarioCartonesController extends ControladorBase{
 					$where="tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones AND
 							  bodegas.id_bodegas = cartones.id_bodegas AND
 							  entidades.id_entidades = cartones.id_entidades AND
-							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones ";
+							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND (tipo_operaciones.nombre_tipo_operaciones ='SOLICITUD' OR tipo_operaciones.nombre_tipo_operaciones ='ENTRADAS')";
 								
 					$id="cartones.id_cartones";
 	
@@ -81,21 +77,19 @@ class InventarioCartonesController extends ControladorBase{
 					$where_1 = "";
 					$where_2 = "";
 					$where_3 = "";
-					$where_4 = "";
+					
 	
 	
 					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
+	             
+					if($id_tipo_contenido_cartones!=0){$where_1=" AND tipo_contenido_cartones.id_tipo_contenido_cartones='$id_tipo_contenido_cartones'";}
 	
-					if($id_tipo_operaciones!=0){$where_1=" AND tipo_operaciones.id_tipo_operaciones='$id_tipo_operaciones'";}
+					if($numero_cartones!=""){$where_2=" AND cartones.numero_cartones='$numero_cartones'";}
 	
-					if($id_tipo_contenido_cartones!=0){$where_2=" AND tipo_contenido_cartones.id_tipo_contenido_cartones='$id_tipo_contenido_cartones'";}
-	
-					if($numero_cartones!=""){$where_3=" AND cartones.numero_cartones='$numero_cartones'";}
-	
-					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  cartones.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+					if($fechadesde!="" && $fechahasta!=""){$where_3=" AND  cartones.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
 	
 	
-					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
+					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3;
 	
 	
 					$resultSet=$inventario_cartones->getCondiciones($columnas ,$tablas , $where_to, $id);
@@ -107,7 +101,7 @@ class InventarioCartonesController extends ControladorBase{
 	
 	
 				$this->view("ConsultaInventarioCartones",array(
-						"resultSet"=>$resultSet, "resultTipoCont"=> $resultTipoCont, "resultEnt"=>$resultEnt, "resultTipoOpe"=>$resultTipoOpe
+						"resultSet"=>$resultSet, "resultTipoCont"=> $resultTipoCont, "resultEnt"=>$resultEnt
 							
 				));
 	

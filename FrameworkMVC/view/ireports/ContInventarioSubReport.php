@@ -22,7 +22,6 @@ $PHPJasperXML->debugsql=false;
 
 
 $id_entidades=0;
-$id_tipo_operaciones=0;
 $id_tipo_contenido_cartones=0;
 $numero_cartones=0;
 $fecha_desde=0;
@@ -35,14 +34,6 @@ $detallesql="";
 		{
 			$id_entidades=$_GET['id_entidades'];
 			$detallesql=$detallesql." AND cartones.id_entidades = '$id_entidades'";
-		}
-		
-		
-		if ($_GET['id_tipo_operaciones']!=0)
-		{
-			
-			$id_tipo_operaciones= $_GET['id_tipo_operaciones'];
-			$detallesql=$detallesql." AND cartones.id_tipo_operaciones = '$id_tipo_operaciones'";
 		}
 		
 		if ($_GET['id_tipo_contenido_cartones']!=0)
@@ -93,7 +84,7 @@ from	public.cartones,
 where		tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones AND
 							  bodegas.id_bodegas = cartones.id_bodegas AND
 							  entidades.id_entidades = cartones.id_entidades AND
-							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+							  tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND (tipo_operaciones.nombre_tipo_operaciones ='SOLICITUD' OR tipo_operaciones.nombre_tipo_operaciones ='ENTRADAS')";
 
 
 $sql=$cabeceraSql.$detallesql;
