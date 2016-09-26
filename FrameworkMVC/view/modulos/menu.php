@@ -136,6 +136,11 @@ $controladores=$_SESSION['controladores'];
 			<li style="<?php echo getcontrolador("Baja",$controladores) ?>">
 			<a href="index.php?controller=Baja&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Baja de Cartones</span> </a>
 			</li>
+			<li style="<?php echo getcontrolador("Documentos",$controladores) ?>">
+			<a href="index.php?controller=Documentos&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Documentos</span> </a>
+			</li>
+			
+			
 			
           </ul>
         </li>
@@ -148,7 +153,7 @@ $controladores=$_SESSION['controladores'];
             </li>
           <li style="<?php echo getcontrolador("Cartones",$controladores) ?>">
           <a href="index.php?controller=Cartones&action=consulta_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Estado Cartones</span> </a>
-            </li>  
+            </li> 
             
             <li style="<?php echo getcontrolador("Cartones",$controladores) ?>">
             <a href="index.php?controller=Cartones&action=busqueda_cartones"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Busqueda de  Cartones</span> </a>

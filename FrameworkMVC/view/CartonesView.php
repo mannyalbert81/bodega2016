@@ -430,7 +430,7 @@
 		      <div class="row">
 		      <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Digitalizado Cartones</p>
-			  	<select name="digitalizado_cartones" id="digitalizado_cartones"  class="form-control" 
+			  	<select name="digitalizado_cartones" id="digitalizado_cartones"  class="form-control" >
 			  		<option value="0">--Seleccione--</option>
 					<option value="TRUE"  <?php  if ( $resEdit->digitalizado_cartones =='t')  echo ' selected="selected" ' ; ?> >TRUE </option>
 					<option value="FALSE" <?php  if ( $resEdit->digitalizado_cartones =='f')  echo ' selected="selected" ' ; ?> >FALSE </option>
