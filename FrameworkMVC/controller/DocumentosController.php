@@ -231,7 +231,7 @@ public function index(){
 		
 		
 		//_nombre_categorias character varying, _path_categorias character varying
-		if (isset ($_POST["Guardar"]) )
+		if (isset ($_POST["id_area_documentos"]) )
 		{
 
 			$_id_area_documentos = $_POST["id_area_documentos"];
@@ -242,8 +242,7 @@ public function index(){
 			$_contenido_documentos = $_POST["contenido_documentos"];
 			
 			
-					
-				$funcion = "ins_documentos";
+			$funcion = "ins_documentos";
 					
 				$parametros = " '$_id_area_documentos' ,'$_id_bodegas' , '$_id_tipo_documentos' , '$_id_cartones' , '$_serie_documentos' , '$_contenido_documentos' ";
 				$documentos->setFuncion($funcion);
@@ -257,8 +256,8 @@ public function index(){
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_serie_documentos;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+			}
 				
-			}	
 				$this->redirect("Documentos", "index");
 	
 			}
