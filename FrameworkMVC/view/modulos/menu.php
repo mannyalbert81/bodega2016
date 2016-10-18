@@ -166,6 +166,9 @@ $controladores=$_SESSION['controladores'];
              <li style="<?php echo getcontrolador("InventarioCartones",$controladores) ?>">
              <a href="index.php?controller=InventarioCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Inventario</span> </a>
             </li> 
+            <li style="<?php echo getcontrolador("DocumentosCartones",$controladores) ?>">
+             <a href="index.php?controller=DocumentosCartones&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Documentos</span> </a>
+            </li> 
             
 			
 </ul>
