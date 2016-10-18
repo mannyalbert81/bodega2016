@@ -18,7 +18,7 @@ public function index(){
 			$resultArea = $area_documentos->getAll("nombre_areas_documentos");
 			
 			$bodegas = new BodegasModel();
-			$resultBodegas =$bodegas->getBy("nombre_bodegas='REPOSITORIO PRINCIPAL'");
+			$resultBodegas =$bodegas->getAll("nombre_bodegas");
 			
 			$tipo_documentos = new TipoDocumentosModel();
 			$resultTipDoc = $tipo_documentos->getAll("nombres_tipo_documentos");

@@ -98,9 +98,10 @@
        
        <?php
        
-       $sel_id_entidades = "";
-        $sel_id_tipo_contenido_cartones="";
+       $sel_id_bodegas = "";
+       $sel_id_tipo_contenido_cartones="";
        $sel_numero_cartones="";
+       $sel_seccion_cartones="";
        $sel_fecha_desde="";
        $sel_fecha_hasta="";
         
@@ -108,9 +109,10 @@
        {
        	
        	
-       	$sel_id_entidades = $_POST['id_entidades'];
-        	$sel_id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
+       	$sel_id_bodegas = $_POST['id_bodegas'];
+        $sel_id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
        	$sel_numero_cartones=$_POST['numero_cartones'];
+       	$sel_seccion_cartones=$_POST['seccion_cartones'];
        	$sel_fecha_desde=$_POST['fecha_desde'];
        	$sel_fecha_hasta=$_POST['fecha_hasta'];
        
@@ -136,14 +138,13 @@
        	 <div class="panel panel-default">
   			<div class="panel-body">
   			
-  			
-		   			
+  					
           <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Entidad:</p>
-			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
-			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultEnt as $res) {?>
-						<option value="<?php echo $res->id_entidades; ?>"<?php if($sel_id_entidades==$res->id_entidades){echo "selected";}?>><?php echo $res->nombre_entidades;  ?> </option>
+			  	<p  class="formulario-subtitulo" style="" >Bodega:</p>
+			  	<select name="id_bodegas" id="id_bodegas"  class="form-control" >
+			  		<option value="0"><?php echo "--TODOS--";  ?> </option>
+					<?php foreach($resultBod as $res) {?>
+						<option value="<?php echo $res->id_bodegas; ?>"<?php if($sel_id_bodegas==$res->id_bodegas){echo "selected";}?>><?php echo $res->nombre_bodegas;  ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
@@ -151,19 +152,30 @@
 		  <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" style="" >Tipo Contenido Carton:</p>
 			  	<select name="id_tipo_contenido_cartones" id="id_tipo_contenido_cartones"  class="form-control" >
-			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
+			  		<option value="0"><?php echo "--TODOS--";  ?> </option>
 					<?php foreach($resultTipoCont as $res) {?>
 						<option value="<?php echo $res->id_tipo_contenido_cartones; ?>"<?php if($sel_id_tipo_contenido_cartones==$res->id_tipo_contenido_cartones){echo "selected";}?> ><?php echo $res->nombre_tipo_contenido_cartones;  ?> </option>
 			            <?php } ?>
 				</select>
 
          </div>
-          <div class="col-xs-2 ">
+          <div class="col-xs-2">
+			  	<p  class="formulario-subtitulo" style="" >Sección:</p>
+			  	<select name="seccion_cartones" id="seccion_cartones"  class="form-control" >
+			  		<option value=""><?php echo "--TODOS--";  ?> </option>
+					<?php foreach($resultSecc as $res) {?>
+						<option value="<?php echo $res->seccion_cartones; ?>"<?php if($sel_seccion_cartones==$res->seccion_cartones){echo "selected";}?>><?php echo $res->seccion_cartones;  ?> </option>
+			            <?php } ?>
+				</select>
+		 </div>
+		
+         <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Nº Carton:</p>
 			  	<input type="text"  name="numero_cartones" id="numero_cartones" value="<?php echo $sel_numero_cartones;?>" class="form-control"/> 
 			    <div id="mensaje_numero_titulo" class="errores"></div>
 
          </div>
+         
          
          <div class="col-xs-2 ">
          		<p class="formulario-subtitulo" >Desde:</p>
@@ -205,6 +217,7 @@
 		 </div>
 		 </div>
 		 <div class="col-lg-12">
+		
 		 
 		 
 		 <section class="" style="height:300px;overflow-y:scroll;">
@@ -214,6 +227,7 @@
 	    		<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Numero</th>
 	    		<th style="color:#456789;font-size:80%;">Serie</th>
+	    		<th style="color:#456789;font-size:80%;">Sección</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
 	    		<th style="color:#456789;font-size:80%;">Años</th>
 	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
@@ -227,12 +241,16 @@
 	    		<th></th>
 	  		</tr>
             
+           <?php  $paginas =   0;  ?>
+		    <?php  $registros = 0; ?>
+	  		
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
 	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->seccion_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
@@ -242,18 +260,55 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_operaciones; ?>  </td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
-	                   
+	                   <?php  $registros = $registros + 1 ; ?>
 		    		</tr>
-		        <?php } }  ?>
-           
-       	</table>     
-      </section>
+		        <?php }   ?>
+            
+       	</table> 
+       	</section>
+       			<table class="table">
+				<th class="text-center">
+				    	<nav>
+						  <ul id="pagina" name="pagina" class="pagination">
+						    <?php if ($paginasTotales > 0) {?>
+						    		<?php if ($ultima_pagina > 1 ) {?>
+						    			<input type="submit" value="<?php echo "<<"; ?>" id="anterior_pagina"    name="anterior_pagina" class="btn btn-info"/>
+						    		<?php }?>
+						    <?php for ($i = $ultima_pagina; $i< $paginasTotales+1; $i++)  { ?>
+						    		
+						    		<?php if ($i  < $ultima_pagina + 5) {  ?>
+						    			<input type="hidden" value="<?php echo $i+1; ?>" id="ultima_pagina"    name="ultima_pagina" class="btn btn-info"/>
+						    			<input type="submit" value="<?php echo $i; ?>" id="pagina"  <?php if ($i == $pagina_actual ) { echo 'style="color: #1454a3 " '; }  ?>     name="pagina" class="btn btn-info"/>
+						    			
+						    		<?php } ?>
+						    		<?php if ($paginasTotales  == $i) {  ?>
+						    			<input type="submit" value="<?php echo ">>"; ?>" id="siguiente_pagina"    name="siguiente_pagina" class="btn btn-info"/>
+						    		<?php } ?>
+						    		
+						    <?php    } }?>
+						    
+						  </ul>
+						</nav>	   	   
+			
+				</th>
+				<tr class="bg-primary">
+						<p class="text-center"> <strong> Registros Cargados: <?php echo  $registros?> Registros Totales: <?php echo  $registrosTotales?> </strong>  </p>
+	     		  	
+				</tr>			
+		</table>
+		 	
+ 				<?php  }   else { ?>
+		        <?php }  ?>    
+		        
+      
+     
 		 
-		 		 
 		 </div>
+		 
+		 
 		 </div>
-		
-		
+		 
+	
       
        </form>
      
@@ -262,6 +317,11 @@
   </div>
       <!-- termina
        busqueda  -->
+       
+ 
    </body>  
 
     </html>   
+    
+  
+    

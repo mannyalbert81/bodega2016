@@ -21,7 +21,7 @@
 		
 		<link href="view/css/jqueryui.css" type="text/css" rel="stylesheet"/>
 		
-		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="view/css/functions.js"></script>
 	
@@ -114,7 +114,7 @@
     					data:{numero_carton:$('#busqueda').val()}
     				}).done(function(respuesta){
 
-    					$('#destino').append('<option value="'+respuesta.id_cartones+'" selected>'+$('#busqueda').val()+' </option>')
+    					$('#destino').append('<option value="'+respuesta.nombre_plan_cuentas+'" selected>'+$('#busqueda').val()+' </option>')
     					$('#busqueda').val("");
     					$('#total_cartones').val($('#destino option').size());
         			});

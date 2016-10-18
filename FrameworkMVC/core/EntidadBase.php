@@ -129,7 +129,19 @@ class EntidadBase{
     
     	return $resultSet;
     }
-  
+     
+    
+    public function getGrupBy($columnas ,$tablas , $grup_by){
+    	 
+    	$query=pg_query($this->con, "SELECT $columnas FROM $tablas GROUP BY $grup_by");
+    	$resultSet = array();
+    	while ($row = pg_fetch_object($query)) {
+    		$resultSet[]=$row;
+    	}
+    
+    	return $resultSet;
+    }
+    
     public function getCondicionesPag($columnas ,$tablas , $where, $id, $limit){
     	 
     	$query=pg_query($this->con, "SELECT $columnas FROM $tablas WHERE $where ORDER BY $id  ASC  $limit");

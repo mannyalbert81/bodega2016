@@ -621,6 +621,7 @@
 	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
 	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
+	    		<th style="color:#456789;font-size:80%;">Sección</th>
 	    		<th style="color:#456789;font-size:80%;">Años</th>
 	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
@@ -639,6 +640,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->seccion_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>

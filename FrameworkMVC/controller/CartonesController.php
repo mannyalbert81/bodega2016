@@ -12,7 +12,7 @@ public function index(){
 		{
 			//creacion menu busqueda
 			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
-			$resultMenu=array(0=>'--Seleccione--',1=>'Numero', 2=>'Serie', 3=>'Contenido', 4=>'Año', 5=>'Cantidad Documentos', 6=>'Nombre Contenido', 7=>'Digitalizado', 8=>'Nombre Entidades', 9=>'Nombre Bodega');
+			$resultMenu=array(0=>'--Seleccione--',1=>'Numero', 2=>'Serie', 3=>'Contenido', 4=>'Año', 5=>'Cantidad Documentos', 6=>'Nombre Contenido', 7=>'Digitalizado', 8=>'Nombre Entidades', 9=>'Nombre Bodega', 10=>'Sección');
 			//Creamos el objeto usuario
 			
 			$bodegas = new BodegasModel();
@@ -45,7 +45,8 @@ public function index(){
 					      bodegas.id_bodegas,
 						  bodegas.nombre_bodegas,
 							ciudad.id_ciudad,
-							ciudad.nombre_ciudad";
+							ciudad.nombre_ciudad,
+					cartones.seccion_cartones";
 			$tablas   = "public.cartones, 
 						  public.bodegas, 
 						  public.entidades, 
@@ -109,12 +110,16 @@ public function index(){
 						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
 						  cartones.digitalizado_cartones,
 						  entidades.nombre_entidades,
-						  bodegas.nombre_bodegas";
+						  bodegas.nombre_bodegas,
+						  cartones.seccion_cartones,
+						ciudad.nombre_ciudad";
 					$tablas   = "public.cartones,
 						  public.bodegas,
 						  public.entidades,
-						  public.tipo_contenido_cartones";
-					$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones";
+						  public.tipo_contenido_cartones,
+						  public.ciudad";
+					
+					$where    = "bodegas.id_bodegas = cartones.id_bodegas AND entidades.id_entidades = cartones.id_entidades AND tipo_contenido_cartones.id_tipo_contenido_cartones = cartones.id_tipo_contenido_cartones AND cartones.id_ciudad = ciudad.id_ciudad";
 					$id       = "cartones.numero_cartones";
 					
 					$criterio = $_POST["criterio"];
@@ -136,6 +141,7 @@ public function index(){
 						$where_7 = "";
 						$where_8 = "";
 						$where_9 = "";
+						$where_10 ="";
 						
 							
 						switch ($criterio) {
@@ -187,11 +193,16 @@ public function index(){
 									//Nombre Cliente/Proveedor
 								$where_9 = " AND bodegas.nombre_bodegas LIKE '$contenido'  ";
 								break;
+								
+							case 10:
+									//Nombre Cliente/Proveedor
+								$where_10 = " AND cartones.seccion_cartones LIKE '$contenido'  ";
+								break;
 						}
 							
 							
 							
-						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5 . $where_6 . $where_7 . $where_8 . $where_9;
+						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5 . $where_6 . $where_7 . $where_8 . $where_9. $where_10;
 							
 							
 						$resul = $where_to;
