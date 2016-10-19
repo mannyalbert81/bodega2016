@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T17:38:25 -->
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-10-19T13:35:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -76,10 +76,6 @@ WHERE
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="5" y="10" width="190" height="50" uuid="b14916e4-b8ac-4ef9-9959-b944a31fd3dc"/>
-				<imageExpression><![CDATA["C:/Users/User/git/bodega2016/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
-			</image>
 			<componentElement>
 				<reportElement key="" positionType="Float" x="672" y="5" width="100" height="40" uuid="d4a49102-ba87-45c5-bf9a-41f04cd259c2">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -90,6 +86,10 @@ WHERE
 					<jr:codeExpression><![CDATA[$F{numero_movimientos_detalle}]]></jr:codeExpression>
 				</jr:Code128>
 			</componentElement>
+			<image>
+				<reportElement x="5" y="10" width="190" height="50" uuid="3e1ad7b2-e666-4808-a246-abfe54f82fd2"/>
+				<imageExpression><![CDATA["C:/xamppp/htdocs/bodega_territorial/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
