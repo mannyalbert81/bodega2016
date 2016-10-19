@@ -21,19 +21,20 @@ $PHPJasperXML->debugsql=false;
 #aqu� va el reporte
 
 
-$id_entidades=0;
+$sel_id_bodegas=0;
 $id_tipo_contenido_cartones=0;
 $numero_cartones=0;
+$sel_seccion_cartones=0;
 $fecha_desde=0;
 $fecha_hasta=0;
 $sql="";
 $detallesql="";
 
 
-		if ($_GET['id_entidades']!=0)
+        if ($_GET['id_bodegas']!=0)
 		{
-			$id_entidades=$_GET['id_entidades'];
-			$detallesql=$detallesql." AND cartones.id_entidades = '$id_entidades'";
+			$sel_id_bodegas=$_GET['id_bodegas'];
+			$detallesql=$detallesql." AND bodegas.id_bodegas = '$sel_id_bodegas'";
 		}
 		
 		if ($_GET['id_tipo_contenido_cartones']!=0)
@@ -48,6 +49,12 @@ $detallesql="";
 		
 			$numero_cartones= $_GET['numero_cartones'];
 			$detallesql=$detallesql." AND cartones.numero_cartones = '$numero_cartones'";
+		}
+		if ($_GET['seccion_cartones']!="")
+		{
+		
+			$sel_seccion_cartones= $_GET['seccion_cartones'];
+			$detallesql=$detallesql." AND cartones.seccion_cartones = '$sel_seccion_cartones'";
 		}
 		
 		if ($_GET['fecha_desde']!="" && $_GET['fecha_hasta']!="")
