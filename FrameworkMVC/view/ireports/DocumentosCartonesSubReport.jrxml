@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-10-19T13:37:17 -->
+<!-- 2016-10-19T17:39:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -29,6 +29,7 @@
 	<field name="nombre_bodegas" class="java.lang.String"/>
 	<field name="nombre_tipo_operaciones" class="java.lang.String"/>
 	<field name="creado" class="java.lang.String"/>
+	<field name="seccion_cartones" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -138,7 +139,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Operación]]></text>
+				<text><![CDATA[Sección]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="737" y="3" width="50" height="21" forecolor="#FFFFFF" uuid="16b8549b-e93c-4936-9663-fa0544e300ce"/>
@@ -215,7 +216,7 @@
 				<textElement textAlignment="Left">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_tipo_operaciones}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{seccion_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="749" y="0" width="31" height="10" uuid="6c29f0f0-ac52-4072-81b8-42eb027dc9ff"/>

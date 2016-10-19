@@ -411,7 +411,8 @@ public function index(){
 								  entidades.nombre_entidades, 
 								  bodegas.nombre_bodegas, 
 								  tipo_operaciones.nombre_tipo_operaciones, 
-								  cartones.creado";
+								  cartones.creado,
+							cartones.seccion_cartones";
 	
 					$tablas="public.cartones, 
 							  public.tipo_operaciones, 
@@ -522,7 +523,8 @@ public function index(){
 					      entidades.id_entidades,
 						  entidades.nombre_entidades,
 					      bodegas.id_bodegas,
-						  bodegas.nombre_bodegas";
+						  bodegas.nombre_bodegas,
+					cartones.seccion_cartones";
 			$tablas   = "public.cartones,
 						  public.bodegas,
 						  public.entidades,
@@ -584,7 +586,8 @@ public function index(){
 						  tipo_contenido_cartones.nombre_tipo_contenido_cartones,
 						  cartones.digitalizado_cartones,
 						  entidades.nombre_entidades,
-						  bodegas.nombre_bodegas";
+						  bodegas.nombre_bodegas,
+							cartones.seccion_cartones";
 					$tablas   = "public.cartones,
 						  public.bodegas,
 						  public.entidades,

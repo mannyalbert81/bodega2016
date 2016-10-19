@@ -27,6 +27,9 @@ $numero_cartones=0;
 $sel_seccion_cartones=0;
 $fecha_desde=0;
 $fecha_hasta=0;
+
+
+
 $sql="";
 $detallesql="";
 
@@ -80,7 +83,8 @@ $cabeceraSql="select      cartones.id_cartones,
 								  entidades.nombre_entidades, 
 								  bodegas.nombre_bodegas, 
 								  tipo_operaciones.nombre_tipo_operaciones, 
-								  cartones.creado
+								  cartones.creado,
+		cartones.seccion_cartones
 	
 from	public.cartones, 
 							  public.tipo_operaciones, 

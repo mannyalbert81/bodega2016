@@ -27,6 +27,9 @@ $sel_numero_cartones=0;
 $sel_id_tipo_documentos=0;
 $sel_seccion_cartones=0;
 $sel_id_tipo_contenido_cartones=0;
+
+
+
 $sql="";
 $detallesql="";
 

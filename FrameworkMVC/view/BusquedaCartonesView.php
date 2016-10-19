@@ -283,6 +283,7 @@
 	    		<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Cartones</th>
 	    		<th style="color:#456789;font-size:80%;">Serie de Cartones</th>
+	    		<th style="color:#456789;font-size:80%;">Sección</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
 	    		<th style="color:#456789;font-size:80%;">Años</th>
 	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
@@ -290,7 +291,6 @@
 	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
-	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -300,6 +300,7 @@
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->seccion_cartones; ?>  </td>
 		                <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
 		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
 		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>

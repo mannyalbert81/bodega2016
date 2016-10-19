@@ -82,7 +82,8 @@ $cabeceraSql="select      cartones.id_cartones,
 								  entidades.nombre_entidades, 
 								  bodegas.nombre_bodegas, 
 								  tipo_operaciones.nombre_tipo_operaciones, 
-								  cartones.creado
+								  cartones.creado,
+		                          cartones.seccion_cartones
 	
 from	public.cartones, 
 							  public.tipo_operaciones, 
