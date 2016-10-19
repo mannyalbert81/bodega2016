@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-10-19T13:17:17 -->
+<!-- 2016-10-19T13:20:13 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -141,7 +141,7 @@
 				<text><![CDATA[Operación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="740" y="3" width="70" height="21" forecolor="#FFFFFF" uuid="16b8549b-e93c-4936-9663-fa0544e300ce"/>
+				<reportElement x="737" y="3" width="50" height="21" forecolor="#FFFFFF" uuid="16b8549b-e93c-4936-9663-fa0544e300ce"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
@@ -176,8 +176,8 @@
 				<textFieldExpression><![CDATA[$F{year_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="361" y="0" width="39" height="10" uuid="8830899e-48ef-40b2-8f4f-bd16bb8a1bbd"/>
-				<textElement textAlignment="Center">
+				<reportElement x="357" y="0" width="19" height="10" uuid="8830899e-48ef-40b2-8f4f-bd16bb8a1bbd"/>
+				<textElement textAlignment="Left">
 					<font size="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_documentos_libros_cartones}]]></textFieldExpression>
@@ -220,7 +220,7 @@
 			<textField>
 				<reportElement x="749" y="0" width="31" height="10" uuid="6c29f0f0-ac52-4072-81b8-42eb027dc9ff"/>
 				<textElement>
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
 			</textField>
