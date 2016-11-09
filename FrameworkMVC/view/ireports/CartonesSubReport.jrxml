@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-10-19T17:10:52 -->
+<!-- 2016-11-09T17:19:02 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -14,6 +14,7 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="sql" class="java.lang.String"/>
+	<parameter name="total_registros" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[$P{sql}]]>
 	</queryString>
@@ -45,25 +46,47 @@
 				</textElement>
 				<text><![CDATA[REPORTE DE CARTONES]]></text>
 			</staticText>
+			<image>
+				<reportElement x="5" y="10" width="190" height="50" uuid="9aa179b4-8d87-488e-9b3d-cfe0fff66e32"/>
+				<imageExpression><![CDATA["C:/xamppp/htdocs/bodega_territorial/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
+			</image>
+			<textField evaluationTime="Report">
+				<reportElement x="642" y="30" width="138" height="10" uuid="4b9e82e7-1716-4d38-a53d-f12ef8911def"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total Registros: "+$P{total_registros}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="633" y="49" width="50" height="20" forecolor="#000000" backcolor="#000000" uuid="6dfd737b-2aef-45ec-a506-cde85d20c479"/>
+				<reportElement x="628" y="13" width="94" height="20" forecolor="#000000" backcolor="#000000" uuid="0787809e-962f-46e7-a203-454dd7ec0286"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
-					<font fontName="Arial" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Paginas:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="722" y="14" width="51" height="16" uuid="55edbf51-81ed-4665-a03b-168008231234"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="633" y="48" width="50" height="20" forecolor="#000000" backcolor="#000000" uuid="b4fa5b6c-c0e3-40f3-b304-35de5e6cbd58"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="685" y="50" width="115" height="20" forecolor="#000000" uuid="b88ae8f5-6e87-4133-bfb2-c8887bfe6061"/>
+				<reportElement x="685" y="50" width="115" height="20" forecolor="#000000" uuid="f1f3ae5c-be0e-4a2d-9f1d-9b4d5ca8c073"/>
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="5" y="10" width="190" height="50" uuid="9aa179b4-8d87-488e-9b3d-cfe0fff66e32"/>
-				<imageExpression><![CDATA["C:/xamppp/htdocs/bodega_territorial/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
