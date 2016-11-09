@@ -100,11 +100,13 @@ where		tipo_operaciones.id_tipo_operaciones = cartones.id_tipo_operaciones AND
 
 $sql=$cabeceraSql.$detallesql;
 		//, "_fecha_desde"=>$fecha_desde, "_fecha_hasta"=>$fecha_hasta
+		
+$total_registros=$_GET['total_registros'];
 
 $PHPJasperXML = new PHPJasperXML("en","TCPDF");
 $PHPJasperXML->debugsql=false;
 //$PHPJasperXML->arrayParameter=array("_id_entidades"=>$id_entidades, "_id_tipo_operaciones"=>$id_tipo_operaciones, "_id_tipo_contenido_cartones"=>$id_tipo_contenido_cartones, "_numero_cartones"=>$numero_cartones);
-$PHPJasperXML->arrayParameter=array("sql"=>$sql);
+$PHPJasperXML->arrayParameter=array("sql"=>$sql,"total_registros"=>$total_registros );
 $PHPJasperXML->load_xml_file("InventarioCartonesSubReport.jrxml");
 
 

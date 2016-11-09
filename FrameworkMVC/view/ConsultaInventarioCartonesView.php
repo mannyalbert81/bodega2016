@@ -196,8 +196,8 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar"  onClick="Borrar()" class="btn btn-warning " style="margin-top: 10px;"/> 
 	    
 	  <?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContInventarioSubReport.php?id_bodegas=<?php  echo $sel_id_bodegas ?>&id_tipo_contenido_cartones=<?php  echo $sel_id_tipo_contenido_cartones?>&numero_cartones=<?php  echo $sel_numero_cartones?>&seccion_cartones=<?php  echo $sel_seccion_cartones?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
-		            
+		 <a href="/bodega_territorial/FrameworkMVC/view/ireports/ContInventarioSubReport.php?id_bodegas=<?php  echo $sel_id_bodegas ?>&id_tipo_contenido_cartones=<?php  echo $sel_id_tipo_contenido_cartones?>&numero_cartones=<?php  echo $sel_numero_cartones?>&seccion_cartones=<?php  echo $sel_seccion_cartones?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>&total_registros=<?php echo $registrosTotales?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
+		           
 		  <?php } else {?>
 		  
 		  <?php } ?>
