@@ -202,7 +202,7 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar"  onClick="Borrar()" class="btn btn-warning " style="margin-top: 10px;"/> 
 	    
 	  <?php if(!empty($resultSet))  {?>
-		 <a href="/bodega_territorial/FrameworkMVC/view/ireports/ContDocumentosSubReport.php?id_areas_documentos=<?php  echo $sel_id_areas_documentos ?>&id_bodegas=<?php  echo $sel_id_bodegas?>&numero_cartones=<?php  echo $sel_numero_cartones?>&id_tipo_documentos=<?php  echo $sel_id_tipo_documentos?>&seccion_cartones=<?php  echo $sel_seccion_cartones?>&id_tipo_contenido_cartones=<?php echo $sel_id_tipo_contenido_cartones?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
+		 <a href="/bodega_territorial/FrameworkMVC/view/ireports/ContDocumentosSubReport.php?id_areas_documentos=<?php  echo $sel_id_areas_documentos ?>&id_bodegas=<?php  echo $sel_id_bodegas?>&numero_cartones=<?php  echo $sel_numero_cartones?>&id_tipo_documentos=<?php  echo $sel_id_tipo_documentos?>&seccion_cartones=<?php  echo $sel_seccion_cartones?>&id_tipo_contenido_cartones=<?php echo $sel_id_tipo_contenido_cartones?>&total_registros=<?php echo $registrosTotales?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
 		            
 		  <?php } else {?>
 		  
@@ -229,22 +229,15 @@
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	            
-	    		<th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Numero</th>
-	    		<th style="color:#456789;font-size:80%;">Serie Carton</th>
-	    		<th style="color:#456789;font-size:80%;">Sección</th>
-	    		<th style="color:#456789;font-size:80%;">Contenido Carton</th>
-	    		<th style="color:#456789;font-size:80%;">Años</th>
-	    		<th style="color:#456789;font-size:80%;">Cantidad de Documentos</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Contenido</th>
-	    		<th style="color:#456789;font-size:80%;">Digitalizado</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Entidades</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Bodegas</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre Tipo Operacion</th>
-	    		<th style="color:#456789;font-size:80%;">Contenido Documentos</th>
-	    		<th style="color:#456789;font-size:80%;">Serie Documentos</th>
+	          	<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Area</th>
+	    		<th style="color:#456789;font-size:80%;">Bodega</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo Documento</th>
+	   			<th style="color:#456789;font-size:80%;">Serie</th>
+	    		<th style="color:#456789;font-size:80%;">Contenido</th>
 	    		<th style="color:#456789;font-size:80%;">Fecha</th>
+	    		
+	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -253,22 +246,14 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->seccion_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->year_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_documentos_libros_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_contenido_cartones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php if($res->digitalizado_cartones=="t"){echo "Si";}else {echo "No";} ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
+	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_area_documentos; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_operaciones; ?>  </td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_documentos; ?>  </td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_documentos; ?>  </td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
-	                   
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_documentos; ?>  </td>
+			           <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_documentos; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_documentos; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
+	                   <?php  $registros = $registros + 1 ; ?> 
 		    		</tr>
 		        <?php  }  ?>
            

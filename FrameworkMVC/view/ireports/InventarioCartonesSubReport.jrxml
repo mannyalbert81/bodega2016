@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-10-19T17:39:33 -->
+<!-- 2016-11-09T16:47:41 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -64,6 +64,28 @@
 				<reportElement x="5" y="10" width="190" height="50" uuid="1450479c-09aa-45b1-8ce2-a7a8b775598a"/>
 				<imageExpression><![CDATA["C:/xamppp/htdocs/bodega_territorial/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="628" y="13" width="94" height="20" forecolor="#000000" backcolor="#000000" uuid="007e19f6-8e23-445d-bf0a-f4484d9b16f1"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Paginas:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="722" y="14" width="51" height="16" uuid="1144a520-91db-4140-af1d-2a822d407a30"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="642" y="30" width="138" height="10" uuid="b2a682a2-12c7-4021-b208-1d2949da9466"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total Registros: "+$P{total_registros}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

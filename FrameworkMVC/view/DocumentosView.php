@@ -443,8 +443,7 @@
 	    		<th style="color:#456789;font-size:80%;">Area</th>
 	    		<th style="color:#456789;font-size:80%;">Bodega</th>
 	    		<th style="color:#456789;font-size:80%;">Tipo Documento</th>
-	    		<th style="color:#456789;font-size:80%;">N° Carton</th>
-	    		<th style="color:#456789;font-size:80%;">Serie</th>
+	   			<th style="color:#456789;font-size:80%;">Serie</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
 	    		
 	    		
@@ -457,10 +456,9 @@
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_area_documentos; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
-		             <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_documentos; ?>  </td>
-		             <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>  </td>
-		             <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_documentos; ?>  </td>
-		             <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_documentos; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_documentos; ?>  </td>
+			           <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_documentos; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_documentos; ?>  </td>
 		             
 		               <td>   
 			                	<div class="right">
