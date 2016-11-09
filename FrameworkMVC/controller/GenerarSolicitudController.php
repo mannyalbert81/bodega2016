@@ -424,7 +424,7 @@ class GenerarSolicitudController extends ControladorBase{
 					//$para .= 'manuel@masoft.net';
 					   
 					
-					$para = "steven@masoft.net" .","."desarrollo@masoft.net" ;
+					$para = "maycol@masoft.net" .","."desarrollo@masoft.net" ;
 					$titulo = "";
 					
 					

@@ -40,7 +40,7 @@ $detallesql="";
         if ($_GET['id_areas_documentos']!=0)
 		{
 			$sel_id_areas_documentos=$_GET['id_areas_documentos'];
-			$detallesql=$detallesql." AND area_doumentos.id_areas_documentos = '$sel_id_areas_documentos'";
+			$detallesql=$detallesql." AND area_documentos.id_area_documentos = '$sel_id_areas_documentos'";
 		}
 		
 		if ($_GET['id_bodegas']!=0)
@@ -79,12 +79,12 @@ $detallesql="";
 		
 		
 $cabeceraSql="select      documentos.id_documentos, 
-							  area_doumentos.id_areas_documentos, 
-							  area_doumentos.nombre_areas_documentos, 
+							  area_documentos.id_area_documentos, 
+							  area_documentos.nombre_area_documentos, 
 							  bodegas.id_bodegas, 
 							  bodegas.nombre_bodegas, 
 							  tipo_documentos.id_tipo_documentos, 
-							  tipo_documentos.nombres_tipo_documentos, 
+							  tipo_documentos.nombre_tipo_documentos, 
 							  cartones.id_cartones, 
 							  cartones.numero_cartones, 
 							  cartones.serie_cartones, 
@@ -107,7 +107,7 @@ $cabeceraSql="select      documentos.id_documentos,
 							  documentos.contenido_documentos, 
 							  documentos.serie_documentos
 	
-from	public.area_doumentos, 
+from	public.area_documentos, 
 							  public.documentos, 
 							  public.bodegas, 
 							  public.tipo_documentos, 
@@ -117,7 +117,7 @@ from	public.area_doumentos,
 							  public.tipo_contenido_cartones, 
 							  public.tipo_operaciones
 	
-where		documentos.id_area_documentos = area_doumentos.id_areas_documentos AND
+where		documentos.id_area_documentos = area_documentos.id_area_documentos AND
 							  documentos.id_bodegas = bodegas.id_bodegas AND
 							  documentos.id_tipo_documentos = tipo_documentos.id_tipo_documentos AND
 							  cartones.id_cartones = documentos.id_cartones AND

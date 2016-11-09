@@ -143,7 +143,7 @@
 			  	<select name="id_areas_documentos" id="id_areas_documentos"  class="form-control" >
 					<option value="0"><?php echo "--TODOS--";  ?> </option>
 					<?php foreach($resultArea as $res) {?>
-						<option value="<?php echo $res->id_areas_documentos; ?>" <?php if($sel_id_areas_documentos==$res->id_areas_documentos){echo "selected";}?> ><?php echo $res->nombre_areas_documentos; ?> </option>
+						<option value="<?php echo $res->id_area_documentos; ?>" <?php if($sel_id_areas_documentos==$res->id_area_documentos){echo "selected";}?> ><?php echo $res->nombre_area_documentos; ?> </option>
 			        <?php } ?>
 				</select> 
 			  </div>
@@ -163,7 +163,7 @@
 			  	<select name="id_tipo_documentos" id="id_tipo_documentos"  class="form-control" >
 			  		<option value="0"><?php echo "--TODOS--";  ?> </option>
 					<?php foreach($resultTipDoc as $res) {?>
-						<option value="<?php echo $res->id_tipo_documentos; ?>"<?php if($sel_id_tipo_documentos==$res->id_tipo_documentos){echo "selected";}?>><?php echo $res->nombres_tipo_documentos;  ?> </option>
+						<option value="<?php echo $res->id_tipo_documentos; ?>"<?php if($sel_id_tipo_documentos==$res->id_tipo_documentos){echo "selected";}?>><?php echo $res->nombre_tipo_documentos;  ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
@@ -202,7 +202,7 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar"  onClick="Borrar()" class="btn btn-warning " style="margin-top: 10px;"/> 
 	    
 	  <?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContDocumentosSubReport.php?id_areas_documentos=<?php  echo $sel_id_areas_documentos ?>&id_bodegas=<?php  echo $sel_id_bodegas?>&numero_cartones=<?php  echo $sel_numero_cartones?>&id_tipo_documentos=<?php  echo $sel_id_tipo_documentos?>&seccion_cartones=<?php  echo $sel_seccion_cartones?>&id_tipo_contenido_cartones=<?php echo sel_id_tipo_contenido_cartones?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
+		 <a href="/bodega_territorial/FrameworkMVC/view/ireports/ContDocumentosSubReport.php?id_areas_documentos=<?php  echo $sel_id_areas_documentos ?>&id_bodegas=<?php  echo $sel_id_bodegas?>&numero_cartones=<?php  echo $sel_numero_cartones?>&id_tipo_documentos=<?php  echo $sel_id_tipo_documentos?>&seccion_cartones=<?php  echo $sel_seccion_cartones?>&id_tipo_contenido_cartones=<?php echo sel_id_tipo_contenido_cartones?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
 		            
 		  <?php } else {?>
 		  

@@ -269,7 +269,7 @@
 			  	<p  class="formulario-subtitulo" >Area Documento</p>
 			  	<select name="id_area_documentos" id="id_area_documentos"  class="form-control" >
 					<?php foreach($resultArea as $res) {?>
-						<option value="<?php echo $res->id_areas_documentos; ?>" <?php if ($res->id_areas_documentos == $resEdit->id_area_documentos ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_areas_documentos; ?> </option>
+						<option value="<?php echo $res->id_area_documentos; ?>" <?php if ($res->id_area_documentos == $resEdit->id_area_documentos ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_area_documentos; ?> </option>
 			      	
 			        <?php } ?>
 				</select> 
@@ -292,7 +292,7 @@
 			  	<p  class="formulario-subtitulo" >Tipo de Contenido </p>
 		         <select name="id_tipo_documentos" id="id_tipo_documentos"  class="form-control" >
 					<?php foreach($resultTipDoc as $res) {?>
-						<option value="<?php echo $res->id_tipo_documentos; ?>" <?php if ($res->id_tipo_documentos == $resEdit->id_tipo_documentos ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombres_tipo_documentos; ?> </option>
+						<option value="<?php echo $res->id_tipo_documentos; ?>" <?php if ($res->id_tipo_documentos == $resEdit->id_tipo_documentos ) echo ' selected="selected" '  ; ?> ><?php echo $res->nombre_tipo_documentos; ?> </option>
 			           
 			        <?php } ?>
 				</select>	  	
@@ -334,7 +334,7 @@
 			  	<p  class="formulario-subtitulo" >Area Documento</p>
 			  	<select name="id_area_documentos" id="id_area_documentos"  class="form-control" >
 					<?php foreach($resultArea as $res) {?>
-						<option value="<?php echo $res->id_areas_documentos; ?>"  ><?php echo $res->nombre_areas_documentos; ?> </option>
+						<option value="<?php echo $res->id_area_documentos; ?>"  ><?php echo $res->nombre_area_documentos; ?> </option>
 			        <?php } ?>
 				</select> 
 			  </div>
@@ -355,7 +355,7 @@
 			  	<p  class="formulario-subtitulo" >Tipo de Contenido </p>
 		         <select name="id_tipo_documentos" id="id_tipo_documentos"  class="form-control" >
 					<?php foreach($resultTipDoc as $res) {?>
-						<option value="<?php echo $res->id_tipo_documentos; ?>"  ><?php echo $res->nombres_tipo_documentos; ?> </option>
+						<option value="<?php echo $res->id_tipo_documentos; ?>"  ><?php echo $res->nombre_tipo_documentos; ?> </option>
 			        <?php } ?>
 				</select>	  	
 		     </div>
@@ -455,9 +455,9 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_areas_documentos; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_area_documentos; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
-		             <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_tipo_documentos; ?>  </td>
+		             <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_documentos; ?>  </td>
 		             <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>  </td>
 		             <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_documentos; ?>  </td>
 		             <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_documentos; ?>  </td>

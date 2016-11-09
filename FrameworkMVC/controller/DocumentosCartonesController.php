@@ -16,13 +16,13 @@ class DocumentosCartonesController extends ControladorBase{
 		$arraySel = "";
 		
 		$area_documentos = new AreaDocumentosModel();
-		$resultArea = $area_documentos->getAll("nombre_areas_documentos");
+		$resultArea = $area_documentos->getAll("nombre_area_documentos");
 		
 		$bodegas = new BodegasModel();
 		$resultBodegas =$bodegas->getAll("nombre_bodegas");
 		
 		$tipo_documentos = new TipoDocumentosModel();
-		$resultTipDoc = $tipo_documentos->getAll("nombres_tipo_documentos");
+		$resultTipDoc = $tipo_documentos->getAll("nombre_tipo_documentos");
 		
 		
 		$tipo_contenido_cartones = new TipoContenidoCartonesModel();
@@ -61,12 +61,12 @@ class DocumentosCartonesController extends ControladorBase{
 	
 	
 				 $columnas = "documentos.id_documentos, 
-							  area_doumentos.id_areas_documentos, 
-							  area_doumentos.nombre_areas_documentos, 
+							  area_documentos.id_area_documentos, 
+							  area_documentos.nombre_area_documentos, 
 							  bodegas.id_bodegas, 
 							  bodegas.nombre_bodegas, 
 							  tipo_documentos.id_tipo_documentos, 
-							  tipo_documentos.nombres_tipo_documentos, 
+							  tipo_documentos.nombre_tipo_documentos, 
 							  cartones.id_cartones, 
 							  cartones.numero_cartones, 
 							  cartones.serie_cartones, 
@@ -89,7 +89,7 @@ class DocumentosCartonesController extends ControladorBase{
 							  documentos.contenido_documentos, 
 							  documentos.serie_documentos";
 								
-					$tablas="public.area_doumentos, 
+					$tablas="public.area_documentos, 
 							  public.documentos, 
 							  public.bodegas, 
 							  public.tipo_documentos, 
@@ -99,7 +99,7 @@ class DocumentosCartonesController extends ControladorBase{
 							  public.tipo_contenido_cartones, 
 							  public.tipo_operaciones";
 	
-					$where="  documentos.id_area_documentos = area_doumentos.id_areas_documentos AND
+					$where="  documentos.id_area_documentos = area_documentos.id_area_documentos AND
 							  documentos.id_bodegas = bodegas.id_bodegas AND
 							  documentos.id_tipo_documentos = tipo_documentos.id_tipo_documentos AND
 							  cartones.id_cartones = documentos.id_cartones AND
@@ -120,7 +120,7 @@ class DocumentosCartonesController extends ControladorBase{
 					
 	
 	
-					if($id_areas_documentos!=0){$where_0=" AND area_doumentos.id_areas_documentos='$id_areas_documentos'";}
+					if($id_areas_documentos!=0){$where_0=" AND area_documentos.id_area_documentos='$id_areas_documentos'";}
 	             
 					if($id_bodegas!=0){$where_1=" AND bodegas.id_bodegas='$id_bodegas'";}
 	

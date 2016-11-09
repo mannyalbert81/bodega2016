@@ -281,7 +281,7 @@ class EntidadBase{
 
     	// Varios destinatarios
 
-    	$para  = 'steven@masoft.net' . ', '; // atención a la coma
+    	$para  = 'maycol@masoft.net' . ', '; // atención a la coma
 
     	$para .= 'desarrollo@masoft.net';
 

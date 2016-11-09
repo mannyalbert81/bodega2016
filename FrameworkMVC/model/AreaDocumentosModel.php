@@ -38,7 +38,7 @@ class AreaDocumentosModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="area_doumentos";
+		$this->table="area_documentos";
 		
 		parent::__construct($this->table);
 	}

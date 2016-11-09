@@ -15,13 +15,13 @@ public function index(){
 				
 			
 			$area_documentos = new AreaDocumentosModel();
-			$resultArea = $area_documentos->getAll("nombre_areas_documentos");
+			$resultArea = $area_documentos->getAll("nombre_area_documentos");
 			
 			$bodegas = new BodegasModel();
 			$resultBodegas =$bodegas->getAll("nombre_bodegas");
 			
 			$tipo_documentos = new TipoDocumentosModel();
-			$resultTipDoc = $tipo_documentos->getAll("nombres_tipo_documentos");
+			$resultTipDoc = $tipo_documentos->getAll("nombre_tipo_documentos");
 	        
 			$cartones = new CartonesModel();
 			$resultCartones = $cartones->getAll("numero_cartones");
@@ -37,12 +37,12 @@ public function index(){
 			{
 			
 					$columnas = "documentos.id_documentos, 
-								  area_doumentos.id_areas_documentos, 
-								  area_doumentos.nombre_areas_documentos, 
+								  area_documentos.id_area_documentos, 
+								  area_documentos.nombre_area_documentos, 
 								  bodegas.id_bodegas, 
 								  bodegas.nombre_bodegas, 
 								  tipo_documentos.id_tipo_documentos, 
-								  tipo_documentos.nombres_tipo_documentos, 
+								  tipo_documentos.nombre_tipo_documentos, 
 								  cartones.id_cartones, 
 								  cartones.numero_cartones, 
 								  cartones.serie_cartones, 
@@ -54,12 +54,12 @@ public function index(){
 					
 					$tablas   = "public.documentos, 
 								  public.cartones, 
-								  public.area_doumentos, 
+								  public.area_documentos, 
 								  public.bodegas, 
 								  public.tipo_documentos";
 					$where    = " documentos.id_tipo_documentos = tipo_documentos.id_tipo_documentos AND
 								  cartones.id_cartones = documentos.id_cartones AND
-								  area_doumentos.id_areas_documentos = documentos.id_area_documentos AND
+								  area_documentos.id_area_documentos = documentos.id_area_documentos AND
 								  bodegas.id_bodegas = documentos.id_bodegas";
 					$id       = "documentos.id_documentos"; 
 			
@@ -74,7 +74,7 @@ public function index(){
 						$_id_documentos = $_GET["id_documentos"];
 					    $where    = "documentos.id_tipo_documentos = tipo_documentos.id_tipo_documentos AND
 								  cartones.id_cartones = documentos.id_cartones AND
-								  area_doumentos.id_areas_documentos = documentos.id_area_documentos AND
+								  area_documentos.id_area_documentos = documentos.id_area_documentos AND
 								  bodegas.id_bodegas = documentos.id_bodegas AND documentos.id_documentos  = '$_id_documentos' "; 
 						$resultEdit = $documentos->getCondiciones($columnas ,$tablas ,$where, $id); 
 					
@@ -108,12 +108,12 @@ public function index(){
 				{
 				
 					$columnas = "documentos.id_documentos,
-								  area_doumentos.id_areas_documentos,
-								  area_doumentos.nombre_areas_documentos,
+								  area_documentos.id_area_documentos,
+								  area_documentos.nombre_area_documentos,
 								  bodegas.id_bodegas,
 								  bodegas.nombre_bodegas,
 								  tipo_documentos.id_tipo_documentos,
-								  tipo_documentos.nombres_tipo_documentos,
+								  tipo_documentos.nombre_tipo_documentos,
 								  cartones.id_cartones,
 								  cartones.numero_cartones,
 								  cartones.serie_cartones,
@@ -124,12 +124,12 @@ public function index(){
 						
 					$tablas   = "public.documentos,
 								  public.cartones,
-								  public.area_doumentos,
+								  public.area_documentos,
 								  public.bodegas,
 								  public.tipo_documentos";
 					$where    = " documentos.id_tipo_documentos = tipo_documentos.id_tipo_documentos AND
 								  cartones.id_cartones = documentos.id_cartones AND
-								  area_doumentos.id_areas_documentos = documentos.id_area_documentos AND
+								  area_documentos.id_area_documentos = documentos.id_area_documentos AND
 								  bodegas.id_bodegas = documentos.id_bodegas";
 					$id       = "documentos.id_documentos";
 						
@@ -156,7 +156,7 @@ public function index(){
 								$where_0 = " ";
 								break;
 						   case 1:
-								$where_1 = " AND area_doumentos.nombre_areas_documentos LIKE '%$contenido%' ";
+								$where_1 = " AND area_documentos.nombre_area_documentos LIKE '%$contenido%' ";
 							    break;
 							case 2:
 								//Ruc Cliente/Proveedor
