@@ -272,7 +272,7 @@
            <input type="submit" id="Buscar" name="Buscar" value="Buscar" onClick="Borrar()" class="btn btn-default"/>
            </div>
          
-          </form>
+          
           
        <!-- termina formulario de busqueda -->
         <hr/>
@@ -294,7 +294,8 @@
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
-            
+              <?php  $paginas =   0;  ?>
+		    <?php  $registros = 0; ?>
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_cartones; ?></td>
@@ -308,21 +309,49 @@
 		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->digitalizado_cartones; ?>  </td>
 		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
 		                    <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
+		                    <?php  $registros = $registros + 1 ; ?> 
 		           	   
 		    		</tr>
-		        <?php } } ?>
+		        <?php }  ?>
             
-            <?php 
-            
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
-            //<a href="javascript:abrir('/FrameworkMVC/view/ireports/ContClientesReport.php')" class="btn btn-success" style="font-size:65%;">Reporte</a>
-            
-            ?>
+           
             
        	</table>     
 		     
       </section>
-        
+         <table class="table">
+				<th class="text-center">
+				    	<nav>
+						  <ul id="pagina" name="pagina" class="pagination">
+						    <?php if ($paginasTotales > 0) {?>
+						    		<?php if ($ultima_pagina > 1 ) {?>
+						    			<input type="submit" value="<?php echo "<<"; ?>" id="anterior_pagina"    name="anterior_pagina" class="btn btn-info"/>
+						    		<?php }?>
+						    <?php for ($i = $ultima_pagina; $i< $paginasTotales+1; $i++)  { ?>
+						    		
+						    		<?php if ($i  < $ultima_pagina + 5) {  ?>
+						    			<input type="hidden" value="<?php echo $i+1; ?>" id="ultima_pagina"    name="ultima_pagina" class="btn btn-info"/>
+						    			<input type="submit" value="<?php echo $i; ?>" id="pagina"  <?php if ($i == $pagina_actual ) { echo 'style="color: #1454a3 " '; }  ?>     name="pagina" class="btn btn-info"/>
+						    			
+						    		<?php } ?>
+						    		<?php if ($paginasTotales  == $i) {  ?>
+						    			<input type="submit" value="<?php echo ">>"; ?>" id="siguiente_pagina"    name="siguiente_pagina" class="btn btn-info"/>
+						    		<?php } ?>
+						    		
+						    <?php    } }?>
+						    
+						  </ul>
+						</nav>	   	   
+			
+				</th>
+				<tr class="bg-primary">
+						<p class="text-center"> <strong> Registros Cargados: <?php echo  $registros?> Registros Totales: <?php echo  $registrosTotales?> </strong>  </p>
+	     		  	
+				</tr>			
+		</table>
+		<?php  }   else { ?>
+		        <?php }  ?>  
+		        </form>
         </div>
        
        

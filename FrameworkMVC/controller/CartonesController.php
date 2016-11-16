@@ -362,7 +362,10 @@ public function index(){
 	
 		//Creamos el objeto usuario
 		$resultSet="";
-	
+		
+		$registrosTotales = 0;
+		$arraySel = "";
+		
 		$entidades = new EntidadesModel();
 		$resultEnt = $entidades->getAll("nombre_entidades");
 		
@@ -388,7 +391,7 @@ public function index(){
 			if (!empty($resultPer))
 			{
 					
-				if(isset($_POST["buscar"])){
+				if(isset($_POST["id_entidades"])){
 	
 					$id_entidades=$_POST['id_entidades'];
 					$id_tipo_operaciones=$_POST['id_tipo_operaciones'];
@@ -452,17 +455,98 @@ public function index(){
 					$resultSet=$cartones->getCondiciones($columnas ,$tablas , $where_to, $id);
 	
 	
+					
+					foreach($resultSet as $res)
+					{
+						$registrosTotales = $registrosTotales + 1 ;
+					}
+				}else{
+					
+					
+					$registrosTotales = 0;
+					$hojasTotales = 0;
+						
+						
+					$arraySel = "";
+					$resultSet = "";
+					
+				}
+				///aqui va la paginacion  ///
+				$articulosTotales = 0;
+				$paginasTotales = 0;
+				$paginaActual = 0;
+				$ultima_pagina = 1;
+					
+				if(isset($_POST["pagina"])){
+				
+					// en caso que haya datos, los casteamos a int
+					$paginaActual = (int)$_POST["pagina"];
+					$ultima_pagina = (int)$_POST["ultima_pagina"] - 5;
+				}
+				
+				if(isset($_POST["siguiente_pagina"])){
+				
+					// en caso que haya datos, los casteamos a int
+					$ultima_pagina = (int)$_POST["ultima_pagina"];
+				}
+				
+					
+				if(isset($_POST["anterior_pagina"])){
+				
+				
+					$ultima_pagina = (int)$_POST["ultima_pagina"] - 10;
+				
+				
+				}
+				
+				
+				if ($resultSet != "")
+				{
+				
+					foreach($resultSet as $res)
+					{
+						$articulosTotales = $articulosTotales + 1;
+					}
+				
+				
+					$articulosPorPagina = 50;
+				
+					$paginasTotales = ceil($articulosTotales / $articulosPorPagina);
+				
+				
+					// el número de la página actual no puede ser menor a 0
+					if($paginaActual < 1){
+						$paginaActual = 1;
+					}
+					else if($paginaActual > $paginasTotales){ // tampoco mayor la cantidad de páginas totales
+						$paginaActual = $paginasTotales;
+					}
+				
+					// obtenemos cuál es el artículo inicial para la consulta
+					$articuloInicial = ($paginaActual - 1) * $articulosPorPagina;
+				
+					//agregamos el limit
+					$limit = " LIMIT   '$articulosPorPagina' OFFSET '$articuloInicial'";
+				
+					//volvemos a pedir el resultset con la pginacion
+				
+					$resultSet=$cartones->getCondicionesPag($columnas ,$tablas ,$where_to,  $id, $limit );
+				
+				
+				
 				}
 	
 	
 	
 	
 				$this->view("ConsultaCartones",array(
-						"resultSet"=>$resultSet, "resultTipoCont"=> $resultTipoCont, "resultEnt"=>$resultEnt, "resultTipoOpe"=>$resultTipoOpe
+						"resultSet"=>$resultSet, "resultTipoCont"=> $resultTipoCont, "resultEnt"=>$resultEnt, "resultTipoOpe"=>$resultTipoOpe,
+						"arraySel"=>$arraySel, "paginasTotales"=>$paginasTotales,
+						"registrosTotales"=> $registrosTotales,"pagina_actual"=>$paginaActual, "ultima_pagina"=>$ultima_pagina
 							
 				));
 	
-	
+				
 	
 			}
 			else
@@ -497,6 +581,9 @@ public function index(){
 			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
 			$resultMenu=array(0=>'--Seleccione--',1=>'Numero', 2=>'Serie', 3=>'Contenido', 4=>'Año', 5=>'Cantidad Documentos', 6=>'Nombre Contenido', 7=>'Digitalizado', 8=>'Nombre Entidades', 9=>'Nombre Bodega');
 			//Creamos el objeto usuario
+			$arraySel = "";
+			$resultSet = "";
+			$registrosTotales = 0;
 				
 			$bodegas = new BodegasModel();
 			$resultBodegas = $bodegas->getAll("nombre_bodegas");
@@ -511,6 +598,8 @@ public function index(){
 			$resultEnt = $entidades->getAll("nombre_entidades");
 			 
 			$cartones = new CartonesModel();
+			
+			/*
 			$columnas = " cartones.id_cartones,
 					      cartones.numero_cartones,
 						  cartones.serie_cartones,
@@ -533,7 +622,7 @@ public function index(){
 			$id       = "cartones.numero_cartones";
 	
 			$resultSet=$cartones->getCondiciones($columnas ,$tablas ,$where, $id);
-				
+		*/	
 			$nombre_controladores = "Cartones";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $cartones->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -574,7 +663,7 @@ public function index(){
 				
 			if (!empty($resultPerVer))
 			{
-				if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
+				if (isset ($_POST["Buscar"]) )
 				{
 	
 					$columnas = " cartones.id_cartones,
@@ -598,7 +687,7 @@ public function index(){
 					$criterio = $_POST["criterio"];
 					$contenido = $_POST["contenido"];
 	
-						
+					$where_to=$where;
 					//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 	
 					if ($contenido !="")
@@ -618,7 +707,7 @@ public function index(){
 							
 						switch ($criterio) {
 							case 0:
-								$where_0 = " ";
+								$where_0 = "";
 								break;
 							case 1:
 								//Ruc Cliente/Proveedor
@@ -672,22 +761,123 @@ public function index(){
 						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5 . $where_6 . $where_7 . $where_8 . $where_9;
 							
 							
-						$resul = $where_to;
-	
-						//Conseguimos todos los usuarios con filtros
-						$resultSet=$cartones->getCondiciones($columnas ,$tablas ,$where_to, $id);
-							
-	
+						
 					}
+					
+					$resultSet=$cartones->getCondiciones($columnas ,$tablas ,$where_to, $id);
+						
+					
+					foreach($resultSet as $res)
+					{
+						$registrosTotales = $registrosTotales + 1 ;
+					}
+				
+				
 				}
+				
+				else{
+						
+						
+					$registrosTotales = 0;
+					$hojasTotales = 0;
+				
+				
+					$arraySel = "";
+					$resultSet = "";
+						
+				}
+				
+				///aqui va la paginacion  ///
+				$articulosTotales = 0;
+				$paginasTotales = 0;
+				$paginaActual = 0;
+				$ultima_pagina = 1;
+					
+				if(isset($_POST["pagina"])){
+				
+					// en caso que haya datos, los casteamos a int
+					$paginaActual = (int)$_POST["pagina"];
+					$ultima_pagina = (int)$_POST["ultima_pagina"] - 5;
+					
+				}
+				
+			
+			
+				
+				if(isset($_POST["siguiente_pagina"])){
+				
+					// en caso que haya datos, los casteamos a int
+					$ultima_pagina = (int)$_POST["ultima_pagina"];
+				}
+				
+					
+				if(isset($_POST["anterior_pagina"])){
+				
+				
+					$ultima_pagina = (int)$_POST["ultima_pagina"] - 10;
+				
+				
+				}
+				
+				
+				if ($resultSet != "")
+				{
+				
+					foreach($resultSet as $res)
+					{
+						$articulosTotales = $articulosTotales + 1;
+					}
+				
+				
+					$articulosPorPagina = 50;
+				
+					$paginasTotales = ceil($articulosTotales / $articulosPorPagina);
+				
+				
+					// el número de la página actual no puede ser menor a 0
+					if($paginaActual < 1){
+						$paginaActual = 1;
+					}
+					else if($paginaActual > $paginasTotales){ // tampoco mayor la cantidad de páginas totales
+						$paginaActual = $paginasTotales;
+					}
+				
+					// obtenemos cuál es el artículo inicial para la consulta
+					$articuloInicial = ($paginaActual - 1) * $articulosPorPagina;
+				
+					//agregamos el limit
+					$limit = " LIMIT   '$articulosPorPagina' OFFSET '$articuloInicial'";
+				
+					//volvemos a pedir el resultset con la pginacion
+				
+					$resultSet=$cartones->getCondicionesPag($columnas ,$tablas ,$where_to,  $id, $limit );
+					
+				
+				
+				}
+				$this->view("BusquedaCartones",array(
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultMenu"=>$resultMenu, "resultBodegas"=> $resultBodegas, "resultTipoConCar"=> $resultTipoConCar, "resultEnt"=>$resultEnt,
+						"arraySel"=>$arraySel, "paginasTotales"=>$paginasTotales,
+						"registrosTotales"=> $registrosTotales,"pagina_actual"=>$paginaActual, "ultima_pagina"=>$ultima_pagina
+				
+				));
+				
+				
+				
+				
+			}else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Consulta Documentos Cartones"
+	
+				));
+	
+				exit();
 			}
 				
 			//"resultMenu"=>$resultMenu
 				
-			$this->view("BusquedaCartones",array(
-					"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultMenu"=>$resultMenu, "resultBodegas"=> $resultBodegas, "resultTipoConCar"=> $resultTipoConCar, "resultEnt"=>$resultEnt
-						
-			));
+			
 				
 				
 		}
