@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-11-09T16:57:11 -->
+<!-- 2016-11-16T13:44:23 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -124,11 +124,11 @@
 				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="408" y="3" width="63" height="21" forecolor="#FFFFFF" uuid="42f4c6ab-b6ed-45d6-9d74-8e5e20ac94de"/>
+				<reportElement x="403" y="3" width="82" height="21" forecolor="#FFFFFF" uuid="42f4c6ab-b6ed-45d6-9d74-8e5e20ac94de"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Serie ]]></text>
+				<text><![CDATA[Número Carton]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="535" y="3" width="85" height="21" forecolor="#FFFFFF" uuid="761c022b-59fa-443a-9aca-c12d19a4e4a2"/>
@@ -177,7 +177,7 @@
 				<textElement textAlignment="Left">
 					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{serie_documentos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{numero_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="485" y="0" width="264" height="10" uuid="da4e8590-9a64-47cc-bdca-ec7c5e353976"/>

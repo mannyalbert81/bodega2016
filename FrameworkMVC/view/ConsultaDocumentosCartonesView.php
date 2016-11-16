@@ -104,6 +104,7 @@
        $sel_id_tipo_documentos="";
        $sel_seccion_cartones="";
        $sel_id_tipo_contenido_cartones="";
+       $sel_contenido_documentos="";
         
        if($_SERVER['REQUEST_METHOD']=='POST' )
        {
@@ -115,6 +116,7 @@
        	$sel_id_tipo_documentos=$_POST['id_tipo_documentos'];
        	$sel_seccion_cartones=$_POST['seccion_cartones'];
        	$sel_id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
+       	$sel_contenido_documentos =$_POST['contenido_documentos'];
        	 
        }
        ?>
@@ -193,7 +195,12 @@
 			    <div id="mensaje_numero_titulo" class="errores"></div>
 
          </div>
-         
+          <div class="col-xs-2 ">
+			  	<p  class="formulario-subtitulo" >Contenido:</p>
+			  	<input type="text"  name="contenido_documentos" id="contenido_documentos" value="<?php echo $sel_contenido_documentos;?>" class="form-control"/> 
+
+         </div>
+                   
         
   			</div>
   		
@@ -202,7 +209,7 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar"  onClick="Borrar()" class="btn btn-warning " style="margin-top: 10px;"/> 
 	    
 	  <?php if(!empty($resultSet))  {?>
-		 <a href="/bodega_territorial/FrameworkMVC/view/ireports/ContDocumentosSubReport.php?id_areas_documentos=<?php  echo $sel_id_areas_documentos ?>&id_bodegas=<?php  echo $sel_id_bodegas?>&numero_cartones=<?php  echo $sel_numero_cartones?>&id_tipo_documentos=<?php  echo $sel_id_tipo_documentos?>&seccion_cartones=<?php  echo $sel_seccion_cartones?>&id_tipo_contenido_cartones=<?php echo $sel_id_tipo_contenido_cartones?>&total_registros=<?php echo $registrosTotales?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
+		 <a href="/bodega_territorial/FrameworkMVC/view/ireports/ContDocumentosSubReport.php?id_areas_documentos=<?php  echo $sel_id_areas_documentos ?>&id_bodegas=<?php  echo $sel_id_bodegas?>&numero_cartones=<?php  echo $sel_numero_cartones?>&id_tipo_documentos=<?php  echo $sel_id_tipo_documentos?>&seccion_cartones=<?php  echo $sel_seccion_cartones?>&id_tipo_contenido_cartones=<?php echo $sel_id_tipo_contenido_cartones?>&contenido_documentos=<?php echo strtoupper($sel_contenido_documentos)?>&total_registros=<?php echo $registrosTotales?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
 		            
 		  <?php } else {?>
 		  
@@ -233,7 +240,7 @@
 	    		<th style="color:#456789;font-size:80%;">Area</th>
 	    		<th style="color:#456789;font-size:80%;">Bodega</th>
 	    		<th style="color:#456789;font-size:80%;">Tipo Documento</th>
-	   			<th style="color:#456789;font-size:80%;">Serie</th>
+	   			<th style="color:#456789;font-size:80%;">Número Carton</th>
 	    		<th style="color:#456789;font-size:80%;">Contenido</th>
 	    		<th style="color:#456789;font-size:80%;">Fecha</th>
 	    		
@@ -250,7 +257,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_area_documentos; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_bodegas; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_documentos; ?>  </td>
-			           <td style="color:#000000;font-size:80%;"> <?php echo $res->serie_documentos; ?>  </td>
+			           <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cartones; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->contenido_documentos; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>  </td>
 	                   <?php  $registros = $registros + 1 ; ?> 

@@ -27,6 +27,7 @@ $sel_numero_cartones=0;
 $sel_id_tipo_documentos=0;
 $sel_seccion_cartones=0;
 $sel_id_tipo_contenido_cartones=0;
+$sel_contenido_documentos=0;
 
 
 
@@ -54,7 +55,7 @@ $detallesql="";
 		{
 		
 			$numero_cartones= $_GET['numero_cartones'];
-			$detallesql=$detallesql." AND cartones.numero_cartones = '$numero_cartones'";
+			$detallesql=$detallesql." AND cartones.numero_cartones LIKE '%$numero_cartones%'";
 		}
 		if ($_GET['id_tipo_documentos']!=0)
 		{
@@ -73,6 +74,12 @@ $detallesql="";
 		
 			$sel_id_tipo_contenido_cartones= $_GET['id_tipo_contenido_cartones'];
 			$detallesql=$detallesql." AND tipo_contenido_cartones.id_tipo_contenido_cartones = '$sel_id_tipo_contenido_cartones'";
+		}
+		if ($_GET['contenido_documentos']!="")
+		{
+		
+			$sel_contenido_documentos= $_GET['contenido_documentos'];
+			$detallesql=$detallesql." AND documentos.contenido_documentos LIKE '%$sel_contenido_documentos%'";
 		}
 		
 		

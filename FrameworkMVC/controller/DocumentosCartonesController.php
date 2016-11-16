@@ -55,6 +55,7 @@ class DocumentosCartonesController extends ControladorBase{
 					$id_tipo_contenido_cartones=$_POST['id_tipo_contenido_cartones'];
 					$numero_cartones=$_POST['numero_cartones'];
 					$seccion_cartones=$_POST['seccion_cartones'];
+					$contenido_documentos=strtoupper($_POST['contenido_documentos']);
 					
 					
 					$documentos_cartones = new DocumentosModel();
@@ -117,6 +118,7 @@ class DocumentosCartonesController extends ControladorBase{
 					$where_3 = "";
 					$where_4 = "";
 					$where_5 = "";
+					$where_6 = "";
 					
 	
 	
@@ -128,12 +130,14 @@ class DocumentosCartonesController extends ControladorBase{
 					
 					if($id_tipo_contenido_cartones!=0){$where_3=" AND tipo_contenido_cartones.id_tipo_contenido_cartones='$id_tipo_contenido_cartones'";}
 						
-					if($numero_cartones!=""){$where_4=" AND cartones.numero_cartones='$numero_cartones'";}
+					if($numero_cartones!=""){$where_4=" AND cartones.numero_cartones LIKE '%$numero_cartones%'";}
 	
 					if($seccion_cartones!=""){$where_5=" AND cartones.seccion_cartones ='$seccion_cartones'";}
 					
+					if($contenido_documentos!=""){$where_6=" AND documentos.contenido_documentos LIKE '%$contenido_documentos%'";}
+					
 	
-					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3. $where_4. $where_5;
+					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3. $where_4. $where_5. $where_6;
 	
 	
 					$resultSet=$documentos_cartones->getCondiciones($columnas ,$tablas , $where_to, $id);
