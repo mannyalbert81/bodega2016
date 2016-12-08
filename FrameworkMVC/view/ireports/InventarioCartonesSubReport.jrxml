@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-11-09T17:06:50 -->
+<!-- 2016-12-08T16:08:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
@@ -181,63 +181,63 @@
 			<textField>
 				<reportElement x="38" y="0" width="42" height="10" uuid="b27551cd-7ac2-4693-a564-ca2c917a7af6"/>
 				<textElement>
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="80" y="0" width="234" height="10" uuid="2cb7dd2d-2bb8-44ea-b404-6eecaa7a651b"/>
 				<textElement>
-					<font size="4"/>
+					<font size="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="314" y="0" width="34" height="10" uuid="8722f952-4d6b-4d6d-b262-639932c00f60"/>
 				<textElement>
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{year_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="357" y="0" width="19" height="10" uuid="8830899e-48ef-40b2-8f4f-bd16bb8a1bbd"/>
 				<textElement textAlignment="Left">
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad_documentos_libros_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="415" y="0" width="50" height="10" uuid="da4e8590-9a64-47cc-bdca-ec7c5e353976"/>
 				<textElement>
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_tipo_contenido_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="473" y="0" width="30" height="10" uuid="8976ed6e-9d23-41c3-811e-effa8a614431"/>
 				<textElement>
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{digitalizado_cartones}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="520" y="0" width="64" height="10" uuid="5e58775f-56f2-4713-8e24-afc8f8727ab9"/>
 				<textElement>
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="601" y="0" width="60" height="10" uuid="de40c494-dd6f-4073-8ecd-1706a3705a0a"/>
 				<textElement>
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_bodegas}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="670" y="0" width="54" height="10" uuid="d3b2f3b5-b108-4ac2-9a57-3e5a6a895845"/>
 				<textElement textAlignment="Left">
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{seccion_cartones}]]></textFieldExpression>
 			</textField>
@@ -251,7 +251,7 @@
 			<textField evaluationTime="Band" pattern="">
 				<reportElement x="10" y="0" width="20" height="10" uuid="5136fe1f-732b-4999-9667-22ad51515b4c"/>
 				<textElement>
-					<font size="5"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
